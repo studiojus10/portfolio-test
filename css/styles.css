@@ -17,6 +17,11 @@
   writing-mode: vertical-rl;
 }
 
+/* Logo numeric treatment */
+.logo-text {
+  font-variant-numeric: lining-nums;
+}
+
 /* Hide carousel scrollbar */
 #carousel-container::-webkit-scrollbar { display: none; }
 #carousel-container {
