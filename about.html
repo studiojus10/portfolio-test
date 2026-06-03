@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STUDIO JUS10 - About</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Noto+Serif+SC:wght@200..900&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary-fixed-variant": "#930006",
+            "on-secondary": "#ffffff",
+            "surface": "#fcf9f8",
+            "outline": "#8f706b",
+            "on-background": "#1c1b1b",
+            "on-tertiary-fixed-variant": "#474742",
+            "error-container": "#ffdad6",
+            "primary-container": "#d9372d",
+            "on-secondary-fixed-variant": "#474747",
+            "on-surface": "#1c1b1b",
+            "inverse-on-surface": "#f3f0ef",
+            "inverse-primary": "#ffb4aa",
+            "secondary": "#5e5e5e",
+            "on-surface-variant": "#5b403c",
+            "surface-bright": "#fcf9f8",
+            "primary": "#e03c31",
+            "surface-container-low": "#f6f3f2"
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white">
+  <nav class="bg-surface-container-lowest font-label-caps text-label-caps w-full top-0 sticky border-b border-on-background flex justify-between items-center px-4 md:px-8 py-4 z-50">
+    <a href="index.html" class="logo-text font-headline-md text-headline-md tracking-tighter text-on-background hover:text-primary transition-colors duration-300 flex items-center gap-2">
+      STUDIO JUS10
+      <span class="font-cjk text-lg font-light hidden sm:inline-block ml-2">工作室</span>
+    </a>
+
+    <div class="hidden md:flex gap-8 items-center tracking-widest">
+      <a href="photography.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
+        <span>Photography</span>
+        <span class="font-cjk text-[10px] text-on-surface-variant">摄影</span>
+      </a>
+      <a href="video.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
+        <span>Video</span>
+        <span class="font-cjk text-[10px] text-on-surface-variant">视频</span>
+      </a>
+      <a href="art.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
+        <span>Art</span>
+        <span class="font-cjk text-[10px] text-on-surface-variant">艺术</span>
+      </a>
+      <a href="about.html" class="text-on-surface text-primary flex flex-col items-center">
+        <span>About</span>
+        <span class="font-cjk text-[10px] text-primary">关于</span>
+      </a>
+    </div>
+
+    <a href="contact.html" class="hidden md:inline-flex items-center gap-2 border border-on-surface px-4 py-2 hover:bg-primary hover:text-white hover:border-primary transition-colors duration-300">
+      <span>Contact</span>
+      <span class="font-cjk text-xs">联系</span>
+    </a>
+
+    <button id="mobile-menu-toggle" class="md:hidden text-on-surface" aria-label="Toggle menu">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="fixed inset-y-0 right-0 z-40 w-72 bg-surface-container-lowest border-l border-on-background transform translate-x-full transition-transform duration-300 md:hidden flex flex-col pt-20 px-6 gap-6 font-label-caps text-label-caps tracking-widest">
+    <a href="photography.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
+      <span>Photography</span>
+      <span class="font-cjk text-primary text-sm">摄影</span>
+    </a>
+    <a href="video.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
+      <span>Video</span>
+      <span class="font-cjk text-primary text-sm">视频</span>
+    </a>
+    <a href="art.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
+      <span>Art</span>
+      <span class="font-cjk text-primary text-sm">艺术</span>
+    </a>
+    <a href="about.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
+      <span>About</span>
+      <span class="font-cjk text-primary text-sm">关于</span>
+    </a>
+    <a href="contact.html" class="flex items-center justify-between border border-on-surface px-4 py-3 mt-2 hover:bg-primary hover:text-white hover:border-primary transition-colors">
+      <span>Contact</span>
+      <span class="font-cjk text-xs">联系</span>
+    </a>
+  </div>
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-30 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
+
+  <main class="w-full px-4 md:px-8 py-8">
+    <section class="grid gap-8 md:grid-cols-12 items-start">
+      <div class="md:col-span-7 flex flex-col gap-6">
+        <div class="border-b-2 border-on-background pb-4">
+          <span class="font-cjk text-primary text-3xl md:text-5xl mb-2 font-medium">About</span>
+          <h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-background leading-none">关于与故事</h1>
+        </div>
+        <p class="font-label-mono text-xs uppercase tracking-widest text-on-surface-variant">A compact profile of the studio's creative approach, cultural perspective, and craft.</p>
+
+        <div class="bg-surface-container-lowest border border-on-background p-6 shadow-sm">
+          <p class="font-headline-md text-2xl text-primary mb-4">A designer who frames experience through story, atmosphere, and detail.</p>
+          <p class="font-label-mono text-xs leading-relaxed">Justin Hughes brings international cultural fluency, editorial discipline, and service-minded storytelling to each project. His background spans culinary hospitality, multilingual communication, luxury brand strategy, and visual direction.</p>
+        </div>
+      </div>
+
+      <div class="md:col-span-5 flex flex-col gap-6">
+        <div class="bg-primary p-6 text-white border border-primary">
+          <div class="font-label-caps text-[10px] uppercase mb-3">哲学</div>
+          <p class="font-label-mono text-xs leading-relaxed">Good design is not louder than the people it serves. It is the quiet framework that allows a story to unfold with confidence.</p>
+        </div>
+        <div class="bg-surface-container-lowest border border-on-background p-6">
+          <p class="font-label-mono text-[10px] uppercase text-on-surface-variant mb-2">Quote</p>
+          <p class="font-headline-md text-xl leading-tight">"Context is part of the composition; understanding is part of the creative act."</p>
+          <p class="font-cjk text-xs text-on-surface-variant mt-3">“环境是构成的一部分；理解是创作行为的一部分。”</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-8 grid gap-6 md:grid-cols-12">
+      <div class="md:col-span-7 flex flex-col gap-6">
+        <div class="border border-on-background bg-surface p-6">
+          <h2 class="font-headline-md text-2xl mb-4">Background</h2>
+          <p class="font-label-mono text-xs leading-relaxed mb-4">Raised between Europe and Asia, Justin's work is informed by multilingual immersion, precision service, and editorial craft. He has built experiences that balance high-end hospitality with grounded human empathy.</p>
+          <p class="font-label-mono text-xs leading-relaxed">His process begins by listening to the brief, then crafting stories through photography, video, design systems, and digital content that feel both intentional and effortless.</p>
+        </div>
+        <div class="border border-on-background bg-surface p-6">
+          <h2 class="font-headline-md text-2xl mb-4">Why this work</h2>
+          <p class="font-label-mono text-xs leading-relaxed">The objective is not simply to create pretty imagery; it is to shape experiences that people remember, feel, and share. For Justin, every visual decision is made with audience clarity and editorial rigor in mind.</p>
+        </div>
+      </div>
+
+      <aside class="md:col-span-5 border border-on-background bg-surface-container-lowest p-6">
+        <h3 class="font-headline-md text-xl text-primary mb-4">Studio</h3>
+        <p class="font-label-mono text-[10px] mb-3 uppercase tracking-[0.2em] text-on-surface-variant">Core values</p>
+        <ul class="font-label-mono text-xs space-y-3">
+          <li><span class="font-bold">Narrative first</span> – every visual choice supports a story.</li>
+          <li><span class="font-bold">Cultural fluency</span> – design that honors context and audience.</li>
+          <li><span class="font-bold">Minimal tension</span> – contrast used as a directional tool.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="mt-10 border border-on-background bg-surface-container-lowest p-6">
+      <div class="flex flex-col md:flex-row justify-between items-start gap-6">
+        <div class="md:w-2/3">
+          <p class="font-label-mono text-xs uppercase tracking-[0.2em] mb-3">Perspective</p>
+          <p class="font-headline-md text-2xl mb-4">The real work is less about trends and more about quiet conviction.</p>
+          <p class="font-cjk text-sm text-on-surface-variant">真正的工作不是关于趋势，而是关于安静的信念。</p>
+        </div>
+        <div class="md:w-1/3 border border-on-background p-4">
+          <p class="font-label-mono text-[10px] mb-2">Featured quote</p>
+          <h3 class="font-headline-md text-lg text-primary">“The complexity is the simplicity.”</h3>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[10px] text-surface-variant uppercase tracking-widest">
+    <div class="flex items-center gap-4 mb-4 md:mb-0">
+      <div class="font-headline-md text-base text-surface-container-lowest italic">STUDIO JUS10</div>
+      <div class="font-cjk text-primary border-l border-surface-variant pl-4">工作室</div>
+    </div>
+    <div class="flex flex-wrap justify-center gap-6 mb-4 md:mb-0">
+      <a href="https://instagram.com" class="hover:text-primary transition-colors flex items-center gap-1">
+        <span>Instagram</span>
+        <span class="font-cjk text-primary opacity-70">照片</span>
+      </a>
+      <a href="https://linkedin.com" class="hover:text-primary transition-colors flex items-center gap-1">
+        <span>LinkedIn</span>
+        <span class="font-cjk text-primary opacity-70">领英</span>
+      </a>
+      <a href="mailto:studiojus10@gmail.com" class="hover:text-primary transition-colors flex items-center gap-1">
+        <span>Email</span>
+        <span class="font-cjk text-primary opacity-70">邮件</span>
+      </a>
+    </div>
+    <div>
+      <span>© 2025 STUDIO JUS10</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

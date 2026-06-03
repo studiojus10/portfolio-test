@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Noto+Serif+SC:wght@200..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Noto+Serif+SC:wght@200..900&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -80,13 +80,13 @@
           },
           fontFamily: {
             "body-lg":             ["Hanken Grotesk"],
-            "display-lg":          ["Playfair Display"],
+            "display-lg":          ["Old Standard TT"],
             "label-mono":          ["Space Grotesk"],
             "label-caps":          ["Space Grotesk"],
-            "headline-md":         ["Playfair Display"],
-            "headline-lg":         ["Playfair Display"],
+            "headline-md":         ["Old Standard TT"],
+            "headline-lg":         ["Old Standard TT"],
             "body-md":             ["Hanken Grotesk"],
-            "headline-lg-mobile":  ["Playfair Display"],
+            "headline-lg-mobile":  ["Old Standard TT"],
             "cjk":                 ["Noto Serif SC", "serif"]
           },
           fontSize: {
@@ -110,31 +110,31 @@
 
   <!-- ── Navigation ──────────────────────────────────────────────────────── -->
   <nav class="bg-surface-container-lowest font-label-caps text-label-caps w-full top-0 sticky border-b border-on-background flex justify-between items-center px-4 md:px-8 py-4 z-50">
-    <a href="#" class="font-headline-md text-headline-md tracking-tighter text-on-background hover:text-primary transition-colors duration-300 flex items-center gap-2">
+    <a href="index.html" class="logo-text font-headline-md text-headline-md tracking-tighter text-on-background hover:text-primary transition-colors duration-300 flex items-center gap-2">
       STUDIO JUS10
       <span class="font-cjk text-lg font-light hidden sm:inline-block ml-2">工作室</span>
     </a>
 
     <div class="hidden md:flex gap-8 items-center tracking-widest">
-      <a href="#photography" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
+      <a href="photography.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
         <span>Photography</span>
         <span class="font-cjk text-[10px] text-on-surface-variant">摄影</span>
       </a>
-      <a href="#video" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
+      <a href="video.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
         <span>Video</span>
         <span class="font-cjk text-[10px] text-on-surface-variant">视频</span>
       </a>
-      <a href="#art" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
+      <a href="art.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
         <span>Art</span>
         <span class="font-cjk text-[10px] text-on-surface-variant">艺术</span>
       </a>
-      <a href="#about" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
+      <a href="about.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
         <span>About</span>
         <span class="font-cjk text-[10px] text-on-surface-variant">关于</span>
       </a>
     </div>
 
-    <a href="#contact" class="hidden md:inline-flex items-center gap-2 border border-on-surface px-4 py-2 hover:bg-primary hover:text-white hover:border-primary transition-colors duration-300">
+    <a href="contact.html" class="hidden md:inline-flex items-center gap-2 border border-on-surface px-4 py-2 hover:bg-primary hover:text-white hover:border-primary transition-colors duration-300">
       <span>Contact</span>
       <span class="font-cjk text-xs">联系</span>
     </a>
@@ -146,23 +146,23 @@
 
   <!-- Mobile Drawer -->
   <div id="mobile-menu" class="fixed inset-y-0 right-0 z-40 w-72 bg-surface-container-lowest border-l border-on-background transform translate-x-full transition-transform duration-300 md:hidden flex flex-col pt-20 px-6 gap-6 font-label-caps text-label-caps tracking-widest">
-    <a href="#photography" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
+    <a href="photography.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
       <span>Photography</span>
       <span class="font-cjk text-primary text-sm">摄影</span>
     </a>
-    <a href="#video" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
+    <a href="video.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
       <span>Video</span>
       <span class="font-cjk text-primary text-sm">视频</span>
     </a>
-    <a href="#art" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
+    <a href="art.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
       <span>Art</span>
       <span class="font-cjk text-primary text-sm">艺术</span>
     </a>
-    <a href="#about" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
+    <a href="about.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
       <span>About</span>
       <span class="font-cjk text-primary text-sm">关于</span>
     </a>
-    <a href="#contact" class="flex items-center justify-between border border-on-surface px-4 py-3 mt-2 hover:bg-primary hover:text-white hover:border-primary transition-colors">
+    <a href="contact.html" class="flex items-center justify-between border border-on-surface px-4 py-3 mt-2 hover:bg-primary hover:text-white hover:border-primary transition-colors">
       <span>Contact</span>
       <span class="font-cjk text-xs">联系</span>
     </a>
@@ -181,7 +181,7 @@
     <div id="carousel-container" class="overflow-hidden w-full px-4">
       <div id="carousel-track" class="flex gap-8">
 
-        <a href="#photography" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col">
+        <a href="photography.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col">
           <div class="flex flex-col gap-2 w-full">
             <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA369BWcLFihr0TStsJ5KLYSo6p_QrpeOXq6JaxFbBrPHwoRaO3fY4JbA8AViLeDbf5bHPkam0My0GJztVEvNGc2dQKFIMxAptqLp5QR183Hu1-MCbOz9XL1uFYbtXZoQsNeE24I99nVWKpnJHKFpXfWHJCZ0opI89bE9Zag9JUgKRwGBpg7otq_GDUiGWsuL-1MeiAUGpLb1l9BEORRxx643Kx3WoyvSfU2pXvmtGzSzqk3Clf9utMmrGKDkSv5j7IcGvO_TSwY-U" alt="Exhibition Design" class="h-48 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
             <div class="flex flex-col border-t border-on-background/10 pt-2">
@@ -191,7 +191,7 @@
           </div>
         </a>
 
-        <a href="#photography" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col">
+        <a href="photography.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col">
           <div class="flex flex-col gap-2 w-full">
             <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-1b46JlBaWTE0WJH7Ebzw8xM2sQ2pJqsGTIz_iLKvpD7b3HOIU-3YxVIJSX8LjDuIrHTabDDtG12j3Vwx8oZnNAJZOfau-aK1uPZx8UDZ-N4xAtSkEmPulcBzDwZXO5kz_5y-qDH8ojBOiqLpu3peP5XS36BVIPrwTHsTET1eQCH-GqBWYe0Ot5U5k1kvdV8eddDmIff3ijWGIxBNa87csVZPtIBSJJlxw2OtylzkXw866ncp0FR8gjY3aJmP4RkOuNp7m1m1vBw" alt="Portrait Studies" class="h-48 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
             <div class="flex flex-col border-t border-on-background/10 pt-2">
@@ -201,7 +201,7 @@
           </div>
         </a>
 
-        <a href="#art" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col">
+        <a href="art.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col">
           <div class="flex flex-col gap-2 w-full">
             <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj8D5dbZcB6nPMH0euzQ_eRuvVRXiJye5NxwwhbhH5GaPM_44JyCyR0fwiP4noIvr-VjcNmH0LXElFkcoPzGJnlZxNoaCzMLm-bmBPIS1cijmoC5nU1wWYVzNTI69PlyWCZwCGk9YiWmZQNrBfIO5F38nsBZPuYc2Scj-_td23pltTfyL2hsH62T_QzTnpzefIZ3VZKesPAKQL84LdowYx7dE5k42lN5GDXlckJBvRiJk4t8R5RSXj6ahvEL_Oe6OyO2w9Mim0Sf8" alt="Visual Identity" class="h-48 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
             <div class="flex flex-col border-t border-on-background/10 pt-2">
@@ -212,7 +212,7 @@
         </a>
 
         <!-- Duplicates for seamless infinite loop -->
-        <a href="#photography" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col" aria-hidden="true" tabindex="-1">
+        <a href="photography.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col" aria-hidden="true" tabindex="-1">
           <div class="flex flex-col gap-2 w-full">
             <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA369BWcLFihr0TStsJ5KLYSo6p_QrpeOXq6JaxFbBrPHwoRaO3fY4JbA8AViLeDbf5bHPkam0My0GJztVEvNGc2dQKFIMxAptqLp5QR183Hu1-MCbOz9XL1uFYbtXZoQsNeE24I99nVWKpnJHKFpXfWHJCZ0opI89bE9Zag9JUgKRwGBpg7otq_GDUiGWsuL-1MeiAUGpLb1l9BEORRxx643Kx3WoyvSfU2pXvmtGzSzqk3Clf9utMmrGKDkSv5j7IcGvO_TSwY-U" alt="" class="h-48 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
             <div class="flex flex-col border-t border-on-background/10 pt-2">
@@ -222,7 +222,7 @@
           </div>
         </a>
 
-        <a href="#photography" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col" aria-hidden="true" tabindex="-1">
+        <a href="photography.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col" aria-hidden="true" tabindex="-1">
           <div class="flex flex-col gap-2 w-full">
             <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-1b46JlBaWTE0WJH7Ebzw8xM2sQ2pJqsGTIz_iLKvpD7b3HOIU-3YxVIJSX8LjDuIrHTabDDtG12j3Vwx8oZnNAJZOfau-aK1uPZx8UDZ-N4xAtSkEmPulcBzDwZXO5kz_5y-qDH8ojBOiqLpu3peP5XS36BVIPrwTHsTET1eQCH-GqBWYe0Ot5U5k1kvdV8eddDmIff3ijWGIxBNa87csVZPtIBSJJlxw2OtylzkXw866ncp0FR8gjY3aJmP4RkOuNp7m1m1vBw" alt="" class="h-48 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
             <div class="flex flex-col border-t border-on-background/10 pt-2">
@@ -232,7 +232,7 @@
           </div>
         </a>
 
-        <a href="#art" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col" aria-hidden="true" tabindex="-1">
+        <a href="art.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col" aria-hidden="true" tabindex="-1">
           <div class="flex flex-col gap-2 w-full">
             <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj8D5dbZcB6nPMH0euzQ_eRuvVRXiJye5NxwwhbhH5GaPM_44JyCyR0fwiP4noIvr-VjcNmH0LXElFkcoPzGJnlZxNoaCzMLm-bmBPIS1cijmoC5nU1wWYVzNTI69PlyWCZwCGk9YiWmZQNrBfIO5F38nsBZPuYc2Scj-_td23pltTfyL2hsH62T_QzTnpzefIZ3VZKesPAKQL84LdowYx7dE5k42lN5GDXlckJBvRiJk4t8R5RSXj6ahvEL_Oe6OyO2w9Mim0Sf8" alt="" class="h-48 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
             <div class="flex flex-col border-t border-on-background/10 pt-2">
@@ -331,7 +331,7 @@
             <span class="font-cjk text-primary border border-primary rounded-full w-6 h-6 flex items-center justify-center text-xs">影</span>
           </div>
           <p class="font-label-mono text-xs mb-6 opacity-80 border-b border-surface-variant pb-4">Cinematic storytelling and dramatic lighting.</p>
-          <a href="#video" class="font-label-caps text-xs flex justify-between items-center group hover:text-primary transition-colors">
+          <a href="video.html" class="font-label-caps text-xs flex justify-between items-center group hover:text-primary transition-colors">
             <span>WATCH REEL</span>
             <span class="material-symbols-outlined transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
           </a>
@@ -437,7 +437,7 @@
             <p class="font-headline-md italic mb-2 relative z-10">"The complexity is the simplicity."</p>
             <p class="font-cjk mb-6 text-sm relative z-10 border-b border-white/30 pb-4 inline-block">繁即是简</p>
             <br>
-            <a href="#contact" class="inline-flex items-center justify-between w-full border border-white px-4 py-2 font-label-caps text-xs hover:bg-white hover:text-primary transition-colors relative z-10">
+            <a href="contact.html" class="inline-flex items-center justify-between w-full border border-white px-4 py-2 font-label-caps text-xs hover:bg-white hover:text-primary transition-colors relative z-10">
               <span>GET IN TOUCH</span>
               <span class="font-cjk">联系我们</span>
             </a>
