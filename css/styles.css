@@ -1,0 +1,25 @@
+.editorial-border { border: 1px solid #1c1b1b; }
+.red-block { background-color: #e03c31; color: #ffffff; }
+
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+
+.grid-4-mobile {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.writing-vertical {
+  writing-mode: vertical-rl;
+}
+
+/* Hide carousel scrollbar */
+#carousel-container::-webkit-scrollbar { display: none; }
+#carousel-container {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
