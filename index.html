@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STUDIO JUS10 - Art &amp; Design Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Noto+Serif+SC:wght@200..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary-fixed-variant": "#930006",
+            "on-secondary": "#ffffff",
+            "surface": "#fcf9f8",
+            "outline": "#8f706b",
+            "on-background": "#1c1b1b",
+            "on-tertiary-fixed-variant": "#474742",
+            "error-container": "#ffdad6",
+            "primary-container": "#d9372d",
+            "on-secondary-fixed-variant": "#474747",
+            "on-surface": "#1c1b1b",
+            "background": "#fcf9f8",
+            "inverse-on-surface": "#f3f0ef",
+            "surface-container": "#f0eded",
+            "on-tertiary-container": "#fdffdd",
+            "on-tertiary": "#ffffff",
+            "surface-variant": "#e5e2e1",
+            "tertiary": "#5d5c57",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#e5e2db",
+            "surface-container-high": "#eae7e7",
+            "secondary-container": "#e2e2e2",
+            "outline-variant": "#e4beb9",
+            "primary-fixed-dim": "#ffb4aa",
+            "on-tertiary-fixed": "#1c1c18",
+            "secondary-fixed": "#e2e2e2",
+            "on-error-container": "#93000a",
+            "error": "#ba1a1a",
+            "surface-dim": "#dcd9d9",
+            "tertiary-container": "#76756f",
+            "on-secondary-container": "#646464",
+            "secondary-fixed-dim": "#c6c6c6",
+            "on-primary-fixed": "#410001",
+            "on-error": "#ffffff",
+            "on-secondary-fixed": "#1b1b1b",
+            "surface-container-highest": "#e5e2e1",
+            "on-primary": "#ffffff",
+            "surface-tint": "#b91e19",
+            "on-surface-variant": "#5b403c",
+            "surface-bright": "#fcf9f8",
+            "inverse-surface": "#313030",
+            "inverse-primary": "#ffb4aa",
+            "secondary": "#5e5e5e",
+            "on-primary-container": "#fffbff",
+            "primary-fixed": "#ffdad5",
+            "primary": "#e03c31",
+            "tertiary-fixed-dim": "#c9c6c0",
+            "surface-container-low": "#f6f3f2"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "element-gap": "32px",
+            "section-gap": "120px",
+            "margin-mobile": "20px",
+            "gutter": "24px",
+            "margin-desktop": "64px"
+          },
+          fontFamily: {
+            "body-lg":             ["Hanken Grotesk"],
+            "display-lg":          ["Playfair Display"],
+            "label-mono":          ["Space Grotesk"],
+            "label-caps":          ["Space Grotesk"],
+            "headline-md":         ["Playfair Display"],
+            "headline-lg":         ["Playfair Display"],
+            "body-md":             ["Hanken Grotesk"],
+            "headline-lg-mobile":  ["Playfair Display"],
+            "cjk":                 ["Noto Serif SC", "serif"]
+          },
+          fontSize: {
+            "body-lg":            ["18px", { lineHeight: "28px", fontWeight: "400" }],
+            "display-lg":         ["84px", { lineHeight: "92px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "label-mono":         ["14px", { lineHeight: "20px", fontWeight: "400" }],
+            "label-caps":         ["12px", { lineHeight: "16px", letterSpacing: "0.1em", fontWeight: "700" }],
+            "headline-md":        ["32px", { lineHeight: "40px", fontWeight: "500" }],
+            "headline-lg":        ["48px", { lineHeight: "56px", fontWeight: "600" }],
+            "body-md":            ["16px", { lineHeight: "24px", fontWeight: "400" }],
+            "headline-lg-mobile": ["32px", { lineHeight: "38px", fontWeight: "600" }]
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white">
+
+  <!-- ── Navigation ──────────────────────────────────────────────────────── -->
+  <nav class="bg-surface-container-lowest font-label-caps text-label-caps w-full top-0 sticky border-b border-on-background flex justify-between items-center px-4 md:px-8 py-4 z-50">
+    <a href="#" class="font-headline-md text-headline-md tracking-tighter text-on-background hover:text-primary transition-colors duration-300 flex items-center gap-2">
+      STUDIO JUS10
+      <span class="font-cjk text-lg font-light hidden sm:inline-block ml-2">工作室</span>
+    </a>
+
+    <div class="hidden md:flex gap-8 items-center tracking-widest">
+      <a href="#photography" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
+        <span>Photography</span>
+        <span class="font-cjk text-[10px] text-on-surface-variant">摄影</span>
+      </a>
+      <a href="#video" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
+        <span>Video</span>
+        <span class="font-cjk text-[10px] text-on-surface-variant">视频</span>
+      </a>
+      <a href="#art" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
+        <span>Art</span>
+        <span class="font-cjk text-[10px] text-on-surface-variant">艺术</span>
+      </a>
+      <a href="#about" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
+        <span>About</span>
+        <span class="font-cjk text-[10px] text-on-surface-variant">关于</span>
+      </a>
+    </div>
+
+    <a href="#contact" class="hidden md:inline-flex items-center gap-2 border border-on-surface px-4 py-2 hover:bg-primary hover:text-white hover:border-primary transition-colors duration-300">
+      <span>Contact</span>
+      <span class="font-cjk text-xs">联系</span>
+    </a>
+
+    <button id="mobile-menu-toggle" class="md:hidden text-on-surface" aria-label="Toggle menu">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-menu" class="fixed inset-y-0 right-0 z-40 w-72 bg-surface-container-lowest border-l border-on-background transform translate-x-full transition-transform duration-300 md:hidden flex flex-col pt-20 px-6 gap-6 font-label-caps text-label-caps tracking-widest">
+    <a href="#photography" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
+      <span>Photography</span>
+      <span class="font-cjk text-primary text-sm">摄影</span>
+    </a>
+    <a href="#video" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
+      <span>Video</span>
+      <span class="font-cjk text-primary text-sm">视频</span>
+    </a>
+    <a href="#art" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
+      <span>Art</span>
+      <span class="font-cjk text-primary text-sm">艺术</span>
+    </a>
+    <a href="#about" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
+      <span>About</span>
+      <span class="font-cjk text-primary text-sm">关于</span>
+    </a>
+    <a href="#contact" class="flex items-center justify-between border border-on-surface px-4 py-3 mt-2 hover:bg-primary hover:text-white hover:border-primary transition-colors">
+      <span>Contact</span>
+      <span class="font-cjk text-xs">联系</span>
+    </a>
+  </div>
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-30 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
+
+  <!-- ── Carousel ────────────────────────────────────────────────────────── -->
+  <section class="w-full overflow-hidden border-b border-on-background bg-surface-container-low pt-4 pb-0 relative group">
+    <button id="carousel-prev" aria-label="Previous" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-surface-container-lowest border border-on-background w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-primary hover:text-white hover:border-primary">
+      <span class="material-symbols-outlined">chevron_left</span>
+    </button>
+    <button id="carousel-next" aria-label="Next" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-surface-container-lowest border border-on-background w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-primary hover:text-white hover:border-primary">
+      <span class="material-symbols-outlined">chevron_right</span>
+    </button>
+
+    <div id="carousel-container" class="overflow-hidden w-full px-4">
+      <div id="carousel-track" class="flex gap-8">
+
+        <a href="#photography" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col">
+          <div class="flex flex-col gap-2 w-full">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA369BWcLFihr0TStsJ5KLYSo6p_QrpeOXq6JaxFbBrPHwoRaO3fY4JbA8AViLeDbf5bHPkam0My0GJztVEvNGc2dQKFIMxAptqLp5QR183Hu1-MCbOz9XL1uFYbtXZoQsNeE24I99nVWKpnJHKFpXfWHJCZ0opI89bE9Zag9JUgKRwGBpg7otq_GDUiGWsuL-1MeiAUGpLb1l9BEORRxx643Kx3WoyvSfU2pXvmtGzSzqk3Clf9utMmrGKDkSv5j7IcGvO_TSwY-U" alt="Exhibition Design" class="h-48 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
+            <div class="flex flex-col border-t border-on-background/10 pt-2">
+              <span class="font-label-caps text-[10px] uppercase tracking-wider text-on-surface">Exhibition Design</span>
+              <span class="font-cjk text-[10px] text-primary font-medium">展览设计</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#photography" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col">
+          <div class="flex flex-col gap-2 w-full">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-1b46JlBaWTE0WJH7Ebzw8xM2sQ2pJqsGTIz_iLKvpD7b3HOIU-3YxVIJSX8LjDuIrHTabDDtG12j3Vwx8oZnNAJZOfau-aK1uPZx8UDZ-N4xAtSkEmPulcBzDwZXO5kz_5y-qDH8ojBOiqLpu3peP5XS36BVIPrwTHsTET1eQCH-GqBWYe0Ot5U5k1kvdV8eddDmIff3ijWGIxBNa87csVZPtIBSJJlxw2OtylzkXw866ncp0FR8gjY3aJmP4RkOuNp7m1m1vBw" alt="Portrait Studies" class="h-48 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
+            <div class="flex flex-col border-t border-on-background/10 pt-2">
+              <span class="font-label-caps text-[10px] uppercase tracking-wider text-on-surface">Portrait Studies</span>
+              <span class="font-cjk text-[10px] text-primary font-medium">肖像研究</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#art" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col">
+          <div class="flex flex-col gap-2 w-full">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj8D5dbZcB6nPMH0euzQ_eRuvVRXiJye5NxwwhbhH5GaPM_44JyCyR0fwiP4noIvr-VjcNmH0LXElFkcoPzGJnlZxNoaCzMLm-bmBPIS1cijmoC5nU1wWYVzNTI69PlyWCZwCGk9YiWmZQNrBfIO5F38nsBZPuYc2Scj-_td23pltTfyL2hsH62T_QzTnpzefIZ3VZKesPAKQL84LdowYx7dE5k42lN5GDXlckJBvRiJk4t8R5RSXj6ahvEL_Oe6OyO2w9Mim0Sf8" alt="Visual Identity" class="h-48 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
+            <div class="flex flex-col border-t border-on-background/10 pt-2">
+              <span class="font-label-caps text-[10px] uppercase tracking-wider text-on-surface">Visual Identity</span>
+              <span class="font-cjk text-[10px] text-primary font-medium">视觉识别</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Duplicates for seamless infinite loop -->
+        <a href="#photography" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col" aria-hidden="true" tabindex="-1">
+          <div class="flex flex-col gap-2 w-full">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA369BWcLFihr0TStsJ5KLYSo6p_QrpeOXq6JaxFbBrPHwoRaO3fY4JbA8AViLeDbf5bHPkam0My0GJztVEvNGc2dQKFIMxAptqLp5QR183Hu1-MCbOz9XL1uFYbtXZoQsNeE24I99nVWKpnJHKFpXfWHJCZ0opI89bE9Zag9JUgKRwGBpg7otq_GDUiGWsuL-1MeiAUGpLb1l9BEORRxx643Kx3WoyvSfU2pXvmtGzSzqk3Clf9utMmrGKDkSv5j7IcGvO_TSwY-U" alt="" class="h-48 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
+            <div class="flex flex-col border-t border-on-background/10 pt-2">
+              <span class="font-label-caps text-[10px] uppercase tracking-wider text-on-surface">Exhibition Design</span>
+              <span class="font-cjk text-[10px] text-primary font-medium">展览设计</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#photography" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col" aria-hidden="true" tabindex="-1">
+          <div class="flex flex-col gap-2 w-full">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-1b46JlBaWTE0WJH7Ebzw8xM2sQ2pJqsGTIz_iLKvpD7b3HOIU-3YxVIJSX8LjDuIrHTabDDtG12j3Vwx8oZnNAJZOfau-aK1uPZx8UDZ-N4xAtSkEmPulcBzDwZXO5kz_5y-qDH8ojBOiqLpu3peP5XS36BVIPrwTHsTET1eQCH-GqBWYe0Ot5U5k1kvdV8eddDmIff3ijWGIxBNa87csVZPtIBSJJlxw2OtylzkXw866ncp0FR8gjY3aJmP4RkOuNp7m1m1vBw" alt="" class="h-48 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
+            <div class="flex flex-col border-t border-on-background/10 pt-2">
+              <span class="font-label-caps text-[10px] uppercase tracking-wider text-on-surface">Portrait Studies</span>
+              <span class="font-cjk text-[10px] text-primary font-medium">肖像研究</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="#art" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col" aria-hidden="true" tabindex="-1">
+          <div class="flex flex-col gap-2 w-full">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj8D5dbZcB6nPMH0euzQ_eRuvVRXiJye5NxwwhbhH5GaPM_44JyCyR0fwiP4noIvr-VjcNmH0LXElFkcoPzGJnlZxNoaCzMLm-bmBPIS1cijmoC5nU1wWYVzNTI69PlyWCZwCGk9YiWmZQNrBfIO5F38nsBZPuYc2Scj-_td23pltTfyL2hsH62T_QzTnpzefIZ3VZKesPAKQL84LdowYx7dE5k42lN5GDXlckJBvRiJk4t8R5RSXj6ahvEL_Oe6OyO2w9Mim0Sf8" alt="" class="h-48 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
+            <div class="flex flex-col border-t border-on-background/10 pt-2">
+              <span class="font-label-caps text-[10px] uppercase tracking-wider text-on-surface">Visual Identity</span>
+              <span class="font-cjk text-[10px] text-primary font-medium">视觉识别</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Main Content ─────────────────────────────────────────────────────── -->
+  <main class="w-full px-4 md:px-8 py-4 md:py-8">
+
+    <!-- Hero / Photography Grid -->
+    <section id="photography" class="grid-4-mobile md:grid-12 items-start relative mt-4 mb-2">
+
+      <!-- Full-width header row -->
+      <div class="col-span-4 md:col-span-12 mb-4 border-b-2 border-on-background pb-4 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+        <h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-background leading-none flex flex-col">
+          <span class="font-cjk text-primary text-3xl md:text-5xl mb-2 font-medium">艺术叙事，重塑新生</span>
+          <span>Justin Hughes</span>
+        </h1>
+        <div class="text-left md:text-right font-label-mono text-label-mono uppercase max-w-sm flex flex-col gap-2">
+          <div class="flex justify-between md:justify-end gap-4 items-center">
+            <span class="font-cjk text-primary">数字媒体与传播</span>
+          </div>
+          <p class="border-b border-on-background pb-1 inline-block">Digital media and communications professional.</p>
+        </div>
+      </div>
+
+      <!-- Left column -->
+      <div class="col-span-4 md:col-span-4 flex flex-col gap-6 relative z-10">
+        <div class="bg-surface-container-lowest p-4 border border-on-background">
+          <div class="font-label-caps text-label-caps text-primary mb-2 flex justify-between items-center border-b border-on-surface-variant pb-2">
+            <span>Selected Works</span>
+            <span class="font-cjk">精选作品</span>
+          </div>
+          <p class="font-label-mono text-xs text-on-surface-variant">Explore my work in photography, video, audio, design, and more. Design is not a skill, but rather the sensory ability to capture the essence of things and insight.</p>
+        </div>
+
+        <div class="relative overflow-hidden group border border-on-background p-2 bg-surface-container-lowest">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt-AZWbqnuJcmQuhsJBQCG17MZotqvH0cO3MXx3wkcZEm0vr845oX7mDnc45IgS0BDuxL6ExJoXfZQSqOFhFWo57xiR-XYxe2aeNFI6rFUCkhdN7tDULl9mWZ57oPIDhkQ6Yh8ZU_Y-Q8Nfv03jw6B4PH-MWvyVXjczSsMQoQ5CyKB86qeNYZI4haCQ8v94s7gzaChiSMLEiqLxaiBtMsCkNy6JaePWZYKZKAr4tsoHxL1Gtw5L6PbtER_xzH2mbkio2P3jUw9gZA" alt="Portrait of a young woman outdoors" class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700">
+          <div class="mt-2 font-label-mono text-[10px] uppercase flex justify-between items-center border-t border-on-background pt-2">
+            <div class="flex flex-col">
+              <span class="font-bold">Portraiture</span>
+              <span class="font-cjk text-primary">个人肖像</span>
+            </div>
+            <span class="border border-on-background px-1">NO. 001</span>
+          </div>
+        </div>
+
+        <div class="bg-surface-container-low p-4 border border-on-background/10">
+          <div class="mb-3">
+            <span class="material-symbols-outlined text-primary text-lg">format_quote</span>
+          </div>
+          <p class="font-label-mono text-xs text-on-surface leading-relaxed mb-4">
+            Design is not just what it looks like and feels like. Design is how it works — it is the human narrative, told through the lens of art and the precision of storytelling.
+          </p>
+          <div class="border-t border-on-background/10 pt-3">
+            <p class="font-cjk text-xs text-on-surface-variant leading-relaxed">
+              设计不仅是其外观和感受。设计是它如何运作——它是通过艺术的视角和叙事的精确性所讲述的人类故事。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center column: featured image -->
+      <div class="col-span-4 md:col-span-5 md:px-4 relative z-20 md:-mt-8">
+        <div class="bg-primary p-2 mb-2 inline-flex flex-col items-center absolute -top-4 -left-2 z-30 shadow-lg">
+          <span class="font-label-caps text-white writing-vertical tracking-widest mb-2">FEATURED</span>
+          <span class="font-cjk text-white text-xs writing-vertical">特写</span>
+        </div>
+        <div class="border border-on-background bg-surface-container-lowest p-2 shadow-xl">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmhrYgFuaVVrePKACDB-gR5F82Zu1T3j5DHRMAr1bsp0tdzyvBvwjTvQGG3TDQXqO8nzKNNnXQmbyLL0V8rSzS20GPQ_6Or-ou7EzYNQYsmR9tSoMpZ7u2uzI5hCafuZOFz63Uhuph_gUwAPhwrAQDcWahKWXQzpFomYcnav-xwW3PoWxtvNkJUgQa6OYhNljpmwObzo30xQom8YlsMTxaNSLjcmF1N5Gt9RlPAK0qEgm9_zN6sg3FUzyHVNiCM8amiZzDpV53lxo" alt="Eiffel Tower" class="w-full h-auto object-cover">
+          <div class="flex justify-between items-end mt-2">
+            <div class="flex flex-col">
+              <h2 class="font-headline-md text-xl uppercase italic leading-none">Paris Series</h2>
+              <span class="font-cjk text-sm text-on-surface-variant">巴黎系列</span>
+            </div>
+            <div class="text-right">
+              <span class="font-label-mono border border-on-background px-2 py-0.5 text-xs block mb-1">2023</span>
+              <span class="font-label-caps text-[10px]">FRANCE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column: video + lifestyle -->
+      <div id="video" class="col-span-4 md:col-span-3 flex flex-col gap-6">
+        <div class="bg-on-background text-surface-container-lowest p-6 border-l-4 border-primary">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="font-headline-md text-primary text-2xl">Video</h3>
+            <span class="font-cjk text-primary border border-primary rounded-full w-6 h-6 flex items-center justify-center text-xs">影</span>
+          </div>
+          <p class="font-label-mono text-xs mb-6 opacity-80 border-b border-surface-variant pb-4">Cinematic storytelling and dramatic lighting.</p>
+          <a href="#video" class="font-label-caps text-xs flex justify-between items-center group hover:text-primary transition-colors">
+            <span>WATCH REEL</span>
+            <span class="material-symbols-outlined transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </a>
+        </div>
+
+        <div class="relative overflow-hidden group border border-on-background p-2 bg-surface-container-lowest">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEMv4jadpyefeEikJoTypxFpkiJ2Jwkh0Y-aoxajupNmrBctoTEaC4yLLLyuGuN0qsS2xDgJcGwEjZjzTCCLB2fz7zfL_jRfUH_7g-HUrLzS-GJEod6hOUmLqLSwncD4vCP4NjrB31b4Rb29wOeLpTBu__EGqymA-K8dciIlcnnsO9BhjQfaZ99jLFGHFMppy44-W6wRnDlLs5YjMMPFatK0AgVwiUsppPkyTc-FQQQs2WyZaUEH9VMRDBeZethfp4q75MO2SukAw" alt="Dog walking in a park" class="w-full h-auto object-cover">
+          <div class="mt-2 font-label-mono text-[10px] uppercase flex justify-between items-center border-t border-on-background pt-2">
+            <div class="flex flex-col">
+              <span class="font-bold">Lifestyle</span>
+              <span class="font-cjk text-primary">生活方式</span>
+            </div>
+            <span class="border border-on-background px-1">NO. 002</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── Storytelling / Art Section ──────────────────────────────────────── -->
+    <section id="art" class="flex flex-col relative border border-on-background p-4 mt-4 mb-4 bg-surface-container">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-on-background pb-4">
+
+        <div class="flex flex-col relative pt-8">
+          <div class="absolute top-0 left-0 font-label-caps text-[10px] text-on-background flex items-center gap-2">
+            <span class="tracking-widest">ART &amp; DESIGN</span>
+            <span class="font-cjk text-primary border-l border-primary pl-1">艺术与设计</span>
+          </div>
+          <h2 class="font-display-lg text-primary uppercase leading-[0.8] break-words text-5xl md:text-7xl mb-2">Story<br>telling</h2>
+          <div class="font-cjk text-on-background text-2xl flex items-center gap-4">
+            <span>叙事的力量</span>
+            <span class="w-8 h-8 rounded-full border border-on-background inline-block"></span>
+          </div>
+        </div>
+
+        <div class="w-full md:w-1/4 border border-on-background bg-surface-container-lowest p-4 shadow-sm h-full flex flex-col justify-end">
+          <div class="grid grid-cols-2 gap-2">
+            <div class="flex flex-col border-r border-on-background pr-2">
+              <span class="font-label-caps text-primary text-[10px]">Medium</span>
+              <span class="font-cjk text-[10px]">媒介</span>
+              <p class="font-headline-md text-sm mt-1 leading-tight">Cinematic Photography</p>
+            </div>
+            <div class="flex flex-col pl-2">
+              <span class="font-label-caps text-primary text-[10px]">Category</span>
+              <span class="font-cjk text-[10px]">类别</span>
+              <p class="font-headline-md text-sm mt-1 leading-tight">Digital Art Collection</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full md:w-1/3 relative border border-on-background bg-surface-container-lowest p-2 shadow-md">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI92KGXLJNSezBzLK1LwjFxC3jJiNXdZ7qutbCPoRDDqZm-fotJ-6q8U5ADwegrkcskZ7kZtsJNaYjr67qXDKIq1LbyIR9PcEs8WYD9NXrVcua5ghVONG3YVRldKVvvDR7UhFWcHekJ-mhhY_sQjmNzfHtHgABQ6Ua7jcp9pFMugPOPlwmTWziSdt_e3LkRm3LDzVm6UQILWgpONJvJW-hiB5NN2Cgr666bmkDJmEKzxNDWD-bcf0Y_t_SsVd8PH8cPPzr8ep8Z_g" alt="Abstract art installation in red and black" class="w-full h-auto object-cover max-h-[160px]">
+          <div class="mt-2 border-t border-primary pt-1">
+            <div class="flex justify-between items-center mb-1">
+              <h3 class="font-headline-md text-xs uppercase">The Human Narrative</h3>
+              <span class="font-cjk text-[10px] text-primary">人文叙事</span>
+            </div>
+            <p class="font-label-mono text-[9px] text-on-surface-variant leading-tight">Exploring the intersection of photography, video, and digital art. A cinematic exploration of human connection through multi-disciplinary visual narratives.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 border border-on-background bg-surface-container-lowest p-2">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE4Qo0EfbodVEKNjlvOz4eecjOYeobbreSsksfWFTcXUsCrHPH8bsViG5LucMwfDGC9ldUipDkzY1oqFG6RbDlvU1fdbmXn-gpQkXk-S5c9QdiJEyjzHqRcTNgA8vUhiArOdIu1h6eLzklRpHsqMAxeNmVI4QuSWzAXrvENZlPOpPvtoZMTM5_CbmfboiQcNLurGehUXGvoaDJLgUTxdxDu2TsaMacRZQZh-E0zBRxo0GBkpnuP7rrGuKksiasQaKdzClFewcSD2k" alt="Conceptual red installation" class="w-full h-32 md:h-48 object-cover object-center">
+      </div>
+    </section>
+
+    <!-- ── About Section ────────────────────────────────────────────────────── -->
+    <section id="about" class="grid-4-mobile md:grid-12 border-t-2 border-on-background pt-4 mt-2 mb-4">
+
+      <div class="col-span-4 md:col-span-5 flex flex-col md:flex-row gap-8 items-start">
+        <div class="w-full">
+          <div class="flex items-end gap-4 mb-4 border-b border-on-background pb-2">
+            <h2 class="font-display-lg italic text-4xl">About</h2>
+            <span class="font-cjk text-2xl text-primary mb-1">关于我</span>
+          </div>
+          <div class="border border-on-background bg-surface-container-lowest p-2 shadow-sm mb-4">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ7CLVth97p56nMFUdB508AGSGy5S9i3UK94IZx7uDyScX63HoYbGkX1Hx_rAmzD_Hx1ZNyARVDVO77Tl5Myj4P1Cyclhjb-0o-LpdzH-b9Gsr9HR5JtKB1dSFIMTD29-xeNzhUeHtSyD3qVYxlYaVqWlf7BbA-398ByZd5lvseg5CADdVTsobRTo1pMC8riwj6nh-ej603DUuLYJKnjZsTWidiYBdObk0Pf2Y8dZHpdod1mxlcwofr7JEJ5sfpY3zchiR2md2GWQ" alt="Portrait of Justin Hughes" class="w-full h-auto grayscale object-cover">
+          </div>
+          <div class="font-label-mono text-[10px] flex justify-between border-b border-on-background pb-2 uppercase items-center">
+            <div class="flex flex-col">
+              <span class="font-bold">PORTRAIT</span>
+              <span class="font-cjk text-primary">个人肖像</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full flex flex-col gap-6 font-label-mono text-xs leading-relaxed">
+          <div class="border-t border-on-background pt-4">
+            <p class="mb-4">
+              <span class="font-headline-md text-3xl float-left mr-2 mt-1 leading-none text-primary">J</span>
+              ustin Hughes is a digital media and communications professional whose creative perspective has been shaped by international education, culinary arts, language immersion, music, travel, and high-touch hospitality. His work sits at the intersection of culture and communication: understanding how people connect, what makes experiences memorable, and how story, design, sound, food, and language influence trust.
+            </p>
+            <p>Unlike a conventional digital marketer, Justin brings lived cultural fluency to his creative work. He has studied in France and China, trained in elite culinary environments, achieved advanced Mandarin proficiency, developed French-language capability, worked in a three-Michelin-star restaurant, and built client-facing service experiences rooted in empathy and human connection.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-4 md:col-span-7 flex flex-col h-full">
+        <div class="border-t border-on-background pt-4 flex flex-col h-full justify-between">
+          <div class="bg-primary text-white p-6 relative overflow-hidden group mt-auto">
+            <div class="font-cjk text-[6rem] absolute -right-4 -bottom-8 text-on-primary-fixed-variant opacity-30 leading-none pointer-events-none group-hover:scale-110 transition-transform duration-700">设计</div>
+            <p class="font-headline-md italic mb-2 relative z-10">"The complexity is the simplicity."</p>
+            <p class="font-cjk mb-6 text-sm relative z-10 border-b border-white/30 pb-4 inline-block">繁即是简</p>
+            <br>
+            <a href="#contact" class="inline-flex items-center justify-between w-full border border-white px-4 py-2 font-label-caps text-xs hover:bg-white hover:text-primary transition-colors relative z-10">
+              <span>GET IN TOUCH</span>
+              <span class="font-cjk">联系我们</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── Contact Section ──────────────────────────────────────────────────── -->
+    <section id="contact" class="border-t-2 border-on-background pt-4 mt-2 mb-8">
+      <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+        <div>
+          <div class="flex items-end gap-4 mb-4">
+            <h2 class="font-display-lg italic text-4xl">Contact</h2>
+            <span class="font-cjk text-2xl text-primary mb-1">联系我</span>
+          </div>
+          <p class="font-label-mono text-xs text-on-surface-variant max-w-sm">Available for freelance projects, collaborations, and full-time opportunities in digital media, photography, and creative direction.</p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <a href="mailto:studiojus10@gmail.com" class="font-label-caps text-xs flex items-center gap-3 border border-on-background px-4 py-3 hover:bg-primary hover:text-white hover:border-primary transition-colors duration-300">
+            <span class="material-symbols-outlined text-base">mail</span>
+            <span>studiojus10@gmail.com</span>
+            <span class="font-cjk text-[10px] ml-2">邮件</span>
+          </a>
+          <a href="#" class="font-label-caps text-xs flex items-center gap-3 border border-on-background px-4 py-3 hover:bg-primary hover:text-white hover:border-primary transition-colors duration-300">
+            <span class="material-symbols-outlined text-base">photo_camera</span>
+            <span>Instagram</span>
+            <span class="font-cjk text-[10px] ml-2">照片</span>
+          </a>
+          <a href="#" class="font-label-caps text-xs flex items-center gap-3 border border-on-background px-4 py-3 hover:bg-primary hover:text-white hover:border-primary transition-colors duration-300">
+            <span class="material-symbols-outlined text-base">work</span>
+            <span>LinkedIn</span>
+            <span class="font-cjk text-[10px] ml-2">领英</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ──────────────────────────────────────────────────────────── -->
+  <footer class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[10px] text-surface-variant uppercase tracking-widest">
+    <div class="flex items-center gap-4 mb-4 md:mb-0">
+      <div class="font-headline-md text-base text-surface-container-lowest italic">STUDIO JUS10</div>
+      <div class="font-cjk text-primary border-l border-surface-variant pl-4">工作室</div>
+    </div>
+    <div class="flex flex-wrap justify-center gap-6 mb-4 md:mb-0">
+      <a href="#" class="hover:text-primary transition-colors flex items-center gap-1">
+        <span>Instagram</span>
+        <span class="font-cjk text-primary opacity-70">照片</span>
+      </a>
+      <a href="#" class="hover:text-primary transition-colors flex items-center gap-1">
+        <span>LinkedIn</span>
+        <span class="font-cjk text-primary opacity-70">领英</span>
+      </a>
+      <a href="mailto:studiojus10@gmail.com" class="hover:text-primary transition-colors flex items-center gap-1">
+        <span>Email</span>
+        <span class="font-cjk text-primary opacity-70">邮件</span>
+      </a>
+    </div>
+    <div>
+      <span>© 2025 STUDIO JUS10</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
