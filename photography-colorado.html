@@ -168,6 +168,17 @@
     .acc-row { height: 180px; }
     .acc-panel { flex-basis: 32px; }
   }
+  @keyframes filterSlideOutLeft  { from { transform: translateX(0);     opacity: 1; } to { transform: translateX(-100%); opacity: 0; } }
+  @keyframes filterSlideOutRight { from { transform: translateX(0);     opacity: 1; } to { transform: translateX(100%);  opacity: 0; } }
+  @keyframes filterSlideInRight  { from { transform: translateX(100%);  opacity: 0; } to { transform: translateX(0);     opacity: 1; } }
+  @keyframes filterSlideInLeft   { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0);     opacity: 1; } }
+
+  @keyframes lightboxBloom     { from { transform: scale(0.88); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  @keyframes lightboxBackdrop  { from { background-color: rgba(0,0,0,0); }    to { background-color: rgba(0,0,0,0.9); } }
+  .filter-slide-out-left  { animation: filterSlideOutLeft  0.3s ease forwards; pointer-events: none; }
+  .filter-slide-out-right { animation: filterSlideOutRight 0.3s ease forwards; pointer-events: none; }
+  .filter-slide-in-right  { animation: filterSlideInRight  0.3s ease forwards; }
+  .filter-slide-in-left   { animation: filterSlideInLeft   0.3s ease forwards; }
   </style>
 </head>
 <body class="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white">
@@ -279,7 +290,7 @@
   </div>
   <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-30 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
 
-  <main class="w-full px-4 md:px-8 py-8">
+  <main class="w-full px-4 md:px-8 py-8 overflow-x-hidden">
 
     <div class="mb-8 font-label-caps text-label-caps tracking-widest text-on-surface-variant flex items-center gap-2">
       <a href="photography.html" class="hover:text-primary transition-colors">Photography</a>
@@ -305,7 +316,7 @@
     <div class="grid grid-cols-2 gap-3" id="gallery-grid">
 
       <!-- Twelve Views of Pikes Peak -->
-      <div class="section-header col-span-2 flex flex-wrap items-baseline gap-4 border-b border-on-background pb-4 mb-2">
+      <div class="section-header col-span-2 flex flex-wrap items-baseline gap-4 border-b border-on-background pb-4 mb-2" data-section="twelve-views">
         <h2 class="font-headline-md text-2xl text-on-background">Twelve Views of Pikes Peak</h2>
         <span class="font-cjk text-sm text-primary">派克峰十二景</span>
       </div>
@@ -344,7 +355,7 @@
       <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="twelve-views" data-src="photography-assets/Colorado/Twelve Views of Pikes Peak/TYPOLOGY-12.jpg" data-label="Twelve Views of Pikes Peak"><img src="photography-assets/Colorado/Twelve Views of Pikes Peak/TYPOLOGY-12.jpg" alt="Twelve Views of Pikes Peak 12" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
 
       <!-- Rock Ledge Ranch -->
-      <div class="section-header col-span-2 flex flex-wrap items-baseline gap-4 border-b border-on-background pb-4 mb-2 mt-10">
+      <div class="section-header col-span-2 flex flex-wrap items-baseline gap-4 border-b border-on-background pb-4 mb-2 mt-10" data-section="rock-ledge">
         <h2 class="font-headline-md text-2xl text-on-background">Rock Ledge Ranch</h2>
         <span class="font-cjk text-sm text-primary">岩台牧场</span>
       </div>
@@ -382,7 +393,7 @@
       <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="rock-ledge" data-src="photography-assets/Colorado/Rock Ledge Ranch/ROCK_LEDGE-11.jpg" data-label="Rock Ledge Ranch"><img src="photography-assets/Colorado/Rock Ledge Ranch/ROCK_LEDGE-11.jpg" alt="Rock Ledge Ranch 11" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
 
       <!-- Golf -->
-      <div class="section-header col-span-2 flex flex-wrap items-baseline gap-4 border-b border-on-background pb-4 mb-2 mt-10">
+      <div class="section-header col-span-2 flex flex-wrap items-baseline gap-4 border-b border-on-background pb-4 mb-2 mt-10" data-section="golf">
         <h2 class="font-headline-md text-2xl text-on-background">Golf</h2>
         <span class="font-cjk text-sm text-primary">高尔夫</span>
       </div>
@@ -420,7 +431,7 @@
       <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="golf" data-src="photography-assets/Colorado/Golf/GOLF-11.jpg" data-label="Golf"><img src="photography-assets/Colorado/Golf/GOLF-11.jpg" alt="Golf 11" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
 
       <!-- Cornfield -->
-      <div class="section-header col-span-2 flex flex-wrap items-baseline gap-4 border-b border-on-background pb-4 mb-2 mt-10">
+      <div class="section-header col-span-2 flex flex-wrap items-baseline gap-4 border-b border-on-background pb-4 mb-2 mt-10" data-section="cornfield">
         <h2 class="font-headline-md text-2xl text-on-background">Cornfield</h2>
         <span class="font-cjk text-sm text-primary">玉米田</span>
       </div>
@@ -522,12 +533,24 @@
       lightboxCaption.textContent = item.dataset.label;
       lightbox.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
+      lightbox.style.animation = 'lightboxBackdrop 0.275s ease forwards';
+      lightboxInner.style.animation = 'none';
+      void lightboxInner.offsetWidth;
+      lightboxInner.style.animation = 'lightboxBloom 0.352s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
     }
     function closeLightbox() {
-      lightbox.classList.add('hidden');
-      lightboxImg.src = '';
       document.body.style.overflow = '';
       activeIndex = -1;
+      lightbox.style.animation = 'lightboxBackdrop 0.234s ease reverse forwards';
+      lightboxInner.style.animation = 'none';
+      void lightboxInner.offsetWidth;
+      lightboxInner.style.animation = 'lightboxBloom 0.299s cubic-bezier(0.34, 1.56, 0.64, 1) reverse forwards';
+      setTimeout(function() {
+        lightbox.classList.add('hidden');
+        lightboxImg.src = '';
+        lightbox.style.animation = '';
+        lightboxInner.style.animation = '';
+      }, 305);
     }
     function navigate(dir) {
       var visible = getVisible();
@@ -538,27 +561,63 @@
       lightboxImg.alt = item.dataset.label;
       lightboxCaption.textContent = item.dataset.label;
     }
+    var filterOrder = ['all', 'twelve-views', 'rock-ledge', 'golf', 'cornfield'];
+    var currentFilter = 'all';
+    var animating = false;
+
+    function applyFilterDOM(filter) {
+      var showAll = filter === 'all';
+      items.forEach(function(item) {
+        item.classList.toggle('hidden', showAll || item.dataset.category !== filter);
+      });
+      document.querySelectorAll('.section-header').forEach(function(h) {
+        var show = showAll || h.dataset.section === filter;
+        h.classList.toggle('hidden', !show);
+        h.classList.toggle('mt-10', showAll);
+      });
+      document.querySelectorAll('.accordion-section').forEach(function(a) {
+        a.classList.toggle('hidden', !showAll);
+      });
+    }
+
+    function setFilterBtnStyles(filter) {
+      document.querySelectorAll('.filter-btn').forEach(function(b) {
+        var active = b.dataset.filter === filter;
+        b.classList.toggle('bg-primary', active);
+        b.classList.toggle('text-white', active);
+        b.classList.toggle('border-primary', active);
+        b.classList.toggle('border-on-background', !active);
+        b.classList.toggle('text-on-surface', !active);
+      });
+    }
+
+    // Shared animation used by filter buttons, See More, and accordion image clicks.
+    // onMidpoint fires after the old content has slid out and new content is in the DOM —
+    // the lightbox uses this to open at exactly the right moment.
+    function animateFilterChange(filter, onMidpoint) {
+      var goRight = filterOrder.indexOf(filter) > filterOrder.indexOf(currentFilter);
+      var grid = document.getElementById('gallery-grid');
+      animating = true;
+      setFilterBtnStyles(filter);
+      grid.classList.add(goRight ? 'filter-slide-out-left' : 'filter-slide-out-right');
+      setTimeout(function() {
+        grid.classList.remove('filter-slide-out-left', 'filter-slide-out-right');
+        applyFilterDOM(filter);
+        currentFilter = filter;
+        if (onMidpoint) onMidpoint();
+        grid.classList.add(goRight ? 'filter-slide-in-right' : 'filter-slide-in-left');
+        setTimeout(function() {
+          grid.classList.remove('filter-slide-in-right', 'filter-slide-in-left');
+          animating = false;
+        }, 300);
+      }, 300);
+    }
+
     document.querySelectorAll('.filter-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
         var filter = btn.dataset.filter;
-        document.querySelectorAll('.filter-btn').forEach(function(b) {
-          var active = b.dataset.filter === filter;
-          b.classList.toggle('bg-primary', active);
-          b.classList.toggle('text-white', active);
-          b.classList.toggle('border-primary', active);
-          b.classList.toggle('border-on-background', !active);
-          b.classList.toggle('text-on-surface', !active);
-        });
-        var showAll = filter === 'all';
-        items.forEach(function(item) {
-          item.classList.toggle('hidden', showAll || item.dataset.category !== filter);
-        });
-        document.querySelectorAll('.section-header').forEach(function(h) {
-          h.classList.toggle('hidden', !showAll);
-        });
-        document.querySelectorAll('.accordion-section').forEach(function(a) {
-          a.classList.toggle('hidden', !showAll);
-        });
+        if (filter === currentFilter || animating) return;
+        animateFilterChange(filter);
       });
     });
     items.forEach(function(item) {
@@ -611,14 +670,31 @@
           clearTimeout(heightTimer);
           heightTimer = setTimeout(updateHeight, 650);
         });
+        if (!panel.classList.contains('acc-see-more')) {
+          panel.addEventListener('click', function() {
+            if (animating) return;
+            var sectionKey = panel.closest('.accordion-section').dataset.section;
+            var img = panel.querySelector('img');
+            if (!img) return;
+            var panelSrc = img.getAttribute('src');
+            // Slide out the old content, then at the midpoint open the lightbox so it
+            // appears right as the new section's photos slide in behind it.
+            animateFilterChange(sectionKey, function() {
+              var visible = getVisible();
+              for (var i = 0; i < visible.length; i++) {
+                if (visible[i].dataset.src === panelSrc) { openLightbox(i); break; }
+              }
+            });
+          });
+        }
       });
 
       var seeMore = row.querySelector('.acc-see-more');
       if (seeMore) {
         seeMore.addEventListener('click', function() {
+          if (animating) return;
           var sectionKey = seeMore.closest('.accordion-section').dataset.section;
-          var btn = document.querySelector('.filter-btn[data-filter="' + sectionKey + '"]');
-          if (btn) btn.click();
+          animateFilterChange(sectionKey);
         });
       }
     });
