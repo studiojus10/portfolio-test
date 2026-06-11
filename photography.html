@@ -109,10 +109,37 @@
     </a>
 
     <div class="hidden md:flex gap-8 items-center tracking-widest">
-      <a href="photography.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
-        <span>Photography</span>
-        <span class="font-cjk text-[10px] text-on-surface-variant">摄影</span>
-      </a>
+      <div class="relative group">
+        <a href="photography.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
+          <span>Photography</span>
+          <span class="font-cjk text-[10px] text-on-surface-variant group-hover:text-primary transition-colors">摄影</span>
+        </a>
+        <div class="absolute top-full left-1/2 -translate-x-1/2 w-52 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-50">
+          <div class="h-3"></div>
+          <div class="bg-surface-container-lowest border border-on-background shadow-lg">
+            <a href="photography-colorado.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors border-b border-on-background">
+              <span>Colorado</span>
+              <span class="font-cjk text-xs text-primary">科罗拉多</span>
+            </a>
+            <a href="photography-arizona.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors border-b border-on-background">
+              <span>Arizona</span>
+              <span class="font-cjk text-xs text-primary">亚利桑那</span>
+            </a>
+            <a href="photography-washington.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors border-b border-on-background">
+              <span>Washington</span>
+              <span class="font-cjk text-xs text-primary">华盛顿</span>
+            </a>
+            <a href="photography-nature.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors border-b border-on-background">
+              <span>Nature</span>
+              <span class="font-cjk text-xs text-primary">自然</span>
+            </a>
+            <a href="photography-film.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors">
+              <span>Film</span>
+              <span class="font-cjk text-xs text-primary">胶片</span>
+            </a>
+          </div>
+        </div>
+      </div>
       <a href="video.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
         <span>Video</span>
         <span class="font-cjk text-[10px] text-on-surface-variant">视频</span>
@@ -138,10 +165,34 @@
   </nav>
 
   <div id="mobile-menu" class="fixed inset-y-0 right-0 z-40 w-72 bg-surface-container-lowest border-l border-on-background transform translate-x-full transition-transform duration-300 md:hidden flex flex-col pt-20 px-6 gap-6 font-label-caps text-label-caps tracking-widest">
-    <a href="photography.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
-      <span>Photography</span>
-      <span class="font-cjk text-primary text-sm">摄影</span>
-    </a>
+    <div>
+      <a href="photography.html" class="flex justify-between items-center pb-3 hover:text-primary transition-colors">
+        <span>Photography</span>
+        <span class="font-cjk text-primary text-sm">摄影</span>
+      </a>
+      <div class="pl-3 flex flex-col gap-1 border-b border-on-background pb-4">
+        <a href="photography-colorado.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant">
+          <span class="text-[9px] tracking-widest">Colorado</span>
+          <span class="font-cjk text-primary text-[9px]">科罗拉多</span>
+        </a>
+        <a href="photography-arizona.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant">
+          <span class="text-[9px] tracking-widest">Arizona</span>
+          <span class="font-cjk text-primary text-[9px]">亚利桑那</span>
+        </a>
+        <a href="photography-washington.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant">
+          <span class="text-[9px] tracking-widest">Washington</span>
+          <span class="font-cjk text-primary text-[9px]">华盛顿</span>
+        </a>
+        <a href="photography-nature.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant">
+          <span class="text-[9px] tracking-widest">Nature</span>
+          <span class="font-cjk text-primary text-[9px]">自然</span>
+        </a>
+        <a href="photography-film.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant">
+          <span class="text-[9px] tracking-widest">Film</span>
+          <span class="font-cjk text-primary text-[9px]">胶片</span>
+        </a>
+      </div>
+    </div>
     <a href="video.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
       <span>Video</span>
       <span class="font-cjk text-primary text-sm">视频</span>
@@ -189,33 +240,61 @@
       </div>
     </section>
 
-    <section class="grid gap-6 mt-8 md:grid-cols-3">
-      <article class="border border-on-background bg-surface p-3">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA369BWcLFihr0TStsJ5KLYSo6p_QrpeOXq6JaxFbBrPHwoRaO3fY4JbA8AViLeDbf5bHPkam0My0GJztVEvNGc2dQKFIMxAptqLp5QR183Hu1-MCbOz9XL1uFYbtXZoQsNeE24I99nVWKpnJHKFpXfWHJCZ0opI89bE9Zag9JUgKRwGBpg7otq_GDUiGWsuL-1MeiAUGpLb1l9BEORRxx643Kx3WoyvSfU2pXvmtGzSzqk3Clf9utMmrGKDkSv5j7IcGvO_TSwY-U" alt="Exhibition Design" class="w-full h-64 object-cover grayscale hover:grayscale-0 transition-all duration-500">
-        <div class="mt-3">
-          <h2 class="font-headline-md text-lg mb-1">Exhibition Design</h2>
-          <p class="font-cjk text-sm text-primary">展览设计</p>
-          <p class="font-label-mono text-[10px] mt-2">A suspended sequence of architectural portraiture and editorial composure.</p>
+    <section class="grid gap-6 mt-8 md:grid-cols-2 lg:grid-cols-3">
+      <a href="photography-colorado.html" class="group border border-on-background bg-surface p-6 hover:border-primary transition-colors duration-300">
+        <div class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
+        <h2 class="font-headline-md text-2xl text-on-background mb-1 group-hover:text-primary transition-colors">Colorado</h2>
+        <p class="font-cjk text-sm text-primary mb-4">科罗拉多</p>
+        <p class="font-label-mono text-[10px] leading-relaxed text-on-surface-variant">Pikes Peak, ranch life, golf courses, and the golden cornfields of the Front Range.</p>
+        <div class="mt-6 flex items-center gap-2 font-label-caps text-[10px] tracking-widest text-primary">
+          <span>View Series</span>
+          <span>→</span>
         </div>
-      </article>
+      </a>
 
-      <article class="border border-on-background bg-surface p-3">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-1b46JlBaWTE0WJH7Ebzw8xM2sQ2pJqsGTIz_iLKvpD7b3HOIU-3YxVIJSX8LjDuIrHTabDDtG12j3Vwx8oZnNAJZOfau-aK1uPZx8UDZ-N4xAtSkEmPulcBzDwZXO5kz_5y-qDH8ojBOiqLpu3peP5XS36BVIPrwTHsTET1eQCH-GqBWYe0Ot5U5k1kvdV8eddDmIff3ijWGIxBNa87csVZPtIBSJJlxw2OtylzkXw866ncp0FR8gjY3aJmP4RkOuNp7m1m1vBw" alt="Portrait Studies" class="w-full h-64 object-cover grayscale hover:grayscale-0 transition-all duration-500">
-        <div class="mt-3">
-          <h2 class="font-headline-md text-lg mb-1">Portrait Studies</h2>
-          <p class="font-cjk text-sm text-primary">肖像研究</p>
-          <p class="font-label-mono text-[10px] mt-2">Candid moments and intentional poses with an emphasis on atmosphere.</p>
+      <a href="photography-arizona.html" class="group border border-on-background bg-surface p-6 hover:border-primary transition-colors duration-300">
+        <div class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
+        <h2 class="font-headline-md text-2xl text-on-background mb-1 group-hover:text-primary transition-colors">Arizona</h2>
+        <p class="font-cjk text-sm text-primary mb-4">亚利桑那</p>
+        <p class="font-label-mono text-[10px] leading-relaxed text-on-surface-variant">Desert landscapes and southwestern vistas.</p>
+        <div class="mt-6 flex items-center gap-2 font-label-caps text-[10px] tracking-widest text-primary">
+          <span>View Series</span>
+          <span>→</span>
         </div>
-      </article>
+      </a>
 
-      <article class="border border-on-background bg-surface p-3">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj8D5dbZcB6nPMH0euzQ_eRuvVRXiJye5NxwwhbhH5GaPM_44JyCyR0fwiP4noIvr-VjcNmH0LXElFkcoPzGJnlZxNoaCzMLm-bmBPIS1cijmoC5nU1wWYVzNTI69PlyWCZwCGk9YiWmZQNrBfIO5F38nsBZPuYc2Scj-_td23pltTfyL2hsH62T_QzTnpzefIZ3VZKesPAKQL84LdowYx7dE5k42lN5GDXlckJBvRiJk4t8R5RSXj6ahvEL_Oe6OyO2w9Mim0Sf8" alt="Visual Identity" class="w-full h-64 object-cover grayscale hover:grayscale-0 transition-all duration-500">
-        <div class="mt-3">
-          <h2 class="font-headline-md text-lg mb-1">Visual Identity</h2>
-          <p class="font-cjk text-sm text-primary">视觉识别</p>
-          <p class="font-label-mono text-[10px] mt-2">Color, contrast, and form composed for editorial clarity.</p>
+      <a href="photography-washington.html" class="group border border-on-background bg-surface p-6 hover:border-primary transition-colors duration-300">
+        <div class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
+        <h2 class="font-headline-md text-2xl text-on-background mb-1 group-hover:text-primary transition-colors">Washington</h2>
+        <p class="font-cjk text-sm text-primary mb-4">华盛顿</p>
+        <p class="font-label-mono text-[10px] leading-relaxed text-on-surface-variant">Urban scenes and Pacific Northwest landscapes, centered in Seattle.</p>
+        <div class="mt-6 flex items-center gap-2 font-label-caps text-[10px] tracking-widest text-primary">
+          <span>View Series</span>
+          <span>→</span>
         </div>
-      </article>
+      </a>
+
+      <a href="photography-nature.html" class="group border border-on-background bg-surface p-6 hover:border-primary transition-colors duration-300">
+        <div class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
+        <h2 class="font-headline-md text-2xl text-on-background mb-1 group-hover:text-primary transition-colors">Nature</h2>
+        <p class="font-cjk text-sm text-primary mb-4">自然</p>
+        <p class="font-label-mono text-[10px] leading-relaxed text-on-surface-variant">Butterflies, flowers, and sweeping landscapes from the natural world.</p>
+        <div class="mt-6 flex items-center gap-2 font-label-caps text-[10px] tracking-widest text-primary">
+          <span>View Series</span>
+          <span>→</span>
+        </div>
+      </a>
+
+      <a href="photography-film.html" class="group border border-on-background bg-surface p-6 hover:border-primary transition-colors duration-300">
+        <div class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
+        <h2 class="font-headline-md text-2xl text-on-background mb-1 group-hover:text-primary transition-colors">Film</h2>
+        <p class="font-cjk text-sm text-primary mb-4">胶片</p>
+        <p class="font-label-mono text-[10px] leading-relaxed text-on-surface-variant">Photographs captured on analog film — memories from Europe, home, and beyond.</p>
+        <div class="mt-6 flex items-center gap-2 font-label-caps text-[10px] tracking-widest text-primary">
+          <span>View Series</span>
+          <span>→</span>
+        </div>
+      </a>
     </section>
 
     <section class="mt-10 border border-on-background bg-surface-container-lowest p-6">

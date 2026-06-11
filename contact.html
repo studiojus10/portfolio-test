@@ -109,10 +109,37 @@
     </a>
 
     <div class="hidden md:flex gap-8 items-center tracking-widest">
-      <a href="photography.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
-        <span>Photography</span>
-        <span class="font-cjk text-[10px] text-on-surface-variant">摄影</span>
-      </a>
+      <div class="relative group">
+        <a href="photography.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
+          <span>Photography</span>
+          <span class="font-cjk text-[10px] text-on-surface-variant group-hover:text-primary transition-colors">摄影</span>
+        </a>
+        <div class="absolute top-full left-1/2 -translate-x-1/2 w-52 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-50">
+          <div class="h-3"></div>
+          <div class="bg-surface-container-lowest border border-on-background shadow-lg">
+            <a href="photography-colorado.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors border-b border-on-background">
+              <span>Colorado</span>
+              <span class="font-cjk text-xs text-primary">科罗拉多</span>
+            </a>
+            <a href="photography-arizona.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors border-b border-on-background">
+              <span>Arizona</span>
+              <span class="font-cjk text-xs text-primary">亚利桑那</span>
+            </a>
+            <a href="photography-washington.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors border-b border-on-background">
+              <span>Washington</span>
+              <span class="font-cjk text-xs text-primary">华盛顿</span>
+            </a>
+            <a href="photography-nature.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors border-b border-on-background">
+              <span>Nature</span>
+              <span class="font-cjk text-xs text-primary">自然</span>
+            </a>
+            <a href="photography-film.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors">
+              <span>Film</span>
+              <span class="font-cjk text-xs text-primary">胶片</span>
+            </a>
+          </div>
+        </div>
+      </div>
       <a href="video.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
         <span>Video</span>
         <span class="font-cjk text-[10px] text-on-surface-variant">视频</span>
@@ -138,10 +165,34 @@
   </nav>
 
   <div id="mobile-menu" class="fixed inset-y-0 right-0 z-40 w-72 bg-surface-container-lowest border-l border-on-background transform translate-x-full transition-transform duration-300 md:hidden flex flex-col pt-20 px-6 gap-6 font-label-caps text-label-caps tracking-widest">
-    <a href="photography.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
-      <span>Photography</span>
-      <span class="font-cjk text-primary text-sm">摄影</span>
-    </a>
+    <div>
+      <a href="photography.html" class="flex justify-between items-center pb-3 hover:text-primary transition-colors">
+        <span>Photography</span>
+        <span class="font-cjk text-primary text-sm">摄影</span>
+      </a>
+      <div class="pl-3 flex flex-col gap-1 border-b border-on-background pb-4">
+        <a href="photography-colorado.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant">
+          <span class="text-[9px] tracking-widest">Colorado</span>
+          <span class="font-cjk text-primary text-[9px]">科罗拉多</span>
+        </a>
+        <a href="photography-arizona.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant">
+          <span class="text-[9px] tracking-widest">Arizona</span>
+          <span class="font-cjk text-primary text-[9px]">亚利桑那</span>
+        </a>
+        <a href="photography-washington.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant">
+          <span class="text-[9px] tracking-widest">Washington</span>
+          <span class="font-cjk text-primary text-[9px]">华盛顿</span>
+        </a>
+        <a href="photography-nature.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant">
+          <span class="text-[9px] tracking-widest">Nature</span>
+          <span class="font-cjk text-primary text-[9px]">自然</span>
+        </a>
+        <a href="photography-film.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant">
+          <span class="text-[9px] tracking-widest">Film</span>
+          <span class="font-cjk text-primary text-[9px]">胶片</span>
+        </a>
+      </div>
+    </div>
     <a href="video.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors">
       <span>Video</span>
       <span class="font-cjk text-primary text-sm">视频</span>
