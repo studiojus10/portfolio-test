@@ -132,7 +132,7 @@
     /* ── Nav dark overrides ── */
     nav {
       background-color: rgba(12, 11, 10, 0.92) !important;
-      border-color: rgba(243, 237, 225, 0.1) !important;
+      border-color: transparent !important;
       backdrop-filter: blur(16px) saturate(1.1) !important;
       -webkit-backdrop-filter: blur(16px) saturate(1.1) !important;
     }
@@ -1061,6 +1061,14 @@
 
     if (video.readyState >= 1) { duration = video.duration || 0; requestAnimationFrame(tick); }
     update();
+
+    /* ── Pull hero flush behind nav ── */
+    function setHeroFlush() {
+      var navH = document.querySelector('nav').offsetHeight;
+      hero.style.marginTop = '-' + navH + 'px';
+    }
+    setHeroFlush();
+    window.addEventListener('resize', setHeroFlush);
 
     /* ── Mobile menu ── */
     var toggleBtn    = document.getElementById('mobile-menu-toggle');
