@@ -1,38 +1,3 @@
-// ── Mobile Menu ───────────────────────────────────────────────────
-(function () {
-  const toggleBtn = document.getElementById('mobile-menu-toggle');
-  const menu = document.getElementById('mobile-menu');
-  const overlay = document.getElementById('mobile-menu-overlay');
-  if (!toggleBtn || !menu) return;
-
-  function openMenu() {
-    menu.classList.remove('translate-x-full');
-    menu.classList.add('translate-x-0');
-    if (overlay) {
-      overlay.classList.remove('opacity-0', 'pointer-events-none');
-      overlay.classList.add('opacity-100');
-    }
-    toggleBtn.querySelector('.material-symbols-outlined').textContent = 'close';
-  }
-
-  function closeMenu() {
-    menu.classList.remove('translate-x-0');
-    menu.classList.add('translate-x-full');
-    if (overlay) {
-      overlay.classList.remove('opacity-100');
-      overlay.classList.add('opacity-0', 'pointer-events-none');
-    }
-    toggleBtn.querySelector('.material-symbols-outlined').textContent = 'menu';
-  }
-
-  toggleBtn.addEventListener('click', () => {
-    menu.classList.contains('translate-x-0') ? closeMenu() : openMenu();
-  });
-
-  if (overlay) overlay.addEventListener('click', closeMenu);
-  menu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-})();
-
 // ── Infinite Carousel ─────────────────────────────────────────────
 (function () {
   const track = document.getElementById('carousel-track');
