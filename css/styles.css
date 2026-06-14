@@ -22,6 +22,53 @@
   font-variant-numeric: lining-nums;
 }
 
+/* ── Dark mode: CSS custom properties ── */
+:root {
+  --fg:    #1c1b1b;
+  --muted: rgba(28, 27, 27, 0.55);
+  --red:   #e03c31;
+}
+html[data-theme="dark"] {
+  --fg:    #f3ede1;
+  --muted: rgba(243, 237, 225, 0.55);
+  --red:   #e03c31;
+}
+
+/* ── Nav: dark mode overrides ── */
+nav { transition: background-color 0.35s ease; }
+html[data-theme="dark"] nav {
+  background-color: rgba(12, 11, 10, 0.92) !important;
+  border-color: transparent !important;
+  backdrop-filter: blur(16px) saturate(1.1) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.1) !important;
+}
+html[data-theme="dark"] nav .bg-surface-container-lowest {
+  background-color: rgba(16, 14, 12, 0.97) !important;
+}
+html[data-theme="dark"] nav .bg-surface-container-low,
+html[data-theme="dark"] nav .hover\:bg-surface-container-low:hover {
+  background-color: rgba(24, 20, 17, 0.97) !important;
+}
+html[data-theme="dark"] nav .border-on-background { border-color: rgba(243, 237, 225, 0.1) !important; }
+html[data-theme="dark"] nav .text-on-background   { color: var(--fg)    !important; }
+html[data-theme="dark"] nav .text-on-surface,
+html[data-theme="dark"] nav .text-on-surface-variant { color: var(--muted) !important; }
+html[data-theme="dark"] nav .text-primary         { color: var(--red)   !important; }
+html[data-theme="dark"] nav .border-on-surface    { border-color: rgba(243, 237, 225, 0.3) !important; }
+html[data-theme="dark"] nav .shadow-lg            { box-shadow: 0 8px 32px rgba(0,0,0,0.7) !important; }
+
+/* ── Mobile menu: dark mode overrides ── */
+html[data-theme="dark"] #mobile-menu {
+  background-color: rgba(12, 11, 10, 0.97) !important;
+  border-color: rgba(243, 237, 225, 0.1) !important;
+}
+html[data-theme="dark"] #mobile-menu .border-on-background { border-color: rgba(243, 237, 225, 0.1) !important; }
+html[data-theme="dark"] #mobile-menu .text-on-background,
+html[data-theme="dark"] #mobile-menu .text-on-surface,
+html[data-theme="dark"] #mobile-menu .text-on-surface-variant { color: var(--muted) !important; }
+html[data-theme="dark"] #mobile-menu .text-primary  { color: var(--red) !important; }
+html[data-theme="dark"] #mobile-menu .border-on-surface { border-color: rgba(243, 237, 225, 0.3) !important; }
+
 /* Hide carousel scrollbar */
 #carousel-container::-webkit-scrollbar { display: none; }
 #carousel-container {

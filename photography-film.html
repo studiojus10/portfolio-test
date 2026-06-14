@@ -597,116 +597,8 @@
 <body class="antialiased">
 
   <!-- ── STUDIO JUS10 Nav ── -->
-  <nav class="bg-surface-container-lowest font-label-caps text-label-caps w-full top-0 sticky border-b border-on-background flex justify-between items-center px-4 md:px-8 py-4 z-50">
-    <a href="index.html" class="logo-text font-headline-md text-headline-md tracking-tighter text-on-background hover:text-primary transition-colors duration-300 flex items-center gap-2">
-      STUDIO JUS10
-      <span class="font-cjk text-lg font-light hidden sm:inline-block ml-2">工作室</span>
-    </a>
-    <div class="hidden md:flex gap-8 items-center tracking-widest">
-      <div class="relative group">
-        <a href="photography.html" class="text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
-          <span>Photography</span>
-          <span class="font-cjk text-[10px] text-primary">摄影</span>
-        </a>
-        <div class="absolute top-full left-1/2 -translate-x-1/2 w-52 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-50">
-          <div class="h-3"></div>
-          <div class="bg-surface-container-lowest border border-on-background shadow-lg">
-            <a href="photography-colorado.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors border-b border-on-background">
-              <span>Colorado</span>
-              <span class="font-cjk text-xs text-primary">科罗拉多</span>
-            </a>
-            <a href="photography-arizona.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors border-b border-on-background">
-              <span>Arizona</span>
-              <span class="font-cjk text-xs text-primary">亚利桑那</span>
-            </a>
-            <a href="photography-washington.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors border-b border-on-background">
-              <span>Washington</span>
-              <span class="font-cjk text-xs text-primary">华盛顿</span>
-            </a>
-            <a href="photography-nature.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors border-b border-on-background">
-              <span>Nature</span>
-              <span class="font-cjk text-xs text-primary">自然</span>
-            </a>
-            <a href="photography-film.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest bg-surface-container-low text-primary">
-              <span>Film</span>
-              <span class="font-cjk text-xs text-primary">胶片</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <a href="video.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
-        <span>Video</span>
-        <span class="font-cjk text-[10px] text-on-surface-variant">视频</span>
-      </a>
-      <a href="art.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
-        <span>Art</span>
-        <span class="font-cjk text-[10px] text-on-surface-variant">艺术</span>
-      </a>
-      <a href="about.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
-        <span>About</span>
-        <span class="font-cjk text-[10px] text-on-surface-variant">关于</span>
-      </a>
-    </div>
-    <button id="theme-toggle" aria-label="Toggle dark mode" class="hidden md:flex items-center justify-center w-9 h-9 rounded-full border border-on-surface text-on-surface hover:border-primary hover:text-primary transition-colors duration-300">
-      <span class="material-symbols-outlined theme-icon" style="font-size:18px;line-height:1;">dark_mode</span>
-    </button>
-    <a href="contact.html" class="hidden md:inline-flex items-center gap-2 border border-on-surface px-4 py-2 hover:bg-primary hover:text-white hover:border-primary transition-colors duration-300">
-      <span>Contact</span>
-      <span class="font-cjk text-xs">联系</span>
-    </a>
-    <button id="mobile-menu-toggle" class="md:hidden" aria-label="Toggle menu" style="color: var(--fg);">
-      <span class="material-symbols-outlined">menu</span>
-    </button>
-  </nav>
-
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="fixed inset-y-0 right-0 z-40 w-72 bg-surface-container-lowest border-l border-on-background transform translate-x-full transition-transform duration-300 md:hidden flex flex-col pt-20 px-6 gap-6 font-label-caps text-label-caps tracking-widest">
-    <div>
-      <a href="photography.html" class="flex justify-between items-center pb-3 text-primary">
-        <span>Photography</span>
-        <span class="font-cjk text-primary text-sm">摄影</span>
-      </a>
-      <div class="pl-3 flex flex-col gap-1 border-b border-on-background pb-4">
-        <a href="photography-colorado.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant">
-          <span class="text-[9px] tracking-widest">Colorado</span>
-          <span class="font-cjk text-primary text-[9px]">科罗拉多</span>
-        </a>
-        <a href="photography-arizona.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant">
-          <span class="text-[9px] tracking-widest">Arizona</span>
-          <span class="font-cjk text-primary text-[9px]">亚利桑那</span>
-        </a>
-        <a href="photography-washington.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant">
-          <span class="text-[9px] tracking-widest">Washington</span>
-          <span class="font-cjk text-primary text-[9px]">华盛顿</span>
-        </a>
-        <a href="photography-nature.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant">
-          <span class="text-[9px] tracking-widest">Nature</span>
-          <span class="font-cjk text-primary text-[9px]">自然</span>
-        </a>
-        <a href="photography-film.html" class="flex justify-between items-center py-1.5 text-primary">
-          <span class="text-[9px] tracking-widest">Film</span>
-          <span class="font-cjk text-primary text-[9px]">胶片</span>
-        </a>
-      </div>
-    </div>
-    <a href="video.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors" style="color:var(--muted)">
-      <span>Video</span><span class="font-cjk text-primary text-sm">视频</span>
-    </a>
-    <a href="art.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors" style="color:var(--muted)">
-      <span>Art</span><span class="font-cjk text-primary text-sm">艺术</span>
-    </a>
-    <a href="about.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors" style="color:var(--muted)">
-      <span>About</span><span class="font-cjk text-primary text-sm">关于</span>
-    </a>
-    <button id="theme-toggle-mobile" class="flex items-center justify-between border-b border-on-background pb-4 hover:text-primary transition-colors w-full text-left" style="color:var(--muted)">
-      <span class="theme-label">Dark Mode</span>
-      <span class="material-symbols-outlined theme-icon" style="font-size:18px;">dark_mode</span>
-    </button>
-    <a href="contact.html" class="flex items-center justify-between border border-on-surface px-4 py-3 mt-2 hover:bg-primary hover:text-white hover:border-primary transition-colors" style="color:var(--muted)">
-      <span>Contact</span><span class="font-cjk text-xs">联系</span>
-    </a>
-  </div>
-  <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-30 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
+  <div id="nav-root"></div>
+  <script src="js/nav.js"></script>
 
   <!-- Fixed video background -->
   <div class="video-stage" id="videoStage">
@@ -861,39 +753,13 @@
     <div class="footer-copy">© 2025 STUDIO JUS10 · Photography · Colorado Springs</div>
   </footer>
 
-  <!-- Lightbox -->
-  <div id="lightbox" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10" style="background-color:rgba(6,5,4,0.93);backdrop-filter:blur(10px);">
-    <div id="lightbox-inner" class="relative flex flex-col items-center max-w-5xl w-full">
-      <button id="lightbox-close" aria-label="Close lightbox" style="position:absolute;top:-50px;right:0;color:var(--fg);background:none;border:none;cursor:pointer;padding:8px;opacity:0.8;transition:opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">
-        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-      <div class="relative w-full flex items-center justify-center">
-        <button id="lightbox-prev" aria-label="Previous" style="position:absolute;left:0;z-index:10;color:var(--fg);background:rgba(0,0,0,0.45);border:none;cursor:pointer;padding:12px;transition:background 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.75)'" onmouseout="this.style.background='rgba(0,0,0,0.45)'">
-          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-        </button>
-        <img id="lightbox-img" src="" alt="" style="max-height:80vh;max-width:100%;width:auto;border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,0.7);">
-        <button id="lightbox-next" aria-label="Next" style="position:absolute;right:0;z-index:10;color:var(--fg);background:rgba(0,0,0,0.45);border:none;cursor:pointer;padding:12px;transition:background 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.75)'" onmouseout="this.style.background='rgba(0,0,0,0.45)'">
-          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-      <p id="lightbox-caption" style="margin-top:18px;font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);"></p>
-    </div>
-  </div>
-
   <script>
   (function () {
 
-    /* ── Gallery data ── */
-    function makeImgs(base, prefix, count) {
-      var a = [];
-      for (var i = 1; i <= count; i++) {
-        a.push(base + prefix + String(i).padStart(2, '0') + '.jpg');
-      }
-      return a;
-    }
-    var galleries = {
+    /* ── Gallery page map ── */
+    var galleryPages = {
       'europe': {
-        label: 'Europe',
+        page: 'photography-film-europe.html',
         images: [
           'photography-assets/Film/Europe/FILM_MISC-03.jpg',
           'photography-assets/Film/Europe/FILM_MISC-05.jpg',
@@ -910,7 +776,7 @@
         ]
       },
       'home': {
-        label: 'Home',
+        page: 'photography-film-home.html',
         images: [
           'photography-assets/Film/Home/FILM_MISC-01.jpg',
           'photography-assets/Film/Home/FILM_MISC-02.jpg',
@@ -933,54 +799,14 @@
         ]
       },
       'memory': {
-        label: 'Memory',
-        images: makeImgs('photography-assets/Film/Memory/', 'MEMORY-', 12)
+        page: 'photography-film-memory.html',
+        images: (function () {
+          var a = [];
+          for (var i = 1; i <= 12; i++) a.push('photography-assets/Film/Memory/MEMORY-' + String(i).padStart(2,'0') + '.jpg');
+          return a;
+        })()
       }
     };
-
-    /* ── Lightbox ── */
-    var lightbox        = document.getElementById('lightbox');
-    var lightboxInner   = document.getElementById('lightbox-inner');
-    var lightboxImg     = document.getElementById('lightbox-img');
-    var lightboxCaption = document.getElementById('lightbox-caption');
-    var lbSection = null, lbIndex = 0;
-
-    function openLightbox(key, idx) {
-      lbSection = key; lbIndex = idx;
-      var g = galleries[key];
-      lightboxImg.src = g.images[idx];
-      lightboxImg.alt = g.label;
-      lightboxCaption.textContent = g.label + ' — ' + String(idx + 1).padStart(2, '0');
-      lightbox.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-      lightboxInner.style.animation = 'none';
-      void lightboxInner.offsetWidth;
-      lightboxInner.style.animation = 'lightboxBloom 0.35s cubic-bezier(0.34,1.56,0.64,1) forwards';
-    }
-    function closeLightbox() {
-      lightbox.classList.add('hidden');
-      document.body.style.overflow = '';
-      lightboxImg.src = '';
-    }
-    function navigate(dir) {
-      if (!lbSection) return;
-      var imgs = galleries[lbSection].images;
-      lbIndex = (lbIndex + dir + imgs.length) % imgs.length;
-      lightboxImg.src = imgs[lbIndex];
-      lightboxCaption.textContent = galleries[lbSection].label + ' — ' + String(lbIndex + 1).padStart(2, '0');
-    }
-
-    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-    document.getElementById('lightbox-prev').addEventListener('click', function (e) { e.stopPropagation(); navigate(-1); });
-    document.getElementById('lightbox-next').addEventListener('click', function (e) { e.stopPropagation(); navigate(1); });
-    lightboxInner.addEventListener('click', function (e) { e.stopPropagation(); });
-    lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', function (e) {
-      if (lightbox.classList.contains('hidden')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') navigate(-1);
-      if (e.key === 'ArrowRight') navigate(1);
-    });
 
     /* ── Accordion ── */
     document.querySelectorAll('.acc-row').forEach(function (row) {
@@ -1012,9 +838,10 @@
         if (!panel.classList.contains('acc-see-more')) {
           panel.addEventListener('click', function () {
             var key = panel.closest('.accordion-section').dataset.section;
+            var g = galleryPages[key];
             var src = panel.querySelector('img').getAttribute('src');
-            var idx = galleries[key].images.indexOf(src);
-            openLightbox(key, idx < 0 ? 0 : idx);
+            var idx = g.images.indexOf(src);
+            window.location.href = g.page + '?open=' + (idx < 0 ? 0 : idx);
           });
         }
       });
@@ -1023,7 +850,7 @@
       if (seeMore) {
         seeMore.addEventListener('click', function () {
           var key = seeMore.closest('.accordion-section').dataset.section;
-          openLightbox(key, 0);
+          window.location.href = galleryPages[key].page;
         });
       }
     });
@@ -1125,61 +952,7 @@
     setHeroFlush();
     window.addEventListener('resize', setHeroFlush);
 
-    /* ── Mobile menu ── */
-    var toggleBtn    = document.getElementById('mobile-menu-toggle');
-    var mobileMenu   = document.getElementById('mobile-menu');
-    var mobileOverlay = document.getElementById('mobile-menu-overlay');
-    if (toggleBtn && mobileMenu) {
-      function openMenu() {
-        mobileMenu.classList.remove('translate-x-full');
-        mobileMenu.classList.add('translate-x-0');
-        if (mobileOverlay) { mobileOverlay.classList.remove('opacity-0','pointer-events-none'); mobileOverlay.classList.add('opacity-100'); }
-        toggleBtn.querySelector('.material-symbols-outlined').textContent = 'close';
-      }
-      function closeMenu() {
-        mobileMenu.classList.remove('translate-x-0');
-        mobileMenu.classList.add('translate-x-full');
-        if (mobileOverlay) { mobileOverlay.classList.remove('opacity-100'); mobileOverlay.classList.add('opacity-0','pointer-events-none'); }
-        toggleBtn.querySelector('.material-symbols-outlined').textContent = 'menu';
-      }
-      toggleBtn.addEventListener('click', function () {
-        mobileMenu.classList.contains('translate-x-0') ? closeMenu() : openMenu();
-      });
-      if (mobileOverlay) mobileOverlay.addEventListener('click', closeMenu);
-      mobileMenu.querySelectorAll('a').forEach(function (l) { l.addEventListener('click', closeMenu); });
-    }
-
-    /* ── Theme toggle ── */
-    function updateThemeUI() {
-      var dark = document.documentElement.getAttribute('data-theme') === 'dark';
-      document.querySelectorAll('.theme-icon').forEach(function (el) {
-        el.textContent = dark ? 'light_mode' : 'dark_mode';
-      });
-      document.querySelectorAll('.theme-label').forEach(function (el) {
-        el.textContent = dark ? 'Light Mode' : 'Dark Mode';
-      });
-    }
-    updateThemeUI();
-
-    function toggleTheme() {
-      var html = document.documentElement;
-      var isDark = html.getAttribute('data-theme') === 'dark';
-      if (isDark) {
-        html.removeAttribute('data-theme');
-        localStorage.setItem('co-theme', 'light');
-      } else {
-        html.setAttribute('data-theme', 'dark');
-        localStorage.setItem('co-theme', 'dark');
-      }
-      updateThemeUI();
-      setHeroFlush();
-      update();
-    }
-
-    var themeBtn = document.getElementById('theme-toggle');
-    var themeBtnMobile = document.getElementById('theme-toggle-mobile');
-    if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
-    if (themeBtnMobile) themeBtnMobile.addEventListener('click', toggleTheme);
+    window.onNavThemeChange = function () { setHeroFlush(); update(); };
 
   })();
   </script>
