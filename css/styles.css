@@ -24,15 +24,26 @@
 
 /* ── Dark mode: CSS custom properties ── */
 :root {
-  --fg:    #1c1b1b;
-  --muted: rgba(28, 27, 27, 0.55);
-  --red:   #e03c31;
+  --bg:     #f6f3f2;
+  --fg:     #1c1b1b;
+  --muted:  rgba(28, 27, 27, 0.55);
+  --faint:  rgba(28, 27, 27, 0.1);
+  --accent: #e03c31;
+  --red:    #e03c31;
+  --card:   rgba(255, 255, 255, 0.72);
 }
 html[data-theme="dark"] {
-  --fg:    #f3ede1;
-  --muted: rgba(243, 237, 225, 0.55);
-  --red:   #e03c31;
+  --bg:     #0c0b0a;
+  --fg:     #f3ede1;
+  --muted:  rgba(243, 237, 225, 0.55);
+  --faint:  rgba(243, 237, 225, 0.14);
+  --accent: #d9a441;
+  --red:    #e03c31;
+  --card:   rgba(20, 18, 16, 0.42);
 }
+
+/* ── Body: smooth theme transition ── */
+body { transition: background-color 0.35s ease, color 0.35s ease; }
 
 /* ── Nav: dark mode overrides ── */
 nav { transition: background-color 0.35s ease; }
@@ -68,6 +79,30 @@ html[data-theme="dark"] #mobile-menu .text-on-surface,
 html[data-theme="dark"] #mobile-menu .text-on-surface-variant { color: var(--muted) !important; }
 html[data-theme="dark"] #mobile-menu .text-primary  { color: var(--red) !important; }
 html[data-theme="dark"] #mobile-menu .border-on-surface { border-color: rgba(243, 237, 225, 0.3) !important; }
+
+/* ── Page content: dark mode overrides ── */
+/* Surface backgrounds */
+html[data-theme="dark"] .bg-surface-container-low     { background-color: #0c0b0a !important; }
+html[data-theme="dark"] .bg-surface-container-lowest  { background-color: #161413 !important; }
+html[data-theme="dark"] .bg-surface-container         { background-color: #111010 !important; }
+html[data-theme="dark"] .bg-surface-container-high    { background-color: #1a1817 !important; }
+html[data-theme="dark"] .bg-surface-container-highest { background-color: #1e1c1a !important; }
+html[data-theme="dark"] .bg-surface                   { background-color: #111010 !important; }
+html[data-theme="dark"] .bg-white                     { background-color: #161413 !important; }
+
+/* Text */
+html[data-theme="dark"] .text-on-background           { color: var(--fg)    !important; }
+html[data-theme="dark"] .text-on-surface              { color: var(--fg)    !important; }
+html[data-theme="dark"] .text-on-surface-variant      { color: var(--muted) !important; }
+html[data-theme="dark"] .text-on-primary-fixed-variant { color: #d9a441     !important; }
+
+/* Borders */
+html[data-theme="dark"] .border-on-background         { border-color: rgba(243, 237, 225, 0.12) !important; }
+html[data-theme="dark"] .border-on-surface-variant    { border-color: rgba(243, 237, 225, 0.08) !important; }
+html[data-theme="dark"] .border-surface-variant       { border-color: rgba(243, 237, 225, 0.08) !important; }
+
+/* Custom component classes */
+html[data-theme="dark"] .editorial-border             { border-color: rgba(243, 237, 225, 0.12) !important; }
 
 /* Hide carousel scrollbar */
 #carousel-container::-webkit-scrollbar { display: none; }
