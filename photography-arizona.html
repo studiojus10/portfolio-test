@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>STUDIO JUS10 - Photography · Arizona</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Noto+Serif+SC:wght@200..900&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Noto+Serif+SC:wght@200..900&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script>
     tailwind.config = {
@@ -15,43 +17,586 @@
       theme: {
         extend: {
           colors: {
-            "on-primary-fixed-variant": "#930006","on-secondary": "#ffffff","surface": "#fcf9f8","outline": "#8f706b","on-background": "#1c1b1b","on-tertiary-fixed-variant": "#474742","error-container": "#ffdad6","primary-container": "#d9372d","on-secondary-fixed-variant": "#474747","on-surface": "#1c1b1b","inverse-on-surface": "#f3f0ef","inverse-primary": "#ffb4aa","secondary": "#5e5e5e","on-surface-variant": "#5b403c","surface-bright": "#fcf9f8","primary": "#e03c31","surface-container-low": "#f6f3f2","inverse-surface": "#313030","secondary-container": "#e2e2e2","outline-variant": "#e4beb9","primary-fixed-dim": "#ffb4aa","on-tertiary-fixed": "#1c1c18","secondary-fixed": "#e2e2e2","on-error": "#ffffff","on-secondary-fixed": "#1b1b1b","surface-container-highest": "#e5e2e1","on-primary": "#ffffff","surface-tint": "#b91e19","on-tertiary-container": "#fdffdd","on-tertiary": "#ffffff","surface-variant": "#e5e2e1","tertiary": "#5d5c57","surface-container-lowest": "#ffffff","tertiary-fixed": "#e5e2db","surface-container-high": "#eae7e7","secondary-fixed-dim": "#c6c6c6","on-primary-fixed": "#410001","surface-dim": "#dcd9d9","tertiary-container": "#76756f","on-secondary-container": "#646464","primary-fixed": "#ffdad5","tertiary-fixed-dim": "#c9c6c0"
+            "on-primary-fixed-variant": "#930006",
+            "on-secondary": "#ffffff",
+            "surface": "#fcf9f8",
+            "outline": "#8f706b",
+            "on-background": "#1c1b1b",
+            "on-tertiary-fixed-variant": "#474742",
+            "error-container": "#ffdad6",
+            "primary-container": "#d9372d",
+            "on-secondary-fixed-variant": "#474747",
+            "on-surface": "#1c1b1b",
+            "inverse-on-surface": "#f3f0ef",
+            "inverse-primary": "#ffb4aa",
+            "secondary": "#5e5e5e",
+            "on-surface-variant": "#5b403c",
+            "surface-bright": "#fcf9f8",
+            "primary": "#e03c31",
+            "surface-container-low": "#f6f3f2",
+            "inverse-surface": "#313030",
+            "secondary-container": "#e2e2e2",
+            "outline-variant": "#e4beb9",
+            "primary-fixed-dim": "#ffb4aa",
+            "on-tertiary-fixed": "#1c1c18",
+            "secondary-fixed": "#e2e2e2",
+            "on-error": "#ffffff",
+            "on-secondary-fixed": "#1b1b1b",
+            "surface-container-highest": "#e5e2e1",
+            "on-primary": "#ffffff",
+            "surface-tint": "#b91e19",
+            "on-tertiary-container": "#fdffdd",
+            "on-tertiary": "#ffffff",
+            "surface-variant": "#e5e2e1",
+            "tertiary": "#5d5c57",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#e5e2db",
+            "surface-container-high": "#eae7e7",
+            "secondary-fixed-dim": "#c6c6c6",
+            "on-primary-fixed": "#410001",
+            "surface-dim": "#dcd9d9",
+            "tertiary-container": "#76756f",
+            "on-secondary-container": "#646464",
+            "primary-fixed": "#ffdad5",
+            "tertiary-fixed-dim": "#c9c6c0"
           },
-          borderRadius: { "DEFAULT": "0.25rem","lg": "0.5rem","xl": "0.75rem","full": "9999px" },
-          spacing: { "element-gap": "32px","section-gap": "120px","margin-mobile": "20px","gutter": "24px","margin-desktop": "64px" },
-          fontFamily: { "body-lg": ["Hanken Grotesk"],"display-lg": ["Old Standard TT"],"label-mono": ["Space Grotesk"],"label-caps": ["Space Grotesk"],"headline-md": ["Old Standard TT"],"headline-lg": ["Old Standard TT"],"body-md": ["Hanken Grotesk"],"headline-lg-mobile": ["Old Standard TT"],"cjk": ["Noto Serif SC","serif"] },
-          fontSize: { "body-lg": ["18px",{lineHeight:"28px",fontWeight:"400"}],"display-lg": ["84px",{lineHeight:"92px",letterSpacing:"-0.02em",fontWeight:"700"}],"label-mono": ["14px",{lineHeight:"20px",fontWeight:"400"}],"label-caps": ["12px",{lineHeight:"16px",letterSpacing:"0.1em",fontWeight:"700"}],"headline-md": ["32px",{lineHeight:"40px",fontWeight:"500"}],"headline-lg": ["48px",{lineHeight:"56px",fontWeight:"600"}],"body-md": ["16px",{lineHeight:"24px",fontWeight:"400"}],"headline-lg-mobile": ["32px",{lineHeight:"38px",fontWeight:"600"}] }
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "element-gap": "32px",
+            "section-gap": "120px",
+            "margin-mobile": "20px",
+            "gutter": "24px",
+            "margin-desktop": "64px"
+          },
+          fontFamily: {
+            "body-lg":            ["Hanken Grotesk"],
+            "display-lg":         ["Old Standard TT"],
+            "label-mono":         ["Space Grotesk"],
+            "label-caps":         ["Space Grotesk"],
+            "headline-md":        ["Old Standard TT"],
+            "headline-lg":        ["Old Standard TT"],
+            "body-md":            ["Hanken Grotesk"],
+            "headline-lg-mobile": ["Old Standard TT"],
+            "cjk":                ["Noto Serif SC", "serif"]
+          },
+          fontSize: {
+            "body-lg":            ["18px", { lineHeight: "28px", fontWeight: "400" }],
+            "display-lg":         ["84px", { lineHeight: "92px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "label-mono":         ["14px", { lineHeight: "20px", fontWeight: "400" }],
+            "label-caps":         ["12px", { lineHeight: "16px", letterSpacing: "0.1em", fontWeight: "700" }],
+            "headline-md":        ["32px", { lineHeight: "40px", fontWeight: "500" }],
+            "headline-lg":        ["48px", { lineHeight: "56px", fontWeight: "600" }],
+            "body-md":            ["16px", { lineHeight: "24px", fontWeight: "400" }],
+            "headline-lg-mobile": ["32px", { lineHeight: "38px", fontWeight: "600" }]
+          }
         }
       }
     };
   </script>
-  <link rel="stylesheet" href="css/styles.css">
+
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Prevent flash: restore saved theme before first paint -->
+  <script>(function(){var t=localStorage.getItem('co-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
+
   <style>
-  .acc-row { display:flex; gap:4px; height:300px; transition:height 0.4s ease; }
-  .acc-panel { position:relative; overflow:hidden; flex-grow:0; flex-shrink:0; flex-basis:56px; cursor:pointer; transition:flex-grow 0.6s ease; }
-  .acc-panel.acc-active { flex-grow:1; }
-  .acc-panel img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; pointer-events:none; }
-  .acc-see-more { background-color:#1c1b1b; display:flex; align-items:center; justify-content:center; transition:flex-grow 0.6s ease; }
-  .acc-see-more img { filter:grayscale(100%); opacity:0.35; object-fit:cover !important; background-color:transparent !important; }
-  .acc-see-more-overlay { position:absolute; inset:0; background-color:rgba(0,0,0,0.35); transition:background-color 0.3s ease; pointer-events:none; }
-  .acc-see-more:hover .acc-see-more-overlay { background-color:rgba(224,60,49,0.45); }
-  .acc-see-more-text { font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#fff; font-weight:700; white-space:nowrap; pointer-events:none; user-select:none; transition:transform 0.4s ease; position:relative; z-index:1; }
-  .acc-see-more:not(.acc-active) .acc-see-more-text { transform:rotate(90deg); }
-  @media (max-width:640px) { .acc-row { height:180px; } .acc-panel { flex-basis:32px; } }
-  @keyframes filterSlideOutLeft  { from{transform:translateX(0);opacity:1} to{transform:translateX(-100%);opacity:0} }
-  @keyframes filterSlideOutRight { from{transform:translateX(0);opacity:1} to{transform:translateX(100%);opacity:0} }
-  @keyframes filterSlideInRight  { from{transform:translateX(100%);opacity:0} to{transform:translateX(0);opacity:1} }
-  @keyframes filterSlideInLeft   { from{transform:translateX(-100%);opacity:0} to{transform:translateX(0);opacity:1} }
-  @keyframes lightboxBloom    { from{transform:scale(0.88);opacity:0} to{transform:scale(1);opacity:1} }
-  @keyframes lightboxBackdrop { from{background-color:rgba(0,0,0,0)} to{background-color:rgba(0,0,0,0.9)} }
-  .filter-slide-out-left  { animation:filterSlideOutLeft  0.3s ease forwards; pointer-events:none; }
-  .filter-slide-out-right { animation:filterSlideOutRight 0.3s ease forwards; pointer-events:none; }
-  .filter-slide-in-right  { animation:filterSlideInRight  0.3s ease forwards; }
-  .filter-slide-in-left   { animation:filterSlideInLeft   0.3s ease forwards; }
+    /* ── Light mode (default) ── */
+    :root {
+      --bg:     #f6f3f2;
+      --fg:     #1c1b1b;
+      --muted:  rgba(28, 27, 27, 0.55);
+      --faint:  rgba(28, 27, 27, 0.1);
+      --accent: #e03c31;
+      --red:    #e03c31;
+      --card:   rgba(255, 255, 255, 0.72);
+      --serif:  "Fraunces", Georgia, "Times New Roman", serif;
+      --sans:   "Inter", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* ── Dark mode variable overrides ── */
+    html[data-theme="dark"] {
+      --bg:     #0c0b0a;
+      --fg:     #f3ede1;
+      --muted:  rgba(243, 237, 225, 0.55);
+      --faint:  rgba(243, 237, 225, 0.14);
+      --accent: #d9a441;
+      --card:   rgba(20, 18, 16, 0.42);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--fg);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      transition: background-color 0.35s ease, color 0.35s ease;
+    }
+
+    ::selection { background: var(--accent); color: #fff; }
+    img { display: block; max-width: 100%; }
+
+    /* ── Nav: dark overrides scoped to dark mode only ── */
+    nav { transition: background-color 0.35s ease; }
+
+    html[data-theme="dark"] nav {
+      background-color: rgba(12, 11, 10, 0.92) !important;
+      border-color: transparent !important;
+      backdrop-filter: blur(16px) saturate(1.1) !important;
+      -webkit-backdrop-filter: blur(16px) saturate(1.1) !important;
+    }
+    html[data-theme="dark"] nav .bg-surface-container-lowest {
+      background-color: rgba(16, 14, 12, 0.97) !important;
+    }
+    html[data-theme="dark"] nav .bg-surface-container-low,
+    html[data-theme="dark"] nav .hover\:bg-surface-container-low:hover {
+      background-color: rgba(24, 20, 17, 0.97) !important;
+    }
+    html[data-theme="dark"] nav .border-on-background { border-color: rgba(243, 237, 225, 0.1) !important; }
+    html[data-theme="dark"] nav .text-on-background   { color: var(--fg)    !important; }
+    html[data-theme="dark"] nav .text-on-surface,
+    html[data-theme="dark"] nav .text-on-surface-variant { color: var(--muted) !important; }
+    html[data-theme="dark"] nav .text-primary         { color: var(--red)   !important; }
+    html[data-theme="dark"] nav .border-on-surface    { border-color: rgba(243, 237, 225, 0.3) !important; }
+    html[data-theme="dark"] nav .shadow-lg            { box-shadow: 0 8px 32px rgba(0,0,0,0.7) !important; }
+
+    html[data-theme="dark"] #mobile-menu {
+      background-color: rgba(12, 11, 10, 0.98) !important;
+      border-color: rgba(243, 237, 225, 0.1) !important;
+    }
+    html[data-theme="dark"] #mobile-menu .border-on-background { border-color: rgba(243, 237, 225, 0.1) !important; }
+    html[data-theme="dark"] #mobile-menu .text-on-background,
+    html[data-theme="dark"] #mobile-menu .text-on-surface,
+    html[data-theme="dark"] #mobile-menu .text-on-surface-variant { color: var(--muted) !important; }
+    html[data-theme="dark"] #mobile-menu .text-primary  { color: var(--red) !important; }
+    html[data-theme="dark"] #mobile-menu .border-on-surface { border-color: rgba(243, 237, 225, 0.3) !important; }
+
+    /* ── Fixed video background (always visible, tint adapts to theme) ── */
+    .video-stage {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      background: #000;
+    }
+
+    #scrubVideo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* Light mode: warm-white wash makes footage airy but still visible */
+    .video-tint {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+        rgba(246,243,242,0.42),
+        rgba(246,243,242,0.34) 40%,
+        rgba(246,243,242,0.52));
+      transition: background 0.35s ease;
+    }
+    html[data-theme="dark"] .video-tint {
+      background:
+        radial-gradient(120% 80% at 50% 0%, transparent 40%, rgba(0,0,0,0.55) 100%),
+        linear-gradient(180deg, rgba(8,7,6,0.55), rgba(8,7,6,0.25) 35%, rgba(8,7,6,0.7));
+    }
+
+    /* ── Film grain (dark mode only) ── */
+    .grain {
+      position: fixed;
+      inset: -50%;
+      z-index: 40;
+      pointer-events: none;
+      opacity: 0.06;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      animation: grainShift 0.6s steps(2) infinite;
+      display: none;
+    }
+    html[data-theme="dark"] .grain { display: block; }
+
+    @keyframes grainShift {
+      0%   { transform: translate(0, 0); }
+      50%  { transform: translate(-3%, 2%); }
+      100% { transform: translate(2%, -2%); }
+    }
+
+    /* ── Progress bar ── */
+    .progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--accent);
+      z-index: 50;
+      pointer-events: none;
+    }
+
+    /* ── Hero (always dark-overlaid photo — text stays light in both themes) ── */
+    .hero {
+      position: relative;
+      z-index: 10;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      background: url("photography-assets/Arizona/Travels/ARIZONA-01.jpg") center/cover no-repeat;
+      transform: scale(1.04);
+      will-change: transform, opacity, filter;
+    }
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(70% 60% at 50% 45%, transparent 30%, rgba(8,7,6,0.6) 100%),
+        linear-gradient(180deg, rgba(8,7,6,0.45), rgba(8,7,6,0.2) 40%, rgba(8,7,6,0.85));
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      padding: 0 24px;
+      will-change: transform, opacity;
+    }
+    /* Hero text: always light regardless of theme (photo has dark overlay) */
+    .hero-kicker {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #d9a441;
+      margin-bottom: 26px;
+      padding: 8px 18px;
+      border: 1px solid rgba(243, 237, 225, 0.14);
+      border-radius: 999px;
+      backdrop-filter: blur(4px);
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(3.2rem, 11vw, 9rem);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      color: #f3ede1;
+    }
+    .hero-title em { font-style: italic; }
+    .hero-cjk {
+      display: block;
+      font-family: "Noto Serif SC", serif;
+      font-size: clamp(1rem, 2.5vw, 1.8rem);
+      font-weight: 200;
+      color: #e03c31;
+      margin-top: 14px;
+      letter-spacing: 0.18em;
+    }
+    .hero-sub {
+      margin-top: 28px;
+      font-size: clamp(0.85rem, 1.3vw, 1rem);
+      color: rgba(243, 237, 225, 0.55);
+      letter-spacing: 0.04em;
+    }
+    .scroll-cue {
+      position: absolute;
+      bottom: 34px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(243, 237, 225, 0.55);
+    }
+    .cue-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(#d9a441, transparent);
+      animation: cueSlide 2s ease-in-out infinite;
+    }
+    @keyframes cueSlide {
+      0%, 100% { transform: scaleY(0.4); opacity: 0.4; transform-origin: top; }
+      50%       { transform: scaleY(1);   opacity: 1;   transform-origin: top; }
+    }
+
+    /* ── Intro ── */
+    .intro {
+      position: relative;
+      z-index: 10;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+    }
+    .intro p {
+      max-width: 600px;
+      text-align: center;
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.2rem, 2.8vw, 2rem);
+      line-height: 1.45;
+      color: var(--fg);
+    }
+    /* Light mode: frosted-glass card keeps dark text readable over the tinted footage */
+    html:not([data-theme="dark"]) .intro p {
+      background: rgba(255, 255, 255, 0.65);
+      padding: 36px 44px;
+      border-radius: 28px;
+      border: 1px solid rgba(28, 27, 27, 0.06);
+      backdrop-filter: blur(14px) saturate(1.1);
+      -webkit-backdrop-filter: blur(14px) saturate(1.1);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.07);
+    }
+    html[data-theme="dark"] .intro p {
+      text-shadow: 0 2px 30px rgba(0,0,0,0.6);
+    }
+
+    /* ── Collections ── */
+    main { position: relative; z-index: 10; }
+
+    .collection {
+      padding: 12vh 5vw 18vh;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .collection-head {
+      position: relative;
+      margin: 0 auto 56px;
+      max-width: 740px;
+      text-align: center;
+      padding: 44px 36px;
+      border-radius: 32px;
+      border: 1px solid var(--faint);
+      background: var(--card);
+      backdrop-filter: blur(16px) saturate(1.1);
+      -webkit-backdrop-filter: blur(16px) saturate(1.1);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.85s cubic-bezier(0.2, 0.6, 0.2, 1),
+                  transform 0.85s cubic-bezier(0.2, 0.6, 0.2, 1),
+                  background-color 0.35s ease,
+                  box-shadow 0.35s ease;
+    }
+    .collection-head.in-view { opacity: 1; transform: translateY(0); }
+    html[data-theme="dark"] .collection-head { box-shadow: 0 24px 70px rgba(0,0,0,0.45); }
+
+    .collection-index {
+      display: block;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    .collection-pill {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--faint);
+      padding: 7px 16px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+    .collection-title {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--fg);
+    }
+    .collection-cjk {
+      display: block;
+      font-family: "Noto Serif SC", serif;
+      font-size: 0.42em;
+      font-weight: 300;
+      color: var(--red);
+      margin-top: 10px;
+      letter-spacing: 0.1em;
+    }
+    .collection-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 15px;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Accordion section wrapper — scroll-animated ── */
+    .accordion-section {
+      opacity: 0;
+      will-change: opacity, transform;
+    }
+
+    /* ── Accordion ── */
+    .acc-row {
+      display: flex;
+      gap: 4px;
+      height: 320px;
+      border-radius: 14px;
+      overflow: hidden;
+      transition: height 0.4s ease;
+    }
+    .acc-panel {
+      position: relative;
+      overflow: hidden;
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: 56px;
+      cursor: pointer;
+      transition: flex-grow 0.6s ease;
+    }
+    .acc-panel.acc-active { flex-grow: 1; }
+    .acc-panel img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .acc-see-more {
+      background-color: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: flex-grow 0.6s ease, background-color 0.35s ease;
+    }
+    .acc-see-more img {
+      filter: grayscale(100%);
+      opacity: 0.28;
+      object-fit: cover !important;
+    }
+    .acc-see-more-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.15);
+      transition: background-color 0.3s ease;
+      pointer-events: none;
+    }
+    html[data-theme="dark"] .acc-see-more-overlay { background-color: rgba(0, 0, 0, 0.4); }
+    .acc-see-more:hover .acc-see-more-overlay { background-color: rgba(224, 60, 49, 0.2); }
+    html[data-theme="dark"] .acc-see-more:hover .acc-see-more-overlay { background-color: rgba(217, 164, 65, 0.32); }
+    .acc-see-more-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--fg);
+      font-weight: 700;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      transition: transform 0.4s ease;
+      position: relative;
+      z-index: 1;
+    }
+    .acc-see-more:not(.acc-active) .acc-see-more-text { transform: rotate(90deg); }
+
+    /* ── Footer ── */
+    .page-footer {
+      position: relative;
+      z-index: 10;
+      min-height: 30vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 60px 24px;
+      text-align: center;
+      /* Light mode: frosted-glass panel over the footage */
+      background: rgba(246, 243, 242, 0.88);
+      backdrop-filter: blur(18px) saturate(1.1);
+      -webkit-backdrop-filter: blur(18px) saturate(1.1);
+      border-top: 1px solid rgba(28, 27, 27, 0.08);
+    }
+    html[data-theme="dark"] .page-footer {
+      background: linear-gradient(180deg, transparent, rgba(8,7,6,0.9) 40%, #080706);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border-top: none;
+      min-height: 44vh;
+    }
+    .footer-studio {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 5vw, 3.5rem);
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: var(--fg);
+    }
+    .footer-cjk {
+      font-family: "Noto Serif SC", serif;
+      font-size: 1.1rem;
+      font-weight: 200;
+      color: var(--red);
+      letter-spacing: 0.12em;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 6px;
+    }
+    .footer-links a {
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .footer-links a:hover { color: var(--fg); }
+    .footer-copy {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0.5;
+    }
+
+    /* ── Lightbox ── */
+    @keyframes lightboxBloom {
+      from { transform: scale(0.88); opacity: 0; }
+      to   { transform: scale(1);    opacity: 1; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .acc-row    { height: 180px; }
+      .acc-panel  { flex-basis: 32px; }
+      .collection { padding: 8vh 4vw 12vh; }
+      .collection-head { padding: 30px 22px; border-radius: 24px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .grain, .cue-line { animation: none; }
+      .collection-head  { transition: none; }
+    }
   </style>
 </head>
-<body class="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white">
+<body class="antialiased">
 
+  <!-- ── STUDIO JUS10 Nav ── -->
   <nav class="bg-surface-container-lowest font-label-caps text-label-caps w-full top-0 sticky border-b border-on-background flex justify-between items-center px-4 md:px-8 py-4 z-50">
     <a href="index.html" class="logo-text font-headline-md text-headline-md tracking-tighter text-on-background hover:text-primary transition-colors duration-300 flex items-center gap-2">
       STUDIO JUS10
@@ -66,71 +611,167 @@
         <div class="absolute top-full left-1/2 -translate-x-1/2 w-52 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-50">
           <div class="h-3"></div>
           <div class="bg-surface-container-lowest border border-on-background shadow-lg">
-            <a href="photography-colorado.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors border-b border-on-background"><span>Colorado</span><span class="font-cjk text-xs text-primary">科罗拉多</span></a>
-            <a href="photography-arizona.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest bg-surface-container-low text-primary border-b border-on-background"><span>Arizona</span><span class="font-cjk text-xs text-primary">亚利桑那</span></a>
-            <a href="photography-washington.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors border-b border-on-background"><span>Washington</span><span class="font-cjk text-xs text-primary">华盛顿</span></a>
-            <a href="photography-nature.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors border-b border-on-background"><span>Nature</span><span class="font-cjk text-xs text-primary">自然</span></a>
-            <a href="photography-film.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors"><span>Film</span><span class="font-cjk text-xs text-primary">胶片</span></a>
+            <a href="photography-colorado.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors border-b border-on-background">
+              <span>Colorado</span>
+              <span class="font-cjk text-xs text-primary">科罗拉多</span>
+            </a>
+            <a href="photography-arizona.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest bg-surface-container-low text-primary border-b border-on-background">
+              <span>Arizona</span>
+              <span class="font-cjk text-xs text-primary">亚利桑那</span>
+            </a>
+            <a href="photography-washington.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors border-b border-on-background">
+              <span>Washington</span>
+              <span class="font-cjk text-xs text-primary">华盛顿</span>
+            </a>
+            <a href="photography-nature.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors border-b border-on-background">
+              <span>Nature</span>
+              <span class="font-cjk text-xs text-primary">自然</span>
+            </a>
+            <a href="photography-film.html" class="flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest hover:bg-surface-container-low hover:text-primary transition-colors">
+              <span>Film</span>
+              <span class="font-cjk text-xs text-primary">胶片</span>
+            </a>
           </div>
         </div>
       </div>
-      <a href="video.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center"><span>Video</span><span class="font-cjk text-[10px] text-on-surface-variant">视频</span></a>
-      <a href="art.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center"><span>Art</span><span class="font-cjk text-[10px] text-on-surface-variant">艺术</span></a>
-      <a href="about.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center"><span>About</span><span class="font-cjk text-[10px] text-on-surface-variant">关于</span></a>
+      <a href="video.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
+        <span>Video</span>
+        <span class="font-cjk text-[10px] text-on-surface-variant">视频</span>
+      </a>
+      <a href="art.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
+        <span>Art</span>
+        <span class="font-cjk text-[10px] text-on-surface-variant">艺术</span>
+      </a>
+      <a href="about.html" class="text-on-surface hover:text-primary transition-colors duration-300 cursor-pointer flex flex-col items-center">
+        <span>About</span>
+        <span class="font-cjk text-[10px] text-on-surface-variant">关于</span>
+      </a>
     </div>
-    <a href="contact.html" class="hidden md:inline-flex items-center gap-2 border border-on-surface px-4 py-2 hover:bg-primary hover:text-white hover:border-primary transition-colors duration-300"><span>Contact</span><span class="font-cjk text-xs">联系</span></a>
-    <button id="mobile-menu-toggle" class="md:hidden text-on-surface" aria-label="Toggle menu"><span class="material-symbols-outlined">menu</span></button>
+    <button id="theme-toggle" aria-label="Toggle dark mode" class="hidden md:flex items-center justify-center w-9 h-9 rounded-full border border-on-surface text-on-surface hover:border-primary hover:text-primary transition-colors duration-300">
+      <span class="material-symbols-outlined theme-icon" style="font-size:18px;line-height:1;">dark_mode</span>
+    </button>
+    <a href="contact.html" class="hidden md:inline-flex items-center gap-2 border border-on-surface px-4 py-2 hover:bg-primary hover:text-white hover:border-primary transition-colors duration-300">
+      <span>Contact</span>
+      <span class="font-cjk text-xs">联系</span>
+    </a>
+    <button id="mobile-menu-toggle" class="md:hidden" aria-label="Toggle menu" style="color: var(--fg);">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
   </nav>
 
+  <!-- Mobile menu -->
   <div id="mobile-menu" class="fixed inset-y-0 right-0 z-40 w-72 bg-surface-container-lowest border-l border-on-background transform translate-x-full transition-transform duration-300 md:hidden flex flex-col pt-20 px-6 gap-6 font-label-caps text-label-caps tracking-widest">
     <div>
-      <a href="photography.html" class="flex justify-between items-center pb-3 text-primary"><span>Photography</span><span class="font-cjk text-primary text-sm">摄影</span></a>
+      <a href="photography.html" class="flex justify-between items-center pb-3 text-primary">
+        <span>Photography</span>
+        <span class="font-cjk text-primary text-sm">摄影</span>
+      </a>
       <div class="pl-3 flex flex-col gap-1 border-b border-on-background pb-4">
-        <a href="photography-colorado.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant"><span class="text-[9px] tracking-widest">Colorado</span><span class="font-cjk text-primary text-[9px]">科罗拉多</span></a>
-        <a href="photography-arizona.html" class="flex justify-between items-center py-1.5 text-primary"><span class="text-[9px] tracking-widest">Arizona</span><span class="font-cjk text-primary text-[9px]">亚利桑那</span></a>
-        <a href="photography-washington.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant"><span class="text-[9px] tracking-widest">Washington</span><span class="font-cjk text-primary text-[9px]">华盛顿</span></a>
-        <a href="photography-nature.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant"><span class="text-[9px] tracking-widest">Nature</span><span class="font-cjk text-primary text-[9px]">自然</span></a>
-        <a href="photography-film.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant"><span class="text-[9px] tracking-widest">Film</span><span class="font-cjk text-primary text-[9px]">胶片</span></a>
+        <a href="photography-colorado.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant">
+          <span class="text-[9px] tracking-widest">Colorado</span>
+          <span class="font-cjk text-primary text-[9px]">科罗拉多</span>
+        </a>
+        <a href="photography-arizona.html" class="flex justify-between items-center py-1.5 text-primary">
+          <span class="text-[9px] tracking-widest">Arizona</span>
+          <span class="font-cjk text-primary text-[9px]">亚利桑那</span>
+        </a>
+        <a href="photography-washington.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant">
+          <span class="text-[9px] tracking-widest">Washington</span>
+          <span class="font-cjk text-primary text-[9px]">华盛顿</span>
+        </a>
+        <a href="photography-nature.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant">
+          <span class="text-[9px] tracking-widest">Nature</span>
+          <span class="font-cjk text-primary text-[9px]">自然</span>
+        </a>
+        <a href="photography-film.html" class="flex justify-between items-center py-1.5 hover:text-primary transition-colors text-on-surface-variant">
+          <span class="text-[9px] tracking-widest">Film</span>
+          <span class="font-cjk text-primary text-[9px]">胶片</span>
+        </a>
       </div>
     </div>
-    <a href="video.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors"><span>Video</span><span class="font-cjk text-primary text-sm">视频</span></a>
-    <a href="art.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors"><span>Art</span><span class="font-cjk text-primary text-sm">艺术</span></a>
-    <a href="about.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors"><span>About</span><span class="font-cjk text-primary text-sm">关于</span></a>
-    <a href="contact.html" class="flex items-center justify-between border border-on-surface px-4 py-3 mt-2 hover:bg-primary hover:text-white hover:border-primary transition-colors"><span>Contact</span><span class="font-cjk text-xs">联系</span></a>
+    <a href="video.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors" style="color:var(--muted)">
+      <span>Video</span><span class="font-cjk text-primary text-sm">视频</span>
+    </a>
+    <a href="art.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors" style="color:var(--muted)">
+      <span>Art</span><span class="font-cjk text-primary text-sm">艺术</span>
+    </a>
+    <a href="about.html" class="flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors" style="color:var(--muted)">
+      <span>About</span><span class="font-cjk text-primary text-sm">关于</span>
+    </a>
+    <button id="theme-toggle-mobile" class="flex items-center justify-between border-b border-on-background pb-4 hover:text-primary transition-colors w-full text-left" style="color:var(--muted)">
+      <span class="theme-label">Dark Mode</span>
+      <span class="material-symbols-outlined theme-icon" style="font-size:18px;">dark_mode</span>
+    </button>
+    <a href="contact.html" class="flex items-center justify-between border border-on-surface px-4 py-3 mt-2 hover:bg-primary hover:text-white hover:border-primary transition-colors" style="color:var(--muted)">
+      <span>Contact</span><span class="font-cjk text-xs">联系</span>
+    </a>
   </div>
   <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-30 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
 
-  <main class="w-full px-4 md:px-8 py-8 overflow-x-hidden">
+  <!-- Fixed video background -->
+  <div class="video-stage" id="videoStage">
+    <video id="scrubVideo" playsinline muted preload="auto">
+      <source src="website-animations/jus10photos-master/scroll-video-site/assets/cam.mp4" type="video/mp4" />
+    </video>
+    <div class="video-tint"></div>
+  </div>
 
-    <div class="mb-8 font-label-caps text-label-caps tracking-widest text-on-surface-variant flex items-center gap-2">
-      <a href="photography.html" class="hover:text-primary transition-colors">Photography</a>
-      <span>/</span>
-      <span class="text-on-background">Arizona</span>
+  <!-- Film grain -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Scroll progress bar -->
+  <div class="progress" id="progress"></div>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-img" id="heroImg"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-inner" id="heroInner">
+      <span class="hero-kicker">Arizona · Selected Works</span>
+      <h1 class="hero-title"><em>Arizona</em></h1>
+      <span class="hero-cjk">亚利桑那</span>
+      <p class="hero-sub">Desert roads and canyon light across the Southwest.</p>
     </div>
-
-    <div class="border-b-2 border-on-background pb-6 mb-12">
-      <h1 class="font-display-lg text-on-background text-headline-lg-mobile md:text-display-lg mb-2 font-medium">Arizona</h1>
-      <p class="font-cjk text-3xl md:text-5xl text-primary leading-none">亚利桑那</p>
+    <div class="scroll-cue" id="scrollCue">
+      <span>Scroll</span>
+      <span class="cue-line"></span>
     </div>
+  </section>
 
-    <div class="mb-8 flex flex-wrap gap-3" role="group" aria-label="Gallery sections">
-      <button class="filter-btn font-label-caps text-[10px] tracking-widest px-4 py-2 border border-primary bg-primary text-white transition-colors duration-200" data-filter="all">All</button>
-      <button class="filter-btn font-label-caps text-[10px] tracking-widest px-4 py-2 border border-on-background text-on-surface hover:border-primary hover:text-primary transition-colors duration-200" data-filter="travels">Travels</button>
-    </div>
+  <!-- Intro -->
+  <section class="intro">
+    <p>
+      Across the desert Southwest — red rock and open sky, mapped frame by frame along the road.
+    </p>
+  </section>
 
-    <div class="grid grid-cols-2 gap-3" id="gallery-grid">
+  <!-- Collections -->
+  <main>
 
-      <!-- Travels -->
-      <div class="section-header col-span-2 flex flex-wrap items-baseline gap-4 border-b border-on-background pb-4 mb-2" data-section="travels">
-        <h2 class="font-headline-md text-2xl text-on-background">Travels</h2>
-        <span class="font-cjk text-sm text-primary">旅途</span>
+    <!-- Travels -->
+    <section class="collection" id="travels">
+      <div class="collection-head">
+        <span class="collection-pill">Travels</span>
+        <h2 class="collection-title">
+          Travels
+          <span class="collection-cjk">旅途</span>
+        </h2>
+        <p class="collection-note">Desert roads and canyon light across the Southwest.</p>
       </div>
-      <div class="accordion-section col-span-2" data-section="travels">
+      <div class="accordion-section" data-section="travels">
         <div class="acc-row">
-          <div class="acc-panel acc-active"><img src="photography-assets/Arizona/Travels/ARIZONA-01.jpg" alt="Travels" loading="lazy"></div>
-          <div class="acc-panel"><img src="photography-assets/Arizona/Travels/ARIZONA-02.jpg" alt="Travels" loading="lazy"></div>
-          <div class="acc-panel"><img src="photography-assets/Arizona/Travels/ARIZONA-03.jpg" alt="Travels" loading="lazy"></div>
-          <div class="acc-panel"><img src="photography-assets/Arizona/Travels/ARIZONA-04.jpg" alt="Travels" loading="lazy"></div>
+          <div class="acc-panel acc-active">
+            <img src="photography-assets/Arizona/Travels/ARIZONA-01.jpg" alt="Travels" loading="lazy">
+          </div>
+          <div class="acc-panel">
+            <img src="photography-assets/Arizona/Travels/ARIZONA-02.jpg" alt="Travels" loading="lazy">
+          </div>
+          <div class="acc-panel">
+            <img src="photography-assets/Arizona/Travels/ARIZONA-03.jpg" alt="Travels" loading="lazy">
+          </div>
+          <div class="acc-panel">
+            <img src="photography-assets/Arizona/Travels/ARIZONA-04.jpg" alt="Travels" loading="lazy">
+          </div>
           <div class="acc-panel acc-see-more">
             <img src="photography-assets/Arizona/Travels/ARIZONA-05.jpg" alt="" loading="lazy">
             <div class="acc-see-more-overlay"></div>
@@ -138,132 +779,302 @@
           </div>
         </div>
       </div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-01.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-01.jpg" alt="Travels 01" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-02.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-02.jpg" alt="Travels 02" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-03.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-03.jpg" alt="Travels 03" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-04.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-04.jpg" alt="Travels 04" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-05.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-05.jpg" alt="Travels 05" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-06.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-06.jpg" alt="Travels 06" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-07.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-07.jpg" alt="Travels 07" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-08.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-08.jpg" alt="Travels 08" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-09.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-09.jpg" alt="Travels 09" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-10.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-10.jpg" alt="Travels 10" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-11.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-11.jpg" alt="Travels 11" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-12.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-12.jpg" alt="Travels 12" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-13.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-13.jpg" alt="Travels 13" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-14.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-14.jpg" alt="Travels 14" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-15.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-15.jpg" alt="Travels 15" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-16.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-16.jpg" alt="Travels 16" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-17.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-17.jpg" alt="Travels 17" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-18.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-18.jpg" alt="Travels 18" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-19.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-19.jpg" alt="Travels 19" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-20.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-20.jpg" alt="Travels 20" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-      <div class="gallery-item hidden group relative cursor-pointer overflow-hidden" data-category="travels" data-src="photography-assets/Arizona/Travels/ARIZONA-21.jpg" data-label="Travels"><img src="photography-assets/Arizona/Travels/ARIZONA-21.jpg" alt="Travels 21" class="w-full h-auto transition-transform duration-500 group-hover:scale-105" loading="lazy"><div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center pointer-events-none"><svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div></div>
-
-    </div>
-
-    <!-- Lightbox -->
-    <div id="lightbox" class="hidden fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4 md:p-8">
-      <div id="lightbox-inner" class="relative flex flex-col items-center max-w-5xl w-full">
-        <button id="lightbox-close" class="absolute -top-10 right-0 text-white hover:text-primary transition-colors" aria-label="Close lightbox"><svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
-        <div class="relative w-full flex items-center justify-center">
-          <button id="lightbox-prev" class="absolute left-2 z-10 text-white bg-black/40 hover:bg-black/70 transition-colors p-2" aria-label="Previous image"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
-          <img id="lightbox-img" src="" alt="" class="max-h-[80vh] w-auto">
-          <button id="lightbox-next" class="absolute right-2 z-10 text-white bg-black/40 hover:bg-black/70 transition-colors p-2" aria-label="Next image"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
-        </div>
-        <p id="lightbox-caption" class="mt-4 font-label-caps text-[10px] tracking-widest text-surface-variant uppercase"></p>
-      </div>
-    </div>
+    </section>
 
   </main>
 
-  <footer class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[10px] text-surface-variant uppercase tracking-widest">
-    <div class="flex items-center gap-4 mb-4 md:mb-0">
-      <div class="font-headline-md text-base text-surface-container-lowest italic">STUDIO JUS10</div>
-      <div class="font-cjk text-primary border-l border-surface-variant pl-4">工作室</div>
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="footer-studio">STUDIO JUS10</div>
+    <div class="footer-cjk">工作室</div>
+    <div class="footer-links">
+      <a href="https://instagram.com">Instagram</a>
+      <a href="https://linkedin.com">LinkedIn</a>
+      <a href="mailto:studiojus10@gmail.com">Email</a>
     </div>
-    <div class="flex flex-wrap justify-center gap-6 mb-4 md:mb-0">
-      <a href="https://instagram.com" class="hover:text-primary transition-colors flex items-center gap-1"><span>Instagram</span><span class="font-cjk text-primary opacity-70">照片</span></a>
-      <a href="https://linkedin.com" class="hover:text-primary transition-colors flex items-center gap-1"><span>LinkedIn</span><span class="font-cjk text-primary opacity-70">领英</span></a>
-      <a href="mailto:studiojus10@gmail.com" class="hover:text-primary transition-colors flex items-center gap-1"><span>Email</span><span class="font-cjk text-primary opacity-70">邮件</span></a>
-    </div>
-    <div><span>© 2025 STUDIO JUS10</span></div>
+    <div class="footer-copy">© 2025 STUDIO JUS10 · Photography · Colorado Springs</div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <!-- Lightbox -->
+  <div id="lightbox" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10" style="background-color:rgba(6,5,4,0.93);backdrop-filter:blur(10px);">
+    <div id="lightbox-inner" class="relative flex flex-col items-center max-w-5xl w-full">
+      <button id="lightbox-close" aria-label="Close lightbox" style="position:absolute;top:-50px;right:0;color:var(--fg);background:none;border:none;cursor:pointer;padding:8px;opacity:0.8;transition:opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">
+        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <div class="relative w-full flex items-center justify-center">
+        <button id="lightbox-prev" aria-label="Previous" style="position:absolute;left:0;z-index:10;color:var(--fg);background:rgba(0,0,0,0.45);border:none;cursor:pointer;padding:12px;transition:background 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.75)'" onmouseout="this.style.background='rgba(0,0,0,0.45)'">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <img id="lightbox-img" src="" alt="" style="max-height:80vh;max-width:100%;width:auto;border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,0.7);">
+        <button id="lightbox-next" aria-label="Next" style="position:absolute;right:0;z-index:10;color:var(--fg);background:rgba(0,0,0,0.45);border:none;cursor:pointer;padding:12px;transition:background 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.75)'" onmouseout="this.style.background='rgba(0,0,0,0.45)'">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+      <p id="lightbox-caption" style="margin-top:18px;font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);"></p>
+    </div>
+  </div>
+
   <script>
-  (function() {
-    var items = Array.from(document.querySelectorAll('.gallery-item'));
-    var lightbox = document.getElementById('lightbox');
-    var lightboxInner = document.getElementById('lightbox-inner');
-    var lightboxImg = document.getElementById('lightbox-img');
+  (function () {
+
+    /* ── Gallery data ── */
+    function makeImgs(base, prefix, count) {
+      var a = [];
+      for (var i = 1; i <= count; i++) {
+        a.push(base + prefix + String(i).padStart(2, '0') + '.jpg');
+      }
+      return a;
+    }
+    var galleries = {
+      'travels': {
+        label: 'Travels',
+        images: makeImgs('photography-assets/Arizona/Travels/', 'ARIZONA-', 21)
+      }
+    };
+
+    /* ── Lightbox ── */
+    var lightbox        = document.getElementById('lightbox');
+    var lightboxInner   = document.getElementById('lightbox-inner');
+    var lightboxImg     = document.getElementById('lightbox-img');
     var lightboxCaption = document.getElementById('lightbox-caption');
-    var activeIndex = -1;
-    function getVisible() { return items.filter(function(i){return !i.classList.contains('hidden');}); }
-    function openLightbox(visIdx) {
-      activeIndex = visIdx;
-      var item = getVisible()[visIdx];
-      lightboxImg.src = item.dataset.src; lightboxImg.alt = item.dataset.label; lightboxCaption.textContent = item.dataset.label;
-      lightbox.classList.remove('hidden'); document.body.style.overflow = 'hidden';
-      lightbox.style.animation = 'lightboxBackdrop 0.275s ease forwards';
-      lightboxInner.style.animation = 'none'; void lightboxInner.offsetWidth;
-      lightboxInner.style.animation = 'lightboxBloom 0.352s cubic-bezier(0.34,1.56,0.64,1) forwards';
+    var lbSection = null, lbIndex = 0;
+
+    function openLightbox(key, idx) {
+      lbSection = key; lbIndex = idx;
+      var g = galleries[key];
+      lightboxImg.src = g.images[idx];
+      lightboxImg.alt = g.label;
+      lightboxCaption.textContent = g.label + ' — ' + String(idx + 1).padStart(2, '0');
+      lightbox.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      lightboxInner.style.animation = 'none';
+      void lightboxInner.offsetWidth;
+      lightboxInner.style.animation = 'lightboxBloom 0.35s cubic-bezier(0.34,1.56,0.64,1) forwards';
     }
     function closeLightbox() {
-      document.body.style.overflow = ''; activeIndex = -1;
-      lightbox.style.animation = 'lightboxBackdrop 0.234s ease reverse forwards';
-      lightboxInner.style.animation = 'none'; void lightboxInner.offsetWidth;
-      lightboxInner.style.animation = 'lightboxBloom 0.299s cubic-bezier(0.34,1.56,0.64,1) reverse forwards';
-      setTimeout(function(){ lightbox.classList.add('hidden'); lightboxImg.src = ''; lightbox.style.animation = ''; lightboxInner.style.animation = ''; }, 305);
+      lightbox.classList.add('hidden');
+      document.body.style.overflow = '';
+      lightboxImg.src = '';
     }
     function navigate(dir) {
-      var visible = getVisible(); if (!visible.length) return;
-      activeIndex = (activeIndex + dir + visible.length) % visible.length;
-      var item = visible[activeIndex];
-      lightboxImg.src = item.dataset.src; lightboxImg.alt = item.dataset.label; lightboxCaption.textContent = item.dataset.label;
+      if (!lbSection) return;
+      var imgs = galleries[lbSection].images;
+      lbIndex = (lbIndex + dir + imgs.length) % imgs.length;
+      lightboxImg.src = imgs[lbIndex];
+      lightboxCaption.textContent = galleries[lbSection].label + ' — ' + String(lbIndex + 1).padStart(2, '00');
     }
-    var filterOrder = ['all','travels'];
-    var currentFilter = 'all'; var animating = false;
-    function applyFilterDOM(filter) {
-      var showAll = filter === 'all';
-      items.forEach(function(item){ item.classList.toggle('hidden', showAll || item.dataset.category !== filter); });
-      document.querySelectorAll('.section-header').forEach(function(h){ var show = showAll || h.dataset.section === filter; h.classList.toggle('hidden',!show); h.classList.toggle('mt-10',showAll); });
-      document.querySelectorAll('.accordion-section').forEach(function(a){ a.classList.toggle('hidden',!showAll); });
-    }
-    function setFilterBtnStyles(filter) {
-      document.querySelectorAll('.filter-btn').forEach(function(b){ var active = b.dataset.filter === filter; b.classList.toggle('bg-primary',active); b.classList.toggle('text-white',active); b.classList.toggle('border-primary',active); b.classList.toggle('border-on-background',!active); b.classList.toggle('text-on-surface',!active); });
-    }
-    function animateFilterChange(filter, onMidpoint) {
-      var goRight = filterOrder.indexOf(filter) > filterOrder.indexOf(currentFilter);
-      var grid = document.getElementById('gallery-grid'); animating = true; setFilterBtnStyles(filter);
-      grid.classList.add(goRight ? 'filter-slide-out-left' : 'filter-slide-out-right');
-      setTimeout(function(){
-        grid.classList.remove('filter-slide-out-left','filter-slide-out-right');
-        applyFilterDOM(filter); currentFilter = filter; if (onMidpoint) onMidpoint();
-        grid.classList.add(goRight ? 'filter-slide-in-right' : 'filter-slide-in-left');
-        setTimeout(function(){ grid.classList.remove('filter-slide-in-right','filter-slide-in-left'); animating = false; }, 300);
-      }, 300);
-    }
-    document.querySelectorAll('.filter-btn').forEach(function(btn){ btn.addEventListener('click', function(){ var filter = btn.dataset.filter; if (filter === currentFilter || animating) return; animateFilterChange(filter); }); });
-    items.forEach(function(item){ item.addEventListener('click', function(){ var visible = getVisible(); var idx = visible.indexOf(item); if (idx !== -1) openLightbox(idx); }); });
+
     document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-    document.getElementById('lightbox-prev').addEventListener('click', function(e){ e.stopPropagation(); navigate(-1); });
-    document.getElementById('lightbox-next').addEventListener('click', function(e){ e.stopPropagation(); navigate(1); });
-    lightboxInner.addEventListener('click', function(e){ e.stopPropagation(); });
-    lightbox.addEventListener('click', function(e){ if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', function(e){ if (lightbox.classList.contains('hidden')) return; if (e.key==='Escape') closeLightbox(); if (e.key==='ArrowLeft') navigate(-1); if (e.key==='ArrowRight') navigate(1); });
-    document.querySelectorAll('.acc-row').forEach(function(row){
-      var panels = row.querySelectorAll('.acc-panel'); var heightTimer = null;
-      function updateHeight(){ var active = row.querySelector('.acc-panel.acc-active:not(.acc-see-more)'); if (!active) return; var img = active.querySelector('img'); if (!img||!img.naturalWidth) return; var activeW = row.offsetWidth-(panels.length-1)*60; if (activeW<=0) return; row.style.height = Math.round(activeW*img.naturalHeight/img.naturalWidth)+'px'; }
-      panels.forEach(function(panel){
-        var img = panel.querySelector('img');
-        if (img && panel.classList.contains('acc-active')){ if (img.complete&&img.naturalWidth){ updateHeight(); } else { img.addEventListener('load',updateHeight); } }
-        panel.addEventListener('mouseenter', function(){ panels.forEach(function(p){p.classList.remove('acc-active');}); panel.classList.add('acc-active'); clearTimeout(heightTimer); heightTimer = setTimeout(updateHeight,650); });
-        if (!panel.classList.contains('acc-see-more')){ panel.addEventListener('click', function(){ if (animating) return; var sectionKey = panel.closest('.accordion-section').dataset.section; var img = panel.querySelector('img'); if (!img) return; var panelSrc = img.getAttribute('src'); animateFilterChange(sectionKey, function(){ var visible = getVisible(); for (var i=0;i<visible.length;i++){ if (visible[i].dataset.src===panelSrc){openLightbox(i);break;} } }); }); }
-      });
-      var seeMore = row.querySelector('.acc-see-more');
-      if (seeMore){ seeMore.addEventListener('click', function(){ if (animating) return; var sectionKey = seeMore.closest('.accordion-section').dataset.section; animateFilterChange(sectionKey); }); }
+    document.getElementById('lightbox-prev').addEventListener('click', function (e) { e.stopPropagation(); navigate(-1); });
+    document.getElementById('lightbox-next').addEventListener('click', function (e) { e.stopPropagation(); navigate(1); });
+    lightboxInner.addEventListener('click', function (e) { e.stopPropagation(); });
+    lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', function (e) {
+      if (lightbox.classList.contains('hidden')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navigate(-1);
+      if (e.key === 'ArrowRight') navigate(1);
     });
+
+    /* ── Accordion ── */
+    document.querySelectorAll('.acc-row').forEach(function (row) {
+      var panels = row.querySelectorAll('.acc-panel');
+      var heightTimer = null;
+
+      function updateHeight() {
+        var active = row.querySelector('.acc-panel.acc-active:not(.acc-see-more)');
+        if (!active) return;
+        var img = active.querySelector('img');
+        if (!img || !img.naturalWidth) return;
+        var activeW = row.offsetWidth - (panels.length - 1) * 60;
+        if (activeW <= 0) return;
+        row.style.height = Math.round(activeW * img.naturalHeight / img.naturalWidth) + 'px';
+      }
+
+      panels.forEach(function (panel) {
+        var img = panel.querySelector('img');
+        if (img && panel.classList.contains('acc-active')) {
+          if (img.complete && img.naturalWidth) updateHeight();
+          else img.addEventListener('load', updateHeight);
+        }
+        panel.addEventListener('mouseenter', function () {
+          panels.forEach(function (p) { p.classList.remove('acc-active'); });
+          panel.classList.add('acc-active');
+          clearTimeout(heightTimer);
+          heightTimer = setTimeout(updateHeight, 650);
+        });
+        if (!panel.classList.contains('acc-see-more')) {
+          panel.addEventListener('click', function () {
+            var key = panel.closest('.accordion-section').dataset.section;
+            var src = panel.querySelector('img').getAttribute('src');
+            var idx = galleries[key].images.indexOf(src);
+            openLightbox(key, idx < 0 ? 0 : idx);
+          });
+        }
+      });
+
+      var seeMore = row.querySelector('.acc-see-more');
+      if (seeMore) {
+        seeMore.addEventListener('click', function () {
+          var key = seeMore.closest('.accordion-section').dataset.section;
+          openLightbox(key, 0);
+        });
+      }
+    });
+
+    /* ── Scroll-scrubbed video ── */
+    var video      = document.getElementById('scrubVideo');
+    var progressEl = document.getElementById('progress');
+    var hero       = document.getElementById('hero');
+    var heroImg    = document.getElementById('heroImg');
+    var heroInner  = document.getElementById('heroInner');
+    var scrollCue  = document.getElementById('scrollCue');
+    var duration = 0, targetTime = 0, currentTime = 0, seeking = false;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    video.addEventListener('loadedmetadata', function () { duration = video.duration || 0; update(); requestAnimationFrame(tick); });
+    video.addEventListener('loadeddata', function () { video.pause(); });
+    video.addEventListener('seeked', function () { seeking = false; });
+
+    function scrollFraction() {
+      var s = document.documentElement.scrollHeight - window.innerHeight;
+      return s <= 0 ? 0 : Math.min(1, Math.max(0, window.scrollY / s));
+    }
+
+    function heroTransition() {
+      var h = hero.offsetHeight || window.innerHeight;
+      var t = Math.min(1, Math.max(0, window.scrollY / h));
+      heroImg.style.opacity   = (1 - t * 1.15).toFixed(3);
+      heroImg.style.transform = 'scale(' + (1.04 + t * 0.22).toFixed(3) + ')';
+      heroImg.style.filter    = 'blur(' + (t * 14).toFixed(1) + 'px)';
+      heroInner.style.opacity   = (1 - t * 1.6).toFixed(3);
+      heroInner.style.transform = 'translateY(' + (-t * 80).toFixed(1) + 'px)';
+      if (scrollCue) scrollCue.style.opacity = (1 - t * 3).toFixed(3);
+      hero.style.pointerEvents = t > 0.98 ? 'none' : 'auto';
+    }
+
+    /* ── Accordion raindrop animation ── */
+    var accSections = Array.from(document.querySelectorAll('.accordion-section'));
+
+    function clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
+
+    function updateAccordions() {
+      var vh = window.innerHeight;
+      for (var i = 0; i < accSections.length; i++) {
+        var sec = accSections[i];
+        var r = sec.getBoundingClientRect();
+        if (r.bottom < -vh || r.top > vh * 2) continue;
+        if (reduceMotion) { sec.style.opacity = '1'; sec.style.transform = ''; continue; }
+        var center = r.top + r.height / 2;
+        var d = center / vh - 0.5 + 0.06;
+        var a = Math.abs(d);
+        var op = a <= 0.25 ? 1 : clamp(1 - (a - 0.25) / 0.5, 0, 1);
+        var drift = -d * 55;
+        sec.style.opacity   = op.toFixed(3);
+        sec.style.transform = 'translateY(' + drift.toFixed(1) + 'px)';
+      }
+    }
+
+    function update() {
+      var p = scrollFraction();
+      if (duration > 0) targetTime = p * duration;
+      progressEl.style.width = (p * 100).toFixed(2) + '%';
+      heroTransition();
+      updateAccordions();
+    }
+
+    function tick() {
+      if (duration > 0) {
+        currentTime += (targetTime - currentTime) * 0.12;
+        if (!seeking && Math.abs(currentTime - video.currentTime) > 0.01) {
+          seeking = true;
+          if (typeof video.fastSeek === 'function') video.fastSeek(currentTime);
+          else video.currentTime = currentTime;
+        }
+      }
+      updateAccordions();
+      requestAnimationFrame(tick);
+    }
+
+    /* ── Collection head fade-in ── */
+    var headObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('in-view'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.collection-head').forEach(function (h) { headObs.observe(h); });
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', function () {
+      accSections = Array.from(document.querySelectorAll('.accordion-section'));
+      update();
+    });
+
+    if (video.readyState >= 1) { duration = video.duration || 0; requestAnimationFrame(tick); }
+    update();
+
+    /* ── Pull hero flush behind nav ── */
+    function setHeroFlush() {
+      var navH = document.querySelector('nav').offsetHeight;
+      hero.style.marginTop = '-' + navH + 'px';
+    }
+    setHeroFlush();
+    window.addEventListener('resize', setHeroFlush);
+
+    /* ── Mobile menu ── */
+    var toggleBtn    = document.getElementById('mobile-menu-toggle');
+    var mobileMenu   = document.getElementById('mobile-menu');
+    var mobileOverlay = document.getElementById('mobile-menu-overlay');
+    if (toggleBtn && mobileMenu) {
+      function openMenu() {
+        mobileMenu.classList.remove('translate-x-full');
+        mobileMenu.classList.add('translate-x-0');
+        if (mobileOverlay) { mobileOverlay.classList.remove('opacity-0','pointer-events-none'); mobileOverlay.classList.add('opacity-100'); }
+        toggleBtn.querySelector('.material-symbols-outlined').textContent = 'close';
+      }
+      function closeMenu() {
+        mobileMenu.classList.remove('translate-x-0');
+        mobileMenu.classList.add('translate-x-full');
+        if (mobileOverlay) { mobileOverlay.classList.remove('opacity-100'); mobileOverlay.classList.add('opacity-0','pointer-events-none'); }
+        toggleBtn.querySelector('.material-symbols-outlined').textContent = 'menu';
+      }
+      toggleBtn.addEventListener('click', function () {
+        mobileMenu.classList.contains('translate-x-0') ? closeMenu() : openMenu();
+      });
+      if (mobileOverlay) mobileOverlay.addEventListener('click', closeMenu);
+      mobileMenu.querySelectorAll('a').forEach(function (l) { l.addEventListener('click', closeMenu); });
+    }
+
+    /* ── Theme toggle ── */
+    function updateThemeUI() {
+      var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      document.querySelectorAll('.theme-icon').forEach(function (el) {
+        el.textContent = dark ? 'light_mode' : 'dark_mode';
+      });
+      document.querySelectorAll('.theme-label').forEach(function (el) {
+        el.textContent = dark ? 'Light Mode' : 'Dark Mode';
+      });
+    }
+    updateThemeUI();
+
+    function toggleTheme() {
+      var html = document.documentElement;
+      var isDark = html.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        html.removeAttribute('data-theme');
+        localStorage.setItem('co-theme', 'light');
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        localStorage.setItem('co-theme', 'dark');
+      }
+      updateThemeUI();
+      setHeroFlush();
+      update();
+    }
+
+    var themeBtn = document.getElementById('theme-toggle');
+    var themeBtnMobile = document.getElementById('theme-toggle-mobile');
+    if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
+    if (themeBtnMobile) themeBtnMobile.addEventListener('click', toggleTheme);
+
   })();
   </script>
 </body>
