@@ -100,6 +100,13 @@
   </script>
 
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .series-thumb { position: relative; overflow: hidden; aspect-ratio: 4/3; margin-bottom: 1rem; border: 1px solid #1c1b1b; }
+    html[data-theme="dark"] .series-thumb { border-color: rgba(243, 237, 225, 0.12); }
+    .series-thumb img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; display: block; will-change: transform; }
+    @keyframes rolodexSlideOut { from { transform: translateY(0); }    to { transform: translateY(-100%); } }
+    @keyframes rolodexSlideIn  { from { transform: translateY(100%); } to { transform: translateY(0); } }
+  </style>
 </head>
 <body class="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white">
 
@@ -139,7 +146,10 @@
       <a href="photography-colorado.html" class="group border border-on-background bg-surface p-6 hover:border-primary transition-colors duration-300">
         <div class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
         <h2 class="font-headline-md text-2xl text-on-background mb-1 group-hover:text-primary transition-colors">Colorado</h2>
-        <p class="font-cjk text-sm text-primary mb-4">科罗拉多</p>
+        <p class="font-cjk text-sm text-primary mb-3">科罗拉多</p>
+        <div class="series-thumb">
+          <img id="thumb-colorado" src="" alt="">
+        </div>
         <p class="font-label-mono text-[10px] leading-relaxed text-on-surface-variant">Pikes Peak, ranch life, golf courses, and the golden cornfields of the Front Range.</p>
         <div class="mt-6 flex items-center gap-2 font-label-caps text-[10px] tracking-widest text-primary">
           <span>View Series</span>
@@ -150,7 +160,10 @@
       <a href="photography-arizona.html" class="group border border-on-background bg-surface p-6 hover:border-primary transition-colors duration-300">
         <div class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
         <h2 class="font-headline-md text-2xl text-on-background mb-1 group-hover:text-primary transition-colors">Arizona</h2>
-        <p class="font-cjk text-sm text-primary mb-4">亚利桑那</p>
+        <p class="font-cjk text-sm text-primary mb-3">亚利桑那</p>
+        <div class="series-thumb">
+          <img id="thumb-arizona" src="" alt="">
+        </div>
         <p class="font-label-mono text-[10px] leading-relaxed text-on-surface-variant">Desert landscapes and southwestern vistas.</p>
         <div class="mt-6 flex items-center gap-2 font-label-caps text-[10px] tracking-widest text-primary">
           <span>View Series</span>
@@ -161,7 +174,10 @@
       <a href="photography-washington.html" class="group border border-on-background bg-surface p-6 hover:border-primary transition-colors duration-300">
         <div class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
         <h2 class="font-headline-md text-2xl text-on-background mb-1 group-hover:text-primary transition-colors">Washington</h2>
-        <p class="font-cjk text-sm text-primary mb-4">华盛顿</p>
+        <p class="font-cjk text-sm text-primary mb-3">华盛顿</p>
+        <div class="series-thumb">
+          <img id="thumb-washington" src="" alt="">
+        </div>
         <p class="font-label-mono text-[10px] leading-relaxed text-on-surface-variant">Urban scenes and Pacific Northwest landscapes, centered in Seattle.</p>
         <div class="mt-6 flex items-center gap-2 font-label-caps text-[10px] tracking-widest text-primary">
           <span>View Series</span>
@@ -172,7 +188,10 @@
       <a href="photography-nature.html" class="group border border-on-background bg-surface p-6 hover:border-primary transition-colors duration-300">
         <div class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
         <h2 class="font-headline-md text-2xl text-on-background mb-1 group-hover:text-primary transition-colors">Nature</h2>
-        <p class="font-cjk text-sm text-primary mb-4">自然</p>
+        <p class="font-cjk text-sm text-primary mb-3">自然</p>
+        <div class="series-thumb">
+          <img id="thumb-nature" src="" alt="">
+        </div>
         <p class="font-label-mono text-[10px] leading-relaxed text-on-surface-variant">Butterflies, flowers, and sweeping landscapes from the natural world.</p>
         <div class="mt-6 flex items-center gap-2 font-label-caps text-[10px] tracking-widest text-primary">
           <span>View Series</span>
@@ -183,7 +202,10 @@
       <a href="photography-film.html" class="group border border-on-background bg-surface p-6 hover:border-primary transition-colors duration-300">
         <div class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
         <h2 class="font-headline-md text-2xl text-on-background mb-1 group-hover:text-primary transition-colors">Film</h2>
-        <p class="font-cjk text-sm text-primary mb-4">胶片</p>
+        <p class="font-cjk text-sm text-primary mb-3">胶片</p>
+        <div class="series-thumb">
+          <img id="thumb-film" src="" alt="">
+        </div>
         <p class="font-label-mono text-[10px] leading-relaxed text-on-surface-variant">Photographs captured on analog film — memories from Europe, home, and beyond.</p>
         <div class="mt-6 flex items-center gap-2 font-label-caps text-[10px] tracking-widest text-primary">
           <span>View Series</span>
@@ -233,5 +255,160 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    /* ── Global scheduler: ≥3 s between any two rolodex transitions ── */
+    var lastFlipAt = 0;
+    var MIN_GAP    = 3000;
+
+    function scheduleFlip(fn, desiredIn) {
+      var now   = Date.now();
+      var runAt = Math.max(now + desiredIn, lastFlipAt + MIN_GAP);
+      setTimeout(function () {
+        lastFlipAt = Date.now();
+        fn();
+      }, runAt - now);
+    }
+
+    /* ── Rolodex scroll: current slides up, next slides in from below ── */
+    var ANIM = '0.675s ease-in-out';
+
+    function rolodexThumb(img, nextSrc) {
+      var container = img.parentNode;
+      var nextImg   = document.createElement('img');
+      nextImg.src   = nextSrc;
+      nextImg.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;display:block;will-change:transform;';
+      container.appendChild(nextImg);
+
+      img.style.animation    = 'rolodexSlideOut ' + ANIM + ' forwards';
+      nextImg.style.animation = 'rolodexSlideIn '  + ANIM + ' forwards';
+
+      nextImg.addEventListener('animationend', function () {
+        img.src            = nextSrc;
+        img.style.animation = '';
+        img.style.transform = '';
+        container.removeChild(nextImg);
+      }, { once: true });
+    }
+
+    /* ── Runtime landscape filter (preserves original order) ── */
+    function filterLandscape(photos, callback) {
+      var results = new Array(photos.length).fill(null);
+      var pending = photos.length;
+      if (!pending) { callback([]); return; }
+      photos.forEach(function (src, i) {
+        var probe = new Image();
+        probe.onload = function () {
+          if (probe.naturalWidth >= probe.naturalHeight) results[i] = src;
+          if (--pending === 0) callback(results.filter(Boolean));
+        };
+        probe.onerror = function () {
+          if (--pending === 0) callback(results.filter(Boolean));
+        };
+        probe.src = src;
+      });
+    }
+
+    /* ── Series candidate pools (portrait images auto-filtered at runtime) ── */
+    var series = [
+      {
+        id: 'thumb-colorado',
+        initialDelay: 0,
+        interval: 24000,
+        photos: [
+          'photography-assets/Colorado/Twelve Views of Pikes Peak/TYPOLOGY-01.jpg',
+          'photography-assets/Colorado/Twelve Views of Pikes Peak/TYPOLOGY-03.jpg',
+          'photography-assets/Colorado/Rock Ledge Ranch/ROCK_LEDGE-01.jpg',
+          'photography-assets/Colorado/Rock Ledge Ranch/ROCK_LEDGE-03.jpg',
+          'photography-assets/Colorado/Golf/GOLF-01.jpg',
+          'photography-assets/Colorado/Golf/GOLF-03.jpg',
+          'photography-assets/Colorado/Cornfield/CORNFIELD-01.jpg',
+          'photography-assets/Colorado/Cornfield/CORNFIELD-03.jpg'
+        ]
+      },
+      {
+        id: 'thumb-arizona',
+        initialDelay: 3000,
+        interval: 22000,
+        photos: [
+          'photography-assets/Arizona/Travels/ARIZONA-01.jpg',
+          'photography-assets/Arizona/Travels/ARIZONA-02.jpg',
+          'photography-assets/Arizona/Travels/ARIZONA-03.jpg',
+          'photography-assets/Arizona/Travels/ARIZONA-04.jpg',
+          'photography-assets/Arizona/Travels/ARIZONA-05.jpg'
+        ]
+      },
+      {
+        id: 'thumb-washington',
+        initialDelay: 6000,
+        interval: 26000,
+        photos: [
+          'photography-assets/Washington/Seattle/SEATTLE-01.jpg',
+          'photography-assets/Washington/Seattle/SEATTLE-02.jpg',
+          'photography-assets/Washington/Seattle/SEATTLE-03.jpg',
+          'photography-assets/Washington/Seattle/SEATTLE-04.jpg',
+          'photography-assets/Washington/Seattle/SEATTLE-05.jpg'
+        ]
+      },
+      {
+        id: 'thumb-nature',
+        initialDelay: 9000,
+        interval: 28000,
+        photos: [
+          'photography-assets/Nature/Flowers/FLOWERS-01.jpg',
+          'photography-assets/Nature/Flowers/FLOWERS-02.jpg',
+          'photography-assets/Nature/Flowers/FLOWERS-03.jpg',
+          'photography-assets/Nature/Landscapes/NATURE-1.jpg',
+          'photography-assets/Nature/Landscapes/NATURE-3.jpg',
+          'photography-assets/Nature/Landscapes/NATURE-5.jpg',
+          'photography-assets/Nature/Butterflies/Sanctuary/BUTTERFLIES-01.jpg',
+          'photography-assets/Nature/Butterflies/Sanctuary/BUTTERFLIES-02.jpg',
+          'photography-assets/Nature/Butterflies/Museum/BUTTERFLIES-11.jpg',
+          'photography-assets/Nature/Butterflies/Museum/BUTTERFLIES-12.jpg'
+        ]
+      },
+      {
+        id: 'thumb-film',
+        initialDelay: 4500,
+        interval: 25000,
+        photos: [
+          'photography-assets/Film/Memory/MEMORY-01.jpg',
+          'photography-assets/Film/Memory/MEMORY-02.jpg',
+          'photography-assets/Film/Memory/MEMORY-03.jpg',
+          'photography-assets/Film/Home/FILM_MISC-01.jpg',
+          'photography-assets/Film/Home/FILM_MISC-02.jpg',
+          'photography-assets/Film/Home/FILM_MISC-04.jpg',
+          'photography-assets/Film/Europe/FILM_MISC-03.jpg',
+          'photography-assets/Film/Europe/FILM_MISC-05.jpg',
+          'photography-assets/Film/Europe/FILM_MISC-06.jpg'
+        ]
+      }
+    ];
+
+    series.forEach(function (s) {
+      var img = document.getElementById(s.id);
+      if (!img) return;
+
+      filterLandscape(s.photos, function (landscapePhotos) {
+        if (!landscapePhotos.length) return;
+
+        img.src = landscapePhotos[0];
+        var idx = 0;
+
+        function tick() {
+          idx = (idx + 1) % landscapePhotos.length;
+          rolodexThumb(img, landscapePhotos[idx]);
+          scheduleFlip(tick, s.interval);
+        }
+
+        setTimeout(function () {
+          scheduleFlip(tick, 0);
+        }, s.initialDelay);
+      });
+    });
+  })();
+  </script>
 </body>
 </html>
