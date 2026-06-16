@@ -99,7 +99,7 @@
     };
   </script>
 
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
 
   <!-- Prevent flash: restore saved theme before first paint -->
   <script>(function(){var t=localStorage.getItem('co-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
@@ -255,7 +255,7 @@
     .hero-img {
       position: absolute;
       inset: 0;
-      background: url("photography-assets/Arizona/Travels/ARIZONA-01.jpg") center/cover no-repeat;
+      background: url("assets/images/Arizona/Travels/ARIZONA-01.jpg") center/cover no-repeat;
       transform: scale(1.04);
       will-change: transform, opacity, filter;
     }
@@ -598,7 +598,7 @@
 
   <!-- ── STUDIO JUS10 Nav ── -->
   <div id="nav-root"></div>
-  <script src="js/nav.js"></script>
+  <script src="assets/js/nav.js"></script>
 
   <!-- Fixed video background -->
   <div class="video-stage" id="videoStage">
@@ -653,19 +653,19 @@
       <div class="accordion-section" data-section="travels">
         <div class="acc-row">
           <div class="acc-panel acc-active">
-            <img src="photography-assets/Arizona/Travels/ARIZONA-01.jpg" alt="Travels" loading="lazy">
+            <img src="assets/images/Arizona/Travels/ARIZONA-01.jpg" alt="Travels" loading="lazy">
           </div>
           <div class="acc-panel">
-            <img src="photography-assets/Arizona/Travels/ARIZONA-02.jpg" alt="Travels" loading="lazy">
+            <img src="assets/images/Arizona/Travels/ARIZONA-02.jpg" alt="Travels" loading="lazy">
           </div>
           <div class="acc-panel">
-            <img src="photography-assets/Arizona/Travels/ARIZONA-03.jpg" alt="Travels" loading="lazy">
+            <img src="assets/images/Arizona/Travels/ARIZONA-03.jpg" alt="Travels" loading="lazy">
           </div>
           <div class="acc-panel">
-            <img src="photography-assets/Arizona/Travels/ARIZONA-04.jpg" alt="Travels" loading="lazy">
+            <img src="assets/images/Arizona/Travels/ARIZONA-04.jpg" alt="Travels" loading="lazy">
           </div>
           <div class="acc-panel acc-see-more">
-            <img src="photography-assets/Arizona/Travels/ARIZONA-05.jpg" alt="" loading="lazy">
+            <img src="assets/images/Arizona/Travels/ARIZONA-05.jpg" alt="" loading="lazy">
             <div class="acc-see-more-overlay"></div>
             <span class="acc-see-more-text">See More</span>
           </div>
@@ -696,7 +696,7 @@
         page: 'photography-arizona-travels.html',
         images: (function () {
           var a = [];
-          for (var i = 1; i <= 21; i++) a.push('photography-assets/Arizona/Travels/ARIZONA-' + String(i).padStart(2,'0') + '.jpg');
+          for (var i = 1; i <= 21; i++) a.push('assets/images/Arizona/Travels/ARIZONA-' + String(i).padStart(2,'0') + '.jpg');
           return a;
         })()
       }
