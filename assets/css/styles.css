@@ -104,6 +104,11 @@ html[data-theme="dark"] .border-surface-variant       { border-color: rgba(243, 
 /* Custom component classes */
 html[data-theme="dark"] .editorial-border             { border-color: rgba(243, 237, 225, 0.12) !important; }
 
+/* ── Parallax hero fade ── */
+.hero-fade {
+  background: linear-gradient(to bottom, transparent, var(--bg));
+}
+
 /* Hide carousel scrollbar */
 #carousel-container::-webkit-scrollbar { display: none; }
 #carousel-container {

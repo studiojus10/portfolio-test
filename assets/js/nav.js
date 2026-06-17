@@ -6,14 +6,15 @@
 
   var photo = p.startsWith('photography');
   var video = p === 'video.html';
-  var art   = p === 'art.html';
+  var art   = p.startsWith('art');
   var about = p === 'about.html';
 
-  var co   = p.startsWith('photography-colorado');
-  var az   = p.startsWith('photography-arizona');
-  var wa   = p.startsWith('photography-washington');
-  var nat  = p.startsWith('photography-nature');
-  var film = p.startsWith('photography-film');
+  var co       = p.startsWith('photography-colorado');
+  var az       = p.startsWith('photography-arizona');
+  var wa       = p.startsWith('photography-washington');
+  var nat      = p.startsWith('photography-nature');
+  var film     = p.startsWith('photography-film');
+  var sketches = p === 'art-sketches.html';
 
   // ── Helpers ─────────────────────────────────────────────────────
   function lnk(href, cls, inner, style) {
@@ -86,7 +87,21 @@
     '</div></div></div>' +
 
     desktopLink('video.html', 'Video', '视频', video) +
-    desktopLink('art.html',   'Art',   '艺术', art) +
+
+    // Art with dropdown
+    '<div class="relative group">' +
+    lnk('art.html',
+      (art ? 'text-primary' : 'text-on-surface hover:text-primary') +
+        ' transition-colors duration-300 cursor-pointer flex flex-col items-center',
+      '<span>Art</span>' +
+        '<span class="font-cjk text-[10px] ' + (art ? 'text-primary' : 'text-on-surface-variant') + '">艺术</span>'
+    ) +
+    '<div class="absolute top-full left-1/2 -translate-x-1/2 w-44 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-50">' +
+    '<div class="h-3"></div>' +
+    '<div class="bg-surface-container-lowest border border-on-background shadow-lg">' +
+    dropItem('art-sketches.html', 'Sketches', '素描', sketches, true) +
+    '</div></div></div>' +
+
     desktopLink('about.html', 'About', '关于', about) +
     '</div>' +
 
@@ -120,7 +135,14 @@
     mobileSubItem('photography-film.html',       'Film',       '胶片',     film) +
     '</div></div>' +
     mobileTopLink('video.html', 'Video', '视频', video) +
-    mobileTopLink('art.html',   'Art',   '艺术', art) +
+    '<div>' +
+    lnk('art.html',
+      'flex justify-between items-center pb-3 ' + (art ? 'text-primary' : 'hover:text-primary transition-colors'),
+      '<span>Art</span><span class="font-cjk text-primary text-sm">艺术</span>'
+    ) +
+    '<div class="pl-3 flex flex-col gap-1 border-b border-on-background pb-4">' +
+    mobileSubItem('art-sketches.html', 'Sketches', '素描', sketches) +
+    '</div></div>' +
     mobileTopLink('about.html', 'About', '关于', about) +
     '<button id="theme-toggle-mobile" class="flex items-center justify-between border-b border-on-background pb-4 hover:text-primary transition-colors w-full text-left" style="color:var(--muted)">' +
     '<span class="theme-label">Dark Mode</span>' +
@@ -186,5 +208,36 @@
   var themeBtnMobile = document.getElementById('theme-toggle-mobile');
   if (themeBtn)       themeBtn.addEventListener('click', toggleTheme);
   if (themeBtnMobile) themeBtnMobile.addEventListener('click', toggleTheme);
+
+  // ── Hide on scroll-down, reveal on scroll-up ─────────────────────
+  var navEl = document.querySelector('nav');
+  if (navEl) {
+    navEl.style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1), background-color 0.35s ease';
+    var lastScrollY  = window.scrollY || window.pageYOffset;
+    var navHidden    = false;
+    var scrollTick   = false;
+
+    window.addEventListener('scroll', function () {
+      if (!scrollTick) {
+        requestAnimationFrame(function () {
+          var menuOpen = mobileMenu && mobileMenu.classList.contains('translate-x-0');
+          if (!menuOpen) {
+            var scrollY = window.scrollY || window.pageYOffset;
+            var delta   = scrollY - lastScrollY;
+            if (delta > 8 && !navHidden && scrollY > 80) {
+              navEl.style.transform = 'translateY(-100%)';
+              navHidden = true;
+            } else if (delta < -4 && navHidden) {
+              navEl.style.transform = 'translateY(0)';
+              navHidden = false;
+            }
+            lastScrollY = scrollY;
+          }
+          scrollTick = false;
+        });
+        scrollTick = true;
+      }
+    }, { passive: true });
+  }
 
 })();
