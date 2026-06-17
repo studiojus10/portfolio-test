@@ -107,25 +107,56 @@
   <div id="nav-root"></div>
   <script src="assets/js/nav.js"></script>
 
+  <!-- ── Parallax Hero ─────────────────────────────────────────────── -->
+  <section id="about-parallax-hero" style="position: relative; height: 100vh; overflow: hidden;">
+
+    <!-- Layer 1: Background landscape (moves most — appears furthest) -->
+    <img id="hero-bg"
+         src="assets/about-hero/pikes-peak-background.jpg" alt=""
+         style="position: absolute; top: -20%; left: 0; width: 100%; height: 120%; object-fit: cover; object-position: center; will-change: transform; z-index: 5;">
+
+    <!-- Layer 2: About header text — starts at head level, rises on scroll -->
+    <div id="hero-title"
+         style="position: absolute; top: 32%; left: 0; right: 0; padding: 0 2rem; will-change: transform; z-index: 10; text-align: center;">
+      <span class="font-display-lg text-white text-headline-lg-mobile md:text-display-lg font-medium leading-none"
+            style="display: block; text-shadow: 0 2px 24px rgba(0,0,0,0.5);">About</span>
+      <h1 class="font-cjk text-primary leading-none" style="font-size: clamp(2rem, 6vw, 4.5rem);">设计观点</h1>
+    </div>
+
+    <!-- Layer 3: Standing person PNG — in front of title, moves least -->
+    <img id="hero-person"
+         src="assets/about-hero/standing-person.png" alt=""
+         style="position: absolute; top: -15%; left: 0; width: 100%; height: 120%; object-fit: cover; object-position: center; will-change: transform; z-index: 15;">
+
+    <!-- Bottom fade into page background -->
+    <div class="hero-fade" style="position: absolute; bottom: 0; left: 0; right: 0; height: 35%; pointer-events: none; z-index: 20;"></div>
+  </section>
+
   <main class="w-full px-4 md:px-8 py-8">
     <section class="grid gap-8 md:grid-cols-12 items-start">
       <div class="md:col-span-7 flex flex-col gap-6">
-        <div class="border-b-2 border-on-background pb-4">
-          <span class="font-display-lg text-on-background text-headline-lg-mobile md:text-display-lg mb-2 font-medium">About</span>
-          <h1 class="font-cjk text-3xl md:text-5xl text-primary leading-none">设计观点</h1>
-        </div>
-        <p class="font-label-mono text-xs uppercase tracking-widest text-on-surface-variant">A compact profile of the studio's creative approach, cultural perspective, and craft.</p>
+        <p class="font-label-mono text-xs uppercase tracking-widest text-on-surface-variant">A compact profile of Justin's creative approach, cultural perspective, and craft.</p>
 
         <div class="bg-surface-container-lowest border border-on-background p-6 shadow-sm">
           <p class="font-headline-md text-2xl text-on-background mb-4">A designer who frames experience through story, atmosphere, and detail.</p>
-          <p class="font-label-mono text-xs leading-relaxed">Justin Hughes brings international cultural fluency, editorial discipline, and service-minded storytelling to each project. His background spans culinary hospitality, multilingual communication, luxury brand strategy, and visual direction.</p>
+          <p class="font-label-mono text-[11pt] leading-relaxed mb-4">Justin Hughes is a digital media and communications professional whose creative perspective has been shaped by international education, culinary arts, language immersion, music, travel, and high-touch hospitality. His work sits at the intersection of culture and communication: understanding how people connect, what makes experiences memorable, and how story, design, sound, food, and language influence trust.</p>
+          <p class="font-label-mono text-[11pt] leading-relaxed">Unlike a conventional digital marketer, Justin brings lived cultural fluency to his creative work. He has studied in France and China, trained in elite culinary environments, achieved advanced Mandarin proficiency, developed French-language capability, worked in a three-Michelin-star restaurant, and built client-facing service experiences rooted in empathy and human connection.</p>
         </div>
       </div>
 
       <div class="md:col-span-5 flex flex-col gap-6">
-        <div class="bg-primary p-6 text-white border border-primary">
-          <div class="font-label-caps text-[10px] uppercase mb-3 font-cjk">哲学</div>
-          <p class="font-label-mono text-xs leading-relaxed">Good design is not louder than the people it serves. It is the quiet framework that allows a story to unfold with confidence.</p>
+        <div class="border border-on-background overflow-hidden">
+          <img src="assets/me-photos/portrait-color.jpg" alt="Justin Hughes" class="w-full object-cover object-top" style="max-height: 480px;">
+        </div>
+        <div class="bg-primary p-6 border border-primary flex flex-col gap-3">
+          <a href="assets/resume.pdf" download class="flex items-center justify-between border border-white px-4 py-3 text-white font-label-caps text-xs hover:bg-white hover:text-primary transition-colors duration-300">
+            <span>Download Resumé</span>
+            <span class="material-symbols-outlined" style="font-size:16px;">download</span>
+          </a>
+          <a href="assets/cv.pdf" download class="flex items-center justify-between border border-white px-4 py-3 text-white font-label-caps text-xs hover:bg-white hover:text-primary transition-colors duration-300">
+            <span>Download CV</span>
+            <span class="material-symbols-outlined" style="font-size:16px;">download</span>
+          </a>
         </div>
         <div class="bg-surface-container-lowest border border-on-background p-6">
           <p class="font-label-mono text-[10px] uppercase text-on-surface-variant mb-2">Quote</p>
@@ -139,8 +170,8 @@
       <div class="md:col-span-7 flex flex-col gap-6">
         <div class="border border-on-background bg-surface p-6">
           <h2 class="font-headline-md text-2xl mb-4">Background</h2>
-          <p class="font-label-mono text-xs leading-relaxed mb-4">Raised between Europe and Asia, Justin's work is informed by multilingual immersion, precision service, and editorial craft. He has built experiences that balance high-end hospitality with grounded human empathy.</p>
-          <p class="font-label-mono text-xs leading-relaxed">His process begins by listening to the brief, then crafting stories through photography, video, design systems, and digital content that feel both intentional and effortless.</p>
+          <p class="font-label-mono text-xs leading-relaxed mb-4">Raised in the United States and tempered in Europe and Asia, Justin's work is informed by multilingual and multicultural immersion, precision service, and detail oriented craft. He has built experiences that balance high-end hospitality with grounded human empathy.</p>
+          <p class="font-label-mono text-xs leading-relaxed">His process begins by exploring concepts or ideas, then crafting stories through photography, video, design systems, and digital content that feel both intentional and effortless.</p>
         </div>
         <div class="border border-on-background bg-surface p-6">
           <h2 class="font-headline-md text-2xl mb-4">Why this work</h2>
@@ -199,5 +230,37 @@
   </footer>
 
   <script src="assets/js/main.js"></script>
+
+  <script>
+    (function () {
+      var hero   = document.getElementById('about-parallax-hero');
+      var bg     = document.getElementById('hero-bg');
+      var person = document.getElementById('hero-person');
+      var title  = document.getElementById('hero-title');
+
+      function update() {
+        if (!hero) return;
+        var scrollY = window.scrollY || window.pageYOffset;
+        var heroH   = hero.offsetHeight;
+        if (scrollY > heroH) return;
+
+        var p = scrollY / heroH;
+
+        bg.style.transform     = 'translateY(' + (p * 20)  + 'vh)';
+        person.style.transform = 'translateY(' + (p * 5)   + 'vh)';
+        title.style.transform  = 'translateY(' + (p * -22) + 'vh)';
+      }
+
+      var ticking = false;
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          requestAnimationFrame(function () { update(); ticking = false; });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      update();
+    })();
+  </script>
 </body>
 </html>
