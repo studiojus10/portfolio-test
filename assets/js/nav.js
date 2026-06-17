@@ -26,13 +26,13 @@
       (active ? 'text-primary' : 'text-on-surface hover:text-primary') +
         ' transition-colors duration-300 cursor-pointer flex flex-col items-center',
       '<span>' + label + '</span>' +
-        '<span class="font-cjk text-[10px] ' + (active ? 'text-primary' : 'text-on-surface-variant') + '">' + cjk + '</span>'
+        '<span class="font-cjk text-[13px] ' + (active ? 'text-primary' : 'text-on-surface-variant') + '">' + cjk + '</span>'
     );
   }
 
   function dropItem(href, label, cjk, active, last) {
     return lnk(href,
-      'flex justify-between items-center px-4 py-3 font-label-caps text-[10px] tracking-widest' +
+      'flex justify-between items-center px-4 py-3 font-label-caps text-[13px] tracking-widest' +
         (active ? ' bg-surface-container-low text-primary' : ' hover:bg-surface-container-low hover:text-primary transition-colors') +
         (last ? '' : ' border-b border-on-background'),
       '<span>' + label + '</span><span class="font-cjk text-xs text-primary">' + cjk + '</span>'
@@ -52,8 +52,8 @@
     return lnk(href,
       'flex justify-between items-center py-1.5 ' +
         (active ? 'text-primary' : 'hover:text-primary transition-colors text-on-surface-variant'),
-      '<span class="text-[9px] tracking-widest">' + label + '</span>' +
-        '<span class="font-cjk text-primary text-[9px]">' + cjk + '</span>'
+      '<span class="text-[12px] tracking-widest">' + label + '</span>' +
+        '<span class="font-cjk text-primary text-[12px]">' + cjk + '</span>'
     );
   }
 
@@ -74,7 +74,7 @@
       (photo ? 'text-primary' : 'text-on-surface hover:text-primary') +
         ' transition-colors duration-300 cursor-pointer flex flex-col items-center',
       '<span>Photography</span>' +
-        '<span class="font-cjk text-[10px] ' + (photo ? 'text-primary' : 'text-on-surface-variant') + '">摄影</span>'
+        '<span class="font-cjk text-[13px] ' + (photo ? 'text-primary' : 'text-on-surface-variant') + '">摄影</span>'
     ) +
     '<div class="absolute top-full left-1/2 -translate-x-1/2 w-52 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-50">' +
     '<div class="h-3"></div>' +
@@ -94,7 +94,7 @@
       (art ? 'text-primary' : 'text-on-surface hover:text-primary') +
         ' transition-colors duration-300 cursor-pointer flex flex-col items-center',
       '<span>Art</span>' +
-        '<span class="font-cjk text-[10px] ' + (art ? 'text-primary' : 'text-on-surface-variant') + '">艺术</span>'
+        '<span class="font-cjk text-[13px] ' + (art ? 'text-primary' : 'text-on-surface-variant') + '">艺术</span>'
     ) +
     '<div class="absolute top-full left-1/2 -translate-x-1/2 w-44 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-50">' +
     '<div class="h-3"></div>' +

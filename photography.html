@@ -92,7 +92,8 @@
             "headline-md":        ["32px", { lineHeight: "40px", fontWeight: "500" }],
             "headline-lg":        ["48px", { lineHeight: "56px", fontWeight: "600" }],
             "body-md":            ["16px", { lineHeight: "24px", fontWeight: "400" }],
-            "headline-lg-mobile": ["32px", { lineHeight: "38px", fontWeight: "600" }]
+            "headline-lg-mobile": ["32px", { lineHeight: "38px", fontWeight: "600" }],
+            "xs": "14px"
           }
         }
       }
@@ -122,8 +123,8 @@
 
     <!-- Title overlay — separate sticky so it is not clipped by center-img's clip-path -->
     <div id="photo-hero-title" style="position: sticky; top: 0; height: 100vh; margin-top: -100vh; z-index: 25; display: flex; flex-direction: column; justify-content: center; align-items: center; pointer-events: none;">
-      <p style="font-family: 'Old Standard TT', serif; font-size: clamp(3rem, 7vw, 7rem); color: white; line-height: 0.9; letter-spacing: -0.02em; text-transform: uppercase; mix-blend-mode: difference; text-align: center;">Photography</p>
-      <span class="font-cjk" style="color: #e03c31; font-size: clamp(1.5rem, 3vw, 3rem); margin-top: 0.5rem; mix-blend-mode: difference; text-align: center;">摄影の詩意</span>
+      <p style="font-family: 'Old Standard TT', serif; font-size: clamp(3rem, 7vw, 7rem); color: white; line-height: 0.9; letter-spacing: -0.02em; text-transform: uppercase; mix-blend-mode: difference; text-align: center; text-shadow: 0 2px 16px rgba(0,0,0,0.55);">Photography</p>
+      <span class="font-cjk" style="color: #e03c31; font-size: clamp(1.5rem, 3vw, 3rem); margin-top: 0.5rem; mix-blend-mode: difference; text-align: center; text-shadow: 0 2px 12px rgba(0,0,0,0.5);">摄影的诗意表达</span>
     </div>
 
     <!-- Parallax floating images -->
@@ -157,112 +158,102 @@
           <h1 class="font-cjk text-3xl md:text-5xl text-primary leading-none">摄影的诗意表达</h1>
         </div>
         <p class="font-label-mono text-xs uppercase tracking-widest text-on-surface-variant">A compact portfolio of still moments defined by light, gesture, and context.</p>
-
-        <div class="bg-surface-container-lowest border border-on-background p-6 shadow-sm">
-          <p class="font-headline-md text-2xl text-on-background mb-4">Selected narratives in motionless frames.</p>
-          <p class="font-label-mono text-xs leading-relaxed">From editorial portraiture to environmental studies, every photograph is composed as a staged encounter between subject, atmosphere, and cultural memory. The red accent acts as a visual pulse, guiding the eye through quiet intensity.</p>
-        </div>
       </div>
 
       <div class="md:col-span-5 flex flex-col gap-6">
-        <div class="bg-primary p-6 text-white border border-primary">
-          <div class="font-label-caps text-[10px] uppercase mb-3">Editorial Vision</div>
-          <p class="font-label-mono text-xs leading-relaxed">Photography is not a record; it is a proposition. It asks: how does an image feel in a room, and what story does it leave in the viewer's mind?</p>
-        </div>
-        <div class="bg-surface-container-lowest border border-on-background p-6">
-          <p class="font-label-mono text-[10px] uppercase text-on-surface-variant mb-2">Quote</p>
-          <p class="font-headline-md text-xl leading-tight">"The camera is the brush that helps me paint the quiet urgency of a moment."</p>
-          <p class="font-cjk text-xs text-primary mt-3">"相机是帮助我描绘瞬间静谧紧迫感的画笔。"</p>
+        <div class="bg-surface-container-lowest border border-on-background p-6 shadow-sm">
+          <p class="font-headline-md text-2xl text-on-background mb-4">Selected narratives in motionless frames.</p>
+          <p class="font-label-mono text-xs leading-relaxed">From portraiture to environmental studies, every photograph is composed as a story between subject, atmosphere, and cultural memory.</p>
         </div>
       </div>
     </section>
 
-    <section class="mt-8 -mx-4 md:-mx-8 border-t-2 border-on-background">
+    <section class="mt-8 border-t-2 border-on-background flex flex-col gap-12 px-[5%] pt-8">
 
-      <a href="photography-colorado.html" class="group flex flex-col md:flex-row border-b border-on-background bg-surface hover:bg-surface-container-low transition-colors duration-300">
-        <div class="series-img-wrap w-full md:w-[42%]">
+      <a href="photography-colorado.html" class="series-card group flex flex-col md:flex-row border border-on-background bg-surface hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]">
+        <div class="series-img-wrap w-full md:w-[60%]">
           <img id="thumb-colorado" src="" alt="Colorado">
         </div>
         <div class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-on-background">
           <div>
-            <div class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
+            <div class="font-label-caps text-[13px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
             <h2 class="font-headline-md text-3xl text-on-background mb-1 group-hover:text-primary transition-colors">Colorado</h2>
             <p class="font-cjk text-lg text-primary mb-4">科罗拉多</p>
             <p class="font-label-mono text-xs leading-relaxed text-on-surface-variant max-w-lg">Pikes Peak, ranch life, golf courses, and the golden cornfields of the Front Range.</p>
           </div>
-          <div class="mt-6 flex items-center gap-2 font-label-caps text-[10px] tracking-widest text-primary">
+          <div class="mt-6 flex items-center gap-2 font-label-caps text-[13px] tracking-widest text-primary">
             <span>View Series</span>
             <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" style="font-size:14px;">arrow_forward</span>
           </div>
         </div>
       </a>
 
-      <a href="photography-arizona.html" class="group flex flex-col md:flex-row-reverse border-b border-on-background bg-surface hover:bg-surface-container-low transition-colors duration-300">
-        <div class="series-img-wrap w-full md:w-[42%]">
+      <a href="photography-arizona.html" class="series-card group flex flex-col md:flex-row-reverse border border-on-background bg-surface hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]">
+        <div class="series-img-wrap w-full md:w-[60%]">
           <img id="thumb-arizona" src="" alt="Arizona">
         </div>
         <div class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-r border-on-background">
           <div>
-            <div class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
+            <div class="font-label-caps text-[13px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
             <h2 class="font-headline-md text-3xl text-on-background mb-1 group-hover:text-primary transition-colors">Arizona</h2>
             <p class="font-cjk text-lg text-primary mb-4">亚利桑那</p>
             <p class="font-label-mono text-xs leading-relaxed text-on-surface-variant max-w-lg">Desert landscapes and southwestern vistas.</p>
           </div>
-          <div class="mt-6 flex items-center gap-2 font-label-caps text-[10px] tracking-widest text-primary">
+          <div class="mt-6 flex items-center gap-2 font-label-caps text-[13px] tracking-widest text-primary">
             <span>View Series</span>
             <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" style="font-size:14px;">arrow_forward</span>
           </div>
         </div>
       </a>
 
-      <a href="photography-washington.html" class="group flex flex-col md:flex-row border-b border-on-background bg-surface hover:bg-surface-container-low transition-colors duration-300">
-        <div class="series-img-wrap w-full md:w-[42%]">
+      <a href="photography-washington.html" class="series-card group flex flex-col md:flex-row border border-on-background bg-surface hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]">
+        <div class="series-img-wrap w-full md:w-[60%]">
           <img id="thumb-washington" src="" alt="Washington">
         </div>
         <div class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-on-background">
           <div>
-            <div class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
+            <div class="font-label-caps text-[13px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
             <h2 class="font-headline-md text-3xl text-on-background mb-1 group-hover:text-primary transition-colors">Washington</h2>
             <p class="font-cjk text-lg text-primary mb-4">华盛顿</p>
             <p class="font-label-mono text-xs leading-relaxed text-on-surface-variant max-w-lg">Urban scenes and Pacific Northwest landscapes, centered in Seattle.</p>
           </div>
-          <div class="mt-6 flex items-center gap-2 font-label-caps text-[10px] tracking-widest text-primary">
+          <div class="mt-6 flex items-center gap-2 font-label-caps text-[13px] tracking-widest text-primary">
             <span>View Series</span>
             <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" style="font-size:14px;">arrow_forward</span>
           </div>
         </div>
       </a>
 
-      <a href="photography-nature.html" class="group flex flex-col md:flex-row-reverse border-b border-on-background bg-surface hover:bg-surface-container-low transition-colors duration-300">
-        <div class="series-img-wrap w-full md:w-[42%]">
+      <a href="photography-nature.html" class="series-card group flex flex-col md:flex-row-reverse border border-on-background bg-surface hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]">
+        <div class="series-img-wrap w-full md:w-[60%]">
           <img id="thumb-nature" src="" alt="Nature">
         </div>
         <div class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-r border-on-background">
           <div>
-            <div class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
+            <div class="font-label-caps text-[13px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
             <h2 class="font-headline-md text-3xl text-on-background mb-1 group-hover:text-primary transition-colors">Nature</h2>
             <p class="font-cjk text-lg text-primary mb-4">自然</p>
             <p class="font-label-mono text-xs leading-relaxed text-on-surface-variant max-w-lg">Butterflies, flowers, and sweeping landscapes from the natural world.</p>
           </div>
-          <div class="mt-6 flex items-center gap-2 font-label-caps text-[10px] tracking-widest text-primary">
+          <div class="mt-6 flex items-center gap-2 font-label-caps text-[13px] tracking-widest text-primary">
             <span>View Series</span>
             <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" style="font-size:14px;">arrow_forward</span>
           </div>
         </div>
       </a>
 
-      <a href="photography-film.html" class="group flex flex-col md:flex-row border-b border-on-background bg-surface hover:bg-surface-container-low transition-colors duration-300">
-        <div class="series-img-wrap w-full md:w-[42%]">
+      <a href="photography-film.html" class="series-card group flex flex-col md:flex-row border border-on-background bg-surface hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]">
+        <div class="series-img-wrap w-full md:w-[60%]">
           <img id="thumb-film" src="" alt="Film">
         </div>
         <div class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-on-background">
           <div>
-            <div class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
+            <div class="font-label-caps text-[13px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
             <h2 class="font-headline-md text-3xl text-on-background mb-1 group-hover:text-primary transition-colors">Film</h2>
             <p class="font-cjk text-lg text-primary mb-4">胶片</p>
             <p class="font-label-mono text-xs leading-relaxed text-on-surface-variant max-w-lg">Photographs captured on analog film — memories from Europe, home, and beyond.</p>
           </div>
-          <div class="mt-6 flex items-center gap-2 font-label-caps text-[10px] tracking-widest text-primary">
+          <div class="mt-6 flex items-center gap-2 font-label-caps text-[13px] tracking-widest text-primary">
             <span>View Series</span>
             <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" style="font-size:14px;">arrow_forward</span>
           </div>
@@ -279,15 +270,15 @@
           <p class="font-cjk text-sm text-on-surface-variant">摄影是看见未被言说之物的艺术。</p>
         </div>
         <div class="md:w-1/3 border border-on-background p-4">
-          <p class="font-label-mono text-[10px] mb-2">Featured project</p>
+          <p class="font-label-mono text-[13px] mb-2">Featured project</p>
           <h3 class="font-headline-md text-lg text-on-background">Liminal Spaces</h3>
-          <p class="font-label-mono text-[10px] mt-3">A study of thresholds, light, and interior narratives captured through editorial framing.</p>
+          <p class="font-label-mono text-[13px] mt-3">A study of thresholds, light, and interior narratives captured through editorial framing.</p>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[10px] text-surface-variant uppercase tracking-widest">
+  <footer class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest">
     <div class="flex items-center gap-4 mb-4 md:mb-0">
       <div class="font-headline-md text-base text-surface-container-lowest italic">STUDIO JUS10</div>
       <div class="font-cjk text-primary border-l border-surface-variant pl-4">工作室</div>
@@ -431,5 +422,35 @@
     window.addEventListener('load', updateHero);
   })();
   </script>
+
+  <script>
+  (function () {
+    if (!window.IntersectionObserver) return;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var cards = document.querySelectorAll('.series-card');
+    if (!cards.length) return;
+
+    cards.forEach(function (card) {
+      if (reduced) return;
+      card.style.opacity    = '0';
+      card.style.transform  = 'translateY(60px)';
+      card.style.transition = 'opacity 1s ease, transform 1s cubic-bezier(0.2, 0, 0.2, 1), background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease';
+    });
+
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity   = '1';
+          entry.target.style.transform = 'translateY(0)';
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    cards.forEach(function (card) { obs.observe(card); });
+  })();
+  </script>
+
+
 </body>
 </html>
