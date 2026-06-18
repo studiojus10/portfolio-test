@@ -119,21 +119,21 @@
   <div id="nav-root" style="position: relative; z-index: 50;"></div>
   <script src="assets/js/nav.js"></script>
 
-  <!-- Hero: 100vh spacer, content anchored to bottom, slides in on scroll -->
-  <section style="position: relative; z-index: 10; height: 100vh; pointer-events: none;">
-    <div id="hero-content" style="position: absolute; bottom: 0; left: 0; right: 0; padding: 0 2rem 3rem; opacity: 0; transform: translateY(40px); pointer-events: auto;">
-      <div class="grid gap-8 md:grid-cols-12 items-end">
+  <!-- Hero: 150vh spacer so header is fully readable before cards begin -->
+  <section style="position: relative; z-index: 10; height: 150vh; pointer-events: none;">
+    <div id="hero-content" style="position: sticky; top: calc(100vh - 18rem); left: 0; right: 0; opacity: 0; transform: translateY(40px); pointer-events: auto;">
+      <div class="bg-surface-container-low grid gap-8 md:grid-cols-12 items-start px-4 md:px-8 py-8">
         <div class="md:col-span-7 flex flex-col gap-6">
-          <div class="border-b-2 border-white/60 pb-4">
-            <span class="font-display-lg text-white text-headline-lg-mobile md:text-display-lg mb-2 font-medium">Video</span>
+          <div class="border-b-2 border-on-background pb-4">
+            <span class="font-display-lg text-on-background text-headline-lg-mobile md:text-display-lg mb-2 font-medium">Video</span>
             <h1 class="font-cjk text-3xl md:text-5xl text-primary leading-none">电影感叙事</h1>
           </div>
-          <p class="font-label-mono text-xs uppercase tracking-widest text-white/70">A concise showcase of motion, rhythm, and cinematic tone.</p>
+          <p class="font-label-mono text-xs uppercase tracking-widest text-on-surface-variant">A concise showcase of motion, rhythm, and cinematic tone.</p>
         </div>
         <div class="md:col-span-5 flex flex-col gap-6">
-          <div class="bg-surface-container-lowest/90 border border-on-background p-6 shadow-sm">
-            <p class="font-headline-md text-on-background text-2xl mb-4">Crafting moving images with editorial precision.</p>
-            <p class="font-label-mono text-xs leading-relaxed">Every edit and frame is designed to read like a still image in motion. The red accent is used to punctuate energy, while the black-and-white palette creates contrast between stillness and movement.</p>
+          <div class="bg-surface-container-lowest border border-on-background p-6 shadow-sm">
+            <p class="font-headline-md text-2xl text-on-background mb-4">Crafting moving images with editorial precision.</p>
+            <p class="font-label-mono text-xs leading-relaxed text-on-surface">Every edit and frame is designed to read like a still image in motion. The red accent is used to punctuate energy, while the black-and-white palette creates contrast between stillness and movement.</p>
           </div>
         </div>
       </div>
@@ -144,36 +144,99 @@
   <main class="relative w-full px-4 md:px-8 pb-16 pt-8" style="z-index: 10;">
 
     <section class="flex flex-col gap-12">
-      <article class="bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row">
+      <!-- 1 — image left -->
+      <article class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row">
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEMv4jadpyefeEikJoTypxFpkiJ2Jwkh0Y-aoxajupNmrBctoTEaC4yLLLyuGuN0qsS2xDgJcGwEjZjzTCCLB2fz7zfL_jRfUH_7g-HUrLzS-GJEod6hOUmLqLSwncD4vCP4NjrB31b4Rb29wOeLpTBu__EGqymA-K8dciIlcnnsO9BhjQfaZ99jLFGHFMppy44-W6wRnDlLs5YjMMPFatK0AgVwiUsppPkyTc-FQQQs2WyZaUEH9VMRDBeZethfp4q75MO2SukAw" alt="Lifestyle video" class="w-full h-full object-cover" style="min-height: 260px;">
+          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/proposal-thumbnail.mp4" muted loop playsinline preload="metadata"></video>
         </div>
         <div class="p-8 flex flex-col justify-center gap-3">
-          <h2 class="font-headline-md text-2xl">Lifestyle Reel</h2>
-          <p class="font-cjk text-sm text-primary">生活方式</p>
-          <p class="font-label-mono text-xs leading-relaxed">A tactile edit that pairs natural sound with controlled visual rhythm.</p>
+          <h2 class="font-headline-md text-2xl italic">A Proposal in Dublin, Ireland</h2>
+          <p class="font-cjk text-sm text-primary">都柏林求婚</p>
+          <p class="font-label-mono text-xs leading-relaxed">A personal artistic film documenting an intimate moment in Dublin, scored with original music composed and performed by the filmmaker.</p>
         </div>
       </article>
 
-      <article class="bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse">
+      <!-- 2 — image right -->
+      <article class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse">
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt-AZWbqnuJcmQuhsJBQCG17MZotqvH0cO3MXx3wkcZEm0vr845oX7mDnc45IgS0BDuxL6ExJoXfZQSqOFhFWo57xiR-XYxe2aeNFI6rFUCkhdN7tDULl9mWZ57oPIDhkQ6Yh8ZU_Y-Q8Nfv03jw6B4PH-MWvyVXjczSsMQoQ5CyKB86qeNYZI4haCQ8v94s7gzaChiSMLEiqLxaiBtMsCkNy6JaePWZYKZKAr4tsoHxL1Gtw5L6PbtER_xzH2mbkio2P3jUw9gZA" alt="Portrait visuals" class="w-full h-full object-cover" style="min-height: 260px;">
+          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" muted loop playsinline preload="metadata"></video>
         </div>
         <div class="p-8 flex flex-col justify-center gap-3">
-          <h2 class="font-headline-md text-2xl">Portrait Motion</h2>
-          <p class="font-cjk text-sm text-primary">肖像动态</p>
-          <p class="font-label-mono text-xs leading-relaxed">Close-up sequences with editorial color grading and poetic pacing.</p>
+          <h2 class="font-headline-md text-2xl italic">Winter Scene</h2>
+          <p class="font-cjk text-sm text-primary">冬景</p>
+          <p class="font-label-mono text-xs leading-relaxed">A collage of winter footage captured through an anamorphic lens — a nostalgic and cinematic study of Colorado snow, light, and stillness.</p>
         </div>
       </article>
 
-      <article class="bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row">
+      <!-- 3 — image left -->
+      <article class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row">
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmhrYgFuaVVrePKACDB-gR5F82Zu1T3j5DHRMAr1bsp0tdzyvBvwjTvQGG3TDQXqO8nzKNNnXQmbyLL0V8rSzS20GPQ_6Or-ou7EzYNQYsmR9tSoMpZ7u2uzI5hCafuZOFz63Uhuph_gUwAPhwrAQDcWahKWXQzpFomYcnav-xwW3PoWxtvNkJUgQa6OYhNljpmwObzo30xQom8YlsMTxaNSLjcmF1N5Gt9RlPAK0qEgm9_zN6sg3FUzyHVNiCM8amiZzDpV53lxo" alt="Architectural motion" class="w-full h-full object-cover" style="min-height: 260px;">
+          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/collage-thumbnail.mp4" muted loop playsinline preload="metadata"></video>
         </div>
         <div class="p-8 flex flex-col justify-center gap-3">
-          <h2 class="font-headline-md text-2xl">Cinematic Installations</h2>
-          <p class="font-cjk text-sm text-primary">电影装置</p>
-          <p class="font-label-mono text-xs leading-relaxed">Visual sequences designed to feel as composed as a gallery installation.</p>
+          <h2 class="font-headline-md text-2xl italic">A Collage of Found Footage</h2>
+          <p class="font-cjk text-sm text-primary">发现素材拼贴</p>
+          <p class="font-label-mono text-xs leading-relaxed">Fragments of incidental footage, old TV commercials and PSAs assembled with narrative logic, tied together with narration — an experiment in how meaning emerges from juxtaposition and perspective.</p>
+        </div>
+      </article>
+
+      <!-- 4 — image right -->
+      <article class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse">
+        <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
+          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" muted loop playsinline preload="metadata"></video>
+        </div>
+        <div class="p-8 flex flex-col justify-center gap-3">
+          <h2 class="font-headline-md text-2xl italic">Portrait of a Musician</h2>
+          <p class="font-cjk text-sm text-primary">音乐家肖像</p>
+          <p class="font-label-mono text-xs leading-relaxed">An observational study of a musician at work — camera lingering on hands, breath, and the endless dedication required for perfection, rather than the performance itself. A story is told through intimate efforts of preperation and narrated letter from the musician to her best friend.</p>
+        </div>
+      </article>
+
+      <!-- 5 — image left -->
+      <article class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row">
+        <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
+          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/single-shot-thumbnail.mp4" muted loop playsinline preload="metadata"></video>
+        </div>
+        <div class="p-8 flex flex-col justify-center gap-3">
+          <h2 class="font-headline-md text-2xl italic">A Study of Light in One Shot</h2>
+          <p class="font-cjk text-sm text-primary">一镜光影研究</p>
+          <p class="font-label-mono text-xs leading-relaxed">A single unbroken take with no edit — the subject is light itself, shifting, changing, and captivating an unknown spectator.</p>
+        </div>
+      </article>
+
+      <!-- 6 — image right -->
+      <article class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse">
+        <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
+          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/resurrection-thumbnail.mp4" muted loop playsinline preload="metadata"></video>
+        </div>
+        <div class="p-8 flex flex-col justify-center gap-3">
+          <h2 class="font-headline-md text-2xl italic">Resurrection</h2>
+          <p class="font-cjk text-sm text-primary">复活</p>
+          <p class="font-label-mono text-xs leading-relaxed">An experimental short built around transformation and return — form dissolving and reassembling through image and sound rather than story. A visual set to a poem.</p>
+        </div>
+      </article>
+
+      <!-- 7 — image left -->
+      <article class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row">
+        <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
+          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" muted loop playsinline preload="metadata"></video>
+        </div>
+        <div class="p-8 flex flex-col justify-center gap-3">
+          <h2 class="font-headline-md text-2xl italic">Murder, He Wrote</h2>
+          <p class="font-cjk text-sm text-primary">他所写的谋杀</p>
+          <p class="font-label-mono text-xs leading-relaxed">A narrative short in the noir tradition — shadow, unreliable language, and a plot that unfolds more like a confession than a story.</p>
+        </div>
+      </article>
+
+      <!-- 8 — image right -->
+      <article class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse">
+        <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
+          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/decadance-thumbnail.mp4" muted loop playsinline preload="metadata"></video>
+        </div>
+        <div class="p-8 flex flex-col justify-center gap-3">
+          <h2 class="font-headline-md text-2xl italic">Decadance</h2>
+          <p class="font-cjk text-sm text-primary">颓废之舞</p>
+          <p class="font-label-mono text-xs leading-relaxed">A narrative short where movement becomes the language — choreography, indulgence, and consequence told through the body rather than dialogue.</p>
         </div>
       </article>
     </section>
@@ -222,12 +285,98 @@
 
   <script>
     (function () {
+      function equalizeCardHeights() {
+        var cards = Array.from(document.querySelectorAll('.video-card'));
+        cards.forEach(function (c) { c.style.height = ''; });
+
+        if (window.innerWidth < 768) return;
+
+        var portrait = cards.find(function (c) {
+          var h2 = c.querySelector('h2');
+          return h2 && h2.textContent.indexOf('Portrait') !== -1;
+        });
+        if (!portrait) return;
+
+        var h = portrait.offsetHeight;
+        cards.forEach(function (c) { c.style.height = h + 'px'; });
+      }
+
+      function run() { setTimeout(equalizeCardHeights, 100); }
+      if (document.readyState === 'complete') {
+        run();
+      } else {
+        window.addEventListener('load', run);
+      }
+      window.addEventListener('resize', equalizeCardHeights);
+    })();
+
+    (function () {
+      if (!window.IntersectionObserver) return;
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var cards = document.querySelectorAll('.video-card');
+      if (!cards.length || reduced) return;
+      cards.forEach(function (card) {
+        card.style.opacity    = '0';
+        card.style.transform  = 'translateY(60px)';
+        card.style.transition = 'opacity 1s ease, transform 1s cubic-bezier(0.2, 0, 0.2, 1)';
+      });
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity   = '1';
+            entry.target.style.transform = 'translateY(0)';
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      cards.forEach(function (card) { obs.observe(card); });
+    })();
+
+    (function () {
+      var bgVideo = document.getElementById('hero-video');
+
+      document.querySelectorAll('.card-thumb-video').forEach(function (vid) {
+        vid.addEventListener('loadedmetadata', function () {
+          vid.currentTime = 5;
+        });
+
+        var card = vid.closest('.video-card');
+        card.addEventListener('mouseenter', function () {
+          if (bgVideo) bgVideo.pause();
+          vid.currentTime = 5;
+          vid.play();
+        });
+        card.addEventListener('mouseleave', function () {
+          vid.pause();
+          vid.currentTime = 5;
+          if (bgVideo) bgVideo.play();
+        });
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
       var video       = document.getElementById('hero-video');
       var overlay     = document.getElementById('hero-overlay');
       var heroContent = document.getElementById('hero-content');
 
       function lerp(a, b, t) { return a + (b - a) * t; }
       function clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
+
+      // Scale needed to go from contain → cover for this video in the viewport
+      var scaleCover = 1;
+      function computeScaleCover() {
+        if (!video || !video.videoWidth) return;
+        // At width:100% the video renders at (vw × vw/AR) px
+        // To cover the full vh we need to scale by vh / (vw/AR) = vh·AR/vw
+        var ratio = (window.innerHeight * video.videoWidth) / (window.innerWidth * video.videoHeight);
+        scaleCover = Math.max(1, ratio);
+      }
+      if (video) {
+        video.addEventListener('loadedmetadata', computeScaleCover);
+        window.addEventListener('resize', computeScaleCover);
+      }
 
       // Fade video in shortly after load
       function fadeInVideo() {
@@ -245,17 +394,23 @@
         var s  = window.scrollY || window.pageYOffset;
         var vh = window.innerHeight;
 
-        // Hero content: slides up and fades in between 35% and 80% of 1vh scroll
-        var p1 = clamp((s - vh * 0.35) / (vh * 0.45), 0, 1);
+        // Hero content: slides in between 55% and 95% of 1vh scroll
+        var p1 = clamp((s - vh * 0.55) / (vh * 0.40), 0, 1);
         if (heroContent) {
           heroContent.style.opacity   = p1;
           heroContent.style.transform = 'translateY(' + lerp(40, 0, p1) + 'px)';
         }
 
-        // Video desaturates as user scrolls into content
-        var p2 = clamp(s / (vh * 0.9), 0, 1);
+        // Video desaturates as user scrolls — complete by 120% of vh
+        var p2 = clamp(s / (vh * 1.2), 0, 1);
+
+        // Video expands from contain → cover after header is revealed (95%–178% of vh)
+        var p3 = clamp((s - vh * 0.95) / (vh * 0.825), 0, 1);
+        var scale = lerp(1, scaleCover, p3);
+
         if (video) {
-          video.style.filter = 'saturate(' + lerp(1, 0.2, p2) + ')';
+          video.style.filter    = 'saturate(' + lerp(1, 0.2, p2) + ')';
+          video.style.transform = 'scale(' + scale + ')';
         }
 
         // Overlay darkens alongside desaturation
