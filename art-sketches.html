@@ -155,29 +155,38 @@
     }
   </style>
 </head>
-<body class="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white">
+<body class="text-on-surface font-body-md antialiased selection:bg-primary selection:text-white" style="background: #0f0e0d;">
 
   <script>(function(){var t=localStorage.getItem('co-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
-  <div id="nav-root"></div>
+
+  <!-- Fixed background sketch image -->
+  <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: #0f0e0d; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+    <img id="hero-bg-sketch" src="assets/art/sketches/SKE-14.jpg" alt="" style="width: 100%; height: auto; display: block; opacity: 0;">
+  </div>
+  <div id="sketch-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background: rgba(10,10,10,0.1); pointer-events: none;"></div>
+
+  <div id="nav-root" style="position: relative; z-index: 50;"></div>
   <script src="assets/js/nav.js"></script>
 
-  <!-- Page header -->
-  <div class="px-4 md:px-8 pt-8 pb-4">
-    <div class="border-b-2 border-on-background pb-4 mb-4">
-      <a href="art.html" class="font-label-caps text-[13px] uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors inline-flex items-center gap-1 mb-3">
-        <span class="material-symbols-outlined" style="font-size:14px;">arrow_back</span>
-        Art
-      </a>
-      <div class="flex items-end gap-4">
-        <span class="font-display-lg text-on-background text-headline-lg-mobile md:text-display-lg font-medium leading-none">Sketches</span>
-        <h1 class="font-cjk text-3xl md:text-5xl text-primary leading-none mb-1">素描</h1>
+  <!-- Hero: 150vh with sticky header sliding in on scroll -->
+  <section style="position: relative; z-index: 10; height: 150vh; pointer-events: none; background: linear-gradient(to top, rgba(8,8,8,0.92) 0%, transparent 52%);">
+    <div id="sketch-hero-content" style="position: sticky; top: calc(100vh - 16rem); left: 0; right: 0; opacity: 0; transform: translateY(40px); pointer-events: auto; padding: 0 2rem 2rem;">
+      <div style="border-top: 2px solid rgba(255,255,255,0.5); padding-top: 1rem;">
+        <a href="art.html" class="font-label-caps text-[13px] uppercase tracking-widest hover:text-primary transition-colors inline-flex items-center gap-1 mb-3" style="color: rgba(255,255,255,0.6);">
+          <span class="material-symbols-outlined" style="font-size:14px;">arrow_back</span>
+          Art
+        </a>
+        <div class="flex items-end gap-4 mb-3">
+          <span class="font-display-lg text-headline-lg-mobile md:text-display-lg font-medium leading-none" style="color: #fff;">Sketches</span>
+          <h1 class="font-cjk text-3xl md:text-5xl text-primary leading-none" style="margin-bottom: 4px;">素描</h1>
+        </div>
+        <p class="font-label-mono text-xs uppercase tracking-widest" style="color: rgba(255,255,255,0.5);">A scroll through hand-drawn work — studies in form, line, and observation.</p>
       </div>
     </div>
-    <p class="font-label-mono text-xs uppercase tracking-widest text-on-surface-variant">A scroll through hand-drawn work — studies in form, line, and observation.</p>
-  </div>
+  </section>
 
-  <!-- Scroll-tilted gallery -->
-  <section class="w-full" style="padding-top: 20vh; padding-bottom: 20vh;">
+  <!-- Scroll-tilted gallery on dark background -->
+  <section class="w-full" style="position: relative; z-index: 10; background: #0f0e0d; padding-top: 20vh; padding-bottom: 20vh;">
     <div class="mx-auto px-6" style="max-width: 820px;">
       <div id="sketch-gallery"></div>
     </div>
@@ -229,6 +238,72 @@
 
   <script src="assets/js/main.js"></script>
 
+  <!-- Hero scroll animation -->
+  <script>
+    (function () {
+      var bgImg       = document.getElementById('hero-bg-sketch');
+      var overlay     = document.getElementById('sketch-overlay');
+      var heroContent = document.getElementById('sketch-hero-content');
+
+      function lerp(a, b, t) { return a + (b - a) * t; }
+      function clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
+
+      var scaleCover = 1;
+      function computeScaleCover() {
+        if (!bgImg || !bgImg.naturalWidth) return;
+        var ratio = (window.innerHeight * bgImg.naturalWidth) / (window.innerWidth * bgImg.naturalHeight);
+        scaleCover = Math.max(1, ratio);
+      }
+
+      function fadeIn() {
+        if (!bgImg) return;
+        bgImg.style.transition = 'opacity 1.6s ease';
+        bgImg.style.opacity = '1';
+      }
+      if (bgImg) {
+        if (bgImg.complete && bgImg.naturalWidth) {
+          computeScaleCover();
+          setTimeout(fadeIn, 80);
+        } else {
+          bgImg.addEventListener('load', function () { computeScaleCover(); setTimeout(fadeIn, 80); });
+        }
+        window.addEventListener('resize', computeScaleCover);
+      }
+
+      function updateHero() {
+        var s  = window.scrollY || window.pageYOffset;
+        var vh = window.innerHeight;
+
+        // Hero title slides in between 55% and 95% of first vh
+        var p1 = clamp((s - vh * 0.55) / (vh * 0.40), 0, 1);
+        if (heroContent) {
+          heroContent.style.opacity   = p1;
+          heroContent.style.transform = 'translateY(' + lerp(40, 0, p1) + 'px)';
+        }
+
+        // Image expands contain → cover, blurs, and darkens over 0–140% of vh
+        var p2 = clamp(s / (vh * 1.4), 0, 1);
+        if (bgImg) {
+          bgImg.style.transform = 'scale(' + lerp(1, scaleCover, p2) + ')';
+          bgImg.style.filter    = 'blur(' + lerp(0, 7, p2).toFixed(1) + 'px)';
+        }
+        if (overlay) {
+          overlay.style.background = 'rgba(10,10,10,' + lerp(0.1, 0.82, p2).toFixed(3) + ')';
+        }
+      }
+
+      var ticking = false;
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          requestAnimationFrame(function () { updateHero(); ticking = false; });
+          ticking = true;
+        }
+      }, { passive: true });
+      window.addEventListener('resize', function () { computeScaleCover(); updateHero(); }, { passive: true });
+      updateHero();
+    })();
+  </script>
+
   <script>
     (function () {
       var images = [
@@ -279,7 +354,7 @@
           figure.style.zIndex = '10';
 
           if (row.type === 'portrait-pair') {
-            figure.style.margin = '0 0 22.5vh 0';
+            figure.style.margin = '0 0 11.8vh 0';
             figure.style.display = 'flex';
             figure.style.gap = '16px';
             row.indices.forEach(function (idx) {
@@ -300,10 +375,10 @@
           } else {
             var idx = row.indices[0];
             if (row.type === 'portrait-single') {
-              figure.style.margin = '0 auto 22.5vh auto';
+              figure.style.margin = '0 auto 11.8vh auto';
               figure.style.maxWidth = '400px';
             } else {
-              figure.style.margin = '0 0 22.5vh 0';
+              figure.style.margin = '0 0 11.8vh 0';
             }
             var wrapper = document.createElement('div');
             wrapper.className = 'tile-wrapper';
