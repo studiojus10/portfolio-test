@@ -111,6 +111,13 @@ html[data-theme="dark"] #mobile-menu .border-on-surface { border-color: rgba(243
   color: var(--muted);
   font-size: 15px;
 }
+.gallery-error {
+  min-height: 65vh;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 5vw;
+}
+.gallery-error .back-link { margin-top: 32px; }
 
 .gallery-grid {
   columns: 3;
@@ -250,4 +257,32 @@ html[data-theme="dark"] .grain { display: block; }
 .lb-thumb.active {
   opacity: 1;
   outline: 2px solid var(--accent);
+}
+.lightbox-image {
+  max-height: 78vh;
+  max-width: 100%;
+  width: auto;
+  border-radius: 4px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+}
+.lightbox-nav {
+  position: absolute;
+  z-index: 10;
+  color: var(--fg);
+  background: rgba(0, 0, 0, 0.45);
+  border: 0;
+  cursor: pointer;
+  padding: 12px;
+  transition: background 0.2s;
+}
+.lightbox-nav:hover { background: rgba(0, 0, 0, 0.75); }
+.lightbox-prev { left: 0; }
+.lightbox-next { right: 0; }
+.lightbox-caption {
+  margin-top: 14px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
 }

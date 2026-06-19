@@ -3,18 +3,22 @@
 
   // ── Active-state detection ──────────────────────────────────────
   var p = window.location.pathname.split('/').pop() || 'index.html';
+  var params = new URLSearchParams(window.location.search);
+  var photoSeries = p === 'photography-series.html' ? params.get('id') : '';
+  var artGallery = p === 'art-gallery.html' ? params.get('id') : '';
 
   var photo = p.startsWith('photography');
   var video = p === 'video.html';
   var art   = p.startsWith('art');
   var about = p === 'about.html';
 
-  var co       = p.startsWith('photography-colorado');
-  var az       = p.startsWith('photography-arizona');
-  var wa       = p.startsWith('photography-washington');
-  var nat      = p.startsWith('photography-nature');
-  var film     = p.startsWith('photography-film');
-  var sketches = p === 'art-sketches.html';
+  var co        = photoSeries === 'colorado';
+  var az        = photoSeries === 'arizona';
+  var wa        = photoSeries === 'washington';
+  var nat       = photoSeries === 'nature';
+  var film      = photoSeries === 'film';
+  var sketches  = artGallery === 'sketches';
+  var composers = artGallery === 'composers';
 
   // ── Helpers ─────────────────────────────────────────────────────
   function lnk(href, cls, inner, style) {
@@ -79,11 +83,11 @@
     '<div class="absolute top-full left-1/2 -translate-x-1/2 w-52 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-50">' +
     '<div class="h-3"></div>' +
     '<div class="bg-surface-container-lowest border border-on-background shadow-lg">' +
-    dropItem('photography-colorado.html',   'Colorado',   '科罗拉多', co,   false) +
-    dropItem('photography-arizona.html',    'Arizona',    '亚利桑那', az,   false) +
-    dropItem('photography-washington.html', 'Washington', '华盛顿',   wa,   false) +
-    dropItem('photography-nature.html',     'Nature',     '自然',     nat,  false) +
-    dropItem('photography-film.html',       'Film',       '胶片',     film, true) +
+    dropItem('photography-series.html?id=colorado',   'Colorado',   '科罗拉多', co,   false) +
+    dropItem('photography-series.html?id=arizona',    'Arizona',    '亚利桑那', az,   false) +
+    dropItem('photography-series.html?id=washington', 'Washington', '华盛顿',   wa,   false) +
+    dropItem('photography-series.html?id=nature',     'Nature',     '自然',     nat,  false) +
+    dropItem('photography-series.html?id=film',       'Film',       '胶片',     film, true) +
     '</div></div></div>' +
 
     desktopLink('video.html', 'Video', '视频', video) +
@@ -99,7 +103,8 @@
     '<div class="absolute top-full left-1/2 -translate-x-1/2 w-44 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-50">' +
     '<div class="h-3"></div>' +
     '<div class="bg-surface-container-lowest border border-on-background shadow-lg">' +
-    dropItem('art-sketches.html', 'Sketches', '素描', sketches, true) +
+    dropItem('art-gallery.html?id=sketches', 'Sketches', '素描', sketches, false) +
+    dropItem('art-gallery.html?id=composers', 'Composers', '作曲家', composers, true) +
     '</div></div></div>' +
 
     desktopLink('about.html', 'About', '关于', about) +
@@ -128,11 +133,11 @@
       '<span>Photography</span><span class="font-cjk text-primary text-sm">摄影</span>'
     ) +
     '<div class="pl-3 flex flex-col gap-1 border-b border-on-background pb-4">' +
-    mobileSubItem('photography-colorado.html',   'Colorado',   '科罗拉多', co) +
-    mobileSubItem('photography-arizona.html',    'Arizona',    '亚利桑那', az) +
-    mobileSubItem('photography-washington.html', 'Washington', '华盛顿',   wa) +
-    mobileSubItem('photography-nature.html',     'Nature',     '自然',     nat) +
-    mobileSubItem('photography-film.html',       'Film',       '胶片',     film) +
+    mobileSubItem('photography-series.html?id=colorado',   'Colorado',   '科罗拉多', co) +
+    mobileSubItem('photography-series.html?id=arizona',    'Arizona',    '亚利桑那', az) +
+    mobileSubItem('photography-series.html?id=washington', 'Washington', '华盛顿',   wa) +
+    mobileSubItem('photography-series.html?id=nature',     'Nature',     '自然',     nat) +
+    mobileSubItem('photography-series.html?id=film',       'Film',       '胶片',     film) +
     '</div></div>' +
     mobileTopLink('video.html', 'Video', '视频', video) +
     '<div>' +
@@ -141,7 +146,8 @@
       '<span>Art</span><span class="font-cjk text-primary text-sm">艺术</span>'
     ) +
     '<div class="pl-3 flex flex-col gap-1 border-b border-on-background pb-4">' +
-    mobileSubItem('art-sketches.html', 'Sketches', '素描', sketches) +
+    mobileSubItem('art-gallery.html?id=sketches', 'Sketches', '素描', sketches) +
+    mobileSubItem('art-gallery.html?id=composers', 'Composers', '作曲家', composers) +
     '</div></div>' +
     mobileTopLink('about.html', 'About', '关于', about) +
     '<button id="theme-toggle-mobile" class="flex items-center justify-between border-b border-on-background pb-4 hover:text-primary transition-colors w-full text-left" style="color:var(--muted)">' +

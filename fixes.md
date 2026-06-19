@@ -60,17 +60,20 @@
 
 ## Priority 5: Simplify Page Structure
 
-- [ ] Keep core pages:
-  - [ ] `index.html`
-  - [ ] `about.html`
-  - [ ] `contact.html`
-  - [ ] `photography.html`
-  - [ ] `art.html`
-  - [ ] `video.html`
-- [ ] Review whether individual gallery pages are needed for every series.
-- [ ] Consolidate duplicate gallery page layouts.
-- [ ] Consider generating gallery pages from `data/galleries.json`.
-- [ ] Remove obsolete or unused HTML pages after confirming navigation no longer points to them.
+- [x] Keep core pages:
+  - [x] `index.html`
+  - [x] `about.html`
+  - [x] `contact.html`
+  - [x] `photography.html`
+  - [x] `art.html`
+  - [x] `video.html`
+- [x] Review whether individual gallery pages are needed for every series. Individual views remain, but separate HTML documents do not.
+- [x] Consolidate duplicate gallery page layouts into `gallery.html`.
+- [x] Centralize gallery metadata in `assets/js/gallery-data.js`. A JavaScript data file was used instead of fetched JSON so galleries still work when HTML files are opened directly.
+- [x] Remove 13 obsolete gallery HTML pages after confirming navigation no longer points to them.
+- [x] Consolidate five photography category pages into `photography-series.html` with shared data and behavior.
+- [x] Consolidate two art collection pages into `art-gallery.html` with shared data and behavior.
+- [x] Reduce the top-level HTML count from 26 to 9 without merging unrelated core pages.
 
 ## Priority 6: Content And UX Review
 
@@ -99,3 +102,4 @@
 - All checked photo assets were Git LFS pointer text files, not actual image binaries.
 - Main photo problem is asset checkout, not HTML image syntax.
 - Several non-photo assets are referenced but absent from the repo.
+- The simplified structure now uses 9 top-level HTML files; photography and art variants are selected with query parameters.
