@@ -1,0 +1,1820 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "shared_page_chrome",
+        "label": "Shared Nav + Theme + Tailwind Page Chrome",
+        "nodes": [
+          "js_nav_navigation",
+          "js_tailwindconfig_config",
+          "concept_co_theme_localstorage",
+          "concept_studiojus10_brand"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "assets/js/nav.js"
+      },
+      {
+        "id": "scroll_driven_hero_pattern",
+        "label": "Scroll-Driven Hero Animation Pattern",
+        "nodes": [
+          "about_parallax_hero",
+          "photography_modern_hero",
+          "video_scroll_hero",
+          "artgallery_tilt_gallery"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.75,
+        "source_file": "photography.html"
+      },
+      {
+        "id": "lightbox_gallery_flow",
+        "label": "Gallery-to-Lightbox Browsing Flow",
+        "nodes": [
+          "gallery_gallery_page",
+          "js_gallerylightbox_module",
+          "artgallery_lightbox",
+          "photographyseries_accordion"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.75,
+        "source_file": "gallery.html"
+      },
+      {
+        "id": "photography_gallery_data_flow",
+        "label": "Photography series-to-gallery data flow",
+        "nodes": [
+          "js_photography_series_data_series",
+          "js_gallery_data_galleries",
+          "js_photography_series_page_controller"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.85,
+        "source_file": "assets/js/photography-series-page.js"
+      },
+      {
+        "id": "static_data_driven_gallery_pattern",
+        "label": "Data-driven static gallery pattern",
+        "nodes": [
+          "js_gallery_data_galleries",
+          "js_art_gallery_data_galleries",
+          "fixes_data_driven_galleries"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.75,
+        "source_file": "fixes.md"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "settings.json",
+      "file_type": "code",
+      "source_file": ".claude/settings.json",
+      "source_location": "L1",
+      "id": "claude_settings_json",
+      "community": 5,
+      "norm_label": "settings.json"
+    },
+    {
+      "label": "hooks",
+      "file_type": "code",
+      "source_file": ".claude/settings.json",
+      "source_location": "L2",
+      "id": "claude_settings_hooks",
+      "community": 5,
+      "norm_label": "hooks"
+    },
+    {
+      "label": "PreToolUse",
+      "file_type": "code",
+      "source_file": ".claude/settings.json",
+      "source_location": "L3",
+      "id": "claude_settings_hooks_pretooluse",
+      "community": 5,
+      "norm_label": "pretooluse"
+    },
+    {
+      "label": "gallery-data.js",
+      "file_type": "code",
+      "source_file": "assets/js/gallery-data.js",
+      "source_location": "L1",
+      "id": "assets_js_gallery_data_js",
+      "community": 1,
+      "norm_label": "gallery-data.js"
+    },
+    {
+      "label": "sequence()",
+      "file_type": "code",
+      "source_file": "assets/js/gallery-data.js",
+      "source_location": "L4",
+      "id": "js_gallery_data_sequence",
+      "community": 1,
+      "norm_label": "sequence()"
+    },
+    {
+      "label": "galleryUrl()",
+      "file_type": "code",
+      "source_file": "assets/js/gallery-data.js",
+      "source_location": "L176",
+      "id": "js_gallery_data_galleryurl",
+      "community": 1,
+      "norm_label": "galleryurl()"
+    },
+    {
+      "label": "photography-series-data.js",
+      "file_type": "code",
+      "source_file": "assets/js/photography-series-data.js",
+      "source_location": "L1",
+      "id": "assets_js_photography_series_data_js",
+      "community": 8,
+      "norm_label": "photography-series-data.js"
+    },
+    {
+      "label": "art-gallery-page.js",
+      "file_type": "code",
+      "source_file": "assets/js/art-gallery-page.js",
+      "source_location": "L1",
+      "id": "assets_js_art_gallery_page_js",
+      "community": 9,
+      "norm_label": "art-gallery-page.js"
+    },
+    {
+      "label": "main.js",
+      "file_type": "code",
+      "source_file": "assets/js/main.js",
+      "source_location": "L1",
+      "id": "assets_js_main_js",
+      "community": 4,
+      "norm_label": "main.js"
+    },
+    {
+      "label": "measureHalf()",
+      "file_type": "code",
+      "source_file": "assets/js/main.js",
+      "source_location": "L15",
+      "id": "js_main_measurehalf",
+      "community": 4,
+      "norm_label": "measurehalf()"
+    },
+    {
+      "label": "tick()",
+      "file_type": "code",
+      "source_file": "assets/js/main.js",
+      "source_location": "L25",
+      "id": "js_main_tick",
+      "community": 4,
+      "norm_label": "tick()"
+    },
+    {
+      "label": "jump()",
+      "file_type": "code",
+      "source_file": "assets/js/main.js",
+      "source_location": "L34",
+      "id": "js_main_jump",
+      "community": 4,
+      "norm_label": "jump()"
+    },
+    {
+      "label": "tailwind-config.js",
+      "file_type": "code",
+      "source_file": "assets/js/tailwind-config.js",
+      "source_location": "L1",
+      "id": "assets_js_tailwind_config_js",
+      "community": 10,
+      "norm_label": "tailwind-config.js"
+    },
+    {
+      "label": "nav.js",
+      "file_type": "code",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L1",
+      "id": "assets_js_nav_js",
+      "community": 3,
+      "norm_label": "nav.js"
+    },
+    {
+      "label": "lnk()",
+      "file_type": "code",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L24",
+      "id": "js_nav_lnk",
+      "community": 3,
+      "norm_label": "lnk()"
+    },
+    {
+      "label": "desktopLink()",
+      "file_type": "code",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L28",
+      "id": "js_nav_desktoplink",
+      "community": 3,
+      "norm_label": "desktoplink()"
+    },
+    {
+      "label": "dropItem()",
+      "file_type": "code",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L37",
+      "id": "js_nav_dropitem",
+      "community": 3,
+      "norm_label": "dropitem()"
+    },
+    {
+      "label": "mobileTopLink()",
+      "file_type": "code",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L46",
+      "id": "js_nav_mobiletoplink",
+      "community": 3,
+      "norm_label": "mobiletoplink()"
+    },
+    {
+      "label": "mobileSubItem()",
+      "file_type": "code",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L55",
+      "id": "js_nav_mobilesubitem",
+      "community": 3,
+      "norm_label": "mobilesubitem()"
+    },
+    {
+      "label": "openMenu()",
+      "file_type": "code",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L175",
+      "id": "js_nav_openmenu",
+      "community": 3,
+      "norm_label": "openmenu()"
+    },
+    {
+      "label": "closeMenu()",
+      "file_type": "code",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L181",
+      "id": "js_nav_closemenu",
+      "community": 3,
+      "norm_label": "closemenu()"
+    },
+    {
+      "label": "updateThemeUI()",
+      "file_type": "code",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L197",
+      "id": "js_nav_updatethemeui",
+      "community": 3,
+      "norm_label": "updatethemeui()"
+    },
+    {
+      "label": "toggleTheme()",
+      "file_type": "code",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L204",
+      "id": "js_nav_toggletheme",
+      "community": 3,
+      "norm_label": "toggletheme()"
+    },
+    {
+      "label": "gallery-lightbox.js",
+      "file_type": "code",
+      "source_file": "assets/js/gallery-lightbox.js",
+      "source_location": "L1",
+      "id": "assets_js_gallery_lightbox_js",
+      "community": 1,
+      "norm_label": "gallery-lightbox.js"
+    },
+    {
+      "label": "pad2()",
+      "file_type": "code",
+      "source_file": "assets/js/gallery-lightbox.js",
+      "source_location": "L4",
+      "id": "js_gallery_lightbox_pad2",
+      "community": 1,
+      "norm_label": "pad2()"
+    },
+    {
+      "label": "init()",
+      "file_type": "code",
+      "source_file": "assets/js/gallery-lightbox.js",
+      "source_location": "L8",
+      "id": "js_gallery_lightbox_init",
+      "community": 1,
+      "norm_label": "init()"
+    },
+    {
+      "label": "photography-series-page.js",
+      "file_type": "code",
+      "source_file": "assets/js/photography-series-page.js",
+      "source_location": "L1",
+      "id": "assets_js_photography_series_page_js",
+      "community": 11,
+      "norm_label": "photography-series-page.js"
+    },
+    {
+      "label": "art-gallery-data.js",
+      "file_type": "code",
+      "source_file": "assets/js/art-gallery-data.js",
+      "source_location": "L1",
+      "id": "assets_js_art_gallery_data_js",
+      "community": 12,
+      "norm_label": "art-gallery-data.js"
+    },
+    {
+      "label": "gallery-page.js",
+      "file_type": "code",
+      "source_file": "assets/js/gallery-page.js",
+      "source_location": "L1",
+      "id": "assets_js_gallery_page_js",
+      "community": 13,
+      "norm_label": "gallery-page.js"
+    },
+    {
+      "label": "Home / Landing Page",
+      "file_type": "document",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_home_page",
+      "community": 2,
+      "norm_label": "home / landing page"
+    },
+    {
+      "label": "Featured Gallery Carousel",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_carousel",
+      "community": 2,
+      "norm_label": "featured gallery carousel"
+    },
+    {
+      "label": "Storytelling / Art & Design Section",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_storytelling_section",
+      "community": 2,
+      "norm_label": "storytelling / art & design section"
+    },
+    {
+      "label": "The Human Narrative",
+      "file_type": "rationale",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "index_human_narrative",
+      "community": 2,
+      "norm_label": "the human narrative"
+    },
+    {
+      "label": "About Page",
+      "file_type": "document",
+      "source_file": "about.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "about_about_page",
+      "community": 2,
+      "norm_label": "about page"
+    },
+    {
+      "label": "Justin Hughes",
+      "file_type": "concept",
+      "source_file": "about.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "about_justin_hughes",
+      "community": 2,
+      "norm_label": "justin hughes"
+    },
+    {
+      "label": "About Parallax Hero",
+      "file_type": "concept",
+      "source_file": "about.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "about_parallax_hero",
+      "community": 2,
+      "norm_label": "about parallax hero"
+    },
+    {
+      "label": "Contact Page",
+      "file_type": "document",
+      "source_file": "contact.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "contact_contact_page",
+      "community": 2,
+      "norm_label": "contact page"
+    },
+    {
+      "label": "Photography Index Page",
+      "file_type": "document",
+      "source_file": "photography.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "photography_photography_page",
+      "community": 0,
+      "norm_label": "photography index page"
+    },
+    {
+      "label": "Photography Scroll-Expand Hero",
+      "file_type": "concept",
+      "source_file": "photography.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "photography_modern_hero",
+      "community": 0,
+      "norm_label": "photography scroll-expand hero"
+    },
+    {
+      "label": "Photography Series Cards",
+      "file_type": "concept",
+      "source_file": "photography.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "photography_series_card",
+      "community": 0,
+      "norm_label": "photography series cards"
+    },
+    {
+      "label": "Photography Series Detail Page",
+      "file_type": "document",
+      "source_file": "photography-series.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "photographyseries_series_page",
+      "community": 0,
+      "norm_label": "photography series detail page"
+    },
+    {
+      "label": "Image Accordion Component",
+      "file_type": "concept",
+      "source_file": "photography-series.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "photographyseries_accordion",
+      "community": 0,
+      "norm_label": "image accordion component"
+    },
+    {
+      "label": "Scroll-Scrubbed Background Video",
+      "file_type": "concept",
+      "source_file": "photography-series.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "photographyseries_scrub_video",
+      "community": 0,
+      "norm_label": "scroll-scrubbed background video"
+    },
+    {
+      "label": "Video Page",
+      "file_type": "document",
+      "source_file": "video.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "video_video_page",
+      "community": 0,
+      "norm_label": "video page"
+    },
+    {
+      "label": "Video Scroll-Driven Hero",
+      "file_type": "concept",
+      "source_file": "video.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "video_scroll_hero",
+      "community": 0,
+      "norm_label": "video scroll-driven hero"
+    },
+    {
+      "label": "Hover-Play Video Cards",
+      "file_type": "concept",
+      "source_file": "video.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "video_card_thumbnails",
+      "community": 0,
+      "norm_label": "hover-play video cards"
+    },
+    {
+      "label": "Art Gallery Detail Page",
+      "file_type": "document",
+      "source_file": "art-gallery.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "artgallery_art_gallery_page",
+      "community": 0,
+      "norm_label": "art gallery detail page"
+    },
+    {
+      "label": "Scroll-Tilt 3D Gallery",
+      "file_type": "concept",
+      "source_file": "art-gallery.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "artgallery_tilt_gallery",
+      "community": 0,
+      "norm_label": "scroll-tilt 3d gallery"
+    },
+    {
+      "label": "Art Gallery Lightbox",
+      "file_type": "concept",
+      "source_file": "art-gallery.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "artgallery_lightbox",
+      "community": 0,
+      "norm_label": "art gallery lightbox"
+    },
+    {
+      "label": "Art Index Page",
+      "file_type": "document",
+      "source_file": "art.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "art_art_page",
+      "community": 0,
+      "norm_label": "art index page"
+    },
+    {
+      "label": "Photography Gallery Detail Page",
+      "file_type": "document",
+      "source_file": "gallery.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "gallery_gallery_page",
+      "community": 0,
+      "norm_label": "photography gallery detail page"
+    },
+    {
+      "label": "Infinite Carousel Controller",
+      "file_type": "code",
+      "source_file": "assets/js/main.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "js_main_carousel",
+      "community": 2,
+      "norm_label": "infinite carousel controller"
+    },
+    {
+      "label": "Site Navigation Builder",
+      "file_type": "code",
+      "source_file": "assets/js/nav.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "js_nav_navigation",
+      "community": 0,
+      "norm_label": "site navigation builder"
+    },
+    {
+      "label": "Dark/Light Theme Toggle",
+      "file_type": "concept",
+      "source_file": "assets/js/nav.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "js_nav_theme_toggle",
+      "community": 0,
+      "norm_label": "dark/light theme toggle"
+    },
+    {
+      "label": "Tailwind Design Tokens Config",
+      "file_type": "code",
+      "source_file": "assets/js/tailwind-config.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "js_tailwindconfig_config",
+      "community": 2,
+      "norm_label": "tailwind design tokens config"
+    },
+    {
+      "label": "StudioJus10Gallery Lightbox Module",
+      "file_type": "code",
+      "source_file": "assets/js/gallery-lightbox.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "js_gallerylightbox_module",
+      "community": 0,
+      "norm_label": "studiojus10gallery lightbox module"
+    },
+    {
+      "label": "co-theme localStorage Key",
+      "file_type": "concept",
+      "source_file": "assets/js/nav.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "concept_co_theme_localstorage",
+      "community": 0,
+      "norm_label": "co-theme localstorage key"
+    },
+    {
+      "label": "STUDIO JUS10 Brand / Footer",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "concept_studiojus10_brand",
+      "community": 2,
+      "norm_label": "studio jus10 brand / footer"
+    },
+    {
+      "label": "StudioJus10Galleries (gallery metadata)",
+      "file_type": "code",
+      "source_file": "assets/js/gallery-data.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "js_gallery_data_galleries",
+      "community": 1,
+      "norm_label": "studiojus10galleries (gallery metadata)"
+    },
+    {
+      "label": "gallery-page controller",
+      "file_type": "code",
+      "source_file": "assets/js/gallery-page.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "js_gallery_page_controller",
+      "community": 1,
+      "norm_label": "gallery-page controller"
+    },
+    {
+      "label": "StudioJus10PhotographySeries (series metadata)",
+      "file_type": "code",
+      "source_file": "assets/js/photography-series-data.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "js_photography_series_data_series",
+      "community": 1,
+      "norm_label": "studiojus10photographyseries (series metadata)"
+    },
+    {
+      "label": "StudioJus10PhotographyUrl",
+      "file_type": "code",
+      "source_file": "assets/js/photography-series-data.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "js_photography_series_data_photographyurl",
+      "community": 1,
+      "norm_label": "studiojus10photographyurl"
+    },
+    {
+      "label": "photography-series-page controller",
+      "file_type": "code",
+      "source_file": "assets/js/photography-series-page.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "js_photography_series_page_controller",
+      "community": 1,
+      "norm_label": "photography-series-page controller"
+    },
+    {
+      "label": "StudioJus10ArtGalleries (art metadata)",
+      "file_type": "code",
+      "source_file": "assets/js/art-gallery-data.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "js_art_gallery_data_galleries",
+      "community": 1,
+      "norm_label": "studiojus10artgalleries (art metadata)"
+    },
+    {
+      "label": "StudioJus10ArtGalleryUrl",
+      "file_type": "code",
+      "source_file": "assets/js/art-gallery-data.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "js_art_gallery_data_artgalleryurl",
+      "community": 14,
+      "norm_label": "studiojus10artgalleryurl"
+    },
+    {
+      "label": "art-gallery-page controller",
+      "file_type": "code",
+      "source_file": "assets/js/art-gallery-page.js",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "js_art_gallery_page_controller",
+      "community": 1,
+      "norm_label": "art-gallery-page controller"
+    },
+    {
+      "label": "graphify PreToolUse Bash hook",
+      "file_type": "concept",
+      "source_file": ".claude/settings.json",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_settings_graphify_hook",
+      "community": 7,
+      "norm_label": "graphify pretooluse bash hook"
+    },
+    {
+      "label": "JS data file over fetched JSON for galleries",
+      "file_type": "rationale",
+      "source_file": "fixes.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "fixes_data_driven_galleries",
+      "community": 1,
+      "norm_label": "js data file over fetched json for galleries"
+    },
+    {
+      "label": "Static HTML consolidation via query params",
+      "file_type": "rationale",
+      "source_file": "fixes.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "fixes_static_consolidation",
+      "community": 1,
+      "norm_label": "static html consolidation via query params"
+    },
+    {
+      "label": "Git LFS asset restoration",
+      "file_type": "rationale",
+      "source_file": "fixes.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "fixes_git_lfs_assets",
+      "community": 6,
+      "norm_label": "git lfs asset restoration"
+    },
+    {
+      "label": "graphify knowledge-graph workflow",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_md_graphify_workflow",
+      "community": 7,
+      "norm_label": "graphify knowledge-graph workflow"
+    },
+    {
+      "label": "STUDIO JUS10 editorial index page",
+      "file_type": "document",
+      "source_file": "docs/SKETCH.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "docs_sketch_index_page",
+      "community": 6,
+      "norm_label": "studio jus10 editorial index page"
+    },
+    {
+      "label": "Tailwind design tokens (colors/fonts/spacing)",
+      "file_type": "concept",
+      "source_file": "docs/SKETCH.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "docs_sketch_tailwind_config",
+      "community": 6,
+      "norm_label": "tailwind design tokens (colors/fonts/spacing)"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/settings.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "claude_settings_json",
+      "target": "claude_settings_hooks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/settings.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "claude_settings_hooks",
+      "target": "claude_settings_hooks_pretooluse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/gallery-data.js",
+      "source_location": "L176",
+      "weight": 1.0,
+      "source": "assets_js_gallery_data_js",
+      "target": "js_gallery_data_galleryurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/gallery-data.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "assets_js_gallery_data_js",
+      "target": "js_gallery_data_sequence",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "assets/js/gallery-data.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_gallery_data_galleries",
+      "target": "js_gallery_data_sequence"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "assets/js/gallery-data.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_gallery_data_galleryurl",
+      "target": "js_gallery_data_galleries"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/main.js",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "assets_js_main_js",
+      "target": "js_main_jump",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/main.js",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "assets_js_main_js",
+      "target": "js_main_measurehalf",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/main.js",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "assets_js_main_js",
+      "target": "js_main_tick",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L181",
+      "weight": 1.0,
+      "source": "assets_js_nav_js",
+      "target": "js_nav_closemenu",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "assets_js_nav_js",
+      "target": "js_nav_desktoplink",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "assets_js_nav_js",
+      "target": "js_nav_dropitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "assets_js_nav_js",
+      "target": "js_nav_lnk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "assets_js_nav_js",
+      "target": "js_nav_mobilesubitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "assets_js_nav_js",
+      "target": "js_nav_mobiletoplink",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L175",
+      "weight": 1.0,
+      "source": "assets_js_nav_js",
+      "target": "js_nav_openmenu",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L204",
+      "weight": 1.0,
+      "source": "assets_js_nav_js",
+      "target": "js_nav_toggletheme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L197",
+      "weight": 1.0,
+      "source": "assets_js_nav_js",
+      "target": "js_nav_updatethemeui",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "js_nav_desktoplink",
+      "target": "js_nav_lnk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "js_nav_dropitem",
+      "target": "js_nav_lnk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "js_nav_mobilesubitem",
+      "target": "js_nav_lnk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "js_nav_mobiletoplink",
+      "target": "js_nav_lnk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/nav.js",
+      "source_location": "L209",
+      "weight": 1.0,
+      "source": "js_nav_toggletheme",
+      "target": "js_nav_updatethemeui",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/gallery-lightbox.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "assets_js_gallery_lightbox_js",
+      "target": "js_gallery_lightbox_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/gallery-lightbox.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "assets_js_gallery_lightbox_js",
+      "target": "js_gallery_lightbox_pad2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/gallery-lightbox.js",
+      "source_location": "L108",
+      "weight": 1.0,
+      "source": "js_gallery_lightbox_init",
+      "target": "js_gallery_lightbox_pad2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "assets/js/gallery-page.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_gallery_page_controller",
+      "target": "js_gallery_lightbox_init"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "assets/js/photography-series-page.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_photography_series_page_controller",
+      "target": "js_gallery_lightbox_init"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_home_page",
+      "target": "about_about_page"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_home_page",
+      "target": "concept_co_theme_localstorage"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_home_page",
+      "target": "concept_studiojus10_brand"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_home_page",
+      "target": "contact_contact_page"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_home_page",
+      "target": "index_carousel"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_home_page",
+      "target": "index_storytelling_section"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_home_page",
+      "target": "js_main_carousel"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_home_page",
+      "target": "js_nav_navigation"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_home_page",
+      "target": "js_tailwindconfig_config"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_carousel",
+      "target": "gallery_gallery_page"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "assets/js/main.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_main_carousel",
+      "target": "index_carousel"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "index_storytelling_section",
+      "target": "index_human_narrative"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "about.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "about_about_page",
+      "target": "about_justin_hughes"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "about.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "about_about_page",
+      "target": "about_parallax_hero"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "about.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "about_about_page",
+      "target": "js_nav_navigation"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "contact.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "contact_contact_page",
+      "target": "js_nav_navigation"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "gallery.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "gallery_gallery_page",
+      "target": "photography_photography_page"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "assets/js/nav.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_nav_navigation",
+      "target": "photography_photography_page"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "photography.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "photography_photography_page",
+      "target": "photography_modern_hero"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "photography.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "photography_photography_page",
+      "target": "photography_series_card"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "photography.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "photography_series_card",
+      "target": "photographyseries_series_page"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "video.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "video_card_thumbnails",
+      "target": "photography_series_card"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "assets/js/nav.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_nav_navigation",
+      "target": "photographyseries_series_page"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "photography-series.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "photographyseries_series_page",
+      "target": "js_nav_theme_toggle"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "photography-series.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "photographyseries_series_page",
+      "target": "photographyseries_accordion"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "photography-series.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "photographyseries_series_page",
+      "target": "photographyseries_scrub_video"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "art-gallery.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "artgallery_tilt_gallery",
+      "target": "photographyseries_accordion"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "photography-series.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "photographyseries_accordion",
+      "target": "gallery_gallery_page"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "photography-series.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "photographyseries_scrub_video",
+      "target": "video_scroll_hero"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "assets/js/nav.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_nav_navigation",
+      "target": "video_video_page"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "video.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "video_video_page",
+      "target": "video_card_thumbnails"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "video.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "video_video_page",
+      "target": "video_scroll_hero"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "art.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "art_art_page",
+      "target": "artgallery_art_gallery_page"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "art-gallery.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "artgallery_art_gallery_page",
+      "target": "artgallery_lightbox"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "art-gallery.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "artgallery_art_gallery_page",
+      "target": "artgallery_tilt_gallery"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "assets/js/nav.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_nav_navigation",
+      "target": "artgallery_art_gallery_page"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "assets/js/gallery-lightbox.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_gallerylightbox_module",
+      "target": "artgallery_lightbox"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "art.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "art_art_page",
+      "target": "js_nav_navigation"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "gallery.html",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "gallery_gallery_page",
+      "target": "js_gallerylightbox_module"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "assets/js/nav.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_nav_navigation",
+      "target": "js_nav_theme_toggle"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "assets/js/nav.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_nav_theme_toggle",
+      "target": "concept_co_theme_localstorage"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "fixes.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "fixes_data_driven_galleries",
+      "target": "js_gallery_data_galleries"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "assets/js/art-gallery-data.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_art_gallery_data_galleries",
+      "target": "js_gallery_data_galleries"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "assets/js/gallery-page.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_gallery_page_controller",
+      "target": "js_gallery_data_galleries"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "assets/js/photography-series-data.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_photography_series_data_series",
+      "target": "js_gallery_data_galleries"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "assets/js/photography-series-page.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_photography_series_page_controller",
+      "target": "js_gallery_data_galleries"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "fixes.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "fixes_static_consolidation",
+      "target": "js_gallery_page_controller"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "assets/js/art-gallery-page.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_art_gallery_page_controller",
+      "target": "js_gallery_page_controller"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "assets/js/photography-series-data.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_photography_series_data_photographyurl",
+      "target": "js_photography_series_data_series"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "assets/js/photography-series-page.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_photography_series_page_controller",
+      "target": "js_photography_series_data_series"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "fixes.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "fixes_static_consolidation",
+      "target": "js_photography_series_page_controller"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "assets/js/art-gallery-page.js",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "js_art_gallery_page_controller",
+      "target": "js_art_gallery_data_galleries"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": ".claude/settings.json",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "claude_settings_graphify_hook",
+      "target": "claude_md_graphify_workflow"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "fixes.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "fixes_git_lfs_assets",
+      "target": "docs_sketch_index_page"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/SKETCH.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "docs_sketch_index_page",
+      "target": "docs_sketch_tailwind_config"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "shared_page_chrome",
+      "label": "Shared Nav + Theme + Tailwind Page Chrome",
+      "nodes": [
+        "js_nav_navigation",
+        "js_tailwindconfig_config",
+        "concept_co_theme_localstorage",
+        "concept_studiojus10_brand"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "assets/js/nav.js"
+    },
+    {
+      "id": "scroll_driven_hero_pattern",
+      "label": "Scroll-Driven Hero Animation Pattern",
+      "nodes": [
+        "about_parallax_hero",
+        "photography_modern_hero",
+        "video_scroll_hero",
+        "artgallery_tilt_gallery"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "photography.html"
+    },
+    {
+      "id": "lightbox_gallery_flow",
+      "label": "Gallery-to-Lightbox Browsing Flow",
+      "nodes": [
+        "gallery_gallery_page",
+        "js_gallerylightbox_module",
+        "artgallery_lightbox",
+        "photographyseries_accordion"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "gallery.html"
+    },
+    {
+      "id": "photography_gallery_data_flow",
+      "label": "Photography series-to-gallery data flow",
+      "nodes": [
+        "js_photography_series_data_series",
+        "js_gallery_data_galleries",
+        "js_photography_series_page_controller"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.85,
+      "source_file": "assets/js/photography-series-page.js"
+    },
+    {
+      "id": "static_data_driven_gallery_pattern",
+      "label": "Data-driven static gallery pattern",
+      "nodes": [
+        "js_gallery_data_galleries",
+        "js_art_gallery_data_galleries",
+        "fixes_data_driven_galleries"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "fixes.md"
+    }
+  ],
+  "built_at_commit": "db18c64a7a522d203c1277d9d1bf3d6c1061c120"
+}

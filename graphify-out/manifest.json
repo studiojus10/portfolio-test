@@ -1,0 +1,127 @@
+{
+  "/Users/keonili/Desktop/studiojus10_portfolio/.claude/settings.json": {
+    "mtime": 1781885014.038864,
+    "ast_hash": "87f0d903477984d0587a02f8fe185263",
+    "semantic_hash": "87f0d903477984d0587a02f8fe185263"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/assets/js/gallery-data.js": {
+    "mtime": 1781884561.048523,
+    "ast_hash": "9763ddc81903230f7d7a7972a7d3ce56",
+    "semantic_hash": "9763ddc81903230f7d7a7972a7d3ce56"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/assets/js/photography-series-data.js": {
+    "mtime": 1781884407.2819858,
+    "ast_hash": "d4e73afa32af5e81d16b919da53a4759",
+    "semantic_hash": "d4e73afa32af5e81d16b919da53a4759"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/assets/js/art-gallery-page.js": {
+    "mtime": 1781884721.3752139,
+    "ast_hash": "8990d6819373d901f2fe67696a5075ec",
+    "semantic_hash": "8990d6819373d901f2fe67696a5075ec"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/assets/js/main.js": {
+    "mtime": 1781880952.4553275,
+    "ast_hash": "0de869a1bdf9230f77fdb348a52067fd",
+    "semantic_hash": "0de869a1bdf9230f77fdb348a52067fd"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/assets/js/tailwind-config.js": {
+    "mtime": 1781882990.2337267,
+    "ast_hash": "a961fa6ba28378f8b0a0732904a802d2",
+    "semantic_hash": "a961fa6ba28378f8b0a0732904a802d2"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/assets/js/nav.js": {
+    "mtime": 1781884525.0327206,
+    "ast_hash": "8fbfead03249bc3f662599fff9f414dc",
+    "semantic_hash": "8fbfead03249bc3f662599fff9f414dc"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/assets/js/gallery-lightbox.js": {
+    "mtime": 1781882872.671757,
+    "ast_hash": "fb551fae0018da512151d3fc79578718",
+    "semantic_hash": "fb551fae0018da512151d3fc79578718"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/assets/js/photography-series-page.js": {
+    "mtime": 1781884407.5252178,
+    "ast_hash": "643444021bc9a4c0a8bb6a104a922567",
+    "semantic_hash": "643444021bc9a4c0a8bb6a104a922567"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/assets/js/art-gallery-data.js": {
+    "mtime": 1781884452.223572,
+    "ast_hash": "0dd726e03284273b0a57c553f47e3fb7",
+    "semantic_hash": "0dd726e03284273b0a57c553f47e3fb7"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/assets/js/gallery-page.js": {
+    "mtime": 1781883771.4192133,
+    "ast_hash": "f8b5ae46ee690d28192c785349d2ea15",
+    "semantic_hash": "f8b5ae46ee690d28192c785349d2ea15"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/photography.html": {
+    "mtime": 1781884546.8976924,
+    "ast_hash": "ea37c8344c1c210064af8ec37321db33",
+    "semantic_hash": "ea37c8344c1c210064af8ec37321db33"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/photography-series.html": {
+    "mtime": 1781884363.4647963,
+    "ast_hash": "7c9d8d0817dcb1b5503e8702c14abd8d",
+    "semantic_hash": "7c9d8d0817dcb1b5503e8702c14abd8d"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/index.html": {
+    "mtime": 1781883859.3946505,
+    "ast_hash": "e28be94f248b8201f895c39b572d4145",
+    "semantic_hash": "e28be94f248b8201f895c39b572d4145"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/about.html": {
+    "mtime": 1781883009.5006123,
+    "ast_hash": "a915c2fd1846f49073574e22868672c7",
+    "semantic_hash": "a915c2fd1846f49073574e22868672c7"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/contact.html": {
+    "mtime": 1781883009.5021741,
+    "ast_hash": "b519d1267e90df67b3a78ab0f8ab058a",
+    "semantic_hash": "b519d1267e90df67b3a78ab0f8ab058a"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/video.html": {
+    "mtime": 1781883009.5069559,
+    "ast_hash": "53b291a81808c5df8560359b6fc070b7",
+    "semantic_hash": "53b291a81808c5df8560359b6fc070b7"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/art-gallery.html": {
+    "mtime": 1781884451.8462458,
+    "ast_hash": "8a383e75eb0a8457730833334f687ad9",
+    "semantic_hash": "8a383e75eb0a8457730833334f687ad9"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/art.html": {
+    "mtime": 1781884547.1318061,
+    "ast_hash": "c71d4eea5f3e3364e8c5a88b49665776",
+    "semantic_hash": "c71d4eea5f3e3364e8c5a88b49665776"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/gallery.html": {
+    "mtime": 1781883771.6522508,
+    "ast_hash": "5e3d0555d38f192aaf32034a686f3a41",
+    "semantic_hash": "5e3d0555d38f192aaf32034a686f3a41"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/fixes.md": {
+    "mtime": 1781884561.2678492,
+    "ast_hash": "cc3cac9819a255b691c618fb92b860f0",
+    "semantic_hash": "cc3cac9819a255b691c618fb92b860f0"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/CLAUDE.md": {
+    "mtime": 1781885014.0385284,
+    "ast_hash": "82efb97a359f5c7290bf2513d14686be",
+    "semantic_hash": "82efb97a359f5c7290bf2513d14686be"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/.claude/CLAUDE.md": {
+    "mtime": 1781885014.0383368,
+    "ast_hash": "db73b0edd7ffbc61ceac177130730865",
+    "semantic_hash": "db73b0edd7ffbc61ceac177130730865"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/.claude/skills/graphify/SKILL.md": {
+    "mtime": 1781885014.0378313,
+    "ast_hash": "5ae00786ea53e4d944ab70abe11eedd1",
+    "semantic_hash": "5ae00786ea53e4d944ab70abe11eedd1"
+  },
+  "/Users/keonili/Desktop/studiojus10_portfolio/docs/SKETCH.md": {
+    "mtime": 1781846171.2592483,
+    "ast_hash": "c7c3766fb3a91fad7020f85f6e63871c",
+    "semantic_hash": "c7c3766fb3a91fad7020f85f6e63871c"
+  }
+}
