@@ -48,10 +48,10 @@
 ## Priority 4: Clean Up File Organization
 
 - [x] Decide whether this stays as hand-written static HTML or becomes generated/template-driven.
-- [ ] If static, move repeated gallery CSS into shared stylesheet.
-- [ ] If static, move repeated lightbox JavaScript into shared JS.
+- [x] If static, move repeated gallery CSS into shared stylesheet: `assets/css/gallery.css`.
+- [x] If static, move repeated lightbox JavaScript into shared JS: `assets/js/gallery-lightbox.js`.
 - [x] If generated, create one gallery template and one data file for gallery metadata. Not applicable; static HTML kept for this cleanup pass.
-- [ ] Reduce duplicated Tailwind config across HTML pages.
+- [x] Reduce duplicated Tailwind config across HTML pages: `assets/js/tailwind-config.js`.
 - [x] Standardize asset naming to lowercase hyphenated paths.
 - [x] Remove spaces from folder names when practical:
   - [x] `assets/images/colorado/twelve-views-of-pikes-peak`
