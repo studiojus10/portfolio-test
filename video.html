@@ -121,6 +121,35 @@
 
   <!-- Hero: 150vh spacer so header is fully readable before cards begin -->
   <section style="position: relative; z-index: 10; height: 150vh; pointer-events: none;">
+
+    <!-- "Video" title fades in on load, positioned just below the video frame -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100vh; overflow: hidden; pointer-events: none;">
+      <div id="video-load-title" style="position: absolute; left: 5%; top: 70%; opacity: 0; text-align: left;">
+        <span style="
+          font-family: 'Old Standard TT', serif;
+          font-size: clamp(2rem, 6.5vw, 84px);
+          font-weight: 500;
+          line-height: 1;
+          letter-spacing: -0.02em;
+          color: #ffffff;
+          text-shadow:
+            0 0 24px rgba(0,0,0,0.85),
+            0 0 48px rgba(0,0,0,0.70),
+            0 2px  6px rgba(0,0,0,0.95);
+          display: block;
+        ">Video</span>
+        <span style="
+          font-family: 'Noto Serif SC', serif;
+          font-size: clamp(2rem, 6vw, 4.5rem);
+          line-height: 1;
+          color: #e03c31;
+          display: block;
+          text-align: center;
+          text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+        ">电影感叙事</span>
+      </div>
+    </div>
+
     <div id="hero-content" style="position: sticky; top: calc(100vh - 18rem); left: 0; right: 0; opacity: 0; transform: translateY(40px); pointer-events: auto;">
       <div class="bg-surface-container-low grid gap-8 md:grid-cols-12 items-start px-4 md:px-8 py-8">
         <div class="md:col-span-7 flex flex-col gap-6">
@@ -145,7 +174,7 @@
 
     <section class="flex flex-col gap-12">
       <!-- 1 — image left -->
-      <article class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row">
+      <a href="video-dublin.html" class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer">
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
           <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/proposal-thumbnail.mp4" muted loop playsinline preload="metadata"></video>
         </div>
@@ -154,10 +183,10 @@
           <p class="font-cjk text-sm text-primary">都柏林求婚</p>
           <p class="font-label-mono text-xs leading-relaxed">A personal artistic film documenting an intimate moment in Dublin, scored with original music composed and performed by the filmmaker.</p>
         </div>
-      </article>
+      </a>
 
       <!-- 2 — image right -->
-      <article class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse">
+      <a href="video-winter.html" class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer">
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
           <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" muted loop playsinline preload="metadata"></video>
         </div>
@@ -166,10 +195,10 @@
           <p class="font-cjk text-sm text-primary">冬景</p>
           <p class="font-label-mono text-xs leading-relaxed">A collage of winter footage captured through an anamorphic lens — a nostalgic and cinematic study of Colorado snow, light, and stillness.</p>
         </div>
-      </article>
+      </a>
 
       <!-- 3 — image left -->
-      <article class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row">
+      <a href="video-collage.html" class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer">
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
           <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/collage-thumbnail.mp4" muted loop playsinline preload="metadata"></video>
         </div>
@@ -178,10 +207,10 @@
           <p class="font-cjk text-sm text-primary">发现素材拼贴</p>
           <p class="font-label-mono text-xs leading-relaxed">Fragments of incidental footage, old TV commercials and PSAs assembled with narrative logic, tied together with narration — an experiment in how meaning emerges from juxtaposition and perspective.</p>
         </div>
-      </article>
+      </a>
 
       <!-- 4 — image right -->
-      <article class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse">
+      <a href="video-portrait.html" class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer">
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
           <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" muted loop playsinline preload="metadata"></video>
         </div>
@@ -190,10 +219,10 @@
           <p class="font-cjk text-sm text-primary">音乐家肖像</p>
           <p class="font-label-mono text-xs leading-relaxed">An observational study of a musician at work — camera lingering on hands, breath, and the endless dedication required for perfection, rather than the performance itself. A story is told through intimate efforts of preperation and narrated letter from the musician to her best friend.</p>
         </div>
-      </article>
+      </a>
 
       <!-- 5 — image left -->
-      <article class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row">
+      <a href="video-single-shot.html" class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer">
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
           <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/single-shot-thumbnail.mp4" muted loop playsinline preload="metadata"></video>
         </div>
@@ -202,10 +231,10 @@
           <p class="font-cjk text-sm text-primary">一镜光影研究</p>
           <p class="font-label-mono text-xs leading-relaxed">A single unbroken take with no edit — the subject is light itself, shifting, changing, and captivating an unknown spectator.</p>
         </div>
-      </article>
+      </a>
 
       <!-- 6 — image right -->
-      <article class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse">
+      <a href="video-resurrection.html" class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer">
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
           <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/resurrection-thumbnail.mp4" muted loop playsinline preload="metadata"></video>
         </div>
@@ -214,10 +243,10 @@
           <p class="font-cjk text-sm text-primary">复活</p>
           <p class="font-label-mono text-xs leading-relaxed">An experimental short built around transformation and return — form dissolving and reassembling through image and sound rather than story. A visual set to a poem.</p>
         </div>
-      </article>
+      </a>
 
       <!-- 7 — image left -->
-      <article class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row">
+      <a href="video-murder.html" class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer">
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
           <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" muted loop playsinline preload="metadata"></video>
         </div>
@@ -226,10 +255,10 @@
           <p class="font-cjk text-sm text-primary">他所写的谋杀</p>
           <p class="font-label-mono text-xs leading-relaxed">A narrative short in the noir tradition — shadow, unreliable language, and a plot that unfolds more like a confession than a story.</p>
         </div>
-      </article>
+      </a>
 
       <!-- 8 — image right -->
-      <article class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse">
+      <a href="video-decadance.html" class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer">
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
           <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/decadance-thumbnail.mp4" muted loop playsinline preload="metadata"></video>
         </div>
@@ -238,7 +267,7 @@
           <p class="font-cjk text-sm text-primary">颓废之舞</p>
           <p class="font-label-mono text-xs leading-relaxed">A narrative short where movement becomes the language — choreography, indulgence, and consequence told through the body rather than dialogue.</p>
         </div>
-      </article>
+      </a>
     </section>
   </main>
 
@@ -369,15 +398,59 @@
         video.style.transition = 'opacity 1.6s ease';
         video.style.opacity    = '1';
       }
+
+      // Position "Video" title just below the actual video frame, then fade it in
+      function positionTitle() {
+        var title = document.getElementById('video-load-title');
+        if (!title || !video || !video.videoWidth || !video.videoHeight) return;
+
+        // The video renders at width:100vw, height proportional to its AR
+        var ar           = video.videoWidth / video.videoHeight;
+        var renderedH    = window.innerWidth / ar;
+        // Video is vertically centred in the 100vh container
+        var videoBottom  = (window.innerHeight + renderedH) / 2;
+        // Leave a small gap below the frame; clamp so it stays in view
+        var topPos       = Math.min(videoBottom + 16, window.innerHeight - 120) - window.innerHeight * 0.1;
+
+        title.style.top = topPos + 'px';
+      }
+
+      function fadeInTitle() {
+        positionTitle();
+        var title = document.getElementById('video-load-title');
+        if (!title) return;
+        // Set the 3-second transition only when we're ready to fade in,
+        // so the scroll handler can override it with 'none' later.
+        title.style.transition = 'opacity 3s ease';
+        title.style.opacity    = '1';
+      }
+
+      if (video) {
+        video.addEventListener('loadedmetadata', positionTitle);
+        window.addEventListener('resize', positionTitle);
+      }
+
       if (document.readyState === 'complete') {
         setTimeout(fadeInVideo, 120);
+        // Delay title until after video fade-in finishes (120ms start + 1600ms fade + buffer)
+        setTimeout(fadeInTitle, 520);
       } else {
-        window.addEventListener('load', function () { setTimeout(fadeInVideo, 120); });
+        window.addEventListener('load', function () {
+          setTimeout(fadeInVideo, 120);
+          setTimeout(fadeInTitle, 520);
+        });
       }
 
       function updateHero() {
         var s  = window.scrollY || window.pageYOffset;
         var vh = window.innerHeight;
+
+        // "Video" load title fades out early in the scroll, before the sticky header appears
+        var titleEl = document.getElementById('video-load-title');
+        if (titleEl && s > 0) {
+          titleEl.style.transition = 'none';
+          titleEl.style.opacity    = String(clamp(1 - s / (vh * 0.35), 0, 1));
+        }
 
         // Hero content: slides in between 55% and 95% of 1vh scroll
         var p1 = clamp((s - vh * 0.55) / (vh * 0.40), 0, 1);

@@ -101,43 +101,154 @@
   </script>
 
   <link rel="stylesheet" href="assets/css/styles.css">
+
   <style>
-    .series-img-wrap { position: relative; overflow: hidden; flex-shrink: 0; }
-    .series-img-wrap img { width: 100%; height: auto; display: block; }
+    .float-el  { position: absolute; top: 0; left: 0; will-change: transform; }
+    .float-img { display: block; height: auto; opacity: 0; transition: opacity 0.8s ease; }
+
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 1s ease, transform 1s cubic-bezier(0.2, 0, 0.2, 1);
+    }
+
+    .series-img-wrap          { position: relative; overflow: hidden; flex-shrink: 0; }
+    .series-img-wrap img      { width: 100%; height: auto; display: block; }
   </style>
 </head>
-<body class="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white">
+<body class="text-on-surface font-body-md antialiased selection:bg-primary selection:text-white" style="background: #0a0a0a;">
 
   <script>(function(){var t=localStorage.getItem('co-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
-  <div id="nav-root"></div>
+
+  <!-- ═══════════════════════════════════════════════
+       FIXED BACKGROUND — drifts behind the whole page
+       Each image has data-vx (rightward px/frame) and
+       data-vy (downward px/frame). All positive so every
+       image travels top-left → bottom-right. Speed varies
+       per image to create depth.
+  ════════════════════════════════════════════════ -->
+  <div id="art-bg" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: #0a0a0a; overflow: hidden;">
+
+    <!-- Slowest — feel far away -->
+    <div class="float-el" data-vx="0.15" data-vy="0.25">
+      <img class="float-img" src="assets/art/composers/ravel.jpg"         alt="" style="width:150px;">
+    </div>
+    <div class="float-el" data-vx="0.17" data-vy="0.28">
+      <img class="float-img" src="assets/art/composers/dvorak.png"        alt="" style="width:120px;">
+    </div>
+
+    <!-- Medium-slow -->
+    <div class="float-el" data-vx="0.23" data-vy="0.38">
+      <img class="float-img" src="assets/art/sketches/SKE-12.jpg"         alt="" style="width:130px;">
+    </div>
+    <div class="float-el" data-vx="0.25" data-vy="0.42">
+      <img class="float-img" src="assets/art/composers/barber.png"        alt="" style="width:110px;">
+    </div>
+    <div class="float-el" data-vx="0.27" data-vy="0.44">
+      <img class="float-img" src="assets/art/sketches/SKE-7.jpg"          alt="" style="width:140px;">
+    </div>
+
+    <!-- Medium -->
+    <div class="float-el" data-vx="0.31" data-vy="0.52">
+      <img class="float-img" src="assets/art/composers/shostakovitch.png" alt="" style="width:105px;">
+    </div>
+    <div class="float-el" data-vx="0.34" data-vy="0.56">
+      <img class="float-img" src="assets/art/sketches/SKE-3.jpg"          alt="" style="width:125px;">
+    </div>
+    <div class="float-el" data-vx="0.35" data-vy="0.58">
+      <img class="float-img" src="assets/art/sketches/SKE-16.jpg"         alt="" style="width:115px;">
+    </div>
+
+    <!-- Medium-fast -->
+    <div class="float-el" data-vx="0.41" data-vy="0.68">
+      <img class="float-img" src="assets/art/sketches/SKE-10.jpg"         alt="" style="width:135px;">
+    </div>
+    <div class="float-el" data-vx="0.43" data-vy="0.72">
+      <img class="float-img" src="assets/art/sketches/SKE-5.jpg"          alt="" style="width:100px;">
+    </div>
+
+    <!-- Fastest — feel close -->
+    <div class="float-el" data-vx="0.50" data-vy="0.82">
+      <img class="float-img" src="assets/art/sketches/SKE-14.jpg"         alt="" style="width:160px;">
+    </div>
+    <div class="float-el" data-vx="0.54" data-vy="0.90">
+      <img class="float-img" src="assets/art/sketches/SKE-1.jpg"          alt="" style="width:118px;">
+    </div>
+
+  </div>
+
+  <!-- Dark overlay that deepens as user scrolls past the hero -->
+  <div id="art-dark-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background: #0a0a0a; opacity: 0; pointer-events: none;"></div>
+
+  <!-- Nav sits on top of everything -->
+  <div id="nav-root" style="position: relative; z-index: 50;"></div>
   <script src="assets/js/nav.js"></script>
 
-  <main class="w-full px-4 md:px-8 py-8">
-    <section class="grid gap-8 md:grid-cols-12 items-start">
-      <div class="md:col-span-7 flex flex-col gap-6">
-        <div class="border-b-2 border-on-background pb-4">
-          <span class="font-display-lg text-on-background text-headline-lg-mobile md:text-display-lg mb-2 font-medium">Art</span>
-          <h1 class="font-cjk text-3xl md:text-5xl text-primary leading-none">视觉与概念</h1>
-        </div>
-        <p class="font-label-mono text-xs uppercase tracking-widest text-on-surface-variant">A compact collection of concept work that balances form, narrative, and editorial restraint.</p>
+  <!-- ═══════════════════════════════════════════════
+       HERO SPACER — 100vh, transparent, shows background.
+       "Art" text is centred here and scrolls away naturally.
+  ════════════════════════════════════════════════ -->
+  <section style="position: relative; z-index: 10; height: 100vh; display: flex; align-items: center; justify-content: center; pointer-events: none;">
+    <div id="hero-center-text" style="opacity: 0; transform: translateY(10px); transition: opacity 0.88s ease, transform 0.88s ease; text-align: center; margin-bottom: 25vh;">
+      <span style="
+        font-family: 'Old Standard TT', 'Noto Serif SC', serif;
+        font-size: clamp(56px, 10vw, 84px);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+        color: #ffffff;
+        display: block;
+        text-shadow:
+          0 0 24px rgba(0,0,0,0.98),
+          0 0 48px rgba(0,0,0,0.90),
+          0 2px  6px rgba(0,0,0,0.99);
+      ">Art</span>
+      <span style="
+        font-family: 'Noto Serif SC', serif;
+        font-size: clamp(2rem, 6vw, 4.5rem);
+        line-height: 1;
+        letter-spacing: normal;
+        font-weight: 400;
+        color: #e03c31;
+        display: block;
+        text-shadow:
+          0 0 24px rgba(0,0,0,0.98),
+          0 0 48px rgba(0,0,0,0.90),
+          0 2px  6px rgba(0,0,0,0.99);
+      ">艺术</span>
+    </div>
+  </section>
 
-        <div class="bg-surface-container-lowest border border-on-background p-6 shadow-sm">
-          <p class="font-headline-md text-on-background text-2xl mb-4">Art direction anchored in storytelling and intentional contrast.</p>
-          <p class="font-label-mono text-xs leading-relaxed">This page collects editorial art, installation stills, and visual identity work. The red palette appears as an accent, the typography is structured, and the composition is designed to feel both polished and raw.</p>
-        </div>
-      </div>
+  <!-- ═══════════════════════════════════════════════
+       PAGE CONTENT — scrolls over the fixed background.
+       Each block has its own solid background so it reads
+       cleanly above the drifting images.
+  ════════════════════════════════════════════════ -->
+  <main class="relative w-full pb-16 pt-8" style="z-index: 10;">
 
-      <div class="md:col-span-5 flex flex-col gap-6">
-        <div class="bg-primary p-6 text-white border border-primary">
-          <div class="font-label-caps text-[13px] uppercase mb-3">Creative Philosophy</div>
-          <p class="font-label-mono text-xs leading-relaxed">Art is the space between concept and craft, where tension and clarity act as equals. It should never feel overworked.</p>
+    <!-- Component 1: page header (matches the video page's hero content card) -->
+    <section class="reveal-item bg-surface-container-low mb-8 border border-on-background/20 shadow-[0_8px_32px_rgba(0,0,0,0.28)]">
+      <div class="grid gap-8 md:grid-cols-12 items-start px-4 md:px-8 py-8">
+        <div class="md:col-span-7 flex flex-col gap-6">
+          <div class="border-b-2 border-on-background pb-4">
+            <span class="font-display-lg text-on-background text-headline-lg-mobile md:text-display-lg mb-2 font-medium">Art</span>
+            <h1 class="font-cjk text-3xl md:text-5xl text-primary leading-none">视觉与概念</h1>
+          </div>
+          <p class="font-label-mono text-xs uppercase tracking-widest text-on-surface-variant">A compact collection of concept work that balances form, narrative, and editorial restraint.</p>
+        </div>
+        <div class="md:col-span-5 flex flex-col justify-center">
+          <div class="bg-surface-container-lowest border border-on-background p-6 shadow-sm">
+            <p class="font-headline-md text-on-background text-2xl mb-4">Art direction anchored in storytelling and intentional contrast.</p>
+            <p class="font-label-mono text-xs leading-relaxed text-on-surface">This page collects editorial art, installation stills, and visual identity work. The red palette appears as an accent, the typography is structured, and the composition is designed to feel both polished and raw.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="mt-8 border-t-2 border-on-background flex flex-col gap-12 px-[5%] pt-8">
+    <!-- Components 2 & 3: collection cards -->
+    <section class="flex flex-col gap-12 px-[5%]">
 
-      <a href="art-sketches.html" class="series-card group flex flex-col md:flex-row border border-on-background bg-surface hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]">
+      <a href="art-sketches.html" class="reveal-item group flex flex-col md:flex-row border border-on-background/30 bg-surface hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.28)]">
         <div class="series-img-wrap w-full md:w-[60%]">
           <img src="assets/art/sketches/SKE-14.jpg" alt="Sketches">
         </div>
@@ -155,7 +266,7 @@
         </div>
       </a>
 
-      <a href="art-composers.html" class="series-card group flex flex-col md:flex-row-reverse border border-on-background bg-surface hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]">
+      <a href="art-composers.html" class="reveal-item group flex flex-col md:flex-row-reverse border border-on-background/30 bg-surface hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.28)]">
         <div class="series-img-wrap w-full md:w-[60%]">
           <img src="assets/art/composers/dvorak.png" alt="Composers">
         </div>
@@ -176,7 +287,7 @@
     </section>
   </main>
 
-  <footer class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest">
+  <footer class="relative bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest" style="z-index: 10;">
     <div class="flex items-center gap-4 mb-4 md:mb-0">
       <div class="font-headline-md text-base text-surface-container-lowest italic">STUDIO JUS10</div>
       <div class="font-cjk text-primary border-l border-surface-variant pl-4">工作室</div>
@@ -201,17 +312,123 @@
   </footer>
 
   <script src="assets/js/main.js"></script>
+
   <script>
+    /* ─────────────────────────────────────────────────────────────
+       Drifting image stream — top-left → bottom-right
+       Each .float-el has data-vx (rightward) and data-vy (downward).
+       Both are positive so all images travel the same diagonal.
+       Speed differences create a parallax depth illusion.
+       On exit (right edge OR bottom edge), re-enter from the
+       top-left quadrant at a fresh random position.
+    ───────────────────────────────────────────────────────────── */
+    (function () {
+      var bg = document.getElementById('art-bg');
+      if (!bg) return;
+
+      var floatEls = Array.from(bg.querySelectorAll('.float-el'));
+      var n        = floatEls.length;
+
+      var states = floatEls.map(function (el) {
+        return {
+          el: el,
+          vx: parseFloat(el.getAttribute('data-vx')) || 0.3,
+          vy: parseFloat(el.getAttribute('data-vy')) || 0.5,
+          x:  0,
+          y:  0
+        };
+      });
+
+      var inited = false;
+
+      function init () {
+        if (inited) return;
+        inited = true;
+
+        var W = window.innerWidth;
+        var H = window.innerHeight;
+
+        /* Spread images across the full viewport so the screen
+           looks populated from the very first frame. */
+        states.forEach(function (s, i) {
+          s.x = Math.random() * W;
+          s.y = Math.random() * H;
+          s.el.style.transform =
+            'translate3d(' + s.x.toFixed(1) + 'px,' + s.y.toFixed(1) + 'px,0)';
+        });
+
+        /* Stagger image fade-in */
+        bg.querySelectorAll('.float-img').forEach(function (img, i) {
+          setTimeout(function () { img.style.opacity = '1'; }, 80 + 160 * i);
+        });
+
+        /* "Art" heading delayed entry */
+        setTimeout(function () {
+          var ct = document.getElementById('hero-center-text');
+          if (ct) { ct.style.opacity = '1'; ct.style.transform = 'translateY(0)'; }
+        }, 250);
+      }
+
+      /* Wait for images to load so offsetHeight reflects natural size */
+      var total  = 0;
+      var loaded = 0;
+      bg.querySelectorAll('.float-img').forEach(function (img) {
+        total++;
+        function onDone () { if (++loaded >= total) init(); }
+        if (img.complete && img.naturalHeight) { onDone(); }
+        else {
+          img.addEventListener('load',  onDone);
+          img.addEventListener('error', onDone);
+        }
+      });
+      setTimeout(function () { if (!inited) init(); }, 600);
+
+      /* ── Animation loop ── */
+      function tick () {
+        if (!inited) { requestAnimationFrame(tick); return; }
+
+        var W = window.innerWidth;
+        var H = window.innerHeight;
+
+        states.forEach(function (s) {
+          s.x += s.vx;
+          s.y += s.vy;
+
+          var elW = s.el.offsetWidth  || 120;
+          var elH = s.el.offsetHeight || 120;
+
+          /* When the image's left edge passes the right side of the
+             screen, OR its top edge passes the bottom, re-enter from
+             a random position in the top-left quadrant. */
+          if (s.x > W + elW || s.y > H + elH) {
+            /* Re-enter: left half of width, top half of height */
+            s.x = Math.random() * W * 0.5 - elW;
+            s.y = Math.random() * H * 0.5 - elH;
+          }
+
+          s.el.style.transform =
+            'translate3d(' + s.x.toFixed(1) + 'px,' + s.y.toFixed(1) + 'px,0)';
+        });
+
+        requestAnimationFrame(tick);
+      }
+
+      tick();
+    })();
+
+    /* ─────────────────────────────────────────────────────────────
+       Scroll-reveal for below-hero components
+    ───────────────────────────────────────────────────────────── */
     (function () {
       if (!window.IntersectionObserver) return;
-      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var cards = document.querySelectorAll('.series-card');
-      if (!cards.length || reduced) return;
-      cards.forEach(function (card) {
-        card.style.opacity    = '0';
-        card.style.transform  = 'translateY(60px)';
-        card.style.transition = 'opacity 1s ease, transform 1s cubic-bezier(0.2, 0, 0.2, 1)';
-      });
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.reveal-item').forEach(function (el) {
+          el.style.opacity   = '1';
+          el.style.transform = 'none';
+        });
+        return;
+      }
+
       var obs = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
@@ -221,7 +438,31 @@
           }
         });
       }, { threshold: 0.08 });
-      cards.forEach(function (card) { obs.observe(card); });
+
+      document.querySelectorAll('.reveal-item').forEach(function (el) {
+        obs.observe(el);
+      });
+    })();
+
+    /* ── Background darkening on scroll ── */
+    (function () {
+      var overlay = document.getElementById('art-dark-overlay');
+      if (!overlay) return;
+      var ticking = false;
+      function update() {
+        var s  = window.scrollY || window.pageYOffset;
+        var vh = window.innerHeight;
+        // Darken from 60vh scroll to 140vh scroll, reaching opacity 0.62
+        var p = Math.max(0, Math.min(1, (s - vh * 0.6) / (vh * 0.8)));
+        overlay.style.opacity = (p * 0.62).toFixed(3);
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          requestAnimationFrame(function () { update(); ticking = false; });
+          ticking = true;
+        }
+      }, { passive: true });
+      update();
     })();
   </script>
 </body>

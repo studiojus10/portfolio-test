@@ -204,11 +204,19 @@
       var person = document.getElementById('hero-person');
       var title  = document.getElementById('hero-title');
 
+      // Extend hero behind nav so background fills to top when nav is hidden
+      var navEl  = document.querySelector('nav');
+      var navH   = navEl ? navEl.offsetHeight : 0;
+      if (hero && navH > 0) {
+        hero.style.marginTop = '-' + navH + 'px';
+        hero.style.height    = 'calc(100vh + ' + navH + 'px)';
+      }
+
       function update() {
         if (!hero) return;
         var scrollY = window.scrollY || window.pageYOffset;
-        var heroH   = hero.offsetHeight;
-        if (scrollY > heroH) return;
+        var heroH   = window.innerHeight; // use viewport height so parallax intensity is unchanged
+        if (scrollY > hero.offsetHeight) return;
 
         var p = scrollY / heroH;
 

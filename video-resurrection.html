@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STUDIO JUS10 - Resurrection</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Noto+Serif+SC:wght@200..900&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary-fixed-variant": "#930006", "on-secondary": "#ffffff", "surface": "#fcf9f8",
+            "outline": "#8f706b", "on-background": "#1c1b1b", "on-tertiary-fixed-variant": "#474742",
+            "error-container": "#ffdad6", "primary-container": "#d9372d", "on-secondary-fixed-variant": "#474747",
+            "on-surface": "#1c1b1b", "inverse-on-surface": "#f3f0ef", "inverse-primary": "#ffb4aa",
+            "secondary": "#5e5e5e", "on-surface-variant": "#5b403c", "surface-bright": "#fcf9f8",
+            "primary": "#e03c31", "surface-container-low": "#f6f3f2", "inverse-surface": "#313030",
+            "secondary-container": "#e2e2e2", "outline-variant": "#e4beb9", "primary-fixed-dim": "#ffb4aa",
+            "on-tertiary-fixed": "#1c1c18", "secondary-fixed": "#e2e2e2", "on-error": "#ffffff",
+            "on-secondary-fixed": "#1b1b1b", "surface-container-highest": "#e5e2e1", "on-primary": "#ffffff",
+            "surface-tint": "#b91e19", "on-tertiary-container": "#fdffdd", "on-tertiary": "#ffffff",
+            "surface-variant": "#e5e2e1", "tertiary": "#5d5c57", "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#e5e2db", "surface-container-high": "#eae7e7", "secondary-fixed-dim": "#c6c6c6",
+            "on-primary-fixed": "#410001", "surface-dim": "#dcd9d9", "tertiary-container": "#76756f",
+            "on-secondary-container": "#646464", "primary-fixed": "#ffdad5", "tertiary-fixed-dim": "#c9c6c0"
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+          spacing: { "element-gap": "32px", "section-gap": "120px", "margin-mobile": "20px", "gutter": "24px", "margin-desktop": "64px" },
+          fontFamily: {
+            "body-lg": ["Hanken Grotesk"], "display-lg": ["Old Standard TT"], "label-mono": ["Space Grotesk"],
+            "label-caps": ["Space Grotesk"], "headline-md": ["Old Standard TT"], "headline-lg": ["Old Standard TT"],
+            "body-md": ["Hanken Grotesk"], "headline-lg-mobile": ["Old Standard TT"], "cjk": ["Noto Serif SC", "serif"]
+          },
+          fontSize: {
+            "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+            "display-lg": ["84px", { lineHeight: "92px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "label-mono": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+            "label-caps": ["12px", { lineHeight: "16px", letterSpacing: "0.1em", fontWeight: "700" }],
+            "headline-md": ["32px", { lineHeight: "40px", fontWeight: "500" }],
+            "headline-lg": ["48px", { lineHeight: "56px", fontWeight: "600" }],
+            "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+            "headline-lg-mobile": ["32px", { lineHeight: "38px", fontWeight: "600" }],
+            "xs": "14px"
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>(function(){var t=localStorage.getItem('co-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
+
+  <style>
+    .video-embed-wrapper { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; }
+    .video-embed-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+  </style>
+</head>
+<body class="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white">
+
+  <div id="nav-root"></div>
+  <script src="assets/js/nav.js"></script>
+
+  <main class="max-w-4xl mx-auto px-4 md:px-8 pt-28 pb-24">
+
+    <a href="video.html" class="inline-flex items-center gap-2 font-label-mono text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors mb-10">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Video
+    </a>
+
+    <div class="border-b-2 border-on-background pb-6 mb-8">
+      <h1 class="font-display-lg text-headline-lg-mobile md:text-headline-lg font-medium italic mb-2">Resurrection</h1>
+      <p class="font-cjk text-xl text-primary">复活</p>
+    </div>
+
+    <div class="video-embed-wrapper rounded-xl overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.18)] mb-10">
+      <iframe
+        src="https://www.youtube.com/embed/sSHEjqLf42A"
+        title="Resurrection"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <p class="font-body-md text-body-md text-on-surface leading-relaxed mb-14">
+      An experimental short built around transformation and return — form dissolving and reassembling through image and sound rather than story. A visual set to a poem.
+    </p>
+
+    <div>
+      <h2 class="inline-block bg-primary text-white font-label-mono text-xs uppercase tracking-widest px-4 py-2 mb-5">More from Studio Jus10</h2>
+      <ul class="flex flex-col divide-y divide-outline-variant">
+        <li>
+          <a href="https://www.youtube.com/@studiojus10" target="_blank" rel="noopener" class="flex items-center justify-between py-4 font-label-mono text-xs uppercase tracking-widest text-on-background hover:text-primary transition-colors group">
+            <span class="flex items-center gap-2">
+              YouTube Channel
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 text-primary opacity-80 group-hover:opacity-100 transition-opacity" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 0 0 .5 6.19C0 8.04 0 12 0 12s0 3.96.5 5.81a3.02 3.02 0 0 0 2.12 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14C24 15.96 24 12 24 12s0-3.96-.5-5.81zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>
+            </span>
+            <svg class="opacity-40 group-hover:opacity-100 transition-opacity" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M11 3H5M11 3v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </li>
+        <li><a href="video-dublin.html" class="flex items-center justify-between py-4 font-label-mono text-xs uppercase tracking-widest text-on-background hover:text-primary transition-colors"><span>A Proposal in Dublin, Ireland</span><span class="font-cjk text-xs text-primary opacity-70">都柏林求婚</span></a></li>
+        <li><a href="video-winter.html" class="flex items-center justify-between py-4 font-label-mono text-xs uppercase tracking-widest text-on-background hover:text-primary transition-colors"><span>Winter Scene</span><span class="font-cjk text-xs text-primary opacity-70">冬景</span></a></li>
+        <li><a href="video-collage.html" class="flex items-center justify-between py-4 font-label-mono text-xs uppercase tracking-widest text-on-background hover:text-primary transition-colors"><span>A Collage of Found Footage</span><span class="font-cjk text-xs text-primary opacity-70">发现素材拼贴</span></a></li>
+        <li><a href="video-portrait.html" class="flex items-center justify-between py-4 font-label-mono text-xs uppercase tracking-widest text-on-background hover:text-primary transition-colors"><span>Portrait of a Musician</span><span class="font-cjk text-xs text-primary opacity-70">音乐家肖像</span></a></li>
+        <li><a href="video-single-shot.html" class="flex items-center justify-between py-4 font-label-mono text-xs uppercase tracking-widest text-on-background hover:text-primary transition-colors"><span>A Study of Light in One Shot</span><span class="font-cjk text-xs text-primary opacity-70">一镜光影研究</span></a></li>
+        <li><a href="video-resurrection.html" class="flex items-center justify-between py-4 font-label-mono text-xs uppercase tracking-widest text-primary transition-colors"><span>Resurrection</span><span class="font-cjk text-xs text-primary opacity-70">复活</span></a></li>
+        <li><a href="video-murder.html" class="flex items-center justify-between py-4 font-label-mono text-xs uppercase tracking-widest text-on-background hover:text-primary transition-colors"><span>Murder, He Wrote</span><span class="font-cjk text-xs text-primary opacity-70">他所写的谋杀</span></a></li>
+        <li><a href="video-decadance.html" class="flex items-center justify-between py-4 font-label-mono text-xs uppercase tracking-widest text-on-background hover:text-primary transition-colors"><span>Decadance</span><span class="font-cjk text-xs text-primary opacity-70">颓废之舞</span></a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest">
+    <div class="flex items-center gap-4 mb-4 md:mb-0">
+      <div class="font-headline-md text-base text-surface-container-lowest italic">STUDIO JUS10</div>
+      <div class="font-cjk text-primary border-l border-surface-variant pl-4">工作室</div>
+    </div>
+    <div class="flex flex-wrap justify-center gap-6 mb-4 md:mb-0">
+      <a href="https://instagram.com" class="hover:text-primary transition-colors flex items-center gap-1"><span>Instagram</span><span class="font-cjk text-primary opacity-70">照片</span></a>
+      <a href="https://linkedin.com" class="hover:text-primary transition-colors flex items-center gap-1"><span>LinkedIn</span><span class="font-cjk text-primary opacity-70">领英</span></a>
+      <a href="mailto:studiojus10@gmail.com" class="hover:text-primary transition-colors flex items-center gap-1"><span>Email</span><span class="font-cjk text-primary opacity-70">邮件</span></a>
+    </div>
+    <div><span>© 2025 STUDIO JUS10</span></div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

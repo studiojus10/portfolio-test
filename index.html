@@ -114,8 +114,12 @@
   <div id="nav-root"></div>
   <script src="assets/js/nav.js"></script>
 
-  <!-- ── Carousel ────────────────────────────────────────────────────────── -->
-  <section class="w-full overflow-hidden border-b border-on-background bg-surface-container-low pt-4 pb-4 relative group">
+  <!-- ── Carousel + Header Row ────────────────────────────────────────────── -->
+  <div id="home-hero-wrapper" style="display: flex; flex-direction: column;">
+  <div class="flex border-b border-on-background" style="flex: 1; min-height: 0;">
+
+  <!-- Carousel: 60% -->
+  <section class="overflow-hidden bg-surface-container-low relative group border-on-background" style="width: 100%; height: 100%;">
     <button id="carousel-prev" aria-label="Previous" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-surface-container-lowest border border-on-background w-10 h-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-primary hover:text-white hover:border-primary">
       <span class="material-symbols-outlined">chevron_left</span>
     </button>
@@ -123,13 +127,13 @@
       <span class="material-symbols-outlined">chevron_right</span>
     </button>
 
-    <div id="carousel-container" class="overflow-hidden w-full px-4">
-      <div id="carousel-track" class="flex gap-8">
+    <div id="carousel-container" class="overflow-hidden w-full h-full px-4 py-3" style="transform: translateX(100%); opacity: 0;">
+      <div id="carousel-track" class="flex gap-8 h-full">
 
-        <!-- Twelve Views of Pikes Peak -->
-        <a href="photography-colorado-twelve-views.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col">
-          <div class="flex flex-col gap-2 w-full">
-            <div class="grid grid-cols-2 gap-px h-[163px] w-full overflow-hidden grayscale group-hover/card:grayscale-0 transition-all duration-500">
+        <!-- 1: Twelve Views of Pikes Peak — Photography -->
+        <a href="photography-colorado-twelve-views.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <div class="grid grid-cols-2 gap-px flex-1 min-h-0 w-full overflow-hidden grayscale group-hover/card:grayscale-0 transition-all duration-500">
               <img src="assets/images/Colorado/Twelve Views of Pikes Peak/TYPOLOGY-01.jpg" alt="Twelve Views of Pikes Peak" class="w-full h-full object-cover">
               <img src="assets/images/Colorado/Twelve Views of Pikes Peak/TYPOLOGY-04.jpg" alt="" class="w-full h-full object-cover">
               <img src="assets/images/Colorado/Twelve Views of Pikes Peak/TYPOLOGY-08.jpg" alt="" class="w-full h-full object-cover">
@@ -142,10 +146,10 @@
           </div>
         </a>
 
-        <!-- Memory -->
-        <a href="photography-film-memory.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col">
-          <div class="flex flex-col gap-2 w-full">
-            <img src="assets/images/Film/Memory/MEMORY-01.jpg" alt="Memory" class="h-[163px] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
+        <!-- 2: Memory — Photography -->
+        <a href="photography-film-memory.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <img src="assets/images/Film/Memory/MEMORY-01.jpg" alt="Memory" class="flex-1 min-h-0 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
             <div class="flex flex-col border-t border-on-background/10 pt-2">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Memory</span>
               <span class="font-cjk text-[13px] text-primary font-medium">记忆</span>
@@ -153,10 +157,32 @@
           </div>
         </a>
 
-        <!-- Home -->
-        <a href="photography-film-home.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col">
-          <div class="flex flex-col gap-2 w-full">
-            <div class="grid grid-cols-2 gap-px h-[163px] w-full overflow-hidden grayscale group-hover/card:grayscale-0 transition-all duration-500">
+        <!-- 3: Portrait of a Musician — Video (still frame) -->
+        <a href="video-portrait.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <video class="carousel-still flex-1 min-h-0 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" muted playsinline preload="metadata" style="display:block;"></video>
+            <div class="flex flex-col border-t border-on-background/10 pt-2">
+              <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Portrait of a Musician</span>
+              <span class="font-cjk text-[13px] text-primary font-medium">音乐家肖像</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 4: Sketches — Art -->
+        <a href="art-sketches.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <img src="assets/art/sketches/SKE-3.jpg" alt="Sketches" class="flex-1 min-h-0 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
+            <div class="flex flex-col border-t border-on-background/10 pt-2">
+              <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Sketches</span>
+              <span class="font-cjk text-[13px] text-primary font-medium">素描</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 5: Home — Photography -->
+        <a href="photography-film-home.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <div class="grid grid-cols-2 gap-px flex-1 min-h-0 w-full overflow-hidden grayscale group-hover/card:grayscale-0 transition-all duration-500">
               <img src="assets/images/Film/Home/FILM_MISC-01.jpg" alt="Home" class="w-full h-full object-cover">
               <img src="assets/images/Film/Home/FILM_MISC-17.jpg" alt="" class="w-full h-full object-cover">
             </div>
@@ -167,10 +193,21 @@
           </div>
         </a>
 
-        <!-- Butterfly Sanctuary -->
-        <a href="photography-nature-sanctuary.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col">
-          <div class="flex flex-col gap-2 w-full">
-            <div class="grid grid-cols-2 gap-px h-[163px] w-full overflow-hidden grayscale group-hover/card:grayscale-0 transition-all duration-500">
+        <!-- 6: Winter Scene — Video (still frame) -->
+        <a href="video-winter.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <video class="carousel-still flex-1 min-h-0 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" muted playsinline preload="metadata" style="display:block;"></video>
+            <div class="flex flex-col border-t border-on-background/10 pt-2">
+              <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Winter Scene</span>
+              <span class="font-cjk text-[13px] text-primary font-medium">冬景</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 7: Butterfly Sanctuary — Photography -->
+        <a href="photography-nature-sanctuary.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <div class="grid grid-cols-2 gap-px flex-1 min-h-0 w-full overflow-hidden grayscale group-hover/card:grayscale-0 transition-all duration-500">
               <img src="assets/images/Nature/Butterflies/Sanctuary/BUTTERFLIES-01.jpg" alt="Butterfly Sanctuary" class="w-full h-full object-cover">
               <img src="assets/images/Nature/Butterflies/Sanctuary/BUTTERFLIES-03.jpg" alt="" class="w-full h-full object-cover">
               <img src="assets/images/Nature/Butterflies/Sanctuary/BUTTERFLIES-06.jpg" alt="" class="w-full h-full object-cover">
@@ -183,10 +220,43 @@
           </div>
         </a>
 
+        <!-- 8: Murder, He Wrote — Video (still frame) -->
+        <a href="video-murder.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <video class="carousel-still flex-1 min-h-0 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" muted playsinline preload="metadata" style="display:block;"></video>
+            <div class="flex flex-col border-t border-on-background/10 pt-2">
+              <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Murder, He Wrote</span>
+              <span class="font-cjk text-[13px] text-primary font-medium">他所写的谋杀</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 9: Film — Photography -->
+        <a href="photography-film.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <img src="assets/images/Film/Europe/FILM_MISC-03.jpg" alt="Film" class="flex-1 min-h-0 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
+            <div class="flex flex-col border-t border-on-background/10 pt-2">
+              <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Film</span>
+              <span class="font-cjk text-[13px] text-primary font-medium">胶片</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 10: Composers — Art -->
+        <a href="art-composers.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <img src="assets/art/composers/ravel.jpg" alt="Composers" class="flex-1 min-h-0 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
+            <div class="flex flex-col border-t border-on-background/10 pt-2">
+              <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Composers</span>
+              <span class="font-cjk text-[13px] text-primary font-medium">作曲家</span>
+            </div>
+          </div>
+        </a>
+
         <!-- Duplicates for seamless infinite loop -->
-        <a href="photography-colorado-twelve-views.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col" aria-hidden="true" tabindex="-1">
-          <div class="flex flex-col gap-2 w-full">
-            <div class="grid grid-cols-2 gap-px h-[163px] w-full overflow-hidden grayscale group-hover/card:grayscale-0 transition-all duration-500">
+        <a href="photography-colorado-twelve-views.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <div class="grid grid-cols-2 gap-px flex-1 min-h-0 w-full overflow-hidden grayscale group-hover/card:grayscale-0 transition-all duration-500">
               <img src="assets/images/Colorado/Twelve Views of Pikes Peak/TYPOLOGY-01.jpg" alt="" class="w-full h-full object-cover">
               <img src="assets/images/Colorado/Twelve Views of Pikes Peak/TYPOLOGY-04.jpg" alt="" class="w-full h-full object-cover">
               <img src="assets/images/Colorado/Twelve Views of Pikes Peak/TYPOLOGY-08.jpg" alt="" class="w-full h-full object-cover">
@@ -198,20 +268,36 @@
             </div>
           </div>
         </a>
-
-        <a href="photography-film-memory.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col" aria-hidden="true" tabindex="-1">
-          <div class="flex flex-col gap-2 w-full">
-            <img src="assets/images/Film/Memory/MEMORY-01.jpg" alt="" class="h-[163px] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
+        <a href="photography-film-memory.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <img src="assets/images/Film/Memory/MEMORY-01.jpg" alt="" class="flex-1 min-h-0 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
             <div class="flex flex-col border-t border-on-background/10 pt-2">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Memory</span>
               <span class="font-cjk text-[13px] text-primary font-medium">记忆</span>
             </div>
           </div>
         </a>
-
-        <a href="photography-film-home.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col" aria-hidden="true" tabindex="-1">
-          <div class="flex flex-col gap-2 w-full">
-            <div class="grid grid-cols-2 gap-px h-[163px] w-full overflow-hidden grayscale group-hover/card:grayscale-0 transition-all duration-500">
+        <a href="video-portrait.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <video class="carousel-still flex-1 min-h-0 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" muted playsinline preload="metadata" style="display:block;"></video>
+            <div class="flex flex-col border-t border-on-background/10 pt-2">
+              <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Portrait of a Musician</span>
+              <span class="font-cjk text-[13px] text-primary font-medium">音乐家肖像</span>
+            </div>
+          </div>
+        </a>
+        <a href="art-sketches.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <img src="assets/art/sketches/SKE-3.jpg" alt="" class="flex-1 min-h-0 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
+            <div class="flex flex-col border-t border-on-background/10 pt-2">
+              <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Sketches</span>
+              <span class="font-cjk text-[13px] text-primary font-medium">素描</span>
+            </div>
+          </div>
+        </a>
+        <a href="photography-film-home.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <div class="grid grid-cols-2 gap-px flex-1 min-h-0 w-full overflow-hidden grayscale group-hover/card:grayscale-0 transition-all duration-500">
               <img src="assets/images/Film/Home/FILM_MISC-01.jpg" alt="" class="w-full h-full object-cover">
               <img src="assets/images/Film/Home/FILM_MISC-17.jpg" alt="" class="w-full h-full object-cover">
             </div>
@@ -221,10 +307,18 @@
             </div>
           </div>
         </a>
-
-        <a href="photography-nature-sanctuary.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col" aria-hidden="true" tabindex="-1">
-          <div class="flex flex-col gap-2 w-full">
-            <div class="grid grid-cols-2 gap-px h-[163px] w-full overflow-hidden grayscale group-hover/card:grayscale-0 transition-all duration-500">
+        <a href="video-winter.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <video class="carousel-still flex-1 min-h-0 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" muted playsinline preload="metadata" style="display:block;"></video>
+            <div class="flex flex-col border-t border-on-background/10 pt-2">
+              <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Winter Scene</span>
+              <span class="font-cjk text-[13px] text-primary font-medium">冬景</span>
+            </div>
+          </div>
+        </a>
+        <a href="photography-nature-sanctuary.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <div class="grid grid-cols-2 gap-px flex-1 min-h-0 w-full overflow-hidden grayscale group-hover/card:grayscale-0 transition-all duration-500">
               <img src="assets/images/Nature/Butterflies/Sanctuary/BUTTERFLIES-01.jpg" alt="" class="w-full h-full object-cover">
               <img src="assets/images/Nature/Butterflies/Sanctuary/BUTTERFLIES-03.jpg" alt="" class="w-full h-full object-cover">
               <img src="assets/images/Nature/Butterflies/Sanctuary/BUTTERFLIES-06.jpg" alt="" class="w-full h-full object-cover">
@@ -236,30 +330,59 @@
             </div>
           </div>
         </a>
+        <a href="video-murder.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <video class="carousel-still flex-1 min-h-0 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" muted playsinline preload="metadata" style="display:block;"></video>
+            <div class="flex flex-col border-t border-on-background/10 pt-2">
+              <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Murder, He Wrote</span>
+              <span class="font-cjk text-[13px] text-primary font-medium">他所写的谋杀</span>
+            </div>
+          </div>
+        </a>
+        <a href="photography-film.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <img src="assets/images/Film/Europe/FILM_MISC-03.jpg" alt="" class="flex-1 min-h-0 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
+            <div class="flex flex-col border-t border-on-background/10 pt-2">
+              <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Film</span>
+              <span class="font-cjk text-[13px] text-primary font-medium">胶片</span>
+            </div>
+          </div>
+        </a>
+        <a href="art-composers.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
+          <div class="flex flex-col gap-2 w-full h-full">
+            <img src="assets/art/composers/ravel.jpg" alt="" class="flex-1 min-h-0 w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
+            <div class="flex flex-col border-t border-on-background/10 pt-2">
+              <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Composers</span>
+              <span class="font-cjk text-[13px] text-primary font-medium">作曲家</span>
+            </div>
+          </div>
+        </a>
 
       </div>
     </div>
   </section>
 
+  </div><!-- end carousel row -->
+
+  <div id="home-hero-header" class="flex flex-col justify-center px-8 py-6 bg-surface-container-low w-full border-b border-on-background">
+    <h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-background leading-none flex flex-col">
+      <span>Justin Hughes</span>
+      <span class="font-cjk text-primary text-3xl md:text-5xl mb-2 font-medium">艺术叙事，重塑新生</span>
+    </h1>
+    <div class="text-left font-label-mono text-label-mono uppercase max-w-sm flex flex-col gap-2 mt-4">
+      <div class="flex gap-4 items-center">
+        <span class="font-cjk text-primary">数字媒体与传播</span>
+      </div>
+      <p class="border-b border-on-background pb-1 inline-block">Digital media and communications professional.</p>
+    </div>
+  </div>
+  </div><!-- end home-hero-wrapper -->
+
   <!-- ── Main Content ─────────────────────────────────────────────────────── -->
   <main class="w-full px-4 md:px-8 py-4 md:py-8">
 
-    <!-- Hero / Photography Grid -->
+    <!-- Photography / Featured -->
     <section id="photography" class="flex flex-col relative mt-4 mb-2">
-
-      <!-- Full-width header row -->
-      <div class="mb-4 border-b-2 border-on-background pb-4 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-        <h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-background leading-none flex flex-col">
-          <span>Justin Hughes</span>
-          <span class="font-cjk text-primary text-3xl md:text-5xl mb-2 font-medium">艺术叙事，重塑新生</span>
-        </h1>
-        <div class="text-left md:text-right font-label-mono text-label-mono uppercase max-w-sm flex flex-col gap-2">
-          <div class="flex justify-between md:justify-end gap-4 items-center">
-            <span class="font-cjk text-primary">数字媒体与传播</span>
-          </div>
-          <p class="border-b border-on-background pb-1 inline-block">Digital media and communications professional.</p>
-        </div>
-      </div>
 
       <!-- Two-column content area -->
       <div class="flex flex-col md:flex-row md:gap-4 items-start">
@@ -270,36 +393,35 @@
           <span class="font-label-caps text-white writing-vertical tracking-widest mb-2">FEATURED</span>
           <span class="font-cjk text-white text-xs writing-vertical">特写</span>
         </div>
-        <div class="border border-on-background bg-surface-container-lowest p-2 shadow-xl">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmhrYgFuaVVrePKACDB-gR5F82Zu1T3j5DHRMAr1bsp0tdzyvBvwjTvQGG3TDQXqO8nzKNNnXQmbyLL0V8rSzS20GPQ_6Or-ou7EzYNQYsmR9tSoMpZ7u2uzI5hCafuZOFz63Uhuph_gUwAPhwrAQDcWahKWXQzpFomYcnav-xwW3PoWxtvNkJUgQa6OYhNljpmwObzo30xQom8YlsMTxaNSLjcmF1N5Gt9RlPAK0qEgm9_zN6sg3FUzyHVNiCM8amiZzDpV53lxo" alt="Eiffel Tower" class="w-full h-auto object-cover">
-          <div class="flex justify-between items-end mt-2">
-            <div class="flex flex-col">
-              <h2 class="font-headline-md text-xl uppercase italic leading-none">Paris Series</h2>
-              <span class="font-cjk text-sm text-on-surface-variant">巴黎系列</span>
-            </div>
-            <div class="text-right">
-              <span class="font-label-mono border border-on-background px-2 py-0.5 text-xs block mb-1">2023</span>
-              <span class="font-label-caps text-[13px]">FRANCE</span>
-            </div>
-          </div>
-        </div>
-        <div class="bg-surface-container-lowest p-4 border border-on-background mt-4">
+        <div class="bg-surface-container-lowest p-4 border border-on-background mb-4">
           <div class="font-label-caps text-label-caps text-on-background mb-2 flex justify-between items-center border-b border-on-surface-variant pb-2">
             <span>Selected Works</span>
             <span class="font-cjk">精选作品</span>
           </div>
           <p class="font-label-mono text-xs text-on-surface-variant">Explore my work in photography, video, audio, design, and more. Design is not a skill, but rather the sensory ability to capture the essence of things and insight.</p>
         </div>
-        <div class="relative overflow-hidden group border border-on-background p-2 bg-surface-container-lowest mt-4">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt-AZWbqnuJcmQuhsJBQCG17MZotqvH0cO3MXx3wkcZEm0vr845oX7mDnc45IgS0BDuxL6ExJoXfZQSqOFhFWo57xiR-XYxe2aeNFI6rFUCkhdN7tDULl9mWZ57oPIDhkQ6Yh8ZU_Y-Q8Nfv03jw6B4PH-MWvyVXjczSsMQoQ5CyKB86qeNYZI4haCQ8v94s7gzaChiSMLEiqLxaiBtMsCkNy6JaePWZYKZKAr4tsoHxL1Gtw5L6PbtER_xzH2mbkio2P3jUw9gZA" alt="Portrait of a young woman outdoors" class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700">
+        <a href="photography-film.html" class="block border border-on-background bg-surface-container-lowest p-2 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+          <img src="assets/images/Film/Europe/FILM_MISC-03.jpg" alt="Film" class="w-full h-auto object-cover">
+          <div class="flex justify-between items-end mt-2">
+            <div class="flex flex-col">
+              <h2 class="font-headline-md text-xl uppercase italic leading-none">Film</h2>
+              <span class="font-cjk text-sm text-on-surface-variant">胶片</span>
+            </div>
+            <div class="text-right">
+              <span class="font-label-caps text-[13px]">Photography</span>
+            </div>
+          </div>
+        </a>
+        <a href="video-portrait.html" class="relative overflow-hidden group border border-on-background p-2 bg-surface-container-lowest mt-4 block">
+          <video class="card-thumb-video w-full h-auto object-cover" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" muted loop playsinline preload="metadata" style="display:block;"></video>
           <div class="mt-2 font-label-mono text-[13px] uppercase flex justify-between items-center border-t border-on-background pt-2">
             <div class="flex flex-col">
-              <span class="font-bold">Portraiture</span>
-              <span class="font-cjk text-primary">个人肖像</span>
+              <span class="font-bold">Portrait of a Musician</span>
+              <span class="font-cjk text-primary">音乐家肖像</span>
             </div>
-            <span class="border border-on-background px-1">NO. 001</span>
+            <span class="border border-on-background px-1">Video</span>
           </div>
-        </div>
+        </a>
       </div>
 
       <!-- Right column: video + lifestyle -->
@@ -317,16 +439,16 @@
           </a>
         </div>
 
-        <div class="relative overflow-hidden group border border-on-background p-2 bg-surface-container-lowest">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEMv4jadpyefeEikJoTypxFpkiJ2Jwkh0Y-aoxajupNmrBctoTEaC4yLLLyuGuN0qsS2xDgJcGwEjZjzTCCLB2fz7zfL_jRfUH_7g-HUrLzS-GJEod6hOUmLqLSwncD4vCP4NjrB31b4Rb29wOeLpTBu__EGqymA-K8dciIlcnnsO9BhjQfaZ99jLFGHFMppy44-W6wRnDlLs5YjMMPFatK0AgVwiUsppPkyTc-FQQQs2WyZaUEH9VMRDBeZethfp4q75MO2SukAw" alt="Dog walking in a park" class="w-full h-auto object-cover">
+        <a href="art-sketches.html" class="relative overflow-hidden group border border-on-background p-2 bg-surface-container-lowest block hover:shadow-xl transition-shadow duration-300">
+          <img src="assets/art/sketches/SKE-3.jpg" alt="Sketches" class="w-full h-auto object-cover">
           <div class="mt-2 font-label-mono text-[13px] uppercase flex justify-between items-center border-t border-on-background pt-2">
             <div class="flex flex-col">
-              <span class="font-bold">Lifestyle</span>
-              <span class="font-cjk text-primary">生活方式</span>
+              <span class="font-bold">Sketches</span>
+              <span class="font-cjk text-primary">素描</span>
             </div>
-            <span class="border border-on-background px-1">NO. 002</span>
+            <span class="border border-on-background px-1">Art</span>
           </div>
-        </div>
+        </a>
         <div class="bg-surface-container-low p-4 border border-on-background/10">
           <div class="mb-3">
             <span class="material-symbols-outlined text-on-background text-lg">format_quote</span>
@@ -499,5 +621,48 @@
   </footer>
 
   <script src="assets/js/main.js"></script>
+  <script>
+    (function () {
+      var nav     = document.querySelector('nav');
+      var wrapper = document.getElementById('home-hero-wrapper');
+      var header  = document.getElementById('home-hero-header');
+      if (wrapper) {
+        var navH   = nav ? nav.offsetHeight : 0;
+        var totalH = window.innerHeight - navH;
+        wrapper.style.height = totalH + 'px';
+        if (header) {
+          var naturalH = header.offsetHeight;
+          header.style.height    = Math.round(naturalH * 1.1) + 'px';
+          header.style.flexShrink = '0';
+        }
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      // Seek carousel video stills to a fixed frame — no play
+      document.querySelectorAll('.carousel-still').forEach(function (vid) {
+        vid.addEventListener('loadedmetadata', function () { vid.currentTime = 3; });
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      document.querySelectorAll('.card-thumb-video').forEach(function (vid) {
+        vid.addEventListener('loadedmetadata', function () {
+          vid.currentTime = 5;
+        });
+        var card = vid.closest('a') || vid.parentElement;
+        card.addEventListener('mouseenter', function () {
+          vid.currentTime = 5;
+          vid.play();
+        });
+        card.addEventListener('mouseleave', function () {
+          vid.pause();
+          vid.currentTime = 5;
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
