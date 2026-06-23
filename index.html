@@ -106,6 +106,20 @@
   </script>
 
   <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    #room-wall-left span, #room-wall-right span,
+    #right-floor-reflection span, #left-floor-reflection span { font-size: 18px; }
+    #room-wall-back, #room-wall-left, #room-wall-right {
+      box-shadow: 0 4px 10px 2px rgba(0,0,0,0.40);
+    }
+    #room-wall-back  { clip-path: inset(-50px 0px -50px 0px); }
+    #room-wall-left  { clip-path: inset(-50px 0px -50px -50px); }
+    #room-wall-right { clip-path: inset(-50px -50px -50px 0px); }
+    #floor-reflection, #right-floor-reflection, #left-floor-reflection {
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 30%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 30%, transparent 100%);
+    }
+  </style>
 </head>
 <body class="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white">
 
@@ -130,7 +144,7 @@
   <div id="home-hero-section" style="position: relative; height: 100vh; overflow: hidden; perspective: 1000px; perspective-origin: 50% 40%;">
 
   <!-- Back wall: height computed in JS to match far-edge height of side panels -->
-  <div id="room-wall-back" style="position:absolute;left:0;width:100%;z-index:0;overflow:hidden;">
+  <div id="room-wall-back" style="position:absolute;left:0;width:100%;z-index:0;">
     <div style="position:absolute;inset:0;background:rgba(0,0,0,0.10);pointer-events:none;z-index:1;"></div>
     <div id="carousel-container" class="w-full h-full px-[10.5px] py-2" style="opacity:0;overflow:hidden;">
       <div id="carousel-track" class="flex gap-8 h-full">
@@ -342,7 +356,7 @@
   </div><!-- end back wall -->
 
   <!-- Left wall: hinges from left edge, slower speed -->
-  <div id="room-wall-left" style="position:absolute;top:12.5%;left:0;width:48%;height:50%;z-index:1;overflow:hidden;transform-origin:left center;transform:rotateY(72deg);">
+  <div id="room-wall-left" style="position:absolute;top:12.5%;left:-0.3%;width:48%;height:50%;z-index:1;transform-origin:left center;transform:rotateY(72deg);">
     <div id="room-left-container" class="w-full h-full px-4 py-3" style="opacity:0;overflow:hidden;">
       <div id="carousel-track-left" class="flex gap-8 h-full"></div>
     </div>
@@ -350,11 +364,55 @@
   </div>
 
   <!-- Right wall: hinges from right edge, faster speed -->
-  <div id="room-wall-right" style="position:absolute;top:12.5%;right:0;width:48%;height:50%;z-index:1;overflow:hidden;transform-origin:right center;transform:rotateY(-72deg);">
+  <div id="room-wall-right" style="position:absolute;top:12.5%;right:-0.3%;width:48%;height:50%;z-index:1;transform-origin:right center;transform:rotateY(-72deg);">
     <div id="room-right-container" class="w-full h-full px-4 py-3" style="opacity:0;overflow:hidden;">
       <div id="carousel-track-right" class="flex gap-8 h-full"></div>
     </div>
     <div style="position:absolute;inset:0;background:rgba(0,0,0,0.055);pointer-events:none;"></div>
+  </div>
+
+  <!-- Floor reflection: back wall cards reflected below the gallery back panel -->
+  <div id="floor-reflection" aria-hidden="true" style="position:absolute;z-index:0;overflow:hidden;opacity:0;pointer-events:none;">
+    <div id="floor-inner" class="px-[10.5px] py-2" style="position:absolute;top:0;left:0;width:100%;transform:scaleY(-1);overflow:hidden;">
+      <div id="floor-carousel-track" class="flex gap-8 h-full"></div>
+    </div>
+    <!-- Red glass tint + fade-out toward bottom -->
+    <div style="position:absolute;inset:0;pointer-events:none;z-index:2;
+                background:linear-gradient(to bottom,
+                  rgba(200,14,0,0.42) 0%,
+                  rgba(150,7,0,0.60) 40%,
+                  rgba(50,0,0,0.80) 75%,
+                  rgba(8,0,0,0.96) 100%);"></div>
+  </div>
+
+  <!-- Right wall floor reflection: same rotateY(-72deg) angle, hinged at right top so it
+       connects seamlessly to the bottom edge of room-wall-right -->
+  <div id="right-floor-reflection" aria-hidden="true" style="position:absolute;top:62.5%;right:-0.3%;width:48%;z-index:1;overflow:hidden;opacity:0;pointer-events:none;transform-origin:right top;transform:rotateY(-72deg);">
+    <div id="right-floor-inner" class="px-4 py-3" style="position:absolute;top:0;left:0;width:100%;transform:scaleY(-1);overflow:hidden;">
+      <div id="right-floor-track" class="flex gap-8 h-full"></div>
+    </div>
+    <!-- Red glass tint + fade-out toward bottom -->
+    <div style="position:absolute;inset:0;pointer-events:none;z-index:2;
+                background:linear-gradient(to bottom,
+                  rgba(200,14,0,0.42) 0%,
+                  rgba(150,7,0,0.60) 40%,
+                  rgba(50,0,0,0.80) 75%,
+                  rgba(8,0,0,0.96) 100%);"></div>
+  </div>
+
+  <!-- Left wall floor reflection: same rotateY(72deg) angle, hinged at left top so it
+       connects seamlessly to the bottom edge of room-wall-left -->
+  <div id="left-floor-reflection" aria-hidden="true" style="position:absolute;top:62.5%;left:-0.3%;width:48%;z-index:1;overflow:hidden;opacity:0;pointer-events:none;transform-origin:left top;transform:rotateY(72deg);">
+    <div id="left-floor-inner" class="px-4 py-3" style="position:absolute;top:0;left:0;width:100%;transform:scaleY(-1);overflow:hidden;">
+      <div id="left-floor-track" class="flex gap-8 h-full"></div>
+    </div>
+    <!-- Red glass tint + fade-out toward bottom -->
+    <div style="position:absolute;inset:0;pointer-events:none;z-index:2;
+                background:linear-gradient(to bottom,
+                  rgba(200,14,0,0.42) 0%,
+                  rgba(150,7,0,0.60) 40%,
+                  rgba(50,0,0,0.80) 75%,
+                  rgba(8,0,0,0.96) 100%);"></div>
   </div>
 
   <!-- Navigation buttons (above all walls) -->
@@ -700,7 +758,13 @@
       var WALL_W       = 0.48;              // side panel width: 48%
       var SIDE_TOP     = 0.125;             // side panel top: 12.5%
       var SIDE_BOT     = 0.625;             // side panel bottom: 12.5% + 50%
-      var backWall     = document.getElementById('room-wall-back');
+      var backWall        = document.getElementById('room-wall-back');
+      var floorReflect    = document.getElementById('floor-reflection');
+      var floorInner      = document.getElementById('floor-inner');
+      var rightFloor      = document.getElementById('right-floor-reflection');
+      var rightFloorInner = document.getElementById('right-floor-inner');
+      var leftFloor       = document.getElementById('left-floor-reflection');
+      var leftFloorInner  = document.getElementById('left-floor-inner');
 
       function sizeBackWall() {
         if (!backWall) return;
@@ -727,6 +791,31 @@
         backWall.style.width  = (rightPx - leftPx) + 'px';
         backWall.style.top    = Math.round(topScr) + 'px';
         backWall.style.height = Math.round(botScr - topScr) + 'px';
+        var reflGap     = Math.round(vh * 0.025);
+        var sideReflTop = Math.round(vh * 0.625) + reflGap;
+        var cornerY     = Math.round(oPY + (sideReflTop - oPY) * scale);
+        if (floorReflect) {
+          var wallH = Math.round(botScr - topScr);
+          floorReflect.style.left   = leftPx + 'px';
+          floorReflect.style.width  = (rightPx - leftPx) + 'px';
+          floorReflect.style.top    = cornerY + 'px';
+          floorReflect.style.height = Math.round(wallH * 0.55) + 'px';
+          if (floorInner) floorInner.style.height = wallH + 'px';
+        }
+        if (rightFloor || leftFloor) {
+          var panelH = Math.round(vh * 0.50);
+          var reflH  = Math.round(panelH * 0.55);
+          if (rightFloor) {
+            rightFloor.style.top    = sideReflTop + 'px';
+            rightFloor.style.height = reflH + 'px';
+            if (rightFloorInner) rightFloorInner.style.height = panelH + 'px';
+          }
+          if (leftFloor) {
+            leftFloor.style.top    = sideReflTop + 'px';
+            leftFloor.style.height = reflH + 'px';
+            if (leftFloorInner) leftFloorInner.style.height = panelH + 'px';
+          }
+        }
       }
 
       sizeBackWall();
