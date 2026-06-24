@@ -123,6 +123,14 @@
 </head>
 <body class="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white">
 
+  <!-- Page loader: covers everything until window.load fires -->
+  <div id="page-loader" class="bg-surface-container-low" style="position:fixed;inset:0;z-index:999999;transition:opacity 0.5s ease;pointer-events:none;"></div>
+
+  <!-- Fixed full-viewport background photo — fades in after hero scrolls off screen -->
+  <div id="page-bg-photo" aria-hidden="true" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;opacity:0;pointer-events:none;">
+    <img src="assets/home-hero/home-page-background.jpg" alt="" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%) scale(1.15);transform-origin:center bottom;width:auto;height:100%;min-width:100%;object-fit:cover;object-position:center bottom;">
+  </div>
+
   <script>(function(){var t=localStorage.getItem('co-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
 
   <div id="nav-root"></div>
@@ -356,7 +364,7 @@
   </div><!-- end back wall -->
 
   <!-- Left wall: hinges from left edge, slower speed -->
-  <div id="room-wall-left" style="position:absolute;top:12.5%;left:-0.3%;width:48%;height:50%;z-index:1;transform-origin:left center;transform:rotateY(72deg);">
+  <div id="room-wall-left" style="position:absolute;top:12.5%;left:-0.25%;width:48%;height:50%;z-index:1;transform-origin:left center;transform:rotateY(72deg);">
     <div id="room-left-container" class="w-full h-full px-4 py-3" style="opacity:0;overflow:hidden;">
       <div id="carousel-track-left" class="flex gap-8 h-full"></div>
     </div>
@@ -364,7 +372,7 @@
   </div>
 
   <!-- Right wall: hinges from right edge, faster speed -->
-  <div id="room-wall-right" style="position:absolute;top:12.5%;right:-0.3%;width:48%;height:50%;z-index:1;transform-origin:right center;transform:rotateY(-72deg);">
+  <div id="room-wall-right" style="position:absolute;top:12.5%;right:-0.25%;width:48%;height:50%;z-index:1;transform-origin:right center;transform:rotateY(-72deg);">
     <div id="room-right-container" class="w-full h-full px-4 py-3" style="opacity:0;overflow:hidden;">
       <div id="carousel-track-right" class="flex gap-8 h-full"></div>
     </div>
@@ -387,7 +395,7 @@
 
   <!-- Right wall floor reflection: same rotateY(-72deg) angle, hinged at right top so it
        connects seamlessly to the bottom edge of room-wall-right -->
-  <div id="right-floor-reflection" aria-hidden="true" style="position:absolute;top:62.5%;right:-0.3%;width:48%;z-index:1;overflow:hidden;opacity:0;pointer-events:none;transform-origin:right top;transform:rotateY(-72deg);">
+  <div id="right-floor-reflection" aria-hidden="true" style="position:absolute;top:62.5%;right:-0.25%;width:48%;z-index:1;overflow:hidden;opacity:0;pointer-events:none;transform-origin:right top;transform:rotateY(-72deg);">
     <div id="right-floor-inner" class="px-4 py-3" style="position:absolute;top:0;left:0;width:100%;transform:scaleY(-1);overflow:hidden;">
       <div id="right-floor-track" class="flex gap-8 h-full"></div>
     </div>
@@ -402,7 +410,7 @@
 
   <!-- Left wall floor reflection: same rotateY(72deg) angle, hinged at left top so it
        connects seamlessly to the bottom edge of room-wall-left -->
-  <div id="left-floor-reflection" aria-hidden="true" style="position:absolute;top:62.5%;left:-0.3%;width:48%;z-index:1;overflow:hidden;opacity:0;pointer-events:none;transform-origin:left top;transform:rotateY(72deg);">
+  <div id="left-floor-reflection" aria-hidden="true" style="position:absolute;top:62.5%;left:-0.25%;width:48%;z-index:1;overflow:hidden;opacity:0;pointer-events:none;transform-origin:left top;transform:rotateY(72deg);">
     <div id="left-floor-inner" class="px-4 py-3" style="position:absolute;top:0;left:0;width:100%;transform:scaleY(-1);overflow:hidden;">
       <div id="left-floor-track" class="flex gap-8 h-full"></div>
     </div>
@@ -423,12 +431,6 @@
     <span class="material-symbols-outlined">chevron_right</span>
   </button>
 
-  <!-- Person silhouette: parallaxes up and fades out on scroll -->
-  <img id="hero-person"
-       src="assets/home-hero/standing-person-away.png"
-       alt=""
-       style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); height: 90vh; pointer-events: none; z-index: 9999; will-change: transform, opacity; transition: opacity 0.5s ease-out;">
-
   <!-- Name overlay: centered above carousel -->
   <div id="hero-name-overlay" style="position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-content:center;align-items:flex-start;padding-top:0.75rem;pointer-events:none;transition:opacity 0.5s ease-out;">
     <span id="hero-typewriter-name" class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-background leading-none text-center"></span>
@@ -436,215 +438,80 @@
 
 </div><!-- end home-hero-section -->
 
+  <!-- Person silhouette: fixed so it can slide over the header below -->
+  <img id="hero-person"
+       src="assets/home-hero/standing-person-away.png"
+       alt=""
+       style="position:fixed;bottom:-10vh;left:50%;transform:translateX(-50%);height:90vh;pointer-events:none;z-index:9999;will-change:transform,opacity;transition:opacity 0.5s ease-out;">
+
   <!-- Header: hidden on load, slides up + fades in on scroll -->
-  <div id="home-hero-header" class="flex flex-col justify-center px-8 py-6 bg-surface-container-low w-full border-b border-on-background"
+  <div id="home-hero-header" class="flex flex-col justify-center px-8 py-6 w-full border-b border-on-background relative"
        style="opacity: 0; transform: translateY(50px);">
-    <h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-background leading-none flex flex-col">
-      <span>Justin Hughes</span>
-      <span class="font-cjk text-primary text-3xl md:text-5xl mb-2 font-medium">艺术叙事，重塑新生</span>
-    </h1>
-    <div class="text-left font-label-mono text-label-mono uppercase max-w-sm flex flex-col gap-2 mt-4">
-      <div class="flex gap-4 items-center">
-        <span class="font-cjk text-primary">数字媒体与传播</span>
+    <!-- Translucent background layer — fades out on scroll independently of text -->
+    <div id="hero-header-bg" style="position:absolute;inset:0;background:rgb(246,243,242);pointer-events:none;z-index:0;"></div>
+    <!-- Text content sits above the background layer -->
+    <div style="position:relative;z-index:1;">
+      <h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-background leading-none flex flex-col">
+        <span>Justin Hughes</span>
+        <span class="font-cjk text-primary text-3xl md:text-5xl mb-2 font-medium">艺术叙事，重塑新生</span>
+      </h1>
+      <div class="text-left font-label-mono text-label-mono uppercase max-w-sm flex flex-col gap-2 mt-4">
+        <div class="flex gap-4 items-center">
+          <span class="font-cjk text-primary">数字媒体与传播</span>
+        </div>
+        <p class="border-b border-on-background pb-1 inline-block">Digital media and communications professional.</p>
       </div>
-      <p class="border-b border-on-background pb-1 inline-block">Digital media and communications professional.</p>
     </div>
   </div>
 
   <!-- ── Main Content ─────────────────────────────────────────────────────── -->
-  <main class="w-full px-4 md:px-8 py-4 md:py-8">
+  <main class="w-full px-4 md:px-8 pb-4 md:pb-8">
 
-    <!-- Photography / Featured -->
-    <section id="photography" class="flex flex-col relative mt-4 mb-2">
 
-      <!-- Two-column content area -->
-      <div class="flex flex-col md:flex-row md:gap-4 items-start">
-
-      <!-- Left column: 60% -->
-      <div class="w-full md:w-[60%] md:shrink-0 md:px-4 relative z-20 md:-mt-8">
-        <div class="bg-primary p-2 mb-2 inline-flex flex-col items-center absolute -top-4 -left-2 z-30 shadow-lg">
-          <span class="font-label-caps text-white writing-vertical tracking-widest mb-2">FEATURED</span>
-          <span class="font-cjk text-white text-xs writing-vertical">特写</span>
-        </div>
-        <div class="bg-surface-container-lowest p-4 border border-on-background mb-4">
-          <div class="font-label-caps text-label-caps text-on-background mb-2 flex justify-between items-center border-b border-on-surface-variant pb-2">
-            <span>Selected Works</span>
-            <span class="font-cjk">精选作品</span>
-          </div>
-          <p class="font-label-mono text-xs text-on-surface-variant">Explore my work in photography, video, audio, design, and more. Design is not a skill, but rather the sensory ability to capture the essence of things and insight.</p>
-        </div>
-        <a href="photography-film.html" class="block border border-on-background bg-surface-container-lowest p-2 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-          <img src="assets/images/Film/Europe/FILM_MISC-03.jpg" alt="Film" class="w-full h-auto object-cover">
-          <div class="flex justify-between items-end mt-2">
-            <div class="flex flex-col">
-              <h2 class="font-headline-md text-xl uppercase italic leading-none">Film</h2>
-              <span class="font-cjk text-sm text-on-surface-variant">胶片</span>
-            </div>
-            <div class="text-right">
-              <span class="font-label-caps text-[13px]">Photography</span>
-            </div>
-          </div>
-        </a>
-        <a href="video-portrait.html" class="relative overflow-hidden group border border-on-background p-2 bg-surface-container-lowest mt-4 block">
-          <video class="card-thumb-video w-full h-auto object-cover" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" muted loop playsinline preload="metadata" style="display:block;"></video>
-          <div class="mt-2 font-label-mono text-[13px] uppercase flex justify-between items-center border-t border-on-background pt-2">
-            <div class="flex flex-col">
-              <span class="font-bold">Portrait of a Musician</span>
-              <span class="font-cjk text-primary">音乐家肖像</span>
-            </div>
-            <span class="border border-on-background px-1">Video</span>
-          </div>
-        </a>
-      </div>
-
-      <!-- Right column: video + lifestyle -->
-      <div id="video" class="w-full md:flex-1 flex flex-col gap-6">
-        <div class="bg-on-background text-surface-container-lowest p-6 border-l-4 border-primary">
-          <div class="flex justify-between items-start mb-4">
-            <h3 class="font-headline-md text-on-background text-2xl">Video</h3>
-          </div>
-          <a href="about.html" class="block mb-6 border-b border-surface-variant pb-4 overflow-hidden group/headshot">
-            <img src="assets/me-photos/headshot-color.jpg" alt="Justin Hughes" class="w-full object-cover grayscale group-hover/headshot:grayscale-0 transition-all duration-500">
-          </a>
-          <a href="about.html" class="font-label-caps text-xs flex justify-between items-center group hover:text-primary transition-colors">
-            <span>ABOUT ME</span>
-            <span class="material-symbols-outlined transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
-          </a>
-        </div>
-
-        <a href="art-sketches.html" class="relative overflow-hidden group border border-on-background p-2 bg-surface-container-lowest block hover:shadow-xl transition-shadow duration-300">
-          <img src="assets/art/sketches/SKETCH-3.jpg" alt="Sketches" class="w-full h-auto object-cover">
-          <div class="mt-2 font-label-mono text-[13px] uppercase flex justify-between items-center border-t border-on-background pt-2">
-            <div class="flex flex-col">
-              <span class="font-bold">Sketches</span>
-              <span class="font-cjk text-primary">素描</span>
-            </div>
-            <span class="border border-on-background px-1">Art</span>
-          </div>
-        </a>
-        <div class="bg-surface-container-low p-4 border border-on-background/10">
-          <div class="mb-3">
-            <span class="material-symbols-outlined text-on-background text-lg">format_quote</span>
-          </div>
-          <p class="font-label-mono text-xs text-on-surface leading-relaxed mb-4">
-            Design is not just what it looks like and feels like. Design is how it works — it is the human narrative, told through the lens of art and the precision of storytelling.
-          </p>
-          <div class="border-t border-on-background/10 pt-3">
-            <p class="font-cjk text-xs text-on-surface-variant leading-relaxed">
-              设计不仅是其外观和感受。设计是它如何运作——它是通过艺术的视角和叙事的精确性所讲述的人类故事。
-            </p>
-          </div>
-        </div>
-      </div>
-
-      </div><!-- end two-column content area -->
-
-    </section>
-
-    <!-- ── Storytelling / Art Section ──────────────────────────────────────── -->
-    <section id="art" class="flex flex-col relative border border-on-background p-4 mt-4 mb-4 bg-surface-container">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-on-background pb-4">
-
-        <div class="flex flex-col relative pt-8">
-          <div class="absolute top-0 left-0 font-label-caps text-[13px] text-on-background flex items-center gap-2">
-            <span class="tracking-widest">ART &amp; DESIGN</span>
-            <span class="font-cjk text-primary border-l border-primary pl-1">艺术与设计</span>
-          </div>
-          <h2 class="font-display-lg text-on-background uppercase leading-[0.8] break-words text-5xl md:text-7xl mb-2">Story<br>telling</h2>
-          <div class="text-on-background text-2xl flex items-center gap-4">
-            <span class="font-cjk">叙事的力量</span>
-            <span class="w-8 h-8 rounded-full border border-on-background inline-block"></span>
-          </div>
-        </div>
-
-        <div class="w-full md:w-1/4 border border-on-background bg-surface-container-lowest p-4 shadow-sm h-full flex flex-col justify-end">
-          <div class="grid grid-cols-2 gap-2">
-            <div class="flex flex-col border-r border-on-background pr-2">
-              <span class="font-label-caps text-on-background text-[13px]">Medium</span>
-              <span class="font-cjk text-[13px]">媒介</span>
-              <p class="font-headline-md text-sm mt-1 leading-tight">Cinematic Photography</p>
-            </div>
-            <div class="flex flex-col pl-2">
-              <span class="font-label-caps text-on-background text-[13px]">Category</span>
-              <span class="font-cjk text-[13px]">类别</span>
-              <p class="font-headline-md text-sm mt-1 leading-tight">Digital Art Collection</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="w-full md:w-1/3 relative border border-on-background bg-surface-container-lowest p-2 shadow-md">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI92KGXLJNSezBzLK1LwjFxC3jJiNXdZ7qutbCPoRDDqZm-fotJ-6q8U5ADwegrkcskZ7kZtsJNaYjr67qXDKIq1LbyIR9PcEs8WYD9NXrVcua5ghVONG3YVRldKVvvDR7UhFWcHekJ-mhhY_sQjmNzfHtHgABQ6Ua7jcp9pFMugPOPlwmTWziSdt_e3LkRm3LDzVm6UQILWgpONJvJW-hiB5NN2Cgr666bmkDJmEKzxNDWD-bcf0Y_t_SsVd8PH8cPPzr8ep8Z_g" alt="Abstract art installation in red and black" class="w-full h-auto object-cover max-h-[160px]">
-          <div class="mt-2 border-t border-primary pt-1">
-            <div class="flex justify-between items-center mb-1">
-              <h3 class="font-headline-md text-xs uppercase">The Human Narrative</h3>
-              <span class="font-cjk text-[13px] text-primary">人文叙事</span>
-            </div>
-            <p class="font-label-mono text-[12px] text-on-surface-variant leading-tight">Exploring the intersection of photography, video, and digital art. A cinematic exploration of human connection through multi-disciplinary visual narratives.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-4 border border-on-background bg-surface-container-lowest p-2">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE4Qo0EfbodVEKNjlvOz4eecjOYeobbreSsksfWFTcXUsCrHPH8bsViG5LucMwfDGC9ldUipDkzY1oqFG6RbDlvU1fdbmXn-gpQkXk-S5c9QdiJEyjzHqRcTNgA8vUhiArOdIu1h6eLzklRpHsqMAxeNmVI4QuSWzAXrvENZlPOpPvtoZMTM5_CbmfboiQcNLurGehUXGvoaDJLgUTxdxDu2TsaMacRZQZh-E0zBRxo0GBkpnuP7rrGuKksiasQaKdzClFewcSD2k" alt="Conceptual red installation" class="w-full h-32 md:h-48 object-cover object-center">
-      </div>
-    </section>
 
     <!-- ── About Section ────────────────────────────────────────────────────── -->
-    <section id="about" class="grid-4-mobile md:grid-12 border-t-2 border-on-background pt-4 mt-2 mb-4">
+    <section id="about" class="grid-4-mobile md:grid-12 bg-surface-container-lowest shadow-2xl p-6 mb-10 mt-[15vh]">
 
-      <div class="col-span-4 md:col-span-5 flex flex-col md:flex-row gap-8 items-start">
-        <div class="w-full">
-          <div class="flex items-end gap-4 mb-4 border-b border-on-background pb-2">
-            <h2 class="font-display-lg italic text-4xl">About</h2>
-            <span class="font-cjk text-2xl text-primary mb-1">关于我</span>
-          </div>
-          <div class="border border-on-background bg-surface-container-lowest p-2 shadow-sm mb-4">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ7CLVth97p56nMFUdB508AGSGy5S9i3UK94IZx7uDyScX63HoYbGkX1Hx_rAmzD_Hx1ZNyARVDVO77Tl5Myj4P1Cyclhjb-0o-LpdzH-b9Gsr9HR5JtKB1dSFIMTD29-xeNzhUeHtSyD3qVYxlYaVqWlf7BbA-398ByZd5lvseg5CADdVTsobRTo1pMC8riwj6nh-ej603DUuLYJKnjZsTWidiYBdObk0Pf2Y8dZHpdod1mxlcwofr7JEJ5sfpY3zchiR2md2GWQ" alt="Portrait of Justin Hughes" class="w-full h-auto grayscale object-cover">
-          </div>
-          <div class="font-label-mono text-[13px] flex justify-between border-b border-on-background pb-2 uppercase items-center">
-            <div class="flex flex-col">
-              <span class="font-bold">PORTRAIT</span>
-              <span class="font-cjk text-primary">个人肖像</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="w-full flex flex-col gap-6 font-label-mono text-xs leading-relaxed">
-          <div class="border-t border-on-background pt-4">
-            <p>
-              <span class="font-headline-md text-3xl float-left mr-2 mt-1 leading-none text-on-background">J</span>
-              ustin Hughes brings international cultural fluency, editorial discipline, and service-minded storytelling to each project. His background spans culinary hospitality, multilingual communication, luxury brand strategy, and visual direction.
-            </p>
-          </div>
-        </div>
+      <div class="col-span-4 md:col-span-12 flex items-end gap-4 mb-4">
+        <h2 class="font-display-lg italic text-4xl">About</h2>
+        <span class="font-cjk text-2xl text-primary mb-1">关于我</span>
       </div>
 
-      <div class="col-span-4 md:col-span-7 flex flex-col h-full">
-        <div class="border-t border-on-background pt-4 flex flex-col h-full justify-between">
-          <div class="bg-primary text-white p-6 relative overflow-hidden group mt-auto">
-            <div class="font-cjk text-[6rem] absolute -right-4 -bottom-8 text-on-primary-fixed-variant opacity-30 leading-none pointer-events-none group-hover:scale-110 transition-transform duration-700">设计</div>
-            <p class="font-headline-md italic mb-2 relative z-10">"The complexity is the simplicity."</p>
-            <p class="font-cjk mb-6 text-sm relative z-10 border-b border-white/30 pb-4 inline-block">繁即是简</p>
-            <br>
-            <a href="contact.html" class="inline-flex items-center justify-between w-full border border-white px-4 py-2 font-label-caps text-xs hover:bg-white hover:text-primary transition-colors relative z-10">
-              <span>GET IN TOUCH</span>
-              <span class="font-cjk">联系我们</span>
+      <div class="col-span-4 md:col-span-5 flex flex-col md:flex-row gap-8 items-stretch">
+        <div class="md:w-[46%] shrink-0 flex flex-col">
+          <div class="border border-on-background flex flex-col h-[105%] overflow-hidden">
+            <a href="about.html" class="flex-1 relative overflow-hidden block group/headshot">
+              <img src="assets/me-photos/headshot-color.jpg" alt="Justin Hughes" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/headshot:grayscale-0 transition-all duration-500">
+            </a>
+            <a href="about.html" class="shrink-0 flex justify-end items-center p-2 border-t border-on-background group hover:bg-on-background hover:text-surface-container-lowest transition-colors">
+              <span class="material-symbols-outlined transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
             </a>
           </div>
         </div>
+
+        <div class="flex-1 flex flex-col gap-6 font-label-mono text-[17px] leading-relaxed">
+          <div>
+            <p>
+              <span class="font-headline-md text-3xl float-left mr-2 mt-1 leading-none text-on-background">J</span>
+              ustin Hughes is a storyteller and digital media practitioner finishing a Bachelor of Innovation in Digital Media Communication at the University of Colorado Colorado Springs. His creative foundation was built through years spent in China and France studying language, design, culinary arts, and hospitality, developing a fluency in human experience that informs everything he makes.
+            </p>
+          </div>
+          <p>A multilingual, collaborative, and detail-oriented foundation taught him to communicate across cultural difference and craft experiences with precision and care. Restaurant, hospitality and education are fields that demand cross-disciplinary teamwork and clear leadership under pressure. In these roles, Justin has sharpened his instinct for reading a room, motivating people, and translating complex ideas into action.</p>
+          <p>Every project begins with a story: what does this need to say, and how should it feel? Justin brings cross-disciplinary thinking and a drive for innovation to brand communication, digital marketing, eCommerce, and visual direction; leading with narrative and building toward creative leadership roles where strategy and storytelling converge.</p>
+        </div>
       </div>
+
 
     </section>
 
     <!-- ── Contact Section ──────────────────────────────────────────────────── -->
-    <section id="contact" class="border-t-2 border-on-background pt-4 mt-2 mb-8">
+    <section id="contact" class="bg-surface-container-lowest shadow-2xl p-6 mb-10">
       <div class="flex flex-col md:flex-row justify-between items-start gap-8">
         <div>
           <div class="flex items-end gap-4 mb-4">
             <h2 class="font-display-lg italic text-4xl">Contact</h2>
             <span class="font-cjk text-2xl text-primary mb-1">联系我</span>
           </div>
-          <p class="font-label-mono text-xs text-on-surface-variant max-w-sm">Available for freelance projects, collaborations, and full-time opportunities in digital media, photography, and creative direction.</p>
         </div>
         <div class="flex flex-col gap-3">
           <a href="mailto:studiojus10@gmail.com" class="font-label-caps text-xs flex items-center gap-3 border border-on-background px-4 py-3 hover:bg-primary hover:text-white hover:border-primary transition-colors duration-300">
@@ -696,17 +563,21 @@
   <script src="assets/js/main.js"></script>
   <script>
     (function () {
-      var person    = document.getElementById('hero-person');
-      var header    = document.getElementById('home-hero-header');
-      var backWall  = document.getElementById('room-wall-back');
+      var person      = document.getElementById('hero-person');
+      var header      = document.getElementById('home-hero-header');
+      var headerBg    = document.getElementById('hero-header-bg');
+      var backWall    = document.getElementById('room-wall-back');
       var nameOverlay = document.getElementById('hero-name-overlay');
-      var heroH     = window.innerHeight;
-      var backHover = false;
+      var bgPhoto     = document.getElementById('page-bg-photo');
+      var heroH       = window.innerHeight;
+      var backHover   = false;
 
+      // Person is now position:fixed — parallax is applied as a viewport-relative upward shift.
+      // Net viewport upward movement = scrollY * 0.65 (same visual as before, without the hero clip).
       function updatePerson() {
         if (!person) return;
         var y = window.scrollY;
-        person.style.transform = 'translateX(-50%) translateY(' + (y * 0.35) + 'px)';
+        person.style.transform = 'translateX(-50%) translateY(' + (-y * 0.65) + 'px)';
         person.style.opacity   = backHover ? 0 : Math.max(0, 1 - y / (heroH * 0.55));
       }
 
@@ -721,13 +592,25 @@
 
       window.addEventListener('scroll', function () {
         updatePerson();
+        var y = window.scrollY;
 
-        // Header: slide up from 50px and fade in — triggers immediately on scroll,
-        // fully visible after scrolling 40% of the viewport height
+        // Header: slide up from 50px and fade in
         if (header) {
-          var t = Math.min(1, Math.max(0, window.scrollY / (heroH * 0.4)));
+          var t = Math.min(1, Math.max(0, y / (heroH * 0.4)));
           header.style.opacity   = t;
           header.style.transform = 'translateY(' + (50 * (1 - t)) + 'px)';
+        }
+
+        // Header background: stays opaque until hero is off screen, then fades to ~10% opacity
+        if (headerBg) {
+          var bgAlpha = Math.max(0.1, 1 - Math.max(0, (y - heroH * 0.5) / (heroH * 0.6)));
+          headerBg.style.opacity = bgAlpha;
+        }
+
+        // Background photo: only starts fading in once the carousel is fully off screen
+        if (bgPhoto) {
+          var bgT = Math.min(1, Math.max(0, (y - heroH) / (heroH * 0.6)));
+          bgPhoto.style.opacity = bgT;
         }
       }, { passive: true });
     })();
@@ -778,10 +661,17 @@
         var topScr = oPY + (vh * SIDE_TOP - oPY) * scale;
         var botScr = oPY + (vh * SIDE_BOT - oPY) * scale;
 
-        // Horizontal: project the inner (far) edge x of each side panel
-        var oPX       = vw * PERSP_ORIG_X;
-        var x3dLeft   = vw * WALL_W * Math.cos(ANGLE);
-        var x3dRight  = vw * (1 - WALL_W * Math.cos(ANGLE));
+        // Horizontal: project the inner (far) edge x of each side panel.
+        // Read actual panel offsets so shifts to left:/right: are reflected exactly.
+        var oPX      = vw * PERSP_ORIG_X;
+        var leftEl   = document.getElementById('room-wall-left');
+        var rightEl  = document.getElementById('room-wall-right');
+        var leftFrac  = leftEl  ? parseFloat(leftEl.style.left)   / 100 : 0;   // e.g. -0.25% → -0.0025
+        var rightFrac = rightEl ? parseFloat(rightEl.style.right) / 100 : 0;   // e.g. -0.25% → -0.0025
+        // Left panel: outer edge at (leftFrac * vw), inner edge = outer + WALL_W*cos(ANGLE)*vw
+        // Right panel: outer edge at (1 - rightFrac) * vw, inner edge = outer - WALL_W*cos(ANGLE)*vw
+        var x3dLeft  = vw * (leftFrac  + WALL_W * Math.cos(ANGLE));
+        var x3dRight = vw * (1 - rightFrac - WALL_W * Math.cos(ANGLE));
         var xScrLeft  = oPX + (x3dLeft  - oPX) * scale;
         var xScrRight = oPX + (x3dRight - oPX) * scale;
 
@@ -893,8 +783,20 @@
         }
       }
 
-      setTimeout(run, 400);
+      window.addEventListener('load', function () {
+        setTimeout(run, 400);
+      });
     })();
+  </script>
+
+  <script>
+    // Dismiss the page loader once everything (images, fonts, scripts) is ready
+    window.addEventListener('load', function () {
+      var loader = document.getElementById('page-loader');
+      if (!loader) return;
+      loader.style.opacity = '0';
+      setTimeout(function () { loader.remove(); }, 550);
+    });
   </script>
 </body>
 </html>
