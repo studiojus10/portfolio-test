@@ -155,8 +155,9 @@
 
         <div class="scroll-reveal bg-surface-container-lowest border border-on-background p-6 shadow-sm" style="transition-delay: 0.15s;">
           <p class="font-headline-md text-2xl text-on-background mb-4 italic">A designer who frames experience through story, atmosphere, and detail.</p>
-          <p class="font-label-mono text-[11pt] leading-relaxed mb-4"><span class="font-headline-md text-3xl float-left mr-2 mt-1 leading-none text-on-background">J</span>ustin Hughes is a digital media and communications professional whose creative perspective has been shaped by international education, culinary arts, language immersion, music, travel, and high-touch hospitality. His work sits at the intersection of culture and communication: understanding how people connect, what makes experiences memorable, and how story, design, sound, food, and language influence trust.</p>
-          <p class="font-label-mono text-[11pt] leading-relaxed" style="text-indent:1.25rem;">Unlike a conventional digital marketer, Justin brings lived cultural fluency to his creative work. He has studied in France and China, trained in elite culinary environments, achieved advanced Mandarin proficiency, developed French-language capability, worked in a three-Michelin-star restaurant, and built client-facing service experiences rooted in empathy and human connection.</p>
+          <p class="font-label-mono text-[11pt] leading-relaxed mb-4"><span class="font-headline-md text-3xl float-left mr-2 mt-1 leading-none text-on-background">J</span>ustin Hughes is a digital media and communications professional whose creative perspective spans international education, culinary arts, language immersion, music, travel, and high-touch hospitality. His work sits at the intersection of culture and communication: understanding how people connect, what makes experiences memorable, and how story, design, sound, food, and language shape trust.</p>
+          <p class="font-label-mono text-[11pt] leading-relaxed mb-4" style="text-indent:1.25rem;">Raised in the United States and shaped through years in France and China, Justin brings lived cultural fluency to everything he makes. He has trained in elite culinary environments including multiple three-Michelin-star restaurants, achieved advanced Mandarin proficiency, developed French-language capability, and built client-facing service experiences grounded in empathy, craft, and precision.</p>
+          <p class="font-label-mono text-[11pt] leading-relaxed" style="text-indent:1.25rem;">His process begins by exploring concepts or ideas, then crafting stories through photography, video, design systems, and digital content that feel both intentional and effortless.</p>
         </div>
 
       </div>
@@ -178,11 +179,6 @@
         </div>
       </div>
 
-      <div class="scroll-reveal md:col-span-12 bg-surface-container-lowest border border-on-background p-6 shadow-sm" style="transition-delay: 0.15s;">
-        <p class="font-headline-md text-2xl text-on-background mb-4 italic">Background</p>
-        <p class="font-label-mono text-[11pt] leading-relaxed mb-4"><span class="font-headline-md text-3xl float-left mr-2 mt-1 leading-none text-on-background">R</span>aised in the United States and tempered in Europe and Asia, Justin's work is informed by multilingual and multicultural immersion, precision service, and detail oriented craft. He has built experiences that balance high-end hospitality with grounded human empathy.</p>
-        <p class="font-label-mono text-[11pt] leading-relaxed" style="text-indent:1.25rem;">His process begins by exploring concepts or ideas, then crafting stories through photography, video, design systems, and digital content that feel both intentional and effortless.</p>
-      </div>
     </section>
 
     <!-- ── Bachelor of Innovation ──────────────────────────────────────── -->
@@ -260,15 +256,33 @@
         hero.style.height    = 'calc(142vh + ' + navH + 'px)';
       }
 
+      var wasExpanded     = false;
+      var transitionLive  = false;
+
       function update() {
         if (!hero || !bg) return;
         var scrollY = window.scrollY || window.pageYOffset;
         var heroH   = window.innerHeight;
 
         if (scrollY <= heroH) {
-          // Inside hero: parallax — no transition so it tracks scroll exactly
-          bg.style.transition = 'none';
           var p = scrollY / heroH;
+
+          if (wasExpanded) {
+            // First tick back inside hero: animate smoothly out of the scaled state
+            wasExpanded    = false;
+            transitionLive = true;
+            bg.style.transition = 'transform 0.55s ease, opacity 0.55s ease';
+            function onEnd() {
+              bg.removeEventListener('transitionend', onEnd);
+              transitionLive      = false;
+              bg.style.transition = 'none';
+            }
+            bg.addEventListener('transitionend', onEnd);
+          } else if (!transitionLive) {
+            // Normal parallax tracking — no transition lag
+            bg.style.transition = 'none';
+          }
+
           bg.style.transform = 'translateY(' + (p * 20) + 'vh)';
           bg.style.opacity   = '1';
           if (person) {
@@ -278,6 +292,7 @@
           if (title) title.style.transform = 'translateY(' + (p * -22) + 'vh)';
         } else {
           // Past hero: scale up 15% and reduce opacity to 70%
+          wasExpanded = true;
           bg.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
           bg.style.transform  = 'scale(1.15)';
           bg.style.opacity    = '0.7';

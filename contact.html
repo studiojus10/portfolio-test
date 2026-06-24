@@ -117,36 +117,74 @@
         </div>
         <p class="font-label-mono text-xs uppercase tracking-widest text-on-surface-variant">Fast access to email, social connections, and collaboration inquiries.</p>
 
-        <div class="bg-surface-container-lowest border border-on-background p-6 shadow-sm">
-          <p class="font-headline-md text-on-background text-2xl mb-4">Reach out to discuss projects, partnerships, or creative direction.</p>
-          <p class="font-label-mono text-xs leading-relaxed">Available for collaborations in photography, motion, digital art, and experiential storytelling. Responses are typically sent within one business day.</p>
-        </div>
       </div>
 
     </section>
 
-    <section class="mt-8 grid gap-6 md:grid-cols-2">
+    <section class="mt-8 grid gap-6">
       <div class="border border-on-background bg-surface p-6">
-        <h2 class="font-headline-md text-2xl mb-4">Email</h2>
-        <a href="mailto:studiojus10@gmail.com" class="inline-flex items-center gap-3 border border-on-background px-4 py-3 hover:bg-primary hover:text-white hover:border-primary transition-colors duration-300">
-          <span class="material-symbols-outlined">mail</span>
-          studiojus10@gmail.com
-        </a>
-        <p class="font-label-mono text-[13px] text-on-surface-variant mt-4">Preferred method for project inquiries and proposals.</p>
+        <h2 class="font-headline-md text-2xl mb-6">Email</h2>
+        <div class="flex flex-col md:flex-row gap-8">
+          <!-- Direct email -->
+          <div class="flex flex-col gap-4 md:w-[30%] shrink-0">
+            <a href="mailto:studiojus10@gmail.com" class="inline-flex items-center gap-3 bg-primary border border-primary text-white px-4 py-3 hover:bg-white hover:text-primary transition-colors duration-300">
+              <span class="material-symbols-outlined">mail</span>
+              studiojus10@gmail.com
+            </a>
+            <p class="font-label-mono text-[13px] text-on-surface-variant">Preferred method for project inquiries and proposals.</p>
+          </div>
+          <!-- Inquiry form -->
+          <div class="flex-1 md:border-l md:border-on-background md:pl-8">
+            <!-- To activate: sign up at formspree.io and replace YOUR_FORM_ID below -->
+            <form id="inquiry-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+              <input type="hidden" name="_subject" value="Portfolio Inquiry from studiojus10.com">
+              <div class="flex flex-col gap-3">
+                <input type="text" name="name" placeholder="Your name" required
+                       class="border border-on-background bg-surface-container-lowest px-3 py-2 font-label-mono text-[13px] w-full focus:outline-none focus:border-primary">
+                <input type="email" name="email" placeholder="Your email" required
+                       class="border border-on-background bg-surface-container-lowest px-3 py-2 font-label-mono text-[13px] w-full focus:outline-none focus:border-primary">
+                <textarea name="message" placeholder="Your message" required rows="4"
+                          class="border border-on-background bg-surface-container-lowest px-3 py-2 font-label-mono text-[13px] w-full focus:outline-none focus:border-primary resize-none"></textarea>
+                <button type="submit"
+                        class="flex items-center justify-between bg-primary border border-primary text-white px-4 py-3 font-label-caps text-xs hover:bg-white hover:text-primary transition-colors duration-300">
+                  <span>Send Message</span>
+                  <span class="material-symbols-outlined" style="font-size:16px;">send</span>
+                </button>
+              </div>
+              <p id="inquiry-success" class="hidden font-label-mono text-[13px] text-primary mt-3">Message sent — I'll be in touch soon.</p>
+              <p id="inquiry-error" class="hidden font-label-mono text-[13px] mt-3" style="color:#c0392b;">Something went wrong. Please email directly.</p>
+            </form>
+          </div>
+        </div>
       </div>
       <div class="border border-on-background bg-surface p-6">
         <h2 class="font-headline-md text-2xl mb-4">Social</h2>
-        <div class="space-y-3">
-          <a href="https://www.instagram.com/studio.jus10?utm_source=qr" class="inline-flex items-center gap-3 border border-on-background px-4 py-3 hover:bg-primary hover:text-white hover:border-primary transition-colors duration-300">
-            <span class="material-symbols-outlined">photo_camera</span>
-            Instagram
+        <div class="flex flex-row gap-4">
+          <a href="https://www.linkedin.com/in/justin-hughes-studiojus10" target="_blank" rel="noopener"
+             class="flex-1 flex flex-col border border-on-background bg-surface hover:border-primary transition-colors duration-300 overflow-hidden">
+            <img src="assets/me-photos/LinkedIn-profile.jpeg" alt="LinkedIn" class="w-full aspect-square object-cover">
+            <div class="p-3 flex flex-col gap-0.5">
+              <span class="font-headline-md text-base text-on-background">LinkedIn</span>
+              <span class="font-label-mono text-xs text-on-surface-variant">Justin Hughes</span>
+            </div>
           </a>
-          <a href="https://www.linkedin.com/in/justin-hughes-studiojus10" class="inline-flex items-center gap-3 border border-on-background px-4 py-3 hover:bg-primary hover:text-white hover:border-primary transition-colors duration-300">
-            <span class="material-symbols-outlined">work</span>
-            LinkedIn
+          <a href="https://www.youtube.com/@studiojus10" target="_blank" rel="noopener"
+             class="flex-1 flex flex-col border border-on-background bg-surface hover:border-primary transition-colors duration-300 overflow-hidden">
+            <img src="assets/me-photos/YouTube-profile.png" alt="YouTube" class="w-full aspect-square object-cover">
+            <div class="p-3 flex flex-col gap-0.5">
+              <span class="font-headline-md text-base text-on-background">YouTube</span>
+              <span class="font-label-mono text-xs text-on-surface-variant">@studiojus10</span>
+            </div>
+          </a>
+          <a href="https://www.instagram.com/studio.jus10?utm_source=qr" target="_blank" rel="noopener"
+             class="flex-1 flex flex-col border border-on-background bg-surface hover:border-primary transition-colors duration-300 overflow-hidden">
+            <img src="assets/me-photos/Instagram-profile.jpg" alt="Instagram" class="w-full aspect-square object-cover">
+            <div class="p-3 flex flex-col gap-0.5">
+              <span class="font-headline-md text-base text-on-background">Instagram</span>
+              <span class="font-label-mono text-xs text-on-surface-variant">@studio.jus10</span>
+            </div>
           </a>
         </div>
-        <p class="font-label-mono text-[13px] text-on-surface-variant mt-4">Social channels are curated for visual narrative and studio updates.</p>
       </div>
     </section>
 
@@ -186,5 +224,32 @@
   </footer>
 
   <script src="assets/js/main.js"></script>
+  <script>
+    var form = document.getElementById('inquiry-form');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var successMsg = document.getElementById('inquiry-success');
+        var errorMsg   = document.getElementById('inquiry-error');
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        }).then(function (res) {
+          if (res.ok) {
+            form.reset();
+            successMsg.classList.remove('hidden');
+            errorMsg.classList.add('hidden');
+          } else {
+            errorMsg.classList.remove('hidden');
+            successMsg.classList.add('hidden');
+          }
+        }).catch(function () {
+          errorMsg.classList.remove('hidden');
+          successMsg.classList.add('hidden');
+        });
+      });
+    }
+  </script>
 </body>
 </html>
