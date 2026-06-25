@@ -119,6 +119,25 @@
       -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 30%, transparent 100%);
       mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 30%, transparent 100%);
     }
+    /* Zoom photography thumbnails in the vertical carousel to crop white film borders */
+    #vert-track img[src^="assets/images/"] { transform: scale(1.25); }
+    /* Frame overlay — rendered on top of the image/video via ::after */
+    .vert-card > div:first-child { position: relative; }
+    .vert-card > div:first-child::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 5px solid #e6e6e6;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .vert-card img, .vert-card video {
+      filter: grayscale(1);
+      transition: filter 0.5s ease;
+    }
+    .vert-card:hover img, .vert-card:hover video {
+      filter: grayscale(0);
+    }
   </style>
 </head>
 <body class="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white">
@@ -186,7 +205,7 @@
         <!-- 3: Portrait of a Musician — Video (still frame) -->
         <a href="video-portrait.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
           <div class="flex flex-col w-full h-full">
-            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" muted playsinline preload="metadata" style="display:block;"></video>
+            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" poster="assets/posters/portrait-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Portrait of a Musician</span>
               <span class="font-cjk text-[13px] text-primary font-medium">音乐家肖像</span>
@@ -219,7 +238,7 @@
         <!-- 6: Winter Scene — Video (still frame) -->
         <a href="video-winter.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
           <div class="flex flex-col w-full h-full">
-            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" muted playsinline preload="metadata" style="display:block;"></video>
+            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" poster="assets/posters/winter-scene-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Winter Scene</span>
               <span class="font-cjk text-[13px] text-primary font-medium">冬景</span>
@@ -241,7 +260,7 @@
         <!-- 8: Murder, He Wrote — Video (still frame) -->
         <a href="video-murder.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
           <div class="flex flex-col w-full h-full">
-            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" muted playsinline preload="metadata" style="display:block;"></video>
+            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" poster="assets/posters/murder-he-wrote-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Murder, He Wrote</span>
               <span class="font-cjk text-[13px] text-primary font-medium">他所写的谋杀</span>
@@ -292,7 +311,7 @@
         </a>
         <a href="video-portrait.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
           <div class="flex flex-col w-full h-full">
-            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" muted playsinline preload="metadata" style="display:block;"></video>
+            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" poster="assets/posters/portrait-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Portrait of a Musician</span>
               <span class="font-cjk text-[13px] text-primary font-medium">音乐家肖像</span>
@@ -319,7 +338,7 @@
         </a>
         <a href="video-winter.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
           <div class="flex flex-col w-full h-full">
-            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" muted playsinline preload="metadata" style="display:block;"></video>
+            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" poster="assets/posters/winter-scene-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Winter Scene</span>
               <span class="font-cjk text-[13px] text-primary font-medium">冬景</span>
@@ -337,7 +356,7 @@
         </a>
         <a href="video-murder.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
           <div class="flex flex-col w-full h-full">
-            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" muted playsinline preload="metadata" style="display:block;"></video>
+            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" poster="assets/posters/murder-he-wrote-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Murder, He Wrote</span>
               <span class="font-cjk text-[13px] text-primary font-medium">他所写的谋杀</span>
@@ -381,20 +400,6 @@
       <div id="carousel-track-right" class="flex gap-8 h-full"></div>
     </div>
     <div style="position:absolute;inset:0;background:rgba(0,0,0,0.055);pointer-events:none;"></div>
-  </div>
-
-  <!-- Floor reflection: back wall cards reflected below the gallery back panel -->
-  <div id="floor-reflection" aria-hidden="true" style="position:absolute;z-index:0;overflow:hidden;opacity:0;pointer-events:none;">
-    <div id="floor-inner" class="px-[10.5px] py-2" style="position:absolute;top:0;left:0;width:100%;transform:scaleY(-1);overflow:hidden;">
-      <div id="floor-carousel-track" class="flex gap-8 h-full"></div>
-    </div>
-    <!-- Red glass tint + fade-out toward bottom -->
-    <div style="position:absolute;inset:0;pointer-events:none;z-index:2;
-                background:linear-gradient(to bottom,
-                  rgba(200,14,0,0.42) 0%,
-                  rgba(150,7,0,0.60) 40%,
-                  rgba(50,0,0,0.80) 75%,
-                  rgba(8,0,0,0.96) 100%);"></div>
   </div>
 
   <!-- Right wall floor reflection: same rotateY(-72deg) angle, hinged at right top so it
@@ -446,6 +451,20 @@
 
 </div><!-- end home-hero-section -->
 
+  <!-- Floor reflection: fixed so it can slide down over the header below the hero -->
+  <div id="floor-reflection" aria-hidden="true" style="position:fixed;z-index:50;overflow:hidden;opacity:0;pointer-events:none;">
+    <div id="floor-inner" class="px-[10.5px] py-2" style="position:absolute;top:0;left:0;width:100%;transform:scaleY(-1);overflow:hidden;">
+      <div id="floor-carousel-track" class="flex gap-8 h-full"></div>
+    </div>
+    <!-- Red glass tint + fade-out toward bottom -->
+    <div style="position:absolute;inset:0;pointer-events:none;z-index:2;
+                background:linear-gradient(to bottom,
+                  rgba(200,14,0,0.42) 0%,
+                  rgba(150,7,0,0.60) 40%,
+                  rgba(50,0,0,0.80) 75%,
+                  rgba(8,0,0,0.96) 100%);"></div>
+  </div>
+
   <!-- Person silhouette: fixed so it can slide over the header below -->
   <img id="hero-person"
        src="assets/home-hero/standing-person-away.png"
@@ -453,7 +472,7 @@
        style="position:fixed;bottom:-15vh;left:50%;transform:translateX(-50%);height:90vh;pointer-events:none;z-index:9999;will-change:transform,opacity;transition:opacity 0.5s ease-out;">
 
   <!-- Header: hidden on load, slides up + fades in on scroll -->
-  <div id="home-hero-header" class="flex flex-col justify-center px-8 py-6 w-full border-b border-on-background relative"
+  <div id="home-hero-header" class="flex flex-col justify-center px-8 py-6 w-full relative"
        style="opacity: 0; transform: translateY(50px);">
     <!-- Translucent background layer — fades out on scroll independently of text -->
     <div id="hero-header-bg" style="position:absolute;inset:0;background:rgb(246,243,242);pointer-events:none;z-index:0;"></div>
@@ -472,35 +491,32 @@
 
 
     <!-- ── About Section ────────────────────────────────────────────────────── -->
-    <section id="about" class="grid-4-mobile md:grid-12 bg-surface-container-lowest shadow-2xl pl-6 pr-3 py-6 mb-10 mt-[15vh]">
+    <section id="about" class="grid-4-mobile md:grid-12 bg-surface-container-lowest shadow-2xl py-6 mb-10 mt-[7.5vh] rounded-xl" style="max-width:60%;padding-left:2.5%;padding-right:2.5%;">
 
       <div class="col-span-4 md:col-span-12 flex items-end gap-4 mb-4">
         <h2 class="font-display-lg italic text-4xl">About</h2>
         <span class="font-cjk text-2xl text-primary mb-1">关于我</span>
       </div>
 
-      <div class="col-span-4 md:col-span-5 flex flex-col md:flex-row gap-8 items-stretch">
-        <div class="flex-1 flex flex-col gap-3 font-label-mono text-[15px] leading-relaxed">
-          <div>
-            <p>
-              <span class="font-headline-md text-3xl float-left mr-2 mt-1 leading-none text-on-background">J</span>
-              ustin Hughes is a storyteller and digital media practitioner finishing a Bachelor of Innovation in Digital Media Communication at the University of Colorado Colorado Springs. His creative foundation was built through years spent in China and France studying language, design, culinary arts, and hospitality, developing a fluency in human experience that informs everything he makes.
-            </p>
-          </div>
-          <p style="text-indent:1.25rem;">A multilingual, collaborative, and detail-oriented foundation taught him to communicate across cultural difference and craft experiences with precision and care. Restaurant, hospitality and education are fields that demand cross-disciplinary teamwork and clear leadership under pressure. In these roles, Justin has sharpened his instinct for reading a room, motivating people, and translating complex ideas into action.</p>
-          <p style="text-indent:1.25rem;">Every project begins with a story: what does this need to say, and how should it feel? Justin brings cross-disciplinary thinking and a drive for innovation to brand communication, digital marketing, eCommerce, and visual direction; leading with narrative and building toward creative leadership roles where strategy and storytelling converge.</p>
+      <div class="col-span-4 md:col-span-12">
+        <!-- Photo floated top-right — text wraps around it -->
+        <div class="border border-on-background overflow-hidden float-right ml-4 mb-2" style="width:27.5%;">
+          <a href="about.html" class="block relative overflow-hidden group/headshot mb-2" style="aspect-ratio:2/3;">
+            <img src="assets/me-photos/headshot-color.jpg" alt="Justin Hughes" class="absolute inset-0 w-full h-full object-cover object-top transition-all duration-500">
+          </a>
+          <a href="about.html" class="flex justify-center items-center gap-1 p-2 group transition-colors" style="background:#c0392b;color:#fff;">
+            <span class="font-label-caps text-[10px] uppercase tracking-widest" style="color:#fff;">More</span>
+            <span class="material-symbols-outlined transform group-hover:translate-x-1 transition-transform" style="font-size:16px;color:#fff;">arrow_forward</span>
+          </a>
         </div>
-
-        <div class="md:w-[46%] shrink-0 flex flex-col">
-          <div class="border border-on-background flex flex-col h-[105%] overflow-hidden">
-            <a href="about.html" class="flex-1 relative overflow-hidden block group/headshot">
-              <img src="assets/me-photos/headshot-color.jpg" alt="Justin Hughes" class="absolute inset-0 w-full h-full object-cover transition-all duration-500">
-            </a>
-            <a href="about.html" class="shrink-0 flex justify-end items-center p-2 border-t border-on-background group hover:bg-on-background hover:text-surface-container-lowest transition-colors">
-              <span class="material-symbols-outlined transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
-            </a>
-          </div>
-        </div>
+        <!-- Text wraps around the photo -->
+        <p class="font-label-mono text-[15px] leading-relaxed text-justify mb-3">
+          <span class="font-headline-md text-3xl float-left mr-2 mt-1 leading-none text-on-background">J</span>
+          ustin Hughes is a storyteller and digital media practitioner finishing a Bachelor of Innovation in Digital Media Communication at the University of Colorado Colorado Springs. His creative foundation was built through years spent in China and France studying language, design, culinary arts, and hospitality, developing a fluency in human experience that informs everything he makes.
+        </p>
+        <p class="font-label-mono text-[15px] leading-relaxed text-justify mb-3" style="text-indent:1.25rem;">A multilingual, collaborative, and detail-oriented foundation taught him to communicate across cultural difference and craft experiences with precision and care. Restaurant, hospitality and education are fields that demand cross-disciplinary teamwork and clear leadership under pressure. In these roles, Justin has sharpened his instinct for reading a room, motivating people, and translating complex ideas into action.</p>
+        <p class="font-label-mono text-[15px] leading-relaxed text-justify" style="text-indent:1.25rem;">Every project begins with a story: what does this need to say, and how should it feel? Justin brings cross-disciplinary thinking and a drive for innovation to brand communication, digital marketing, eCommerce, and visual direction; leading with narrative and building toward creative leadership roles where strategy and storytelling converge.</p>
+        <div style="clear:both;"></div>
       </div>
 
 
@@ -510,8 +526,105 @@
 
   </main>
 
+  <!-- ── Vertical Side Carousel ────────────────────────────────────────────── -->
+  <div id="vert-carousel-wrap" aria-hidden="true" style="position:fixed;right:0;top:0;height:100vh;overflow:hidden;z-index:9000;transform:translateX(110%);opacity:0;pointer-events:none;transition:transform 0.7s cubic-bezier(0.4,0,0.2,1),opacity 0.5s ease;box-shadow:-6px 0 12px rgba(0,0,0,0.12),6px 0 12px rgba(0,0,0,0.12);">
+    <div id="vert-track" style="position:absolute;top:0;left:0;right:0;display:flex;flex-direction:column;gap:5px;padding:5px 0;will-change:transform;">
+
+      <!-- 1: Twelve Views of Pikes Peak -->
+      <a href="photography-colorado-twelve-views.html" class="vert-card block shrink-0 border border-on-background bg-surface">
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/images/Colorado/Twelve Views of Pikes Peak/TYPOLOGY-01.jpg" alt="Twelve Views of Pikes Peak" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Twelve Views of Pikes Peak</span></div>
+      </a>
+
+      <!-- 2: Memory -->
+      <a href="photography-film-memory.html" class="vert-card block shrink-0 border border-on-background bg-surface">
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/images/Film/Memory/MEMORY-01.jpg" alt="Memory" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Memory</span></div>
+      </a>
+
+      <!-- 3: Portrait of a Musician (video) -->
+      <a href="video-portrait.html" class="vert-card block shrink-0 border border-on-background bg-surface">
+        <div style="aspect-ratio:1/1;overflow:hidden;"><video class="carousel-still" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" poster="assets/posters/portrait-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;width:100%;height:100%;object-fit:cover;"></video></div>
+        <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Portrait of a Musician</span></div>
+      </a>
+
+      <!-- 4: Sketches -->
+      <a href="art-sketches.html" class="vert-card block shrink-0 border border-on-background bg-surface">
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/art/sketches/SKETCH-3.jpg" alt="Sketches" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Sketches</span></div>
+      </a>
+
+      <!-- 5: Home -->
+      <a href="photography-film-home.html" class="vert-card block shrink-0 border border-on-background bg-surface">
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/images/Film/Home/FILM_MISC-01.jpg" alt="Home" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Home</span></div>
+      </a>
+
+      <!-- 6: Winter Scene (video) -->
+      <a href="video-winter.html" class="vert-card block shrink-0 border border-on-background bg-surface">
+        <div style="aspect-ratio:1/1;overflow:hidden;"><video class="carousel-still" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" poster="assets/posters/winter-scene-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;width:100%;height:100%;object-fit:cover;"></video></div>
+        <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Winter Scene</span></div>
+      </a>
+
+      <!-- 7: Butterfly Sanctuary -->
+      <a href="photography-nature-sanctuary.html" class="vert-card block shrink-0 border border-on-background bg-surface">
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/images/Nature/Butterflies/Sanctuary/BUTTERFLIES-01.jpg" alt="Butterfly Sanctuary" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Butterfly Sanctuary</span></div>
+      </a>
+
+      <!-- 8: Murder, He Wrote (video) -->
+      <a href="video-murder.html" class="vert-card block shrink-0 border border-on-background bg-surface">
+        <div style="aspect-ratio:1/1;overflow:hidden;"><video class="carousel-still" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" poster="assets/posters/murder-he-wrote-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;width:100%;height:100%;object-fit:cover;"></video></div>
+        <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Murder, He Wrote</span></div>
+      </a>
+
+      <!-- 9: Film Europe -->
+      <a href="photography-film-europe.html" class="vert-card block shrink-0 border border-on-background bg-surface">
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/images/Film/Europe/FILM_MISC-03.jpg" alt="Film" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Film</span></div>
+      </a>
+
+      <!-- 10: Composers -->
+      <a href="art-composers.html" class="vert-card block shrink-0 border border-on-background bg-surface">
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/art/composers/COMPOSER-3.jpg" alt="Composers" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Composers</span></div>
+      </a>
+
+      <!-- 11: Arizona Travels -->
+      <a href="photography-arizona-travels.html" class="vert-card block shrink-0 border border-on-background bg-surface">
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/images/Arizona/Travels/ARIZONA-01.jpg" alt="Arizona" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Arizona</span></div>
+      </a>
+
+      <!-- 12: Seattle -->
+      <a href="photography-washington-seattle.html" class="vert-card block shrink-0 border border-on-background bg-surface">
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/images/Washington/Seattle/SEATTLE-01.jpg" alt="Seattle" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Seattle</span></div>
+      </a>
+
+      <!-- 13: Collage (video) -->
+      <a href="video-collage.html" class="vert-card block shrink-0 border border-on-background bg-surface">
+        <div style="aspect-ratio:1/1;overflow:hidden;"><video class="carousel-still" src="assets/videos/thumbnail-videos/collage-thumbnail.mp4" poster="assets/posters/collage-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;width:100%;height:100%;object-fit:cover;"></video></div>
+        <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Collage</span></div>
+      </a>
+
+      <!-- 14: Decadance (video) -->
+      <a href="video-decadance.html" class="vert-card block shrink-0 border border-on-background bg-surface">
+        <div style="aspect-ratio:1/1;overflow:hidden;"><video class="carousel-still" src="assets/videos/thumbnail-videos/decadance-thumbnail.mp4" poster="assets/posters/decadance-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;width:100%;height:100%;object-fit:cover;"></video></div>
+        <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Decadance</span></div>
+      </a>
+
+      <!-- 15: Colorado Golf -->
+      <a href="photography-colorado-golf.html" class="vert-card block shrink-0 border border-on-background bg-surface">
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/images/Colorado/Golf/GOLF-01.jpg" alt="Colorado Golf" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Colorado Golf</span></div>
+      </a>
+
+    </div>
+  </div>
+
   <!-- ── Footer ──────────────────────────────────────────────────────────── -->
-  <footer class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest">
+  <footer class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest" style="position:relative;z-index:10000;">
     <div class="flex items-center gap-4 mb-4 md:mb-0">
       <div class="font-headline-md text-base text-surface-container-lowest italic">STUDIO JUS10</div>
       <div class="font-cjk text-primary border-l border-surface-variant pl-4">工作室</div>
@@ -543,6 +656,163 @@
     </div>
   </footer>
 
+  <div id="vert-carousel-old-stub" style="display:none;">
+
+      <!-- 1: Twelve Views of Pikes Peak -->
+      <a href="photography-colorado-twelve-views.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
+        <div style="position:absolute;inset:0;"><img src="assets/images/Colorado/Twelve Views of Pikes Peak/TYPOLOGY-01.jpg" alt="Twelve Views of Pikes Peak" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Twelve Views of Pikes Peak</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">派克峰十二景</span></div>
+      </a>
+
+      <!-- 2: Memory -->
+      <a href="photography-film-memory.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
+        <div style="position:absolute;inset:0;"><img src="assets/images/Film/Memory/MEMORY-01.jpg" alt="Memory" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Memory</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">记忆</span></div>
+      </a>
+
+      <!-- 3: Portrait of a Musician (video still) -->
+      <a href="video-portrait.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" poster="assets/posters/portrait-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Portrait of a Musician</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">音乐家肖像</span></div>
+      </a>
+
+      <!-- 4: Sketches -->
+      <a href="art-sketches.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
+        <div style="position:absolute;inset:0;"><img src="assets/art/sketches/SKETCH-3.jpg" alt="Sketches" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Sketches</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">素描</span></div>
+      </a>
+
+      <!-- 5: Home -->
+      <a href="photography-film-home.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
+        <div style="position:absolute;inset:0;"><img src="assets/images/Film/Home/FILM_MISC-01.jpg" alt="Home" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Home</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">家</span></div>
+      </a>
+
+      <!-- 6: Winter Scene (video still) -->
+      <a href="video-winter.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" poster="assets/posters/winter-scene-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Winter Scene</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">冬景</span></div>
+      </a>
+
+      <!-- 7: Butterfly Sanctuary -->
+      <a href="photography-nature-sanctuary.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
+        <div style="position:absolute;inset:0;"><img src="assets/images/Nature/Butterflies/Sanctuary/BUTTERFLIES-01.jpg" alt="Butterfly Sanctuary" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Butterfly Sanctuary</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">蝴蝶圣地</span></div>
+      </a>
+
+      <!-- 8: Murder, He Wrote (video still) -->
+      <a href="video-murder.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" poster="assets/posters/murder-he-wrote-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Murder, He Wrote</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">谋杀案</span></div>
+      </a>
+
+      <!-- 9: Film / Europe -->
+      <a href="photography-film-europe.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
+        <div style="position:absolute;inset:0;"><img src="assets/images/Film/Europe/FILM_MISC-03.jpg" alt="Film / Europe" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Film / Europe</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">欧洲胶片</span></div>
+      </a>
+
+      <!-- 10: Composers -->
+      <a href="art-composers.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
+        <div style="position:absolute;inset:0;"><img src="assets/art/composers/COMPOSER-3.jpg" alt="Composers" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Composers</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">作曲家</span></div>
+      </a>
+
+      <!-- 11: Arizona Travels -->
+      <a href="photography-arizona-travels.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
+        <div style="position:absolute;inset:0;"><img src="assets/images/Arizona/Travels/ARIZONA-05.jpg" alt="Arizona" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Arizona</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">亚利桑那</span></div>
+      </a>
+
+      <!-- 12: Seattle -->
+      <a href="photography-washington-seattle.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
+        <div style="position:absolute;inset:0;"><img src="assets/images/Washington/Seattle/SEATTLE-01.jpg" alt="Seattle" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Seattle</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">西雅图</span></div>
+      </a>
+
+      <!-- 13: Collage (video still) -->
+      <a href="video-collage.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/collage-thumbnail.mp4" poster="assets/posters/collage-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Collage</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">拼贴</span></div>
+      </a>
+
+      <!-- 14: Décadance (video still) -->
+      <a href="video-decadance.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/decadance-thumbnail.mp4" poster="assets/posters/decadance-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Décadance</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">颓废</span></div>
+      </a>
+
+      <!-- 15: Colorado Golf -->
+      <a href="photography-colorado-golf.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
+        <div style="position:absolute;inset:0;"><img src="assets/images/Colorado/Golf/GOLF-01.jpg" alt="Golf" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Golf</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">高尔夫</span></div>
+      </a>
+
+      <!-- ── Duplicates for infinite loop ── -->
+      <a href="photography-colorado-twelve-views.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
+        <div style="position:absolute;inset:0;"><img src="assets/images/Colorado/Twelve Views of Pikes Peak/TYPOLOGY-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Twelve Views of Pikes Peak</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">派克峰十二景</span></div>
+      </a>
+      <a href="photography-film-memory.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
+        <div style="position:absolute;inset:0;"><img src="assets/images/Film/Memory/MEMORY-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Memory</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">记忆</span></div>
+      </a>
+      <a href="video-portrait.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" poster="assets/posters/portrait-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Portrait of a Musician</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">音乐家肖像</span></div>
+      </a>
+      <a href="art-sketches.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
+        <div style="position:absolute;inset:0;"><img src="assets/art/sketches/SKETCH-3.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Sketches</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">素描</span></div>
+      </a>
+      <a href="photography-film-home.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
+        <div style="position:absolute;inset:0;"><img src="assets/images/Film/Home/FILM_MISC-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Home</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">家</span></div>
+      </a>
+      <a href="video-winter.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" poster="assets/posters/winter-scene-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Winter Scene</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">冬景</span></div>
+      </a>
+      <a href="photography-nature-sanctuary.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
+        <div style="position:absolute;inset:0;"><img src="assets/images/Nature/Butterflies/Sanctuary/BUTTERFLIES-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Butterfly Sanctuary</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">蝴蝶圣地</span></div>
+      </a>
+      <a href="video-murder.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" poster="assets/posters/murder-he-wrote-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Murder, He Wrote</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">谋杀案</span></div>
+      </a>
+      <a href="photography-film-europe.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
+        <div style="position:absolute;inset:0;"><img src="assets/images/Film/Europe/FILM_MISC-03.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Film / Europe</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">欧洲胶片</span></div>
+      </a>
+      <a href="art-composers.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
+        <div style="position:absolute;inset:0;"><img src="assets/art/composers/COMPOSER-3.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Composers</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">作曲家</span></div>
+      </a>
+      <a href="photography-arizona-travels.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
+        <div style="position:absolute;inset:0;"><img src="assets/images/Arizona/Travels/ARIZONA-05.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Arizona</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">亚利桑那</span></div>
+      </a>
+      <a href="photography-washington-seattle.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
+        <div style="position:absolute;inset:0;"><img src="assets/images/Washington/Seattle/SEATTLE-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Seattle</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">西雅图</span></div>
+      </a>
+      <a href="video-collage.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/collage-thumbnail.mp4" poster="assets/posters/collage-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Collage</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">拼贴</span></div>
+      </a>
+      <a href="video-decadance.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/decadance-thumbnail.mp4" poster="assets/posters/decadance-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Décadance</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">颓废</span></div>
+      </a>
+      <a href="photography-colorado-golf.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
+        <div style="position:absolute;inset:0;"><img src="assets/images/Colorado/Golf/GOLF-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Golf</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">高尔夫</span></div>
+      </a>
+
+    </div>
+  </div>
+
   <script src="assets/js/main.js"></script>
   <script>
     (function () {
@@ -550,13 +820,17 @@
       var header      = document.getElementById('home-hero-header');
       var headerBg    = document.getElementById('hero-header-bg');
       var backWall    = document.getElementById('room-wall-back');
+      var leftWall    = document.getElementById('room-wall-left');
+      var rightWall   = document.getElementById('room-wall-right');
       var nameOverlay = document.getElementById('hero-name-overlay');
       var bgPhoto     = document.getElementById('page-bg-photo');
+      var floorR      = document.getElementById('floor-reflection');
+      var rightFloorR = document.getElementById('right-floor-reflection');
+      var leftFloorR  = document.getElementById('left-floor-reflection');
       var heroH       = window.innerHeight;
       var backHover   = false;
+      var splitEnd    = heroH; // panels fully gone when header reaches top of screen
 
-      // Person is now position:fixed — parallax is applied as a viewport-relative upward shift.
-      // Net viewport upward movement = scrollY * 0.65 (same visual as before, without the hero clip).
       function updatePerson() {
         if (!person) return;
         var y = window.scrollY;
@@ -565,7 +839,13 @@
       }
 
       function setVignette(on) {
-        if (nameOverlay) nameOverlay.style.opacity = on ? '0' : '1';
+        if (!nameOverlay) return;
+        if (on) {
+          nameOverlay.style.opacity = '0';
+        } else {
+          var p = Math.min(1, Math.max(0, (window.scrollY || 0) / splitEnd));
+          nameOverlay.style.opacity = String(Math.max(0, 1 - p));
+        }
       }
 
       if (backWall) {
@@ -576,6 +856,36 @@
       window.addEventListener('scroll', function () {
         updatePerson();
         var y = window.scrollY;
+        var p = Math.min(1, Math.max(0, y / splitEnd));
+
+        // Panel split: back slides up, left slides left, right slides right
+        if (backWall) {
+          backWall.style.transform = 'translateY(' + (-p * 110) + 'vh)';
+          backWall.style.opacity   = String(1 - p);
+        }
+        if (leftWall) {
+          leftWall.style.transform = 'translateX(' + (-p * 120) + 'vw) rotateY(72deg)';
+          leftWall.style.opacity   = String(1 - p);
+        }
+        if (rightWall) {
+          rightWall.style.transform = 'translateX(' + (p * 120) + 'vw) rotateY(-72deg)';
+          rightWall.style.opacity   = String(1 - p);
+        }
+        // Floor reflections: slide with their panels and fade
+        if (floorR) {
+          floorR.style.transform = 'translateY(' + (p * 110) + 'vh)';
+          floorR.style.opacity   = String(Math.max(0, 1 - p * 2));
+        }
+        if (rightFloorR) {
+          rightFloorR.style.transform = 'translateX(' + (p * 120) + 'vw) rotateY(-72deg)';
+          rightFloorR.style.opacity   = String(Math.max(0, 1 - p * 2));
+        }
+        if (leftFloorR) {
+          leftFloorR.style.transform = 'translateX(' + (-p * 120) + 'vw) rotateY(72deg)';
+          leftFloorR.style.opacity   = String(Math.max(0, 1 - p * 2));
+        }
+        // Name overlay fades with the panels
+        if (nameOverlay && !backHover) nameOverlay.style.opacity = String(Math.max(0, 1 - p));
 
         // Header: slide up from 50px and fade in
         if (header) {
@@ -603,6 +913,7 @@
       // Seek carousel video stills to a fixed frame — no play
       document.querySelectorAll('.carousel-still').forEach(function (vid) {
         vid.addEventListener('loadedmetadata', function () { vid.currentTime = 3; });
+        if (vid.readyState >= 1) vid.currentTime = 3;
       });
     })();
   </script>
@@ -668,10 +979,12 @@
         var sideReflTop = Math.round(vh * 0.625) + reflGap;
         var cornerY     = Math.round(oPY + (sideReflTop - oPY) * scale);
         if (floorReflect) {
-          var wallH = Math.round(botScr - topScr);
+          var wallH    = Math.round(botScr - topScr);
+          var heroEl   = document.getElementById('home-hero-section');
+          var heroTop  = heroEl ? heroEl.offsetTop : 0;
           floorReflect.style.left   = leftPx + 'px';
           floorReflect.style.width  = (rightPx - leftPx) + 'px';
-          floorReflect.style.top    = cornerY + 'px';
+          floorReflect.style.top    = (cornerY + heroTop) + 'px';
           floorReflect.style.height = Math.round(wallH * 0.55) + 'px';
           if (floorInner) floorInner.style.height = wallH + 'px';
         }
@@ -780,6 +1093,150 @@
       loader.style.opacity = '0';
       setTimeout(function () { loader.remove(); }, 550);
     });
+  </script>
+
+
+  <script>
+    /* ── Vertical side carousel ──────────────────────────────────────── */
+    (function () {
+      var wrap  = document.getElementById('vert-carousel-wrap');
+      var track = document.getElementById('vert-track');
+      if (!wrap || !track) return;
+
+      var NORMAL_SPEED = 2.5;
+      var HOVER_SPEED  = 0.5;
+      var RAMP_FRAMES  = 6;
+      var FAST_FRAMES  = 9;
+      var SLOW_FRAMES  = 42;
+      var SPIN_LOOPS   = 1;
+
+      var vertOffset = 0;
+      var halfH      = 0;
+      var peakSpeed  = 0;
+      var hovering   = false;
+      var revealed   = false;
+      var introPhase = 'idle';
+      var introFrame = 0;
+      var spinPixels = 0;
+
+      /* Size carousel and about box so all three margins (left edge, gap, right edge)
+         equal the page's px-8 = 32 px left margin */
+      function positionWrap() {
+        var aboutEl = document.getElementById('about');
+        if (window.innerWidth < 768 || !aboutEl) { wrap.style.display = 'none'; return; }
+        var margin  = 32;                              // px-8 — left margin of page content
+        var vw      = window.innerWidth;
+        var contentW = vw - margin - margin;           // space between both page edges
+        /* Carousel: 80% of the right 40% of content minus the gap */
+        var gap  = Math.max(20, margin);               // never less than 20 px between about and carousel
+        var carW = Math.max(150, Math.floor((contentW * 0.4 - gap) * 0.8));
+        if (carW < 150) { wrap.style.display = 'none'; return; }
+        wrap.style.display = 'block';
+        wrap.style.width   = carW + 'px';
+        wrap.style.right   = margin + 'px';
+        /* About box: fills everything between left margin and carousel */
+        aboutEl.style.maxWidth = (contentW - carW - gap) + 'px';
+      }
+
+      function measure() {
+        halfH = track.offsetHeight / 2;
+        peakSpeed = halfH > 0 ? (halfH * SPIN_LOOPS) / FAST_FRAMES : 18;
+      }
+
+      function introSpeed() {
+        if (introPhase === 'ramp') {
+          var t = Math.min(1, introFrame / RAMP_FRAMES);
+          return peakSpeed * (0.95 + 0.05 * Math.pow(2, 10 * (t - 1)));
+        }
+        if (introPhase === 'fast') return peakSpeed;
+        if (introPhase === 'slow') {
+          var t = Math.min(1, introFrame / SLOW_FRAMES);
+          return peakSpeed - (peakSpeed - NORMAL_SPEED) * (1 - Math.pow(1 - t, 2));
+        }
+        return NORMAL_SPEED;
+      }
+
+      function tick() {
+        if (halfH > 0) {
+          var spd = 0;
+          if (introPhase === 'idle') {
+            spd = 0;
+          } else if (introPhase === 'done') {
+            spd = hovering ? HOVER_SPEED : NORMAL_SPEED;
+          } else {
+            introFrame++;
+            spd = introSpeed();
+            if (introPhase === 'ramp' && introFrame >= RAMP_FRAMES) {
+              introPhase = 'fast'; introFrame = 0; spinPixels = 0;
+            } else if (introPhase === 'fast') {
+              spinPixels += spd;
+              if (spinPixels >= halfH * SPIN_LOOPS) { introPhase = 'slow'; introFrame = 0; }
+            } else if (introPhase === 'slow' && introFrame >= SLOW_FRAMES) {
+              introPhase = 'done';
+            }
+          }
+          if (spd > 0) {
+            vertOffset = (vertOffset + spd) % halfH;
+            track.style.transform = 'translateY(-' + vertOffset.toFixed(2) + 'px)';
+          }
+        }
+        requestAnimationFrame(tick);
+      }
+
+      var heroH = window.innerHeight;
+
+      function checkReveal() {
+        var y = window.scrollY || window.pageYOffset;
+        if (!revealed && y >= heroH) {
+          revealed = true;
+          wrap.style.transform = 'translateX(0)';
+          wrap.style.opacity = '1';
+          wrap.style.pointerEvents = 'auto';
+          wrap.removeAttribute('aria-hidden');
+          if (introPhase === 'idle') { introPhase = 'ramp'; introFrame = 0; }
+        } else if (revealed && y < heroH * 0.85) {
+          revealed = false;
+          wrap.style.transform = 'translateX(110%)';
+          wrap.style.opacity = '0';
+          wrap.style.pointerEvents = 'none';
+          wrap.setAttribute('aria-hidden', 'true');
+        }
+      }
+
+      window.addEventListener('scroll', checkReveal, { passive: true });
+      wrap.addEventListener('mouseenter', function () { hovering = true; });
+      wrap.addEventListener('mouseleave', function () { hovering = false; });
+
+      window.addEventListener('DOMContentLoaded', function () {
+        /* Clone the 15 cards to create a seamless 30-card loop */
+        var origCards = Array.from(track.children);
+        origCards.forEach(function (card) {
+          var clone = card.cloneNode(true);
+          clone.setAttribute('aria-hidden', 'true');
+          clone.setAttribute('tabindex', '-1');
+          track.appendChild(clone);
+        });
+        /* Seek all vertical carousel video stills */
+        track.querySelectorAll('.carousel-still').forEach(function (vid) {
+          vid.addEventListener('loadedmetadata', function () { vid.currentTime = 3; });
+          if (vid.readyState >= 1) vid.currentTime = 3;
+        });
+      });
+
+      window.addEventListener('load', function () {
+        positionWrap();
+        requestAnimationFrame(function () {
+          measure();
+          requestAnimationFrame(tick);
+        });
+      });
+
+      window.addEventListener('resize', function () {
+        heroH = window.innerHeight;
+        positionWrap();
+        requestAnimationFrame(function () { measure(); });
+      });
+    })();
   </script>
 </body>
 </html>
