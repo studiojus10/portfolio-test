@@ -175,7 +175,7 @@
   <div id="home-hero-section" style="position: relative; height: 100vh; overflow: hidden; perspective: 1000px; perspective-origin: 50% 40%;">
 
   <!-- Back wall: height computed in JS to match far-edge height of side panels -->
-  <div id="room-wall-back" style="position:absolute;left:0;width:100%;z-index:0;">
+  <div id="room-wall-back" style="position:absolute;left:0;width:100%;z-index:2;">
     <div style="position:absolute;inset:0;background:rgba(0,0,0,0.10);pointer-events:none;z-index:1;"></div>
     <div id="carousel-container" class="w-full h-full px-[10.5px] py-2" style="opacity:0;overflow:hidden;">
       <div id="carousel-track" class="flex gap-8 h-full">
@@ -387,7 +387,7 @@
   </div><!-- end back wall -->
 
   <!-- Left wall: hinges from left edge, slower speed -->
-  <div id="room-wall-left" style="position:absolute;top:12.5%;left:-0.25%;width:48%;height:50%;z-index:1;transform-origin:left center;transform:rotateY(72deg);">
+  <div id="room-wall-left" style="position:absolute;top:12.5%;left:-2.3%;width:48%;height:50%;z-index:1;transform-origin:left center;transform:rotateY(72deg);">
     <div id="room-left-container" class="w-full h-full px-4 py-3" style="opacity:0;overflow:hidden;">
       <div id="carousel-track-left" class="flex gap-8 h-full"></div>
     </div>
@@ -395,7 +395,7 @@
   </div>
 
   <!-- Right wall: hinges from right edge, faster speed -->
-  <div id="room-wall-right" style="position:absolute;top:12.5%;right:-0.25%;width:48%;height:50%;z-index:1;transform-origin:right center;transform:rotateY(-72deg);">
+  <div id="room-wall-right" style="position:absolute;top:12.5%;right:-2.3%;width:48%;height:50%;z-index:1;transform-origin:right center;transform:rotateY(-72deg);">
     <div id="room-right-container" class="w-full h-full px-4 py-3" style="opacity:0;overflow:hidden;">
       <div id="carousel-track-right" class="flex gap-8 h-full"></div>
     </div>
@@ -404,7 +404,7 @@
 
   <!-- Right wall floor reflection: same rotateY(-72deg) angle, hinged at right top so it
        connects seamlessly to the bottom edge of room-wall-right -->
-  <div id="right-floor-reflection" aria-hidden="true" style="position:absolute;top:62.5%;right:-0.25%;width:48%;z-index:1;overflow:hidden;opacity:0;pointer-events:none;transform-origin:right top;transform:rotateY(-72deg);">
+  <div id="right-floor-reflection" aria-hidden="true" style="position:absolute;top:62.5%;right:-2.3%;width:48%;z-index:1;overflow:hidden;opacity:0;pointer-events:none;transform-origin:right top;transform:rotateY(-72deg);">
     <div id="right-floor-inner" class="px-4 py-3" style="position:absolute;top:0;left:0;width:100%;transform:scaleY(-1);overflow:hidden;">
       <div id="right-floor-track" class="flex gap-8 h-full"></div>
     </div>
@@ -419,7 +419,7 @@
 
   <!-- Left wall floor reflection: same rotateY(72deg) angle, hinged at left top so it
        connects seamlessly to the bottom edge of room-wall-left -->
-  <div id="left-floor-reflection" aria-hidden="true" style="position:absolute;top:62.5%;left:-0.25%;width:48%;z-index:1;overflow:hidden;opacity:0;pointer-events:none;transform-origin:left top;transform:rotateY(72deg);">
+  <div id="left-floor-reflection" aria-hidden="true" style="position:absolute;top:62.5%;left:-2.3%;width:48%;z-index:1;overflow:hidden;opacity:0;pointer-events:none;transform-origin:left top;transform:rotateY(72deg);">
     <div id="left-floor-inner" class="px-4 py-3" style="position:absolute;top:0;left:0;width:100%;transform:scaleY(-1);overflow:hidden;">
       <div id="left-floor-track" class="flex gap-8 h-full"></div>
     </div>
@@ -960,8 +960,8 @@
         var oPX      = vw * PERSP_ORIG_X;
         var leftEl   = document.getElementById('room-wall-left');
         var rightEl  = document.getElementById('room-wall-right');
-        var leftFrac  = leftEl  ? parseFloat(leftEl.style.left)   / 100 : 0;   // e.g. -0.25% → -0.0025
-        var rightFrac = rightEl ? parseFloat(rightEl.style.right) / 100 : 0;   // e.g. -0.25% → -0.0025
+        var leftFrac  = -0.02;   // fixed — back wall position independent of side panel offset
+        var rightFrac = -0.02;  // fixed — back wall position independent of side panel offset
         // Left panel: outer edge at (leftFrac * vw), inner edge = outer + WALL_W*cos(ANGLE)*vw
         // Right panel: outer edge at (1 - rightFrac) * vw, inner edge = outer - WALL_W*cos(ANGLE)*vw
         var x3dLeft  = vw * (leftFrac  + WALL_W * Math.cos(ANGLE));
