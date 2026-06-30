@@ -11,101 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Noto+Serif+SC:wght@200..900&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "on-primary-fixed-variant": "#930006",
-            "on-secondary": "#ffffff",
-            "surface": "#fcf9f8",
-            "outline": "#8f706b",
-            "on-background": "#1c1b1b",
-            "on-tertiary-fixed-variant": "#474742",
-            "error-container": "#ffdad6",
-            "primary-container": "#d9372d",
-            "on-secondary-fixed-variant": "#474747",
-            "on-surface": "#1c1b1b",
-            "background": "#fcf9f8",
-            "inverse-on-surface": "#f3f0ef",
-            "surface-container": "#f0eded",
-            "on-tertiary-container": "#fdffdd",
-            "on-tertiary": "#ffffff",
-            "surface-variant": "#e5e2e1",
-            "tertiary": "#5d5c57",
-            "surface-container-lowest": "#ffffff",
-            "tertiary-fixed": "#e5e2db",
-            "surface-container-high": "#eae7e7",
-            "secondary-container": "#e2e2e2",
-            "outline-variant": "#e4beb9",
-            "primary-fixed-dim": "#ffb4aa",
-            "on-tertiary-fixed": "#1c1c18",
-            "secondary-fixed": "#e2e2e2",
-            "on-error-container": "#93000a",
-            "error": "#ba1a1a",
-            "surface-dim": "#dcd9d9",
-            "tertiary-container": "#76756f",
-            "on-secondary-container": "#646464",
-            "secondary-fixed-dim": "#c6c6c6",
-            "on-primary-fixed": "#410001",
-            "on-error": "#ffffff",
-            "on-secondary-fixed": "#1b1b1b",
-            "surface-container-highest": "#e5e2e1",
-            "on-primary": "#ffffff",
-            "surface-tint": "#b91e19",
-            "on-surface-variant": "#5b403c",
-            "surface-bright": "#fcf9f8",
-            "inverse-surface": "#313030",
-            "inverse-primary": "#ffb4aa",
-            "secondary": "#5e5e5e",
-            "on-primary-container": "#fffbff",
-            "primary-fixed": "#ffdad5",
-            "primary": "#e03c31",
-            "tertiary-fixed-dim": "#c9c6c0",
-            "surface-container-low": "#f6f3f2"
-          },
-          borderRadius: {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-          spacing: {
-            "element-gap": "32px",
-            "section-gap": "120px",
-            "margin-mobile": "20px",
-            "gutter": "24px",
-            "margin-desktop": "64px"
-          },
-          fontFamily: {
-            "body-lg":             ["Hanken Grotesk"],
-            "display-lg":          ["Old Standard TT"],
-            "label-mono":          ["Space Grotesk"],
-            "label-caps":          ["Space Grotesk"],
-            "headline-md":         ["Old Standard TT"],
-            "headline-lg":         ["Old Standard TT"],
-            "body-md":             ["Hanken Grotesk"],
-            "headline-lg-mobile":  ["Old Standard TT"],
-            "cjk":                 ["Noto Serif SC", "serif"]
-          },
-          fontSize: {
-            "body-lg":            ["18px", { lineHeight: "28px", fontWeight: "400" }],
-            "display-lg":         ["84px", { lineHeight: "92px", letterSpacing: "-0.02em", fontWeight: "700" }],
-            "label-mono":         ["14px", { lineHeight: "20px", fontWeight: "400" }],
-            "label-caps":         ["12px", { lineHeight: "16px", letterSpacing: "0.1em", fontWeight: "700" }],
-            "headline-md":        ["32px", { lineHeight: "40px", fontWeight: "500" }],
-            "headline-lg":        ["48px", { lineHeight: "56px", fontWeight: "600" }],
-            "body-md":            ["16px", { lineHeight: "24px", fontWeight: "400" }],
-            "headline-lg-mobile": ["32px", { lineHeight: "38px", fontWeight: "600" }],
-            "xs": "14px"
-          }
-        }
-      }
-    };
-  </script>
-
+  <link rel="stylesheet" href="assets/css/tailwind.css">
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
     #room-wall-left span, #room-wall-right span,
@@ -184,7 +90,7 @@
         <!-- 1: Twelve Views of Pikes Peak — Photography -->
         <a href="photography-colorado-twelve-views.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
           <div class="flex flex-col w-full h-full">
-            <div class="h-[70%] w-full overflow-hidden relative"><img src="assets/images/Colorado/Twelve Views of Pikes Peak/TYPOLOGY-01.jpg" alt="Twelve Views of Pikes Peak" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
+            <div class="h-[70%] w-full overflow-hidden relative"><img src="assets/carousel/TYPOLOGY-01.jpg" alt="Twelve Views of Pikes Peak" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Twelve Views of Pikes Peak</span>
               <span class="font-cjk text-[13px] text-primary font-medium">派克峰十二景</span>
@@ -195,7 +101,7 @@
         <!-- 2: Memory — Photography -->
         <a href="photography-film-memory.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
           <div class="flex flex-col w-full h-full">
-            <div class="h-[70%] w-full overflow-hidden relative"><img src="assets/images/Film/Memory/MEMORY-01.jpg" alt="Memory" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
+            <div class="h-[70%] w-full overflow-hidden relative"><img src="assets/carousel/MEMORY-01.jpg" alt="Memory" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Memory</span>
               <span class="font-cjk text-[13px] text-primary font-medium">记忆</span>
@@ -206,7 +112,7 @@
         <!-- 3: Portrait of a Musician — Video (still frame) -->
         <a href="video-portrait.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
           <div class="flex flex-col w-full h-full">
-            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" poster="assets/posters/portrait-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video>
+            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" poster="assets/posters/portrait-thumbnail.jpg" muted playsinline preload="none" style="display:block;"></video>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Portrait of a Musician</span>
               <span class="font-cjk text-[13px] text-primary font-medium">音乐家肖像</span>
@@ -217,7 +123,7 @@
         <!-- 4: Sketches — Art -->
         <a href="art-sketches.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
           <div class="flex flex-col w-full h-full">
-            <img src="assets/art/sketches/SKETCH-3.jpg" alt="Sketches" class="h-[70%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
+            <img src="assets/carousel/SKETCH-3.jpg" alt="Sketches" class="h-[70%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Sketches</span>
               <span class="font-cjk text-[13px] text-primary font-medium">素描</span>
@@ -228,7 +134,7 @@
         <!-- 5: Home — Photography -->
         <a href="photography-film-home.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
           <div class="flex flex-col w-full h-full">
-            <div class="h-[70%] w-full overflow-hidden relative"><img src="assets/images/Film/Home/FILM_MISC-01.jpg" alt="Home" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
+            <div class="h-[70%] w-full overflow-hidden relative"><img src="assets/carousel/FILM_MISC-01.jpg" alt="Home" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Home</span>
               <span class="font-cjk text-[13px] text-primary font-medium">家</span>
@@ -239,7 +145,7 @@
         <!-- 6: Winter Scene — Video (still frame) -->
         <a href="video-winter.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
           <div class="flex flex-col w-full h-full">
-            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" poster="assets/posters/winter-scene-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video>
+            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" poster="assets/posters/winter-scene-thumbnail.jpg" muted playsinline preload="none" style="display:block;"></video>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Winter Scene</span>
               <span class="font-cjk text-[13px] text-primary font-medium">冬景</span>
@@ -250,7 +156,7 @@
         <!-- 7: Butterfly Sanctuary — Photography -->
         <a href="photography-nature-sanctuary.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
           <div class="flex flex-col w-full h-full">
-            <div class="h-[70%] w-full overflow-hidden relative"><img src="assets/images/Nature/Butterflies/Sanctuary/BUTTERFLIES-01.jpg" alt="Butterfly Sanctuary" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
+            <div class="h-[70%] w-full overflow-hidden relative"><img src="assets/carousel/BUTTERFLIES-01.jpg" alt="Butterfly Sanctuary" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Butterfly Sanctuary</span>
               <span class="font-cjk text-[13px] text-primary font-medium">蝴蝶圣地</span>
@@ -261,7 +167,7 @@
         <!-- 8: Murder, He Wrote — Video (still frame) -->
         <a href="video-murder.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
           <div class="flex flex-col w-full h-full">
-            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" poster="assets/posters/murder-he-wrote-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video>
+            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" poster="assets/posters/murder-he-wrote-thumbnail.jpg" muted playsinline preload="none" style="display:block;"></video>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Murder, He Wrote</span>
               <span class="font-cjk text-[13px] text-primary font-medium">他所写的谋杀</span>
@@ -272,7 +178,7 @@
         <!-- 9: Film — Photography -->
         <a href="photography-film.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
           <div class="flex flex-col w-full h-full">
-            <div class="h-[70%] w-full overflow-hidden relative"><img src="assets/images/Film/Europe/FILM_MISC-03.jpg" alt="Film" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
+            <div class="h-[70%] w-full overflow-hidden relative"><img src="assets/carousel/FILM_MISC-03.jpg" alt="Film" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Film</span>
               <span class="font-cjk text-[13px] text-primary font-medium">胶片</span>
@@ -283,7 +189,7 @@
         <!-- 10: Composers — Art -->
         <a href="art-composers.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full">
           <div class="flex flex-col w-full h-full">
-            <img src="assets/art/composers/COMPOSER-3.jpg" alt="Composers" class="h-[70%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
+            <img src="assets/carousel/COMPOSER-3.jpg" alt="Composers" class="h-[70%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Composers</span>
               <span class="font-cjk text-[13px] text-primary font-medium">作曲家</span>
@@ -294,7 +200,7 @@
         <!-- Duplicates for seamless infinite loop -->
         <a href="photography-colorado-twelve-views.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
           <div class="flex flex-col w-full h-full">
-            <div class="h-[70%] w-full overflow-hidden relative"><img src="assets/images/Colorado/Twelve Views of Pikes Peak/TYPOLOGY-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
+            <div class="h-[70%] w-full overflow-hidden relative"><img loading="lazy" src="assets/carousel/TYPOLOGY-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Twelve Views of Pikes Peak</span>
               <span class="font-cjk text-[13px] text-primary font-medium">派克峰十二景</span>
@@ -303,7 +209,7 @@
         </a>
         <a href="photography-film-memory.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
           <div class="flex flex-col w-full h-full">
-            <div class="h-[70%] w-full overflow-hidden relative"><img src="assets/images/Film/Memory/MEMORY-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
+            <div class="h-[70%] w-full overflow-hidden relative"><img loading="lazy" src="assets/carousel/MEMORY-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Memory</span>
               <span class="font-cjk text-[13px] text-primary font-medium">记忆</span>
@@ -312,7 +218,7 @@
         </a>
         <a href="video-portrait.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
           <div class="flex flex-col w-full h-full">
-            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" poster="assets/posters/portrait-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video>
+            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" poster="assets/posters/portrait-thumbnail.jpg" muted playsinline preload="none" style="display:block;"></video>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Portrait of a Musician</span>
               <span class="font-cjk text-[13px] text-primary font-medium">音乐家肖像</span>
@@ -321,7 +227,7 @@
         </a>
         <a href="art-sketches.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
           <div class="flex flex-col w-full h-full">
-            <img src="assets/art/sketches/SKETCH-3.jpg" alt="" class="h-[70%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
+            <img loading="lazy" src="assets/carousel/SKETCH-3.jpg" alt="" class="h-[70%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Sketches</span>
               <span class="font-cjk text-[13px] text-primary font-medium">素描</span>
@@ -330,7 +236,7 @@
         </a>
         <a href="photography-film-home.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
           <div class="flex flex-col w-full h-full">
-            <div class="h-[70%] w-full overflow-hidden relative"><img src="assets/images/Film/Home/FILM_MISC-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
+            <div class="h-[70%] w-full overflow-hidden relative"><img loading="lazy" src="assets/carousel/FILM_MISC-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Home</span>
               <span class="font-cjk text-[13px] text-primary font-medium">家</span>
@@ -339,7 +245,7 @@
         </a>
         <a href="video-winter.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
           <div class="flex flex-col w-full h-full">
-            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" poster="assets/posters/winter-scene-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video>
+            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" poster="assets/posters/winter-scene-thumbnail.jpg" muted playsinline preload="none" style="display:block;"></video>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Winter Scene</span>
               <span class="font-cjk text-[13px] text-primary font-medium">冬景</span>
@@ -348,7 +254,7 @@
         </a>
         <a href="photography-nature-sanctuary.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
           <div class="flex flex-col w-full h-full">
-            <div class="h-[70%] w-full overflow-hidden relative"><img src="assets/images/Nature/Butterflies/Sanctuary/BUTTERFLIES-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
+            <div class="h-[70%] w-full overflow-hidden relative"><img loading="lazy" src="assets/carousel/BUTTERFLIES-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Butterfly Sanctuary</span>
               <span class="font-cjk text-[13px] text-primary font-medium">蝴蝶圣地</span>
@@ -357,7 +263,7 @@
         </a>
         <a href="video-murder.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
           <div class="flex flex-col w-full h-full">
-            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" poster="assets/posters/murder-he-wrote-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video>
+            <video class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" poster="assets/posters/murder-he-wrote-thumbnail.jpg" muted playsinline preload="none" style="display:block;"></video>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Murder, He Wrote</span>
               <span class="font-cjk text-[13px] text-primary font-medium">他所写的谋杀</span>
@@ -366,7 +272,7 @@
         </a>
         <a href="photography-film.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
           <div class="flex flex-col w-full h-full">
-            <div class="h-[70%] w-full overflow-hidden relative"><img src="assets/images/Film/Europe/FILM_MISC-03.jpg" alt="" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
+            <div class="h-[70%] w-full overflow-hidden relative"><img loading="lazy" src="assets/carousel/FILM_MISC-03.jpg" alt="" class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"></div>
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Film</span>
               <span class="font-cjk text-[13px] text-primary font-medium">胶片</span>
@@ -375,7 +281,7 @@
         </a>
         <a href="art-composers.html" class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full" aria-hidden="true" tabindex="-1">
           <div class="flex flex-col w-full h-full">
-            <img src="assets/art/composers/COMPOSER-3.jpg" alt="" class="h-[70%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
+            <img loading="lazy" src="assets/carousel/COMPOSER-3.jpg" alt="" class="h-[70%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500">
             <div class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden">
               <span class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface">Composers</span>
               <span class="font-cjk text-[13px] text-primary font-medium">作曲家</span>
@@ -503,7 +409,7 @@
         <!-- Photo floated top-right — text wraps around it -->
         <div class="border border-on-background overflow-hidden float-right ml-4 mb-2" style="width:27.5%;">
           <a href="about.html" class="block relative overflow-hidden group/headshot mb-2" style="aspect-ratio:2/3;">
-            <img src="assets/me-photos/headshot-color.jpg" alt="Justin Hughes" class="absolute inset-0 w-full h-full object-cover object-top transition-all duration-500">
+            <img loading="lazy" src="assets/me-photos/headshot-color.jpg" alt="Justin Hughes" class="absolute inset-0 w-full h-full object-cover object-top transition-all duration-500">
           </a>
           <a href="about.html" class="flex justify-center items-center gap-1 p-2 group transition-colors" style="background:#c0392b;color:#fff;">
             <span class="font-label-caps text-[10px] uppercase tracking-widest" style="color:#fff;">More</span>
@@ -533,91 +439,91 @@
 
       <!-- 1: Twelve Views of Pikes Peak -->
       <a href="photography-colorado-twelve-views.html" class="vert-card block shrink-0 border border-on-background bg-surface">
-        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/images/Colorado/Twelve Views of Pikes Peak/TYPOLOGY-01.jpg" alt="Twelve Views of Pikes Peak" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img loading="lazy" src="assets/carousel/TYPOLOGY-01.jpg" alt="Twelve Views of Pikes Peak" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Twelve Views of Pikes Peak</span></div>
       </a>
 
       <!-- 2: Memory -->
       <a href="photography-film-memory.html" class="vert-card block shrink-0 border border-on-background bg-surface">
-        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/images/Film/Memory/MEMORY-01.jpg" alt="Memory" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img loading="lazy" src="assets/carousel/MEMORY-01.jpg" alt="Memory" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Memory</span></div>
       </a>
 
       <!-- 3: Portrait of a Musician (video) -->
       <a href="video-portrait.html" class="vert-card block shrink-0 border border-on-background bg-surface">
-        <div style="aspect-ratio:1/1;overflow:hidden;"><video class="carousel-still" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" poster="assets/posters/portrait-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;width:100%;height:100%;object-fit:cover;"></video></div>
+        <div style="aspect-ratio:1/1;overflow:hidden;"><video class="carousel-still" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" poster="assets/posters/portrait-thumbnail.jpg" muted playsinline preload="none" style="display:block;width:100%;height:100%;object-fit:cover;"></video></div>
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Portrait of a Musician</span></div>
       </a>
 
       <!-- 4: Sketches -->
       <a href="art-sketches.html" class="vert-card block shrink-0 border border-on-background bg-surface">
-        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/art/sketches/SKETCH-3.jpg" alt="Sketches" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img loading="lazy" src="assets/carousel/SKETCH-3.jpg" alt="Sketches" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Sketches</span></div>
       </a>
 
       <!-- 5: Home -->
       <a href="photography-film-home.html" class="vert-card block shrink-0 border border-on-background bg-surface">
-        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/images/Film/Home/FILM_MISC-01.jpg" alt="Home" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img loading="lazy" src="assets/carousel/FILM_MISC-01.jpg" alt="Home" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Home</span></div>
       </a>
 
       <!-- 6: Winter Scene (video) -->
       <a href="video-winter.html" class="vert-card block shrink-0 border border-on-background bg-surface">
-        <div style="aspect-ratio:1/1;overflow:hidden;"><video class="carousel-still" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" poster="assets/posters/winter-scene-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;width:100%;height:100%;object-fit:cover;"></video></div>
+        <div style="aspect-ratio:1/1;overflow:hidden;"><video class="carousel-still" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" poster="assets/posters/winter-scene-thumbnail.jpg" muted playsinline preload="none" style="display:block;width:100%;height:100%;object-fit:cover;"></video></div>
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Winter Scene</span></div>
       </a>
 
       <!-- 7: Butterfly Sanctuary -->
       <a href="photography-nature-sanctuary.html" class="vert-card block shrink-0 border border-on-background bg-surface">
-        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/images/Nature/Butterflies/Sanctuary/BUTTERFLIES-01.jpg" alt="Butterfly Sanctuary" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img loading="lazy" src="assets/carousel/BUTTERFLIES-01.jpg" alt="Butterfly Sanctuary" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Butterfly Sanctuary</span></div>
       </a>
 
       <!-- 8: Murder, He Wrote (video) -->
       <a href="video-murder.html" class="vert-card block shrink-0 border border-on-background bg-surface">
-        <div style="aspect-ratio:1/1;overflow:hidden;"><video class="carousel-still" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" poster="assets/posters/murder-he-wrote-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;width:100%;height:100%;object-fit:cover;"></video></div>
+        <div style="aspect-ratio:1/1;overflow:hidden;"><video class="carousel-still" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" poster="assets/posters/murder-he-wrote-thumbnail.jpg" muted playsinline preload="none" style="display:block;width:100%;height:100%;object-fit:cover;"></video></div>
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Murder, He Wrote</span></div>
       </a>
 
       <!-- 9: Film Europe -->
       <a href="photography-film-europe.html" class="vert-card block shrink-0 border border-on-background bg-surface">
-        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/images/Film/Europe/FILM_MISC-03.jpg" alt="Film" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img loading="lazy" src="assets/carousel/FILM_MISC-03.jpg" alt="Film" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Film</span></div>
       </a>
 
       <!-- 10: Composers -->
       <a href="art-composers.html" class="vert-card block shrink-0 border border-on-background bg-surface">
-        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/art/composers/COMPOSER-3.jpg" alt="Composers" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img loading="lazy" src="assets/carousel/COMPOSER-3.jpg" alt="Composers" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Composers</span></div>
       </a>
 
       <!-- 11: Arizona Travels -->
       <a href="photography-arizona-travels.html" class="vert-card block shrink-0 border border-on-background bg-surface">
-        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/images/Arizona/Travels/ARIZONA-01.jpg" alt="Arizona" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img loading="lazy" src="assets/images/Arizona/Travels/ARIZONA-01.jpg" alt="Arizona" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Arizona</span></div>
       </a>
 
       <!-- 12: Seattle -->
       <a href="photography-washington-seattle.html" class="vert-card block shrink-0 border border-on-background bg-surface">
-        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/images/Washington/Seattle/SEATTLE-01.jpg" alt="Seattle" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img loading="lazy" src="assets/carousel/SEATTLE-01.jpg" alt="Seattle" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Seattle</span></div>
       </a>
 
       <!-- 13: Collage (video) -->
       <a href="video-collage.html" class="vert-card block shrink-0 border border-on-background bg-surface">
-        <div style="aspect-ratio:1/1;overflow:hidden;"><video class="carousel-still" src="assets/videos/thumbnail-videos/collage-thumbnail.mp4" poster="assets/posters/collage-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;width:100%;height:100%;object-fit:cover;"></video></div>
+        <div style="aspect-ratio:1/1;overflow:hidden;"><video class="carousel-still" src="assets/videos/thumbnail-videos/collage-thumbnail.mp4" poster="assets/posters/collage-thumbnail.jpg" muted playsinline preload="none" style="display:block;width:100%;height:100%;object-fit:cover;"></video></div>
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Collage</span></div>
       </a>
 
       <!-- 14: Decadance (video) -->
       <a href="video-decadance.html" class="vert-card block shrink-0 border border-on-background bg-surface">
-        <div style="aspect-ratio:1/1;overflow:hidden;"><video class="carousel-still" src="assets/videos/thumbnail-videos/decadance-thumbnail.mp4" poster="assets/posters/decadance-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;width:100%;height:100%;object-fit:cover;"></video></div>
+        <div style="aspect-ratio:1/1;overflow:hidden;"><video class="carousel-still" src="assets/videos/thumbnail-videos/decadance-thumbnail.mp4" poster="assets/posters/decadance-thumbnail.jpg" muted playsinline preload="none" style="display:block;width:100%;height:100%;object-fit:cover;"></video></div>
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Decadance</span></div>
       </a>
 
       <!-- 15: Colorado Golf -->
       <a href="photography-colorado-golf.html" class="vert-card block shrink-0 border border-on-background bg-surface">
-        <div style="aspect-ratio:1/1;overflow:hidden;"><img src="assets/images/Colorado/Golf/GOLF-01.jpg" alt="Colorado Golf" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
+        <div style="aspect-ratio:1/1;overflow:hidden;"><img loading="lazy" src="assets/carousel/GOLF-01.jpg" alt="Colorado Golf" style="display:block;width:100%;height:100%;object-fit:cover;"></div>
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);"><span class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface">Colorado Golf</span></div>
       </a>
 
@@ -661,153 +567,153 @@
 
       <!-- 1: Twelve Views of Pikes Peak -->
       <a href="photography-colorado-twelve-views.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
-        <div style="position:absolute;inset:0;"><img src="assets/images/Colorado/Twelve Views of Pikes Peak/TYPOLOGY-01.jpg" alt="Twelve Views of Pikes Peak" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/TYPOLOGY-01.jpg" alt="Twelve Views of Pikes Peak" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Twelve Views of Pikes Peak</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">派克峰十二景</span></div>
       </a>
 
       <!-- 2: Memory -->
       <a href="photography-film-memory.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
-        <div style="position:absolute;inset:0;"><img src="assets/images/Film/Memory/MEMORY-01.jpg" alt="Memory" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/MEMORY-01.jpg" alt="Memory" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Memory</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">记忆</span></div>
       </a>
 
       <!-- 3: Portrait of a Musician (video still) -->
       <a href="video-portrait.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
-        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" poster="assets/posters/portrait-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" poster="assets/posters/portrait-thumbnail.jpg" muted playsinline preload="none" style="display:block;"></video></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Portrait of a Musician</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">音乐家肖像</span></div>
       </a>
 
       <!-- 4: Sketches -->
       <a href="art-sketches.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
-        <div style="position:absolute;inset:0;"><img src="assets/art/sketches/SKETCH-3.jpg" alt="Sketches" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/SKETCH-3.jpg" alt="Sketches" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Sketches</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">素描</span></div>
       </a>
 
       <!-- 5: Home -->
       <a href="photography-film-home.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
-        <div style="position:absolute;inset:0;"><img src="assets/images/Film/Home/FILM_MISC-01.jpg" alt="Home" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/FILM_MISC-01.jpg" alt="Home" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Home</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">家</span></div>
       </a>
 
       <!-- 6: Winter Scene (video still) -->
       <a href="video-winter.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
-        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" poster="assets/posters/winter-scene-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" poster="assets/posters/winter-scene-thumbnail.jpg" muted playsinline preload="none" style="display:block;"></video></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Winter Scene</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">冬景</span></div>
       </a>
 
       <!-- 7: Butterfly Sanctuary -->
       <a href="photography-nature-sanctuary.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
-        <div style="position:absolute;inset:0;"><img src="assets/images/Nature/Butterflies/Sanctuary/BUTTERFLIES-01.jpg" alt="Butterfly Sanctuary" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/BUTTERFLIES-01.jpg" alt="Butterfly Sanctuary" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Butterfly Sanctuary</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">蝴蝶圣地</span></div>
       </a>
 
       <!-- 8: Murder, He Wrote (video still) -->
       <a href="video-murder.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
-        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" poster="assets/posters/murder-he-wrote-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" poster="assets/posters/murder-he-wrote-thumbnail.jpg" muted playsinline preload="none" style="display:block;"></video></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Murder, He Wrote</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">谋杀案</span></div>
       </a>
 
       <!-- 9: Film / Europe -->
       <a href="photography-film-europe.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
-        <div style="position:absolute;inset:0;"><img src="assets/images/Film/Europe/FILM_MISC-03.jpg" alt="Film / Europe" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/FILM_MISC-03.jpg" alt="Film / Europe" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Film / Europe</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">欧洲胶片</span></div>
       </a>
 
       <!-- 10: Composers -->
       <a href="art-composers.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
-        <div style="position:absolute;inset:0;"><img src="assets/art/composers/COMPOSER-3.jpg" alt="Composers" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/COMPOSER-3.jpg" alt="Composers" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Composers</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">作曲家</span></div>
       </a>
 
       <!-- 11: Arizona Travels -->
       <a href="photography-arizona-travels.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
-        <div style="position:absolute;inset:0;"><img src="assets/images/Arizona/Travels/ARIZONA-05.jpg" alt="Arizona" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/ARIZONA-05.jpg" alt="Arizona" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Arizona</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">亚利桑那</span></div>
       </a>
 
       <!-- 12: Seattle -->
       <a href="photography-washington-seattle.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
-        <div style="position:absolute;inset:0;"><img src="assets/images/Washington/Seattle/SEATTLE-01.jpg" alt="Seattle" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/SEATTLE-01.jpg" alt="Seattle" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Seattle</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">西雅图</span></div>
       </a>
 
       <!-- 13: Collage (video still) -->
       <a href="video-collage.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
-        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/collage-thumbnail.mp4" poster="assets/posters/collage-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/collage-thumbnail.mp4" poster="assets/posters/collage-thumbnail.jpg" muted playsinline preload="none" style="display:block;"></video></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Collage</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">拼贴</span></div>
       </a>
 
       <!-- 14: Décadance (video still) -->
       <a href="video-decadance.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
-        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/decadance-thumbnail.mp4" poster="assets/posters/decadance-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/decadance-thumbnail.mp4" poster="assets/posters/decadance-thumbnail.jpg" muted playsinline preload="none" style="display:block;"></video></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Décadance</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">颓废</span></div>
       </a>
 
       <!-- 15: Colorado Golf -->
       <a href="photography-colorado-golf.html" class="shrink-0 block group/vc border border-on-background bg-surface relative overflow-hidden" style="aspect-ratio:1/1;">
-        <div style="position:absolute;inset:0;"><img src="assets/images/Colorado/Golf/GOLF-01.jpg" alt="Golf" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/GOLF-01.jpg" alt="Golf" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Golf</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">高尔夫</span></div>
       </a>
 
       <!-- ── Duplicates for infinite loop ── -->
       <a href="photography-colorado-twelve-views.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
-        <div style="position:absolute;inset:0;"><img src="assets/images/Colorado/Twelve Views of Pikes Peak/TYPOLOGY-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/TYPOLOGY-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Twelve Views of Pikes Peak</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">派克峰十二景</span></div>
       </a>
       <a href="photography-film-memory.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
-        <div style="position:absolute;inset:0;"><img src="assets/images/Film/Memory/MEMORY-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/MEMORY-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Memory</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">记忆</span></div>
       </a>
       <a href="video-portrait.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
-        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" poster="assets/posters/portrait-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" poster="assets/posters/portrait-thumbnail.jpg" muted playsinline preload="none" style="display:block;"></video></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Portrait of a Musician</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">音乐家肖像</span></div>
       </a>
       <a href="art-sketches.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
-        <div style="position:absolute;inset:0;"><img src="assets/art/sketches/SKETCH-3.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/SKETCH-3.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Sketches</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">素描</span></div>
       </a>
       <a href="photography-film-home.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
-        <div style="position:absolute;inset:0;"><img src="assets/images/Film/Home/FILM_MISC-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/FILM_MISC-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Home</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">家</span></div>
       </a>
       <a href="video-winter.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
-        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" poster="assets/posters/winter-scene-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" poster="assets/posters/winter-scene-thumbnail.jpg" muted playsinline preload="none" style="display:block;"></video></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Winter Scene</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">冬景</span></div>
       </a>
       <a href="photography-nature-sanctuary.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
-        <div style="position:absolute;inset:0;"><img src="assets/images/Nature/Butterflies/Sanctuary/BUTTERFLIES-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/BUTTERFLIES-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Butterfly Sanctuary</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">蝴蝶圣地</span></div>
       </a>
       <a href="video-murder.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
-        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" poster="assets/posters/murder-he-wrote-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" poster="assets/posters/murder-he-wrote-thumbnail.jpg" muted playsinline preload="none" style="display:block;"></video></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Murder, He Wrote</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">谋杀案</span></div>
       </a>
       <a href="photography-film-europe.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
-        <div style="position:absolute;inset:0;"><img src="assets/images/Film/Europe/FILM_MISC-03.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/FILM_MISC-03.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Film / Europe</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">欧洲胶片</span></div>
       </a>
       <a href="art-composers.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
-        <div style="position:absolute;inset:0;"><img src="assets/art/composers/COMPOSER-3.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/COMPOSER-3.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Composers</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">作曲家</span></div>
       </a>
       <a href="photography-arizona-travels.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
-        <div style="position:absolute;inset:0;"><img src="assets/images/Arizona/Travels/ARIZONA-05.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/ARIZONA-05.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Arizona</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">亚利桑那</span></div>
       </a>
       <a href="photography-washington-seattle.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
-        <div style="position:absolute;inset:0;"><img src="assets/images/Washington/Seattle/SEATTLE-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/SEATTLE-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Seattle</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">西雅图</span></div>
       </a>
       <a href="video-collage.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
-        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/collage-thumbnail.mp4" poster="assets/posters/collage-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/collage-thumbnail.mp4" poster="assets/posters/collage-thumbnail.jpg" muted playsinline preload="none" style="display:block;"></video></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Collage</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">拼贴</span></div>
       </a>
       <a href="video-decadance.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
-        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/decadance-thumbnail.mp4" poster="assets/posters/decadance-thumbnail.jpg" muted playsinline preload="metadata" style="display:block;"></video></div>
+        <div style="position:absolute;inset:0;"><video class="vert-still absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500" src="assets/videos/thumbnail-videos/decadance-thumbnail.mp4" poster="assets/posters/decadance-thumbnail.jpg" muted playsinline preload="none" style="display:block;"></video></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Décadance</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">颓废</span></div>
       </a>
       <a href="photography-colorado-golf.html" class="shrink-0 block group/vc border border-on-background bg-surface p-1.5" aria-hidden="true" tabindex="-1">
-        <div style="position:absolute;inset:0;"><img src="assets/images/Colorado/Golf/GOLF-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
+        <div style="position:absolute;inset:0;"><img loading="lazy" src="assets/carousel/GOLF-01.jpg" alt="" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/vc:grayscale-0 transition-all duration-500"></div>
         <div class="flex items-center justify-between border-t border-on-background/10 px-1.5 py-1 overflow-hidden" style="position:absolute;bottom:0;left:0;right:0;background:rgba(246,243,242,0.92);"><span class="font-label-caps text-[10px] tracking-widest text-on-surface truncate">Golf</span><span class="font-cjk text-[10px] text-primary ml-1 shrink-0">高尔夫</span></div>
       </a>
 
