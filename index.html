@@ -1010,8 +1010,9 @@
       var track = document.getElementById('vert-track');
       if (!wrap || !track) return;
 
-      var NORMAL_SPEED = 2.5;
-      var HOVER_SPEED  = 0.5;
+      var SPEED_FACTOR = window.innerWidth < 768 ? 0.7 : 1;
+      var NORMAL_SPEED = 2.5 * SPEED_FACTOR;
+      var HOVER_SPEED  = 0.5 * SPEED_FACTOR;
       var RAMP_FRAMES  = 6;
       var FAST_FRAMES  = 9;
       var SLOW_FRAMES  = 42;
