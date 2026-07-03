@@ -1034,11 +1034,13 @@
         if (!aboutEl) { wrap.style.display = 'none'; return; }
         var mobile = window.innerWidth < 768;
         if (mobile) {
-          /* On mobile: narrow fixed strip on the right; constrain about so it doesn't overlap */
+          /* On mobile: carousel takes the 15% freed by narrowing the about section */
           wrap.style.display = 'block';
-          wrap.style.width   = '84px';
           wrap.style.right   = '0px';
-          aboutEl.style.maxWidth = (window.innerWidth - 84 - 28) + 'px';
+          var baseAboutW = window.innerWidth - 84 - 28;
+          var mobileCarW = Math.round(84 + baseAboutW * 0.15);
+          wrap.style.width        = mobileCarW + 'px';
+          aboutEl.style.maxWidth  = (window.innerWidth - mobileCarW - 28) + 'px';
           return;
         }
         var margin  = 32;                              // px-8 — left margin of page content
