@@ -421,7 +421,7 @@
           <span class="font-headline-md text-3xl float-left mr-2 mt-1 leading-none text-on-background">J</span>
           ustin Hughes is a storyteller and digital media practitioner who recently graduated with a Bachelor of Innovation in Digital Media Communication at the University of Colorado Colorado Springs. His creative foundation was built through years spent in China and France studying language, design, culinary arts, and hospitality, developing a fluency in human experience that informs everything he makes.
         </p>
-        <p class="font-label-mono text-[15px] leading-relaxed text-justify mb-3" style="text-indent:1.25rem;">A multilingual, collaborative, and detail-oriented foundation taught him to communicate across cultural difference and craft experiences with precision and care. Fine dining, hospitality and education are fields that demand cross-disciplinary teamwork and clear leadership under pressure. In these roles, Justin has sharpened his instinct for reading a room, motivating people, and translating complex ideas into action.</p>
+        <p class="font-label-mono text-[15px] leading-relaxed text-justify mb-3" style="text-indent:1.25rem;">A multilingual, collaborative, and detail-oriented foundation taught him to communicate across cultural difference and craft experiences with precision and care. Fine dining, hospitality and education are fields that demand cross-disciplinary</p>
         <p class="font-label-mono text-[15px] leading-relaxed text-justify" style="text-indent:1.25rem;">Every project begins with a story: what does this need to say, and how should it feel? Justin brings cross-disciplinary thinking and a drive for innovation to brand communication, digital marketing, eCommerce, and visual direction; leading with narrative and building toward creative leadership roles where strategy and storytelling converge.</p>
         <div style="clear:both;"></div>
       </div>
@@ -1030,7 +1030,16 @@
          equal the page's px-8 = 32 px left margin */
       function positionWrap() {
         var aboutEl = document.getElementById('about');
-        if (window.innerWidth < 768 || !aboutEl) { wrap.style.display = 'none'; return; }
+        if (!aboutEl) { wrap.style.display = 'none'; return; }
+        var mobile = window.innerWidth < 768;
+        if (mobile) {
+          /* On mobile: show as a narrow fixed strip on the right edge */
+          wrap.style.display = 'block';
+          wrap.style.width   = '84px';
+          wrap.style.right   = '0px';
+          aboutEl.style.maxWidth = '';
+          return;
+        }
         var margin  = 32;                              // px-8 — left margin of page content
         var vw      = window.innerWidth;
         var contentW = vw - margin - margin;           // space between both page edges
