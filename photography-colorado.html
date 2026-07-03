@@ -495,10 +495,28 @@
 
     /* ── Responsive ── */
     @media (max-width: 640px) {
-      .acc-row    { height: 180px; }
-      .acc-panel  { flex-basis: 32px; }
       .collection { padding: 8vh 4vw 12vh; }
       .collection-head { padding: 30px 22px; border-radius: 24px; }
+      .acc-row {
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        height: 260px !important;
+        gap: 0;
+      }
+      .acc-row::-webkit-scrollbar { display: none; }
+      .acc-panel { flex: 0 0 100% !important; scroll-snap-align: start; }
+      .acc-panel.acc-see-more { display: none; }
+    }
+    .acc-mobile-controls { display: none; }
+    @media (max-width: 640px) {
+      .acc-mobile-controls { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 10px; }
+      .acc-dots { display: flex; gap: 6px; align-items: center; }
+      .acc-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.22; border: none; padding: 0; cursor: pointer; transition: opacity 0.2s, transform 0.2s; }
+      .acc-dot.acc-dot-active { opacity: 1; transform: scale(1.4); }
+      .acc-show-more-btn { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: #e03c31; background: none; border: 1.5px solid #e03c31; padding: 8px 22px; border-radius: 9999px; cursor: pointer; transition: background 0.2s, color 0.2s; }
+      .acc-show-more-btn:active { background: #e03c31; color: #fff; }
     }
     @media (prefers-reduced-motion: reduce) {
       .grain, .cue-line { animation: none; }
@@ -911,6 +929,48 @@
     window.addEventListener('resize', setHeroFlush);
 
     window.onNavThemeChange = function () { setHeroFlush(); update(); };
+
+    /* ── Mobile swipe gallery ── */
+    if (window.innerWidth <= 640) {
+      document.querySelectorAll('.accordion-section').forEach(function (section) {
+        var key = section.dataset.section;
+        var g = galleryPages[key];
+        if (!g) return;
+        var row = section.querySelector('.acc-row');
+        var panels = Array.from(row.querySelectorAll('.acc-panel:not(.acc-see-more)'));
+        var count = panels.length;
+        var controls = document.createElement('div');
+        controls.className = 'acc-mobile-controls';
+        var dotsWrap = document.createElement('div');
+        dotsWrap.className = 'acc-dots';
+        var dots = [];
+        for (var di = 0; di < count; di++) {
+          (function (idx) {
+            var dot = document.createElement('button');
+            dot.className = 'acc-dot' + (idx === 0 ? ' acc-dot-active' : '');
+            dot.setAttribute('aria-label', 'Photo ' + (idx + 1) + ' of ' + count);
+            dot.addEventListener('click', function () {
+              row.scrollTo({ left: row.offsetWidth * idx, behavior: 'smooth' });
+            });
+            dotsWrap.appendChild(dot);
+            dots.push(dot);
+          })(di);
+        }
+        var showMoreBtn = document.createElement('button');
+        showMoreBtn.className = 'acc-show-more-btn';
+        showMoreBtn.textContent = 'Show More';
+        showMoreBtn.addEventListener('click', function () {
+          window.location.href = g.page;
+        });
+        controls.appendChild(dotsWrap);
+        controls.appendChild(showMoreBtn);
+        section.appendChild(controls);
+        row.addEventListener('scroll', function () {
+          var idx = Math.round(row.scrollLeft / Math.max(1, row.offsetWidth));
+          dots.forEach(function (d, i) { d.classList.toggle('acc-dot-active', i === idx); });
+        }, { passive: true });
+      });
+    }
 
   })();
   </script>
