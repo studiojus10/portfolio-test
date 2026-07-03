@@ -1034,15 +1034,17 @@
         if (!aboutEl) { wrap.style.display = 'none'; return; }
         var mobile = window.innerWidth < 768;
         if (mobile) {
-          /* On mobile: carousel takes the 15% freed by narrowing the about section */
           wrap.style.display = 'block';
           wrap.style.right   = '0px';
-          var baseAboutW = window.innerWidth - 84 - 28;
-          var mobileCarW = Math.round(84 + baseAboutW * 0.15);
-          wrap.style.width        = mobileCarW + 'px';
-          aboutEl.style.maxWidth  = (window.innerWidth - mobileCarW - 28) + 'px';
+          var origW      = window.innerWidth - 84 - 28;   // original about width
+          var newAboutW  = Math.round(origW * 0.85);       // 15% narrower
+          var mobileCarW = window.innerWidth - newAboutW - 28;
+          wrap.style.width       = mobileCarW + 'px';
+          aboutEl.style.maxWidth = newAboutW + 'px';
+          aboutEl.style.width    = newAboutW + 'px';
           return;
         }
+        aboutEl.style.width = '';   // clear mobile width override
         var margin  = 32;                              // px-8 — left margin of page content
         var vw      = window.innerWidth;
         var contentW = vw - margin - margin;           // space between both page edges
