@@ -16,23 +16,13 @@
 
   <style>
     @media (max-width: 767px) {
-      #hero-video-bg {
-        position: relative !important;
-        height: 50vh !important;
-        overflow: hidden !important;
-        z-index: 10 !important;
-      }
+      /* Video stays position:fixed (full-screen background) — just force cover crop */
       #hero-video {
-        position: absolute !important;
-        inset: 0 !important;
         width: 100% !important;
         height: 100% !important;
         object-fit: cover !important;
-        opacity: 1 !important;
-        transform: none !important;
-        filter: none !important;
       }
-      #hero-overlay,
+      /* Hide the desktop 150vh parallax spacer on mobile */
       #hero-spacer { display: none !important; }
     }
   </style>
@@ -54,13 +44,13 @@
   <!-- Scroll-driven dark overlay -->
   <div id="hero-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background: rgba(10,10,10,0); pointer-events: none;"></div>
 
-  <!-- Mobile-only cinematic hero — dark section below the 50vh video, fades out on scroll -->
-  <div id="mobile-hero" class="md:hidden" style="background:#0a0a0a; padding:2rem 1.25rem 2.5rem; position:relative; z-index:5;">
-    <div style="border-bottom:2px solid rgba(255,255,255,0.12); padding-bottom:1rem; margin-bottom:1.25rem;">
+  <!-- Mobile-only cinematic hero — transparent, floats over fixed video background -->
+  <div id="mobile-hero" class="md:hidden" style="position:relative; z-index:5; display:flex; flex-direction:column; justify-content:flex-end; padding:2rem 1.25rem 2.5rem; min-height:calc(100vh - 56px); background:linear-gradient(to top, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.25) 55%, rgba(10,10,10,0) 100%);">
+    <div style="border-bottom:2px solid rgba(255,255,255,0.18); padding-bottom:1rem; margin-bottom:1.25rem;">
       <span style="font-family:'Old Standard TT','Noto Serif SC',serif; font-size:clamp(48px,14vw,72px); font-weight:700; line-height:1; letter-spacing:-0.02em; color:#ffffff; text-shadow:0 0 24px rgba(0,0,0,0.85), 0 2px 6px rgba(0,0,0,0.95); display:block;">Video</span>
       <span style="font-family:'Noto Serif SC',serif; font-size:clamp(1.8rem,8vw,3rem); font-weight:400; line-height:1; color:#e03c31; display:block; margin-top:-0.1em;">电影感叙事</span>
     </div>
-    <p style="font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.5);">A concise showcase of motion, rhythm, and cinematic tone.</p>
+    <p style="font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.55);">A concise showcase of motion, rhythm, and cinematic tone.</p>
   </div>
 
   <!-- Hero: 150vh spacer (hidden on mobile) -->
@@ -399,11 +389,20 @@
       function updateHero() {
         var s  = window.scrollY || window.pageYOffset;
         if (window.innerWidth < 768) {
+          // Video darkens and desaturates as content scrolls over it
+          var p = Math.min(1, s / (window.innerHeight * 1.4));
+          if (video) {
+            video.style.filter = 'saturate(' + (1 - p * 0.65) + ')';
+          }
+          if (overlay) {
+            overlay.style.background = 'rgba(10,10,10,' + (p * 0.5) + ')';
+          }
+          // Mobile hero fades out and slides up on scroll
           var mHero = document.getElementById('mobile-hero');
           if (mHero) {
-            var t = Math.min(1, Math.max(0, s / (window.innerHeight * 0.7)));
+            var t = Math.min(1, Math.max(0, s / (window.innerHeight * 0.65)));
             mHero.style.opacity = String(1 - t);
-            mHero.style.transform = 'translateY(-' + (t * 20) + 'px)';
+            mHero.style.transform = 'translateY(-' + (t * 24) + 'px)';
           }
           return;
         }
