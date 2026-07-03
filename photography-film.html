@@ -106,21 +106,6 @@
       height: 100%;
       object-fit: cover;
     }
-    /* Light mode: warm-white wash makes footage airy but still visible */
-    .video-tint {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg,
-        rgba(246,243,242,0.42),
-        rgba(246,243,242,0.34) 40%,
-        rgba(246,243,242,0.52));
-      transition: background 0.35s ease;
-    }
-    html[data-theme="dark"] .video-tint {
-      background:
-        radial-gradient(120% 80% at 50% 0%, transparent 40%, rgba(0,0,0,0.55) 100%),
-        linear-gradient(180deg, rgba(8,7,6,0.55), rgba(8,7,6,0.25) 35%, rgba(8,7,6,0.7));
-    }
 
     /* ── Film grain (dark mode only) ── */
     .grain {
@@ -251,37 +236,6 @@
     }
 
     /* ── Intro ── */
-    .intro {
-      position: relative;
-      z-index: 10;
-      min-height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 24px;
-    }
-    .intro p {
-      max-width: 600px;
-      text-align: center;
-      font-family: var(--serif);
-      font-weight: 300;
-      font-size: clamp(1.2rem, 2.8vw, 2rem);
-      line-height: 1.45;
-      color: var(--fg);
-    }
-    /* Light mode: frosted-glass card keeps dark text readable over the tinted footage */
-    html:not([data-theme="dark"]) .intro p {
-      background: rgba(255, 255, 255, 0.65);
-      padding: 36px 44px;
-      border-radius: 28px;
-      border: 1px solid rgba(28, 27, 27, 0.06);
-      backdrop-filter: blur(14px) saturate(1.1);
-      -webkit-backdrop-filter: blur(14px) saturate(1.1);
-      box-shadow: 0 8px 40px rgba(0,0,0,0.07);
-    }
-    html[data-theme="dark"] .intro p {
-      text-shadow: 0 2px 30px rgba(0,0,0,0.6);
-    }
 
     /* ── Collections ── */
     main { position: relative; z-index: 10; }
@@ -500,7 +454,6 @@
 
     /* ── Responsive ── */
     @media (max-width: 640px) {
-      .intro { display: none; }
       .collection { padding: 8vh 4vw 12vh; }
       .collection-head { padding: 30px 22px; border-radius: 24px; }
       .acc-row {
@@ -563,13 +516,6 @@
       <span>Scroll</span>
       <span class="cue-line"></span>
     </div>
-  </section>
-
-  <!-- Intro -->
-  <section class="intro">
-    <p>
-      Shot on film. Europe, home, and the quiet hours between — kept on analog.
-    </p>
   </section>
 
   <!-- Collections -->
