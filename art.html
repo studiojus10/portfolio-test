@@ -372,9 +372,9 @@
       function update() {
         var s  = window.scrollY || window.pageYOffset;
         var vh = window.innerHeight;
-        // Darken from 60vh scroll to 140vh scroll, reaching opacity 0.62
+        // Base opacity 0.22 at hero; deepens to 0.62 from 60vh–140vh scroll
         var p = Math.max(0, Math.min(1, (s - vh * 0.6) / (vh * 0.8)));
-        overlay.style.opacity = (p * 0.62).toFixed(3);
+        overlay.style.opacity = (0.22 + p * 0.40).toFixed(3);
       }
       window.addEventListener('scroll', function () {
         if (!ticking) {
