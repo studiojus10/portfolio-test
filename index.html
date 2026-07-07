@@ -421,7 +421,7 @@
           <span class="font-headline-md text-3xl float-left mr-2 mt-1 leading-none text-on-background">J</span>
           ustin Hughes is a storyteller and digital media practitioner who recently graduated with a Bachelor of Innovation in Digital Media Communication at the University of Colorado Colorado Springs. His creative foundation was built through years spent in China and France studying language, design, culinary arts, and hospitality, developing a fluency in human experience that informs everything he makes.
         </p>
-        <p class="font-label-mono text-[15px] leading-relaxed text-justify mb-3" style="text-indent:1.25rem;">A multilingual, collaborative, and detail-oriented foundation taught him to communicate across cultural difference and craft experiences with precision and care. Fine dining, hospitality and education are fields that demand cross-disciplinary</p>
+        <p class="font-label-mono text-[15px] leading-relaxed text-justify mb-3" style="text-indent:1.25rem;">A multilingual, collaborative, and detail-oriented foundation taught him to communicate across cultural difference and craft experiences with precision and care. Fine dining, hospitality and education are fields that demand cross-disciplinary teamwork and clear leadership under pressure.</p>
         <p class="font-label-mono text-[15px] leading-relaxed text-justify" style="text-indent:1.25rem;">Every project begins with a story: what does this need to say, and how should it feel? Justin brings cross-disciplinary thinking and a drive for innovation to brand communication, digital marketing, eCommerce, and visual direction; leading with narrative and building toward creative leadership roles where strategy and storytelling converge.</p>
         <div style="clear:both;"></div>
       </div>
@@ -913,6 +913,10 @@
 
       sizeBackWall();
       window.addEventListener('resize', sizeBackWall);
+      window.addEventListener('load', function () {
+        sizeBackWall();
+        requestAnimationFrame(sizeBackWall);
+      });
     })();
   </script>
   <script>
@@ -1021,8 +1025,12 @@
       var vertOffset = 0;
       var halfH      = 0;
       var peakSpeed  = 0;
-      var hovering   = false;
-      var revealed   = false;
+      var hovering       = false;
+      var revealed       = false;
+      var isDraggingVert = false;
+      var hasDraggedVert = false;
+      var dragLastYVert  = 0;
+      var dragStartYVert = 0;
       var introPhase = 'idle';
       var introFrame = 0;
       var spinPixels = 0;
@@ -1083,7 +1091,7 @@
           if (introPhase === 'idle') {
             spd = 0;
           } else if (introPhase === 'done') {
-            spd = hovering ? HOVER_SPEED : NORMAL_SPEED;
+            spd = isDraggingVert ? 0 : (hovering ? HOVER_SPEED : NORMAL_SPEED);
           } else {
             introFrame++;
             spd = introSpeed();
@@ -1125,8 +1133,60 @@
       }
 
       window.addEventListener('scroll', checkReveal, { passive: true });
+
+      wrap.style.cursor = 'grab';
       wrap.addEventListener('mouseenter', function () { hovering = true; });
-      wrap.addEventListener('mouseleave', function () { hovering = false; });
+      wrap.addEventListener('mouseleave', function () { hovering = false; isDraggingVert = false; document.body.style.cursor = ''; });
+      wrap.addEventListener('mousedown', function (e) {
+        isDraggingVert = true;
+        hasDraggedVert = false;
+        dragStartYVert = e.clientY;
+        dragLastYVert  = e.clientY;
+        document.body.style.cursor = 'grabbing';
+        e.preventDefault();
+      });
+      wrap.addEventListener('touchstart', function (e) {
+        isDraggingVert = true;
+        hasDraggedVert = false;
+        dragStartYVert = e.touches[0].clientY;
+        dragLastYVert  = e.touches[0].clientY;
+      }, { passive: true });
+
+      document.addEventListener('mousemove', function (e) {
+        if (!isDraggingVert || !halfH) return;
+        var dy = e.clientY - dragLastYVert;
+        dragLastYVert = e.clientY;
+        if (Math.abs(e.clientY - dragStartYVert) > 5) hasDraggedVert = true;
+        vertOffset = ((vertOffset - dy) % halfH + halfH) % halfH;
+        track.style.transform = 'translateY(-' + vertOffset.toFixed(2) + 'px)';
+      });
+
+      document.addEventListener('mouseup', function () {
+        if (!isDraggingVert) return;
+        isDraggingVert = false;
+        document.body.style.cursor = '';
+        if (hasDraggedVert) {
+          hasDraggedVert = false;
+          document.addEventListener('click', function suppress(e) {
+            document.removeEventListener('click', suppress, { capture: true });
+            if (wrap.contains(e.target)) { e.stopPropagation(); e.preventDefault(); }
+          }, { capture: true });
+        }
+      });
+
+      document.addEventListener('touchmove', function (e) {
+        if (!isDraggingVert || !halfH) return;
+        e.preventDefault();
+        var dy = e.touches[0].clientY - dragLastYVert;
+        dragLastYVert = e.touches[0].clientY;
+        vertOffset = ((vertOffset - dy) % halfH + halfH) % halfH;
+        track.style.transform = 'translateY(-' + vertOffset.toFixed(2) + 'px)';
+      }, { passive: false });
+
+      document.addEventListener('touchend', function () {
+        isDraggingVert = false;
+        hasDraggedVert = false;
+      });
 
       window.addEventListener('DOMContentLoaded', function () {
         /* Clone the 15 cards to create a seamless 30-card loop */

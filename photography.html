@@ -172,11 +172,29 @@
         </div>
       </a>
 
+      <a href="photography-europe.html" class="series-card group flex flex-col md:flex-row-reverse border border-on-background bg-surface hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]">
+        <div class="series-img-wrap w-full md:w-[60%]">
+          <img id="thumb-europe" src="" alt="Europe">
+        </div>
+        <div class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-r border-on-background">
+          <div>
+            <div class="font-label-caps text-[13px] uppercase tracking-widest text-on-surface-variant mb-3">Series</div>
+            <h2 class="font-headline-md text-3xl text-on-background mb-1 group-hover:text-primary transition-colors">Europe</h2>
+            <p class="font-cjk text-lg text-primary mb-4">欧洲</p>
+            <p class="font-label-mono text-xs leading-relaxed text-on-surface-variant max-w-lg">Documentary work from the streets of Paris and Lyon — protest, movement, and collective voice.</p>
+          </div>
+          <div class="mt-6 flex items-center gap-2 font-label-caps text-[13px] tracking-widest text-primary">
+            <span>View Series</span>
+            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" style="font-size:14px;">arrow_forward</span>
+          </div>
+        </div>
+      </a>
+
     </section>
 
   </main>
 
-  <footer class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest">
+  <footer class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest" style="position:relative;z-index:10000;">
     <div class="flex items-center gap-4 mb-4 md:mb-0">
       <div class="font-headline-md text-base text-surface-container-lowest italic">STUDIO JUS10</div>
       <div class="font-cjk text-primary border-l border-surface-variant pl-4">工作室</div>
@@ -221,6 +239,7 @@
       { id: 'thumb-washington', src: 'assets/images/Washington/Seattle/SEATTLE-01.jpg' },
       { id: 'thumb-nature',    src: 'assets/images/Nature/Landscapes/NATURE-1.jpg' },
       { id: 'thumb-film',      src: 'assets/images/Film/Europe/FILM_MISC-03.jpg' },
+      { id: 'thumb-europe',   src: 'assets/images/Europe/France 2019 Protests/PROTEST_1.jpg' },
     ];
 
     series.forEach(function (s) {
@@ -243,6 +262,7 @@
       'assets/images/Nature/Landscapes/NATURE-3.jpg',
       'assets/images/Film/Europe/FILM_MISC-03.jpg',
       'assets/images/Colorado/Cornfield/CORNFIELD-01.jpg',
+      'assets/images/Europe/France 2019 Protests/PROTEST_1.jpg',
     ];
 
     var centerImg  = document.getElementById('center-img');

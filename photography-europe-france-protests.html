@@ -4,7 +4,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/logo/StudioJus10_LOGO_Base.svg">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>STUDIO JUS10 - Twelve Views of Pikes Peak</title>
+  <title>STUDIO JUS10 - France 2019 Protests</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -295,17 +295,17 @@
 
   <!-- Gallery header -->
   <div class="gallery-header">
-    <a href="photography-colorado.html" class="back-link">
+    <a href="photography-europe.html" class="back-link">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-      Colorado
+      Europe
     </a>
     <div>
-      <span class="gallery-pill">Typology</span>
+      <span class="gallery-pill">Documentary</span>
       <h1 class="gallery-title">
-        Twelve Views of Pikes Peak
-        <span class="gallery-cjk">派克峰十二景</span>
+        France 2019 Protests
+        <span class="gallery-cjk">黄背心运动</span>
       </h1>
-      <p class="gallery-note">The mountain from twelve different roads.</p>
+      <p class="gallery-note">Civil unrest and collective voice captured in the streets of Paris.</p>
     </div>
   </div>
 
@@ -371,10 +371,10 @@
   <script>
   (function () {
     var images = [];
-    for (var i = 1; i <= 12; i++) {
-      images.push('assets/images/Colorado/Twelve Views of Pikes Peak/TYPOLOGY-' + String(i).padStart(2, '0') + '.jpg');
+    for (var i = 1; i <= 8; i++) {
+      images.push('assets/images/Europe/France 2019 Protests/PROTEST_' + i + '.jpg');
     }
-    var label = 'Twelve Views of Pikes Peak';
+    var label = 'France 2019 Protests';
 
     var lightbox      = document.getElementById('lightbox');
     var lightboxInner = document.getElementById('lightbox-inner');
@@ -399,7 +399,6 @@
       thumbs.forEach(function (t, i) {
         t.classList.toggle('active', i === lbIndex);
       });
-      /* Scroll active thumb into view */
       if (thumbs[lbIndex]) {
         thumbs[lbIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }
@@ -421,7 +420,6 @@
         nav.style.transition = 'opacity 0.4s ease';
         nav.style.opacity = '1';
         nav.style.pointerEvents = '';
-        // Auto-hide after 2 s of no hover
         window._lbNavTimer = setTimeout(function(){
           nav.style.opacity = '0'; nav.style.pointerEvents = 'none';
         }, 2000);
