@@ -883,7 +883,9 @@
         backWall.style.top    = Math.round(topScr) + 'px';
         backWall.style.height = Math.round(botScr - topScr) + 'px';
         var reflGap     = Math.round(vh * 0.025);
-        var sideReflTop = Math.round(vh * 0.625) + reflGap;
+        // Use actual element position so CSS 100vh vs window.innerHeight (iOS address bar) can't misalign reflections
+        var sideWallBot = leftEl ? (leftEl.offsetTop + leftEl.offsetHeight) : Math.round(vh * 0.625);
+        var sideReflTop = sideWallBot + reflGap;
         var cornerY     = Math.round(oPY + (sideReflTop - oPY) * scale);
         if (floorReflect) {
           var wallH    = Math.round(botScr - topScr);
@@ -896,7 +898,7 @@
           if (floorInner) floorInner.style.height = wallH + 'px';
         }
         if (rightFloor || leftFloor) {
-          var panelH = Math.round(vh * 0.50);
+          var panelH = leftEl ? leftEl.offsetHeight : Math.round(vh * 0.50);
           var reflH  = Math.round(panelH * 0.55);
           if (rightFloor) {
             rightFloor.style.top    = sideReflTop + 'px';
