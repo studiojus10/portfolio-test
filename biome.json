@@ -1,0 +1,60 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.4/schema.json",
+  "files": {
+    "includes": [
+      "**",
+      "!**/public",
+      "!**/dist",
+      "!**/node_modules",
+      "!**/test-results",
+      "!**/playwright-report",
+      "!**/*.html"
+    ]
+  },
+  "formatter": { "enabled": true, "indentStyle": "space", "indentWidth": 2 },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended",
+      "complexity": { "noImportantStyles": "off" },
+      "style": { "noDescendingSpecificity": "off" },
+      "suspicious": { "noUnknownAtRules": "off" }
+    }
+  },
+  "javascript": { "formatter": { "quoteStyle": "single" } },
+  "overrides": [
+    {
+      "includes": ["**/src/lib/nav.js"],
+      "formatter": { "enabled": false }
+    },
+    {
+      "includes": [
+        "**/src/lib/nav.js",
+        "**/src/lib/theme.js",
+        "**/src/lib/carousel-stills.js",
+        "**/src/pages/*.js"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "useConst": "off",
+            "useTemplate": "off",
+            "useExponentiationOperator": "off"
+          },
+          "complexity": {
+            "noForEach": "off",
+            "useArrowFunction": "off",
+            "useOptionalChain": "off"
+          },
+          "correctness": { "noInnerDeclarations": "off" },
+          "suspicious": {
+            "noVar": "off",
+            "noRedeclare": "off",
+            "noRedundantUseStrict": "off",
+            "noGlobalIsNan": "off"
+          }
+        }
+      }
+    }
+  ]
+}

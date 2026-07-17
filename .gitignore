@@ -30,5 +30,10 @@ $RECYCLE.BIN/
 node_modules/
 npm-debug.log*
 
+# Build / test artifacts
+dist/
+test-results/
+playwright-report/
+
 # Logs
 *.log

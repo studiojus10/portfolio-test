@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="scroll-smooth" lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="assets/logo/StudioJus10_LOGO_Base.svg">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo/StudioJus10_LOGO_Base.svg">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>STUDIO JUS10 - Composers</title>
@@ -10,9 +10,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Noto+Serif+SC:wght@200..900&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="assets/css/tailwind.css">
-  <link rel="stylesheet" href="assets/css/styles.css">
 
   <style>
     .tilt-tile {
@@ -68,16 +65,13 @@
 </head>
 <body class="text-on-surface font-body-md antialiased selection:bg-primary selection:text-white" style="background: #0f0e0d;">
 
-  <script>(function(){var t=localStorage.getItem('co-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
-
   <!-- Fixed background composer image -->
   <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: #0f0e0d; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-    <img id="hero-bg-composer" src="assets/art/composers/COMPOSER-2.jpg" alt="" style="width: 100%; height: auto; display: block; opacity: 0;">
+    <img id="hero-bg-composer" src="/assets/art/composers/COMPOSER-2.jpg" alt="" style="width: 100%; height: auto; display: block; opacity: 0;">
   </div>
   <div id="composer-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background: rgba(10,10,10,0.1); pointer-events: none;"></div>
 
   <div id="nav-root" style="position: relative; z-index: 50;"></div>
-  <script src="assets/js/nav.js"></script>
 
   <!-- Hero: 150vh with sticky header sliding in on scroll -->
   <section style="position: relative; z-index: 10; height: 150vh; pointer-events: none; background: linear-gradient(to top, rgba(8,8,8,0.92) 0%, transparent 52%);">
@@ -155,293 +149,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
-
-  <!-- Hero scroll animation -->
-  <script>
-    (function () {
-      var bgImg       = document.getElementById('hero-bg-composer');
-      var overlay     = document.getElementById('composer-overlay');
-      var heroContent = document.getElementById('composer-hero-content');
-
-      function lerp(a, b, t) { return a + (b - a) * t; }
-      function clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
-
-      var scaleCover = 1;
-      function computeScaleCover() {
-        if (!bgImg || !bgImg.naturalWidth) return;
-        var ratio = (window.innerHeight * bgImg.naturalWidth) / (window.innerWidth * bgImg.naturalHeight);
-        scaleCover = Math.max(1, ratio);
-      }
-
-      function fadeIn() {
-        if (!bgImg) return;
-        bgImg.style.transition = 'opacity 1.6s ease';
-        bgImg.style.opacity = '1';
-      }
-      if (bgImg) {
-        if (bgImg.complete && bgImg.naturalWidth) {
-          computeScaleCover();
-          setTimeout(fadeIn, 80);
-        } else {
-          bgImg.addEventListener('load', function () { computeScaleCover(); setTimeout(fadeIn, 80); });
-        }
-        window.addEventListener('resize', computeScaleCover);
-      }
-
-      function updateHero() {
-        var s  = window.scrollY || window.pageYOffset;
-        var vh = window.innerHeight;
-
-        var p1 = clamp((s - vh * 0.55) / (vh * 0.40), 0, 1);
-        if (heroContent) {
-          heroContent.style.opacity   = p1;
-          heroContent.style.transform = 'translateY(' + lerp(40, 0, p1) + 'px)';
-        }
-
-        var p2 = clamp(s / (vh * 1.4), 0, 1);
-        if (bgImg) {
-          bgImg.style.transform = 'scale(' + lerp(1, scaleCover, p2) + ')';
-          bgImg.style.filter    = 'blur(' + lerp(0, 7, p2).toFixed(1) + 'px)';
-        }
-        if (overlay) {
-          overlay.style.background = 'rgba(10,10,10,' + lerp(0.1, 0.82, p2).toFixed(3) + ')';
-        }
-      }
-
-      var ticking = false;
-      window.addEventListener('scroll', function () {
-        if (!ticking) {
-          requestAnimationFrame(function () { updateHero(); ticking = false; });
-          ticking = true;
-        }
-      }, { passive: true });
-      window.addEventListener('resize', function () { computeScaleCover(); updateHero(); }, { passive: true });
-      updateHero();
-    })();
-  </script>
-
-  <script>
-    (function () {
-      var images = [
-        'assets/art/composers/COMPOSER-1.jpg',
-        'assets/art/composers/COMPOSER-2.jpg',
-        'assets/art/composers/COMPOSER-3.jpg',
-        'assets/art/composers/COMPOSER-4.jpg'
-      ];
-      var label = 'Composer';
-
-      // ── Build gallery DOM (orientation-aware) ────────────────────
-      var gallery = document.getElementById('composer-gallery');
-      var dims = new Array(images.length);
-      var probeCount = 0;
-
-      function buildGallery() {
-        var rows = [];
-        var i = 0;
-        while (i < images.length) {
-          var portrait     = dims[i].h > dims[i].w;
-          var nextPortrait = (i + 1 < images.length) && dims[i + 1].h > dims[i + 1].w;
-          if (portrait && nextPortrait) {
-            rows.push({ type: 'portrait-pair', indices: [i, i + 1] });
-            i += 2;
-          } else {
-            rows.push({ type: portrait ? 'portrait-single' : 'landscape', indices: [i] });
-            i += 1;
-          }
-        }
-
-        rows.forEach(function (row) {
-          var figure = document.createElement('figure');
-          figure.className = 'tilt-tile';
-          figure.style.position = 'relative';
-          figure.style.zIndex = '10';
-
-          if (row.type === 'portrait-pair') {
-            figure.style.margin = '0 0 11.8vh 0';
-            figure.style.display = 'flex';
-            figure.style.gap = '16px';
-            row.indices.forEach(function (idx) {
-              var wrapper = document.createElement('div');
-              wrapper.className = 'tile-wrapper';
-              wrapper.style.flex = '1';
-              wrapper.style.minWidth = '0';
-              var img = document.createElement('img');
-              img.src = images[idx];
-              img.alt = label + ' ' + (idx + 1);
-              img.loading = 'lazy';
-              wrapper.appendChild(img);
-              figure.appendChild(wrapper);
-              wrapper.addEventListener('click', (function (n) {
-                return function () { openLightbox(n); };
-              })(idx));
-            });
-          } else {
-            var idx = row.indices[0];
-            if (row.type === 'portrait-single') {
-              figure.style.margin = '0 auto 11.8vh auto';
-              figure.style.maxWidth = '400px';
-            } else {
-              figure.style.margin = '0 0 11.8vh 0';
-            }
-            var wrapper = document.createElement('div');
-            wrapper.className = 'tile-wrapper';
-            var img = document.createElement('img');
-            img.src = images[idx];
-            img.alt = label + ' ' + (idx + 1);
-            img.loading = 'lazy';
-            wrapper.appendChild(img);
-            figure.appendChild(wrapper);
-            figure.addEventListener('click', (function (n) {
-              return function () { openLightbox(n); };
-            })(idx));
-          }
-
-          gallery.appendChild(figure);
-        });
-
-        requestAnimationFrame(updateGallery);
-      }
-
-      images.forEach(function (src, i) {
-        var probe = new Image();
-        probe.onload = function () {
-          dims[i] = { w: probe.naturalWidth, h: probe.naturalHeight };
-          if (++probeCount === images.length) buildGallery();
-        };
-        probe.onerror = function () {
-          dims[i] = { w: 1, h: 2 };
-          if (++probeCount === images.length) buildGallery();
-        };
-        probe.src = src;
-      });
-
-      // ── Lightbox ─────────────────────────────────────────────────
-      var lightbox      = document.getElementById('lightbox');
-      var lightboxInner = document.getElementById('lightbox-inner');
-      var lightboxImg   = document.getElementById('lightbox-img');
-      var lbCaption     = document.getElementById('lightbox-caption');
-      var lbStrip       = document.getElementById('lb-strip');
-      var lbIndex = 0;
-      var isAnimating = false;
-      var SLIDE_MS = 280;
-
-      images.forEach(function (src, i) {
-        var thumb = document.createElement('img');
-        thumb.src = src;
-        thumb.className = 'lb-thumb' + (i === 0 ? ' active' : '');
-        thumb.addEventListener('click', function () { openLightbox(i); });
-        lbStrip.appendChild(thumb);
-      });
-
-      function updateStrip() {
-        var thumbs = lbStrip.querySelectorAll('.lb-thumb');
-        thumbs.forEach(function (t, i) { t.classList.toggle('active', i === lbIndex); });
-        if (thumbs[lbIndex]) thumbs[lbIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-      }
-
-      function openLightbox(idx) {
-        lbIndex = ((idx % images.length) + images.length) % images.length;
-        lightboxImg.src = images[lbIndex];
-        lightboxImg.alt = label + ' ' + (lbIndex + 1);
-        lbCaption.textContent = label + ' — ' + String(lbIndex + 1).padStart(2, '0') + ' / ' + images.length;
-        updateStrip();
-        lightbox.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-        lightboxInner.style.animation = 'none';
-        void lightboxInner.offsetWidth;
-        lightboxInner.style.animation = 'lightboxBloom 0.35s cubic-bezier(0.34,1.56,0.64,1) forwards';
-      }
-
-      function closeLightbox() {
-        lightbox.classList.add('hidden');
-        document.body.style.overflow = '';
-        lightboxImg.src = '';
-        lightboxImg.style.transition = '';
-        lightboxImg.style.transform = '';
-        lightboxImg.style.opacity = '';
-        isAnimating = false;
-      }
-
-      function navigate(dir) {
-        if (isAnimating) return;
-        isAnimating = true;
-        var newIdx = ((lbIndex + dir + images.length) % images.length);
-        (new Image()).src = images[newIdx];
-        lightboxImg.style.transition = 'transform ' + SLIDE_MS + 'ms cubic-bezier(0.4,0,0.2,1), opacity ' + Math.round(SLIDE_MS * 0.65) + 'ms ease';
-        lightboxImg.style.transform = dir > 0 ? 'translateX(-100vw)' : 'translateX(100vw)';
-        lightboxImg.style.opacity = '0';
-        setTimeout(function () {
-          lbIndex = newIdx;
-          lightboxImg.src = images[lbIndex];
-          lbCaption.textContent = label + ' — ' + String(lbIndex + 1).padStart(2, '0') + ' / ' + images.length;
-          updateStrip();
-          lightboxImg.style.transition = 'none';
-          lightboxImg.style.transform = dir > 0 ? 'translateX(100vw)' : 'translateX(-100vw)';
-          lightboxImg.style.opacity = '0';
-          void lightboxImg.offsetWidth;
-          lightboxImg.style.transition = 'transform ' + SLIDE_MS + 'ms cubic-bezier(0.4,0,0.2,1), opacity ' + Math.round(SLIDE_MS * 0.65) + 'ms ease';
-          lightboxImg.style.transform = '';
-          lightboxImg.style.opacity = '';
-          setTimeout(function () {
-            lightboxImg.style.transition = '';
-            lightboxImg.style.transform = '';
-            lightboxImg.style.opacity = '';
-            isAnimating = false;
-          }, SLIDE_MS + 30);
-        }, SLIDE_MS);
-      }
-
-      document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-      document.getElementById('lightbox-prev').addEventListener('click', function (e) { e.stopPropagation(); navigate(-1); });
-      document.getElementById('lightbox-next').addEventListener('click', function (e) { e.stopPropagation(); navigate(1); });
-      lightboxInner.addEventListener('click', function (e) { e.stopPropagation(); });
-      lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
-      document.addEventListener('keydown', function (e) {
-        if (lightbox.classList.contains('hidden')) return;
-        if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowLeft') navigate(-1);
-        if (e.key === 'ArrowRight') navigate(1);
-      });
-
-      // ── Scroll tilt animation ─────────────────────────────────────
-      function updateGallery() {
-        var vh = window.innerHeight;
-        document.querySelectorAll('.tilt-tile').forEach(function (tile) {
-          var rect = tile.getBoundingClientRect();
-          var tileH = Math.max(rect.height, 1);
-          var totalTravel = tileH + vh;
-          var traveled = vh - rect.top;
-          var p = Math.max(0, Math.min(1, traveled / totalTravel));
-          var focus = Math.sin(p * Math.PI);
-          var blur     = (1 - focus) * 8;
-          var bright   = Math.max(0.05, focus);
-          var contrast = 1 + (1 - focus) * 3;
-          var rotateX = (0.5 - p) * 140;
-          var tz      = (1 - focus) * 300;
-          var ty      = (0.5 - p) * tileH * 2;
-          var wrappers = tile.querySelectorAll('.tile-wrapper');
-          if (!wrappers.length) return;
-          var filterVal = 'blur(' + blur.toFixed(2) + 'px) brightness(' + bright.toFixed(3) + ') contrast(' + contrast.toFixed(2) + ')';
-          var transformVal = 'translateY(' + ty.toFixed(1) + 'px) translateZ(' + tz.toFixed(1) + 'px) rotateX(' + rotateX.toFixed(2) + 'deg)';
-          wrappers.forEach(function (wrapper) {
-            wrapper.style.filter = filterVal;
-            wrapper.style.transform = transformVal;
-          });
-        });
-      }
-
-      var ticking = false;
-      window.addEventListener('scroll', function () {
-        if (!ticking) {
-          requestAnimationFrame(function () { updateGallery(); ticking = false; });
-          ticking = true;
-        }
-      }, { passive: true });
-      window.addEventListener('resize', updateGallery, { passive: true });
-      requestAnimationFrame(updateGallery);
-      window.addEventListener('load', updateGallery);
-    })();
-  </script>
+  <script type="module" src="/src/pages/art-composers.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="scroll-smooth" lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="assets/logo/StudioJus10_LOGO_Base.svg">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo/StudioJus10_LOGO_Base.svg">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>STUDIO JUS10 - Contact</title>
@@ -11,8 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Noto+Serif+SC:wght@200..900&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/tailwind.css">
-  <link rel="stylesheet" href="assets/css/styles.css">
   <style>
     .page-fade {
       opacity: 0;
@@ -28,9 +26,7 @@
 </head>
 <body class="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white">
 
-  <script>(function(){var t=localStorage.getItem('co-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
   <div id="nav-root"></div>
-  <script src="assets/js/nav.js"></script>
 
   <main class="w-full px-4 md:px-8 py-8">
     <section class="grid gap-8 md:grid-cols-12 items-start">
@@ -86,7 +82,7 @@
         <div class="flex flex-row gap-4">
           <a href="https://www.linkedin.com/in/justin-hughes-studiojus10" target="_blank" rel="noopener"
              class="flex-1 flex flex-col border border-on-background bg-surface hover:border-primary transition-colors duration-300 overflow-hidden">
-            <img src="assets/me-photos/LinkedIn-profile.jpeg" alt="LinkedIn" class="w-full aspect-square object-cover">
+            <img src="/assets/me-photos/LinkedIn-profile.jpeg" alt="LinkedIn" class="w-full aspect-square object-cover">
             <div class="p-3 flex flex-col gap-0.5">
               <span class="font-headline-md text-base text-on-background">LinkedIn</span>
               <span class="font-label-mono text-xs text-on-surface-variant">Justin Hughes</span>
@@ -94,7 +90,7 @@
           </a>
           <a href="https://www.youtube.com/@studiojus10" target="_blank" rel="noopener"
              class="flex-1 flex flex-col border border-on-background bg-surface hover:border-primary transition-colors duration-300 overflow-hidden">
-            <img src="assets/me-photos/YouTube-profile.png" alt="YouTube" class="w-full aspect-square object-cover">
+            <img src="/assets/me-photos/YouTube-profile.png" alt="YouTube" class="w-full aspect-square object-cover">
             <div class="p-3 flex flex-col gap-0.5">
               <span class="font-headline-md text-base text-on-background">YouTube</span>
               <span class="font-label-mono text-xs text-on-surface-variant">@studiojus10</span>
@@ -102,7 +98,7 @@
           </a>
           <a href="https://www.instagram.com/studio.jus10?utm_source=qr" target="_blank" rel="noopener"
              class="flex-1 flex flex-col border border-on-background bg-surface hover:border-primary transition-colors duration-300 overflow-hidden">
-            <img src="assets/me-photos/Instagram-profile.jpg" alt="Instagram" class="w-full aspect-square object-cover">
+            <img src="/assets/me-photos/Instagram-profile.jpg" alt="Instagram" class="w-full aspect-square object-cover">
             <div class="p-3 flex flex-col gap-0.5">
               <span class="font-headline-md text-base text-on-background">Instagram</span>
               <span class="font-label-mono text-xs text-on-surface-variant">@studio.jus10</span>
@@ -147,40 +143,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
-  <script>
-    window.addEventListener('load', function () {
-      document.querySelectorAll('.page-fade').forEach(function (el) {
-        el.classList.add('visible');
-      });
-    });
-  </script>
-  <script>
-    var form = document.getElementById('inquiry-form');
-    if (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var successMsg = document.getElementById('inquiry-success');
-        var errorMsg   = document.getElementById('inquiry-error');
-        fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
-        }).then(function (res) {
-          if (res.ok) {
-            form.reset();
-            successMsg.classList.remove('hidden');
-            errorMsg.classList.add('hidden');
-          } else {
-            errorMsg.classList.remove('hidden');
-            successMsg.classList.add('hidden');
-          }
-        }).catch(function () {
-          errorMsg.classList.remove('hidden');
-          successMsg.classList.add('hidden');
-        });
-      });
-    }
-  </script>
+  <script type="module" src="/src/pages/contact.js"></script>
 </body>
 </html>

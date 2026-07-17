@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="scroll-smooth" lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="assets/logo/StudioJus10_LOGO_Base.svg">
+  <link rel="icon" type="image/svg+xml" href="/assets/logo/StudioJus10_LOGO_Base.svg">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>STUDIO JUS10 - Video</title>
@@ -10,9 +10,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Noto+Serif+SC:wght@200..900&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="assets/css/tailwind.css">
-  <link rel="stylesheet" href="assets/css/styles.css">
 
   <style>
     @media (max-width: 767px) {
@@ -29,15 +26,12 @@
 </head>
 <body class="text-on-surface font-body-md antialiased selection:bg-primary selection:text-white" style="background: #0a0a0a;">
 
-  <script>(function(){var t=localStorage.getItem('co-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();</script>
-
   <div id="nav-root" style="position: relative; z-index: 50;"></div>
-  <script src="assets/js/nav.js"></script>
 
   <!-- Fixed video background (50vh cover on mobile via CSS) -->
   <div id="hero-video-bg" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: #0a0a0a; display: flex; align-items: center; justify-content: center; overflow: hidden;">
     <video id="hero-video" style="width: 100%; height: auto; display: block; opacity: 0; filter: saturate(1);" autoplay muted loop playsinline>
-      <source src="assets/videos/auto-play/anamorphic_test.mp4" type="video/mp4">
+      <source src="/assets/videos/auto-play/anamorphic_test.mp4" type="video/mp4">
     </video>
   </div>
 
@@ -112,7 +106,7 @@
       <!-- 1 — image left -->
       <a href="video-dublin.html" class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer">
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
-          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/proposal-thumbnail.mp4" poster="assets/posters/proposal-thumbnail.jpg" muted loop playsinline preload="metadata"></video>
+          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="/assets/videos/thumbnail-videos/proposal-thumbnail.mp4" poster="/assets/posters/proposal-thumbnail.jpg" muted loop playsinline preload="metadata"></video>
         </div>
         <div class="p-8 flex flex-col justify-center gap-3">
           <h2 class="font-headline-md text-2xl italic">A Proposal in Dublin, Ireland</h2>
@@ -124,7 +118,7 @@
       <!-- 2 — image right -->
       <a href="video-winter.html" class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer">
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
-          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" poster="assets/posters/winter-scene-thumbnail.jpg" muted loop playsinline preload="metadata"></video>
+          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="/assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4" poster="/assets/posters/winter-scene-thumbnail.jpg" muted loop playsinline preload="metadata"></video>
         </div>
         <div class="p-8 flex flex-col justify-center gap-3">
           <h2 class="font-headline-md text-2xl italic">Winter Scene</h2>
@@ -136,7 +130,7 @@
       <!-- 3 — image left -->
       <a href="video-collage.html" class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer">
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
-          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/collage-thumbnail.mp4" poster="assets/posters/collage-thumbnail.jpg" muted loop playsinline preload="metadata"></video>
+          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="/assets/videos/thumbnail-videos/collage-thumbnail.mp4" poster="/assets/posters/collage-thumbnail.jpg" muted loop playsinline preload="metadata"></video>
         </div>
         <div class="p-8 flex flex-col justify-center gap-3">
           <h2 class="font-headline-md text-2xl italic">A Collage of Found Footage</h2>
@@ -148,7 +142,7 @@
       <!-- 4 — image right -->
       <a href="video-portrait.html" class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer">
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
-          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/portrait-thumbnail.mp4" poster="assets/posters/portrait-thumbnail.jpg" muted loop playsinline preload="metadata"></video>
+          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="/assets/videos/thumbnail-videos/portrait-thumbnail.mp4" poster="/assets/posters/portrait-thumbnail.jpg" muted loop playsinline preload="metadata"></video>
         </div>
         <div class="p-8 flex flex-col justify-center gap-3">
           <h2 class="font-headline-md text-2xl italic">Portrait of a Musician</h2>
@@ -160,7 +154,7 @@
       <!-- 5 — image left -->
       <a href="video-single-shot.html" class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer">
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
-          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/single-shot-thumbnail.mp4" poster="assets/posters/single-shot-thumbnail.jpg" muted loop playsinline preload="metadata"></video>
+          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="/assets/videos/thumbnail-videos/single-shot-thumbnail.mp4" poster="/assets/posters/single-shot-thumbnail.jpg" muted loop playsinline preload="metadata"></video>
         </div>
         <div class="p-8 flex flex-col justify-center gap-3">
           <h2 class="font-headline-md text-2xl italic">A Study of Light in One Shot</h2>
@@ -172,7 +166,7 @@
       <!-- 6 — image right -->
       <a href="video-resurrection.html" class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer">
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
-          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/resurrection-thumbnail.mp4" poster="assets/posters/resurrection-thumbnail.jpg" muted loop playsinline preload="metadata"></video>
+          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="/assets/videos/thumbnail-videos/resurrection-thumbnail.mp4" poster="/assets/posters/resurrection-thumbnail.jpg" muted loop playsinline preload="metadata"></video>
         </div>
         <div class="p-8 flex flex-col justify-center gap-3">
           <h2 class="font-headline-md text-2xl italic">Resurrection</h2>
@@ -184,7 +178,7 @@
       <!-- 7 — image left -->
       <a href="video-murder.html" class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer">
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
-          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" poster="assets/posters/murder-he-wrote-thumbnail.jpg" muted loop playsinline preload="metadata"></video>
+          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="/assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4" poster="/assets/posters/murder-he-wrote-thumbnail.jpg" muted loop playsinline preload="metadata"></video>
         </div>
         <div class="p-8 flex flex-col justify-center gap-3">
           <h2 class="font-headline-md text-2xl italic">Murder, He Wrote</h2>
@@ -196,7 +190,7 @@
       <!-- 8 — image right -->
       <a href="video-decadance.html" class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer">
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
-          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="assets/videos/thumbnail-videos/decadance-thumbnail.mp4" poster="assets/posters/decadance-thumbnail.jpg" muted loop playsinline preload="metadata"></video>
+          <video class="card-thumb-video w-full h-full object-cover" style="min-height: 199px; display: block;" src="/assets/videos/thumbnail-videos/decadance-thumbnail.mp4" poster="/assets/posters/decadance-thumbnail.jpg" muted loop playsinline preload="metadata"></video>
         </div>
         <div class="p-8 flex flex-col justify-center gap-3">
           <h2 class="font-headline-md text-2xl italic">Decadance</h2>
@@ -239,217 +233,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
-
-  <script>
-    (function () {
-      function equalizeCardHeights() {
-        var cards = Array.from(document.querySelectorAll('.video-card'));
-        cards.forEach(function (c) { c.style.height = ''; });
-
-        if (window.innerWidth < 768) return;
-
-        var portrait = cards.find(function (c) {
-          var h2 = c.querySelector('h2');
-          return h2 && h2.textContent.indexOf('Portrait') !== -1;
-        });
-        if (!portrait) return;
-
-        var h = portrait.offsetHeight;
-        cards.forEach(function (c) { c.style.height = h + 'px'; });
-      }
-
-      function run() { setTimeout(equalizeCardHeights, 100); }
-      if (document.readyState === 'complete') {
-        run();
-      } else {
-        window.addEventListener('load', run);
-      }
-      window.addEventListener('resize', equalizeCardHeights);
-    })();
-
-    (function () {
-      if (!window.IntersectionObserver) return;
-      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var cards = document.querySelectorAll('.video-card');
-      if (!cards.length || reduced) return;
-      cards.forEach(function (card) {
-        card.style.opacity    = '0';
-        card.style.transform  = 'translateY(60px)';
-        card.style.transition = 'opacity 1s ease, transform 1s cubic-bezier(0.2, 0, 0.2, 1)';
-      });
-      var obs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity   = '1';
-            entry.target.style.transform = 'translateY(0)';
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.08 });
-      cards.forEach(function (card) { obs.observe(card); });
-    })();
-
-    (function () {
-      var bgVideo = document.getElementById('hero-video');
-
-      document.querySelectorAll('.card-thumb-video').forEach(function (vid) {
-        vid.addEventListener('loadedmetadata', function () {
-          vid.currentTime = 5;
-        });
-        if (vid.readyState >= 1) vid.currentTime = 5;
-
-        var card = vid.closest('.video-card');
-        card.addEventListener('mouseenter', function () {
-          if (bgVideo) bgVideo.pause();
-          vid.currentTime = 5;
-          vid.play();
-        });
-        card.addEventListener('mouseleave', function () {
-          vid.pause();
-          vid.currentTime = 5;
-          if (bgVideo) bgVideo.play();
-        });
-      });
-    })();
-  </script>
-
-  <script>
-    (function () {
-      var video       = document.getElementById('hero-video');
-      var overlay     = document.getElementById('hero-overlay');
-      var heroContent = document.getElementById('hero-content');
-
-      function lerp(a, b, t) { return a + (b - a) * t; }
-      function clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
-
-      // Scale needed to go from contain → cover for this video in the viewport
-      var scaleCover = 1;
-      function computeScaleCover() {
-        if (!video || !video.videoWidth) return;
-        // At width:100% the video renders at (vw × vw/AR) px
-        // To cover the full vh we need to scale by vh / (vw/AR) = vh·AR/vw
-        var ratio = (window.innerHeight * video.videoWidth) / (window.innerWidth * video.videoHeight);
-        scaleCover = Math.max(1, ratio);
-      }
-      if (video) {
-        video.addEventListener('loadedmetadata', computeScaleCover);
-        window.addEventListener('resize', computeScaleCover);
-      }
-
-      // Fade video in shortly after load
-      function fadeInVideo() {
-        if (!video) return;
-        video.style.transition = 'opacity 1.6s ease';
-        video.style.opacity    = '1';
-      }
-
-      // Position "Video" title just below the actual video frame, then fade it in
-      function positionTitle() {
-        var title = document.getElementById('video-load-title');
-        if (!title || !video || !video.videoWidth || !video.videoHeight) return;
-
-        // The video renders at width:100vw, height proportional to its AR
-        var ar           = video.videoWidth / video.videoHeight;
-        var renderedH    = window.innerWidth / ar;
-        // Video is vertically centred in the 100vh container
-        var videoBottom  = (window.innerHeight + renderedH) / 2;
-        // Leave a small gap below the frame; clamp so it stays in view
-        var topPos       = Math.min(videoBottom + 16, window.innerHeight - 120) - window.innerHeight * 0.1;
-
-        title.style.top = topPos + 'px';
-      }
-
-      function fadeInTitle() {
-        positionTitle();
-        var title = document.getElementById('video-load-title');
-        if (!title) return;
-        // Set the 3-second transition only when we're ready to fade in,
-        // so the scroll handler can override it with 'none' later.
-        title.style.transition = 'opacity 3s ease';
-        title.style.opacity    = '1';
-      }
-
-      if (video) {
-        video.addEventListener('loadedmetadata', positionTitle);
-        window.addEventListener('resize', positionTitle);
-      }
-
-      if (document.readyState === 'complete') {
-        setTimeout(fadeInVideo, 120);
-        // Delay title until after video fade-in finishes (120ms start + 1600ms fade + buffer)
-        setTimeout(fadeInTitle, 520);
-      } else {
-        window.addEventListener('load', function () {
-          setTimeout(fadeInVideo, 120);
-          setTimeout(fadeInTitle, 520);
-        });
-      }
-
-      function updateHero() {
-        var s  = window.scrollY || window.pageYOffset;
-        if (window.innerWidth < 768) {
-          // Video darkens and desaturates as content scrolls over it
-          var p = Math.min(1, s / (window.innerHeight * 1.4));
-          if (video) {
-            video.style.filter = 'saturate(' + (1 - p * 0.65) + ')';
-          }
-          if (overlay) {
-            overlay.style.background = 'rgba(10,10,10,' + (p * 0.5) + ')';
-          }
-          // Mobile hero fades out and slides up on scroll
-          var mHero = document.getElementById('mobile-hero');
-          if (mHero) {
-            var t = Math.min(1, Math.max(0, s / (window.innerHeight * 0.65)));
-            mHero.style.opacity = String(1 - t);
-            mHero.style.transform = 'translateY(-' + (t * 24) + 'px)';
-          }
-          return;
-        }
-        var vh = window.innerHeight;
-
-        // "Video" load title fades out early in the scroll, before the sticky header appears
-        var titleEl = document.getElementById('video-load-title');
-        if (titleEl && s > 0) {
-          titleEl.style.transition = 'none';
-          titleEl.style.opacity    = String(clamp(1 - s / (vh * 0.35), 0, 1));
-        }
-
-        // Hero content: slides in between 55% and 95% of 1vh scroll
-        var p1 = clamp((s - vh * 0.55) / (vh * 0.40), 0, 1);
-        if (heroContent) {
-          heroContent.style.opacity   = p1;
-          heroContent.style.transform = 'translateY(' + lerp(40, 0, p1) + 'px)';
-        }
-
-        // Video desaturates as user scrolls — complete by 120% of vh
-        var p2 = clamp(s / (vh * 1.2), 0, 1);
-
-        // Video expands from contain → cover after header is revealed (95%–178% of vh)
-        var p3 = clamp((s - vh * 0.95) / (vh * 0.825), 0, 1);
-        var scale = lerp(1, scaleCover, p3);
-
-        if (video) {
-          video.style.filter    = 'saturate(' + lerp(1, 0.2, p2) + ')';
-          video.style.transform = 'scale(' + scale + ')';
-        }
-
-        // Overlay darkens alongside desaturation
-        if (overlay) {
-          overlay.style.background = 'rgba(10,10,10,' + lerp(0, 0.5, p2) + ')';
-        }
-      }
-
-      var ticking = false;
-      window.addEventListener('scroll', function () {
-        if (!ticking) {
-          requestAnimationFrame(function () { updateHero(); ticking = false; });
-          ticking = true;
-        }
-      }, { passive: true });
-
-      updateHero();
-    })();
-  </script>
+  <script type="module" src="/src/pages/video.js"></script>
 </body>
 </html>
