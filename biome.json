@@ -7,8 +7,7 @@
       "!**/dist",
       "!**/node_modules",
       "!**/test-results",
-      "!**/playwright-report",
-      "!**/*.html"
+      "!**/playwright-report"
     ]
   },
   "formatter": { "enabled": true, "indentStyle": "space", "indentWidth": 2 },

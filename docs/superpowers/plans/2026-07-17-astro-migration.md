@@ -481,10 +481,10 @@ Cross-check against the spec's URL map — every old page has an `.astro` file.
 - [ ] **Step 2: Delete the Vite MPA layer**
 
 ```bash
-git rm about/about.html $(ls *.html) src/lib/*.js vite.config.js postcss.config.js src/styles/main.css
+git rm about/about.html $(ls *.html) src/lib/*.js vite.config.js src/styles/main.css
 git rm -r vite-src-old
 ```
-(Astro provides its own Vite + PostCSS via `@astrojs/tailwind`; the standalone configs are no longer used.)
+**KEEP `postcss.config.cjs`** — it is the Tailwind v3 driver now (do NOT delete it). Astro brings its own Vite, so the standalone `vite.config.js` is dead and removed; `src/styles/main.css` is superseded by `global.css`; `src/lib/*` is superseded by `src/scripts/*` + `Nav.astro`. Optionally also drop now-unused devDeps from `package.json` (`vite`, `fast-glob` — they were only used by the deleted `vite.config.js`; Astro pins its own Vite), then `npm install` to update the lockfile.
 
 - [ ] **Step 3: Update `biome.json`** — point the ignore/scope at the new tree: Biome checks `src/scripts`, `tests`, config `*.js`; `.astro` files are not linted by Biome (handled by `astro check` + Prettier). Remove now-dead `src/pages/*.js`/`src/lib` leniency overrides (or repoint them at `src/scripts` if any ported module still needs the `var`/IIFE leniency). Re-run `npm run check` → clean.
 

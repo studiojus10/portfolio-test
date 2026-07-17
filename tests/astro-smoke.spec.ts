@@ -30,6 +30,19 @@ test('old .html URL 404s (clean break)', async ({ page }) => {
   expect(res?.status()).toBe(404);
 });
 
+test('unknown route serves branded 404 page', async ({ page }) => {
+  const res = await page.goto('/no-such-page');
+  expect(res?.status()).toBe(404);
+  await expect(page.getByText('Page not found')).toBeVisible();
+});
+
+test('mobile menu opens', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 800 });
+  await page.goto('/contact');
+  await page.locator('#mobile-menu-toggle').click();
+  await expect(page.locator('#mobile-menu')).toHaveClass(/translate-x-0/);
+});
+
 for (const path of [
   '/photography',
   '/photography/colorado',

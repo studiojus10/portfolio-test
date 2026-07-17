@@ -1,5 +1,5 @@
-// Theme toggle + persistence. Pre-paint application happens in the injected
-// head snippet (see vite.config.js); this wires the interactive toggles.
+// Theme toggle + persistence. Pre-paint application happens in the inline
+// head snippet (see src/layouts/Base.astro); this wires the interactive toggles.
 function updateThemeUI() {
   const dark = document.documentElement.getAttribute('data-theme') === 'dark';
   document.querySelectorAll('.theme-icon').forEach((el) => {

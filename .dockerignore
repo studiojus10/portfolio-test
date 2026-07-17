@@ -1,0 +1,7 @@
+node_modules
+dist
+.git
+.superpowers
+vite-src-old
+test-results
+playwright-report

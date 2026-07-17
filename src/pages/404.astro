@@ -1,0 +1,26 @@
+---
+import Base from '@layouts/Base.astro';
+---
+
+<Base
+  title="STUDIO JUS10 - Page Not Found"
+  bodyClass="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white"
+>
+  <main
+    class="min-h-[75vh] flex flex-col items-center justify-center text-center px-6 gap-6"
+  >
+    <p class="font-display-lg text-display-lg text-primary leading-none">404</p>
+    <p class="font-cjk text-2xl text-primary">页面未找到</p>
+    <h1 class="font-headline-lg text-headline-lg">Page not found</h1>
+    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+      The page you're looking for doesn't exist or has moved.
+    </p>
+    <a
+      href="/"
+      class="inline-flex items-center gap-2 border border-on-surface px-6 py-3 font-label-caps text-label-caps tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-colors duration-300"
+    >
+      <span>Back home</span>
+      <span class="font-cjk text-xs text-primary">回家</span>
+    </a>
+  </main>
+</Base>
