@@ -24,16 +24,11 @@
   "javascript": { "formatter": { "quoteStyle": "single" } },
   "overrides": [
     {
-      "includes": ["**/src/lib/nav.js"],
+      "includes": ["**/src/scripts/*.js"],
       "formatter": { "enabled": false }
     },
     {
-      "includes": [
-        "**/src/lib/nav.js",
-        "**/src/lib/theme.js",
-        "**/src/lib/carousel-stills.js",
-        "**/src/pages/*.js"
-      ],
+      "includes": ["**/src/scripts/*.js"],
       "linter": {
         "rules": {
           "style": {

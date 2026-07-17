@@ -1,0 +1,41 @@
+---
+import '@styles/global.css';
+import '@styles/site.css';
+import Nav from '@components/Nav.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  bodyClass?: string;
+  bodyStyle?: string;
+}
+const {
+  title,
+  description = 'STUDIO JUS10 — Art & Design Portfolio',
+  bodyClass = 'text-on-surface font-body-md antialiased selection:bg-primary selection:text-white',
+  bodyStyle = '',
+} = Astro.props;
+
+const THEME_SNIPPET =
+  "(function(){var t=localStorage.getItem('co-theme');" +
+  "if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();";
+---
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/assets/logo/StudioJus10_LOGO_Base.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Noto+Serif+SC:wght@200..900&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script is:inline set:html={THEME_SNIPPET}></script>
+  </head>
+  <body class={bodyClass} style={bodyStyle || undefined}>
+    <Nav />
+    <slot />
+  </body>
+</html>
