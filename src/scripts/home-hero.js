@@ -222,7 +222,9 @@ export function initHome() {
         hasDragged = false;
         dragStartX = e.clientX;
         dragLastX = e.clientX;
-        heroSection.setPointerCapture(e.pointerId);
+        // NB: do NOT capture the pointer here. Capturing on pointerdown retargets
+        // the subsequent `click` to this container, so clicks on the card <a>s
+        // never activate their links. Capture lazily once a real drag begins.
         heroSection.style.cursor = 'grabbing';
         if (e.pointerType !== 'touch') e.preventDefault();
       });
@@ -233,6 +235,12 @@ export function initHome() {
         dragLastX = e.clientX;
         if (!hasDragged && Math.abs(e.clientX - dragStartX) > 5) {
           hasDragged = true;
+          // Now that it's a genuine drag, capture the pointer so movement keeps
+          // flowing even if the cursor leaves the hero. (A plain click never
+          // reaches here, so its click event still targets the card link.)
+          try {
+            heroSection.setPointerCapture(e.pointerId);
+          } catch {}
           if (e.pointerType === 'touch') {
             const person = document.getElementById('hero-person');
             if (person) person.style.opacity = '0';

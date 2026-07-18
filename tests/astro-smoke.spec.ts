@@ -6,6 +6,84 @@ test('home carousel initializes at /', async ({ page }) => {
   await expect(page.locator('#carousel-track > *').first()).toBeVisible();
 });
 
+test('clicking a hero carousel card navigates to its target page', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.waitForLoadState('load');
+
+  // Freeze the rAF-driven carousel so the card holds still; let the last
+  // already-scheduled frame flush before we take over positioning.
+  await page.evaluate(() => {
+    window.requestAnimationFrame = () => 0;
+  });
+  await page.waitForTimeout(60);
+
+  // Park a known back-wall card fully inside the visible back wall so it is a
+  // clean, stable click target regardless of where the intro animation stopped.
+  const href = await page.evaluate(() => {
+    const track = document.getElementById('carousel-track') as HTMLElement;
+    const card = track.children[4] as HTMLElement; // Home -> /photography/film/home
+    const bw = (
+      document.getElementById('room-wall-back') as HTMLElement
+    ).getBoundingClientRect();
+    const cr = card.getBoundingClientRect();
+    const m = new DOMMatrixReadOnly(getComputedStyle(track).transform);
+    const shift = bw.left + 12 - cr.left; // slide card's left edge just inside the wall
+    track.style.transform = `translateX(${m.m41 + shift}px)`;
+    return card.getAttribute('href');
+  });
+  expect(href).toBe('/photography/film/home');
+
+  await page.locator('#carousel-track > a:nth-child(5)').click();
+  await expect(page).toHaveURL(/\/photography\/film\/home$/);
+});
+
+test('dragging the hero carousel scrolls it without navigating', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.waitForLoadState('load');
+
+  // Freeze the cruise loop; a drag still updates the transform directly.
+  await page.evaluate(() => {
+    window.requestAnimationFrame = () => 0;
+  });
+  await page.waitForTimeout(60);
+
+  const { y, x1, x2, before, url } = await page.evaluate(() => {
+    const track = document.getElementById('carousel-track') as HTMLElement;
+    const bw = (
+      document.getElementById('room-wall-back') as HTMLElement
+    ).getBoundingClientRect();
+    return {
+      y: Math.round(bw.top + bw.height / 2),
+      x1: Math.round(bw.left + bw.width * 0.75),
+      x2: Math.round(bw.left + bw.width * 0.15),
+      before: new DOMMatrixReadOnly(getComputedStyle(track).transform).m41,
+      url: location.href,
+    };
+  });
+
+  // Real trusted pointer drag across the back wall (starts on a card link).
+  await page.mouse.move(x1, y);
+  await page.mouse.down();
+  for (let x = x1; x >= x2; x -= 20) await page.mouse.move(x, y);
+  await page.mouse.move(x2, y);
+  await page.mouse.up();
+
+  const after = await page.evaluate(() => ({
+    m41: new DOMMatrixReadOnly(
+      getComputedStyle(document.getElementById('carousel-track') as HTMLElement)
+        .transform,
+    ).m41,
+    url: location.href,
+  }));
+
+  expect(after.url).toBe(url); // dragging must NOT navigate
+  expect(Math.abs(after.m41 - before)).toBeGreaterThan(20); // but it must scroll
+});
+
 test('contact renders at clean URL /contact with static nav', async ({
   page,
 }) => {
