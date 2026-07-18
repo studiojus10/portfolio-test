@@ -51,6 +51,7 @@ yarn-error.log*
 playwright/.cache/
 blob-report/
 coverage/
+.playwright-mcp/
 
 # Vercel CLI output (project no longer uses Vercel, but ignore if ever run)
 .vercel

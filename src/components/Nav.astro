@@ -1,169 +1,339 @@
 ---
 const p = Astro.url.pathname;
-const photo = p.startsWith('/photography');
-const video = p.startsWith('/video');
-const art = p.startsWith('/art');
-const projects = p.startsWith('/projects');
-const about = p === '/about';
-const co = p.startsWith('/photography/colorado');
-const az = p.startsWith('/photography/arizona');
-const wa = p.startsWith('/photography/washington');
-const nat = p.startsWith('/photography/nature');
-const film = p.startsWith('/photography/film');
-const eu = p.startsWith('/photography/europe');
-const sketches = p === '/art/sketches';
-const composers = p === '/art/composers';
+const photo = p.startsWith("/photography");
+const video = p.startsWith("/video");
+const art = p.startsWith("/art");
+const projects = p.startsWith("/projects");
+const about = p === "/about";
+const co = p.startsWith("/photography/colorado");
+const az = p.startsWith("/photography/arizona");
+const wa = p.startsWith("/photography/washington");
+const nat = p.startsWith("/photography/nature");
+const film = p.startsWith("/photography/film");
+const eu = p.startsWith("/photography/europe");
+const sketches = p === "/art/sketches";
+const composers = p === "/art/composers";
 ---
-<nav class="bg-surface-container-lowest font-label-caps text-label-caps w-full top-0 sticky border-b border-on-background flex justify-between items-center px-4 md:px-8 py-4 z-[99999]">
 
-  <a href="/" class="logo-text font-headline-md text-headline-md tracking-tighter text-on-background hover:text-primary transition-colors duration-300 flex items-center gap-2">STUDIO JUS10<span class="font-cjk text-lg font-light text-primary hidden sm:inline-block ml-2">工作室</span></a>
+<nav
+  class="bg-surface-container-lowest font-label-caps text-label-caps w-full top-0 sticky border-b border-on-background flex justify-between items-center px-4 md:px-8 py-4 z-[99999]"
+>
+  <a
+    href="/"
+    class="logo-text font-headline-md text-headline-md tracking-tighter text-on-background hover:text-primary transition-colors duration-300 flex items-center gap-2"
+    >STUDIO JUS10<span
+      class="font-cjk text-lg font-light text-primary hidden sm:inline-block ml-2"
+      >工作室</span
+    ></a
+  >
 
   <div class="hidden md:flex gap-8 items-center tracking-widest">
-
     <!-- Photography with dropdown -->
     <div class="relative group">
-      <a href="/photography" class={`${photo ? 'text-primary' : 'text-on-surface hover:text-primary'} transition-colors duration-300 cursor-pointer flex flex-col items-center`}>
-        <span>Photography</span><span class="font-cjk text-[13px] text-primary">摄影</span>
+      <a
+        href="/photography"
+        class={`${photo ? "text-primary" : "text-on-surface hover:text-primary"} transition-colors duration-300 cursor-pointer flex flex-col items-center`}
+      >
+        <span>Photography</span><span class="font-cjk text-[13px] text-primary"
+          >摄影</span
+        >
       </a>
-      <div class="absolute top-full left-1/2 -translate-x-1/2 w-52 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-[99999]">
+      <div
+        class="absolute top-full left-1/2 -translate-x-1/2 w-52 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-[99999]"
+      >
         <div class="h-3"></div>
-        <div class="bg-surface-container-lowest border border-on-background shadow-lg">
-          <a href="/photography/colorado" class={`flex justify-between items-center px-4 py-3 font-label-caps text-[13px] tracking-widest${co ? ' bg-surface-container-low text-primary' : ' hover:bg-surface-container-low hover:text-primary transition-colors'} border-b border-on-background`}>
-            <span>Colorado</span><span class="font-cjk text-xs text-primary">科罗拉多</span>
+        <div
+          class="bg-surface-container-lowest border border-on-background shadow-lg"
+        >
+          <a
+            href="/photography/colorado"
+            class={`flex justify-between items-center px-4 py-3 font-label-caps text-[13px] tracking-widest${co ? " bg-surface-container-low text-primary" : " hover:bg-surface-container-low hover:text-primary transition-colors"} border-b border-on-background`}
+          >
+            <span>Colorado</span><span class="font-cjk text-xs text-primary"
+              >科罗拉多</span
+            >
           </a>
-          <a href="/photography/arizona" class={`flex justify-between items-center px-4 py-3 font-label-caps text-[13px] tracking-widest${az ? ' bg-surface-container-low text-primary' : ' hover:bg-surface-container-low hover:text-primary transition-colors'} border-b border-on-background`}>
-            <span>Arizona</span><span class="font-cjk text-xs text-primary">亚利桑那</span>
+          <a
+            href="/photography/arizona"
+            class={`flex justify-between items-center px-4 py-3 font-label-caps text-[13px] tracking-widest${az ? " bg-surface-container-low text-primary" : " hover:bg-surface-container-low hover:text-primary transition-colors"} border-b border-on-background`}
+          >
+            <span>Arizona</span><span class="font-cjk text-xs text-primary"
+              >亚利桑那</span
+            >
           </a>
-          <a href="/photography/washington" class={`flex justify-between items-center px-4 py-3 font-label-caps text-[13px] tracking-widest${wa ? ' bg-surface-container-low text-primary' : ' hover:bg-surface-container-low hover:text-primary transition-colors'} border-b border-on-background`}>
-            <span>Washington</span><span class="font-cjk text-xs text-primary">华盛顿</span>
+          <a
+            href="/photography/washington"
+            class={`flex justify-between items-center px-4 py-3 font-label-caps text-[13px] tracking-widest${wa ? " bg-surface-container-low text-primary" : " hover:bg-surface-container-low hover:text-primary transition-colors"} border-b border-on-background`}
+          >
+            <span>Washington</span><span class="font-cjk text-xs text-primary"
+              >华盛顿</span
+            >
           </a>
-          <a href="/photography/nature" class={`flex justify-between items-center px-4 py-3 font-label-caps text-[13px] tracking-widest${nat ? ' bg-surface-container-low text-primary' : ' hover:bg-surface-container-low hover:text-primary transition-colors'} border-b border-on-background`}>
-            <span>Nature</span><span class="font-cjk text-xs text-primary">自然</span>
+          <a
+            href="/photography/nature"
+            class={`flex justify-between items-center px-4 py-3 font-label-caps text-[13px] tracking-widest${nat ? " bg-surface-container-low text-primary" : " hover:bg-surface-container-low hover:text-primary transition-colors"} border-b border-on-background`}
+          >
+            <span>Nature</span><span class="font-cjk text-xs text-primary"
+              >自然</span
+            >
           </a>
-          <a href="/photography/film" class={`flex justify-between items-center px-4 py-3 font-label-caps text-[13px] tracking-widest${film ? ' bg-surface-container-low text-primary' : ' hover:bg-surface-container-low hover:text-primary transition-colors'} border-b border-on-background`}>
-            <span>Film</span><span class="font-cjk text-xs text-primary">胶片</span>
+          <a
+            href="/photography/film"
+            class={`flex justify-between items-center px-4 py-3 font-label-caps text-[13px] tracking-widest${film ? " bg-surface-container-low text-primary" : " hover:bg-surface-container-low hover:text-primary transition-colors"} border-b border-on-background`}
+          >
+            <span>Film</span><span class="font-cjk text-xs text-primary"
+              >胶片</span
+            >
           </a>
-          <a href="/photography/europe" class={`flex justify-between items-center px-4 py-3 font-label-caps text-[13px] tracking-widest${eu ? ' bg-surface-container-low text-primary' : ' hover:bg-surface-container-low hover:text-primary transition-colors'}`}>
-            <span>Europe</span><span class="font-cjk text-xs text-primary">欧洲</span>
+          <a
+            href="/photography/europe"
+            class={`flex justify-between items-center px-4 py-3 font-label-caps text-[13px] tracking-widest${eu ? " bg-surface-container-low text-primary" : " hover:bg-surface-container-low hover:text-primary transition-colors"}`}
+          >
+            <span>Europe</span><span class="font-cjk text-xs text-primary"
+              >欧洲</span
+            >
           </a>
         </div>
       </div>
     </div>
 
-    <a href="/video" class={`${video ? 'text-primary' : 'text-on-surface hover:text-primary'} transition-colors duration-300 cursor-pointer flex flex-col items-center`}>
-      <span>Video</span><span class="font-cjk text-[13px] text-primary">视频</span>
+    <a
+      href="/video"
+      class={`${video ? "text-primary" : "text-on-surface hover:text-primary"} transition-colors duration-300 cursor-pointer flex flex-col items-center`}
+    >
+      <span>Video</span><span class="font-cjk text-[13px] text-primary"
+        >视频</span
+      >
     </a>
 
     <!-- Art with dropdown -->
     <div class="relative group">
-      <a href="/art" class={`${art ? 'text-primary' : 'text-on-surface hover:text-primary'} transition-colors duration-300 cursor-pointer flex flex-col items-center`}>
-        <span>Art</span><span class="font-cjk text-[13px] text-primary">艺术</span>
+      <a
+        href="/art"
+        class={`${art ? "text-primary" : "text-on-surface hover:text-primary"} transition-colors duration-300 cursor-pointer flex flex-col items-center`}
+      >
+        <span>Art</span><span class="font-cjk text-[13px] text-primary"
+          >艺术</span
+        >
       </a>
-      <div class="absolute top-full w-44 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-[99999]" style="right:0;">
+      <div
+        class="absolute top-full w-44 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200 z-[99999]"
+        style="right:0;"
+      >
         <div class="h-3"></div>
-        <div class="bg-surface-container-lowest border border-on-background shadow-lg">
-          <a href="/art/sketches" class={`flex justify-between items-center px-4 py-3 font-label-caps text-[13px] tracking-widest${sketches ? ' bg-surface-container-low text-primary' : ' hover:bg-surface-container-low hover:text-primary transition-colors'} border-b border-on-background`}>
-            <span>Sketches</span><span class="font-cjk text-xs text-primary">素描</span>
+        <div
+          class="bg-surface-container-lowest border border-on-background shadow-lg"
+        >
+          <a
+            href="/art/sketches"
+            class={`flex justify-between items-center px-4 py-3 font-label-caps text-[13px] tracking-widest${sketches ? " bg-surface-container-low text-primary" : " hover:bg-surface-container-low hover:text-primary transition-colors"} border-b border-on-background`}
+          >
+            <span>Sketches</span><span class="font-cjk text-xs text-primary"
+              >素描</span
+            >
           </a>
-          <a href="/art/composers" class={`flex justify-between items-center px-4 py-3 font-label-caps text-[13px] tracking-widest${composers ? ' bg-surface-container-low text-primary' : ' hover:bg-surface-container-low hover:text-primary transition-colors'}`}>
-            <span>Composers</span><span class="font-cjk text-xs text-primary">作曲家</span>
+          <a
+            href="/art/composers"
+            class={`flex justify-between items-center px-4 py-3 font-label-caps text-[13px] tracking-widest${composers ? " bg-surface-container-low text-primary" : " hover:bg-surface-container-low hover:text-primary transition-colors"}`}
+          >
+            <span>Composers</span><span class="font-cjk text-xs text-primary"
+              >作曲家</span
+            >
           </a>
         </div>
       </div>
     </div>
 
-    <a href="/projects" class={`${projects ? 'text-primary' : 'text-on-surface hover:text-primary'} transition-colors duration-300 cursor-pointer flex flex-col items-center`}>
-      <span>Projects</span><span class="font-cjk text-[13px] text-primary">项目</span>
+    <a
+      href="/projects"
+      class={`${projects ? "text-primary" : "text-on-surface hover:text-primary"} transition-colors duration-300 cursor-pointer flex flex-col items-center`}
+    >
+      <span>Projects</span><span class="font-cjk text-[13px] text-primary"
+        >项目</span
+      >
     </a>
 
-    <a href="/about" class={`${about ? 'text-primary' : 'text-on-surface hover:text-primary'} transition-colors duration-300 cursor-pointer flex flex-col items-center`}>
-      <span>About</span><span class="font-cjk text-[13px] text-primary">关于</span>
+    <a
+      href="/about"
+      class={`${about ? "text-primary" : "text-on-surface hover:text-primary"} transition-colors duration-300 cursor-pointer flex flex-col items-center`}
+    >
+      <span>About</span><span class="font-cjk text-[13px] text-primary"
+        >关于</span
+      >
     </a>
   </div>
 
-  <button id="theme-toggle" aria-label="Toggle dark mode" class="hidden md:flex items-center justify-center w-9 h-9 rounded-full border border-on-surface text-on-surface hover:border-primary hover:text-primary transition-colors duration-300">
-    <span class="material-symbols-outlined theme-icon" style="font-size:18px;line-height:1;">dark_mode</span>
+  <button
+    id="theme-toggle"
+    aria-label="Toggle dark mode"
+    class="hidden md:flex items-center justify-center w-9 h-9 rounded-full border border-on-surface text-on-surface hover:border-primary hover:text-primary transition-colors duration-300"
+  >
+    <span
+      class="material-symbols-outlined theme-icon"
+      style="font-size:18px;line-height:1;">dark_mode</span
+    >
   </button>
 
-  <a href="/contact" class="hidden md:inline-flex items-center gap-2 border border-on-surface px-4 py-2 hover:bg-primary hover:text-white hover:border-primary transition-colors duration-300">
+  <a
+    href="/contact"
+    class="hidden md:inline-flex items-center gap-2 border border-on-surface px-4 py-2 hover:bg-primary hover:text-white hover:border-primary transition-colors duration-300"
+  >
     <span>Contact</span><span class="font-cjk text-xs text-primary">联系</span>
   </a>
 
-  <button id="mobile-menu-toggle" class="md:hidden" aria-label="Toggle menu" style="color:var(--fg)">
+  <button
+    id="mobile-menu-toggle"
+    class="md:hidden"
+    aria-label="Toggle menu"
+    style="color:var(--fg)"
+  >
     <span class="material-symbols-outlined">menu</span>
   </button>
-
 </nav>
 
 <!-- Mobile menu -->
-<div id="mobile-menu" class="fixed inset-y-0 right-0 z-[99998] w-72 bg-surface-container-lowest border-l border-on-background transform translate-x-full transition-transform duration-300 md:hidden flex flex-col pt-20 px-6 gap-6 font-label-caps text-label-caps tracking-widest overflow-y-auto">
+<div
+  id="mobile-menu"
+  class="fixed inset-y-0 right-0 z-[99998] w-72 bg-surface-container-lowest border-l border-on-background transform translate-x-full transition-transform duration-300 md:hidden flex flex-col pt-20 px-6 gap-6 font-label-caps text-label-caps tracking-widest overflow-y-auto"
+>
   <div>
-    <a href="/photography" class={`flex justify-between items-center pb-3 ${photo ? 'text-primary' : 'text-on-background hover:text-primary transition-colors'}`}>
-      <span>Photography</span><span class="font-cjk text-primary text-sm">摄影</span>
+    <a
+      href="/photography"
+      class={`flex justify-between items-center pb-3 ${photo ? "text-primary" : "text-on-background hover:text-primary transition-colors"}`}
+    >
+      <span>Photography</span><span class="font-cjk text-primary text-sm"
+        >摄影</span
+      >
     </a>
     <div class="pl-3 flex flex-col gap-1 border-b border-on-background pb-4">
-      <a href="/photography/colorado" class={`flex justify-between items-center py-1.5 ${co ? 'text-primary' : 'hover:text-primary transition-colors text-on-surface-variant'}`}>
-        <span class="text-[12px] tracking-widest italic">Colorado</span><span class="font-cjk text-primary text-[12px]">科罗拉多</span>
+      <a
+        href="/photography/colorado"
+        class={`flex justify-between items-center py-1.5 ${co ? "text-primary" : "hover:text-primary transition-colors text-on-surface-variant"}`}
+      >
+        <span class="text-[12px] tracking-widest italic">Colorado</span><span
+          class="font-cjk text-primary text-[12px]">科罗拉多</span
+        >
       </a>
-      <a href="/photography/arizona" class={`flex justify-between items-center py-1.5 ${az ? 'text-primary' : 'hover:text-primary transition-colors text-on-surface-variant'}`}>
-        <span class="text-[12px] tracking-widest italic">Arizona</span><span class="font-cjk text-primary text-[12px]">亚利桑那</span>
+      <a
+        href="/photography/arizona"
+        class={`flex justify-between items-center py-1.5 ${az ? "text-primary" : "hover:text-primary transition-colors text-on-surface-variant"}`}
+      >
+        <span class="text-[12px] tracking-widest italic">Arizona</span><span
+          class="font-cjk text-primary text-[12px]">亚利桑那</span
+        >
       </a>
-      <a href="/photography/washington" class={`flex justify-between items-center py-1.5 ${wa ? 'text-primary' : 'hover:text-primary transition-colors text-on-surface-variant'}`}>
-        <span class="text-[12px] tracking-widest italic">Washington</span><span class="font-cjk text-primary text-[12px]">华盛顿</span>
+      <a
+        href="/photography/washington"
+        class={`flex justify-between items-center py-1.5 ${wa ? "text-primary" : "hover:text-primary transition-colors text-on-surface-variant"}`}
+      >
+        <span class="text-[12px] tracking-widest italic">Washington</span><span
+          class="font-cjk text-primary text-[12px]">华盛顿</span
+        >
       </a>
-      <a href="/photography/nature" class={`flex justify-between items-center py-1.5 ${nat ? 'text-primary' : 'hover:text-primary transition-colors text-on-surface-variant'}`}>
-        <span class="text-[12px] tracking-widest italic">Nature</span><span class="font-cjk text-primary text-[12px]">自然</span>
+      <a
+        href="/photography/nature"
+        class={`flex justify-between items-center py-1.5 ${nat ? "text-primary" : "hover:text-primary transition-colors text-on-surface-variant"}`}
+      >
+        <span class="text-[12px] tracking-widest italic">Nature</span><span
+          class="font-cjk text-primary text-[12px]">自然</span
+        >
       </a>
-      <a href="/photography/film" class={`flex justify-between items-center py-1.5 ${film ? 'text-primary' : 'hover:text-primary transition-colors text-on-surface-variant'}`}>
-        <span class="text-[12px] tracking-widest italic">Film</span><span class="font-cjk text-primary text-[12px]">胶片</span>
+      <a
+        href="/photography/film"
+        class={`flex justify-between items-center py-1.5 ${film ? "text-primary" : "hover:text-primary transition-colors text-on-surface-variant"}`}
+      >
+        <span class="text-[12px] tracking-widest italic">Film</span><span
+          class="font-cjk text-primary text-[12px]">胶片</span
+        >
       </a>
-      <a href="/photography/europe" class={`flex justify-between items-center py-1.5 ${eu ? 'text-primary' : 'hover:text-primary transition-colors text-on-surface-variant'}`}>
-        <span class="text-[12px] tracking-widest italic">Europe</span><span class="font-cjk text-primary text-[12px]">欧洲</span>
+      <a
+        href="/photography/europe"
+        class={`flex justify-between items-center py-1.5 ${eu ? "text-primary" : "hover:text-primary transition-colors text-on-surface-variant"}`}
+      >
+        <span class="text-[12px] tracking-widest italic">Europe</span><span
+          class="font-cjk text-primary text-[12px]">欧洲</span
+        >
       </a>
     </div>
   </div>
 
-  <a href="/video" class={`flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors${video ? ' text-primary' : ' text-on-background'}`}>
+  <a
+    href="/video"
+    class={`flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors${video ? " text-primary" : " text-on-background"}`}
+  >
     <span>Video</span><span class="font-cjk text-primary text-sm">视频</span>
   </a>
 
   <div>
-    <a href="/art" class={`flex justify-between items-center pb-3 ${art ? 'text-primary' : 'text-on-background hover:text-primary transition-colors'}`}>
+    <a
+      href="/art"
+      class={`flex justify-between items-center pb-3 ${art ? "text-primary" : "text-on-background hover:text-primary transition-colors"}`}
+    >
       <span>Art</span><span class="font-cjk text-primary text-sm">艺术</span>
     </a>
     <div class="pl-3 flex flex-col gap-1 border-b border-on-background pb-4">
-      <a href="/art/sketches" class={`flex justify-between items-center py-1.5 ${sketches ? 'text-primary' : 'hover:text-primary transition-colors text-on-surface-variant'}`}>
-        <span class="text-[12px] tracking-widest italic">Sketches</span><span class="font-cjk text-primary text-[12px]">素描</span>
+      <a
+        href="/art/sketches"
+        class={`flex justify-between items-center py-1.5 ${sketches ? "text-primary" : "hover:text-primary transition-colors text-on-surface-variant"}`}
+      >
+        <span class="text-[12px] tracking-widest italic">Sketches</span><span
+          class="font-cjk text-primary text-[12px]">素描</span
+        >
       </a>
-      <a href="/art/composers" class={`flex justify-between items-center py-1.5 ${composers ? 'text-primary' : 'hover:text-primary transition-colors text-on-surface-variant'}`}>
-        <span class="text-[12px] tracking-widest italic">Composers</span><span class="font-cjk text-primary text-[12px]">作曲家</span>
+      <a
+        href="/art/composers"
+        class={`flex justify-between items-center py-1.5 ${composers ? "text-primary" : "hover:text-primary transition-colors text-on-surface-variant"}`}
+      >
+        <span class="text-[12px] tracking-widest italic">Composers</span><span
+          class="font-cjk text-primary text-[12px]">作曲家</span
+        >
       </a>
     </div>
   </div>
 
-  <a href="/projects" class={`flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors${projects ? ' text-primary' : ' text-on-background'}`}>
+  <a
+    href="/projects"
+    class={`flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors${projects ? " text-primary" : " text-on-background"}`}
+  >
     <span>Projects</span><span class="font-cjk text-primary text-sm">项目</span>
   </a>
 
-  <a href="/about" class={`flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors${about ? ' text-primary' : ' text-on-background'}`}>
+  <a
+    href="/about"
+    class={`flex justify-between items-center border-b border-on-background pb-4 hover:text-primary transition-colors${about ? " text-primary" : " text-on-background"}`}
+  >
     <span>About</span><span class="font-cjk text-primary text-sm">关于</span>
   </a>
 
-  <button id="theme-toggle-mobile" class="flex items-center justify-between border-b border-on-background pb-4 hover:text-primary transition-colors w-full text-left" style="color:var(--muted)">
+  <button
+    id="theme-toggle-mobile"
+    class="flex items-center justify-between border-b border-on-background pb-4 hover:text-primary transition-colors w-full text-left"
+    style="color:var(--muted)"
+  >
     <span class="theme-label">Dark Mode</span>
-    <span class="material-symbols-outlined theme-icon" style="font-size:18px;">dark_mode</span>
+    <span class="material-symbols-outlined theme-icon" style="font-size:18px;"
+      >dark_mode</span
+    >
   </button>
 
-  <a href="/contact" class="flex items-center justify-between border border-on-surface px-4 py-3 mt-2 hover:bg-primary hover:text-white hover:border-primary transition-colors" style="color:var(--muted)">
+  <a
+    href="/contact"
+    class="flex items-center justify-between border border-on-surface px-4 py-3 mt-2 hover:bg-primary hover:text-white hover:border-primary transition-colors"
+    style="color:var(--muted)"
+  >
     <span>Contact</span><span class="font-cjk text-xs text-primary">联系</span>
   </a>
 </div>
 
-<div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-[99997] opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
+<div
+  id="mobile-menu-overlay"
+  class="fixed inset-0 bg-black/50 z-[99997] opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"
+>
+</div>
 
 <script>
-  import { initNav } from '@scripts/nav.js';
-  import { initTheme } from '@scripts/theme.js';
+  import { initNav } from "@scripts/nav.js";
+  import { initTheme } from "@scripts/theme.js";
   initTheme();
   initNav();
 </script>

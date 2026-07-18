@@ -1,222 +1,465 @@
 ---
-import Base from '@layouts/Base.astro';
+import Base from "@layouts/Base.astro";
 ---
-<Base title="STUDIO JUS10 - Career Footprint" bodyClass="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white">
+
+<Base
+  title="STUDIO JUS10 - Career Footprint"
+  bodyClass="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white"
+>
   <style is:global>
     /* Lightbox */
     #lightbox {
-      position: fixed; inset: 0; z-index: 999999;
-      background: rgba(0,0,0,0.92);
-      display: none; align-items: center; justify-content: center;
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      background: rgba(0, 0, 0, 0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
       padding: 24px;
     }
-    #lightbox.open { display: flex; }
+    #lightbox.open {
+      display: flex;
+    }
     #lightbox img {
-      max-width: 90vw; max-height: 88vh;
+      max-width: 90vw;
+      max-height: 88vh;
       object-fit: contain;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7);
     }
     #lightbox-close {
-      position: absolute; top: 20px; right: 24px;
-      color: #fff; font-size: 32px; cursor: pointer; line-height: 1;
-      font-family: 'Material Symbols Outlined';
-      opacity: 0.7; transition: opacity 0.2s;
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      color: #fff;
+      font-size: 32px;
+      cursor: pointer;
+      line-height: 1;
+      font-family: "Material Symbols Outlined";
+      opacity: 0.7;
+      transition: opacity 0.2s;
     }
-    #lightbox-close:hover { opacity: 1; }
+    #lightbox-close:hover {
+      opacity: 1;
+    }
 
     .asset-img {
-      width: 100%; height: auto;
+      width: 100%;
+      height: auto;
       display: block;
       cursor: zoom-in;
-      transition: transform 0.4s ease, filter 0.4s ease;
+      transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
     }
-    .asset-cell:hover .asset-img { transform: scale(1.04); filter: brightness(1.08); }
+    .asset-cell:hover .asset-img {
+      transform: scale(1.04);
+      filter: brightness(1.08);
+    }
   </style>
 
   <!-- Fixed hero background: starts clipped to hero height, expands to full viewport on scroll -->
-  <div id="hero-visual" style="position:fixed;inset:0;z-index:0;pointer-events:none;will-change:clip-path,opacity;">
-    <div style="position:absolute;inset:0;background-image:url('/assets/projects/CareerFootprint/cf-assets/Base%20Background.jpeg');background-size:cover;background-position:center;"></div>
-    <div style="position:absolute;inset:0;background:rgba(10,10,10,0.35);"></div>
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.55) 60%,rgba(10,10,10,0.65) 82%,var(--surface-container-low,#f4f1f0) 100%);"></div>
+  <div
+    id="hero-visual"
+    style="position:fixed;inset:0;z-index:0;pointer-events:none;will-change:clip-path,opacity;"
+  >
+    <div
+      style="position:absolute;inset:0;background-image:url('/assets/projects/CareerFootprint/cf-assets/Base%20Background.jpeg');background-size:cover;background-position:center;"
+    >
+    </div>
+    <div style="position:absolute;inset:0;background:rgba(10,10,10,0.35);">
+    </div>
+    <div
+      style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.55) 60%,rgba(10,10,10,0.65) 82%,var(--surface-container-low,#f4f1f0) 100%);"
+    >
+    </div>
   </div>
 
   <!-- Hero -->
-  <section id="hero-section" style="position:relative;z-index:1;min-height:90vh;display:flex;align-items:flex-end;">
-    <div style="position:relative;z-index:1;width:100%;max-width:56rem;margin:0 auto;padding:0 2rem 3rem;transform:translateY(-15%);">
-      <a href="/projects" style="display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);text-decoration:none;margin-bottom:2rem;padding-top:7rem;transition:color 0.2s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <section
+    id="hero-section"
+    style="position:relative;z-index:1;min-height:90vh;display:flex;align-items:flex-end;"
+  >
+    <div
+      style="position:relative;z-index:1;width:100%;max-width:56rem;margin:0 auto;padding:0 2rem 3rem;transform:translateY(-15%);"
+    >
+      <a
+        href="/projects"
+        style="display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);text-decoration:none;margin-bottom:2rem;padding-top:7rem;transition:color 0.2s;"
+        onmouseover="this.style.color='var(--primary)'"
+        onmouseout="this.style.color='rgba(255,255,255,0.6)'"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          aria-hidden="true"
+          ><path
+            d="M10 12L6 8l4-4"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path></svg
+        >
         Projects
       </a>
-      <h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg font-medium" style="color:#fff;margin-bottom:0;line-height:1;text-shadow:0 1px 4px rgba(0,0,0,0.18);">Career Footprint</h1>
-      <p class="font-cjk text-3xl md:text-5xl text-primary" style="line-height:1;margin-top:0.125rem;text-shadow:0 1px 4px rgba(0,0,0,0.18);">职业足迹</p>
+      <h1
+        class="font-display-lg text-headline-lg-mobile md:text-display-lg font-medium"
+        style="color:#fff;margin-bottom:0;line-height:1;text-shadow:0 1px 4px rgba(0,0,0,0.18);"
+      >
+        Career Footprint
+      </h1>
+      <p
+        class="font-cjk text-3xl md:text-5xl text-primary"
+        style="line-height:1;margin-top:0.125rem;text-shadow:0 1px 4px rgba(0,0,0,0.18);"
+      >
+        职业足迹
+      </p>
     </div>
   </section>
 
-  <main class="max-w-4xl mx-auto px-4 md:px-8 pb-24" style="padding-top:3.75rem;position:relative;z-index:1;background:var(--surface-container-low,#f4f1f0);">
-
+  <main
+    class="max-w-4xl mx-auto px-4 md:px-8 pb-24"
+    style="padding-top:3.75rem;position:relative;z-index:1;background:var(--surface-container-low,#f4f1f0);"
+  >
     <!-- Project description -->
     <p class="font-label-mono text-[15px] leading-relaxed text-justify mb-14">
-      <span class="font-headline-md text-3xl float-left mr-2 mt-1 leading-none text-on-background">I</span>n 2025, I had the opportunity to work on a "white page" research and development project to design a generative AI powered platform for career assistance. The platform is designed to procedurally generate an interactive workspace to apply for jobs, track career changes, practice interviews, and more, tailored to the user's preferences. One of the main components I created was several interactive PowerPoint presentations that demonstrated various features of CareerFootprint.
+      <span
+        class="font-headline-md text-3xl float-left mr-2 mt-1 leading-none text-on-background"
+        >I</span
+      >n 2025, I had the opportunity to work on a "white page" research and
+      development project to design a generative AI powered platform for career
+      assistance. The platform is designed to procedurally generate an
+      interactive workspace to apply for jobs, track career changes, practice
+      interviews, and more, tailored to the user's preferences. One of the main
+      components I created was several interactive PowerPoint presentations that
+      demonstrated various features of CareerFootprint.
     </p>
 
-    <hr class="border-t border-on-background/20 mb-10">
+    <hr class="border-t border-on-background/20 mb-10" />
 
     <!-- ── Demo Videos ── -->
-    <h2 id="platform-demos" class="inline-block bg-primary text-white font-label-mono text-xs uppercase tracking-widest px-4 py-2 mb-6">Platform Demonstrations</h2>
+    <h2
+      id="platform-demos"
+      class="inline-block bg-primary text-white font-label-mono text-xs uppercase tracking-widest px-4 py-2 mb-6"
+    >
+      Platform Demonstrations
+    </h2>
 
     <p class="font-body-md text-body-md text-on-surface leading-relaxed mb-8">
-      These videos demonstrate the front-end functionality of CareerFootprint. The platform generates a fully AI-driven environment — from the visual backgrounds and characters to the written text and interface assets — giving every user an experience tailored to their stated preferences. In these demos, that environment is a coffee shop.
+      These videos demonstrate the front-end functionality of CareerFootprint.
+      The platform generates a fully AI-driven environment — from the visual
+      backgrounds and characters to the written text and interface assets —
+      giving every user an experience tailored to their stated preferences. In
+      these demos, that environment is a coffee shop.
     </p>
 
     <div class="flex flex-col gap-8 mb-14">
-
       <!-- Video card 1: Job Listing -->
-      <div class="bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.18)] flex flex-col md:flex-row-reverse">
+      <div
+        class="bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.18)] flex flex-col md:flex-row-reverse"
+      >
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
-          <video style="width:100%;display:block;background:#000;"
-                 src="/assets/projects/CareerFootprint/demo-videos/Job%20Listing%20Video.mp4"
-                 controls preload="metadata"></video>
+          <video
+            style="width:100%;display:block;background:#000;"
+            src="/assets/projects/CareerFootprint/demo-videos/Job%20Listing%20Video.mp4"
+            controls
+            preload="metadata"></video>
         </div>
         <div class="p-8 flex flex-col justify-center gap-3">
           <h3 class="font-headline-md text-2xl italic">Job Listing</h3>
           <p class="font-cjk text-sm text-primary">职位列表</p>
-          <p class="font-label-mono text-xs leading-relaxed">The job listing workspace surfaces relevant opportunities within the AI-generated coffee shop environment. AI chatbots and dynamic data visualizations are integrated throughout to assist the user in evaluating and applying for positions, all within a setting generated around their personal preferences.</p>
+          <p class="font-label-mono text-xs leading-relaxed">
+            The job listing workspace surfaces relevant opportunities within the
+            AI-generated coffee shop environment. AI chatbots and dynamic data
+            visualizations are integrated throughout to assist the user in
+            evaluating and applying for positions, all within a setting
+            generated around their personal preferences.
+          </p>
         </div>
       </div>
 
       <!-- Video card 2: Interview Practice -->
-      <div class="bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.18)] flex flex-col md:flex-row-reverse">
+      <div
+        class="bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.18)] flex flex-col md:flex-row-reverse"
+      >
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
-          <video style="width:100%;display:block;background:#000;"
-                 src="/assets/projects/CareerFootprint/demo-videos/Interview%20Practice%20Video.mp4"
-                 controls preload="metadata"></video>
+          <video
+            style="width:100%;display:block;background:#000;"
+            src="/assets/projects/CareerFootprint/demo-videos/Interview%20Practice%20Video.mp4"
+            controls
+            preload="metadata"></video>
         </div>
         <div class="p-8 flex flex-col justify-center gap-3">
           <h3 class="font-headline-md text-2xl italic">Interview Practice</h3>
           <p class="font-cjk text-sm text-primary">面试练习</p>
-          <p class="font-label-mono text-xs leading-relaxed">The interview practice module generates personalized sessions within the same persistent AI environment. Scenarios are adapted to the user's target role and experience level, with an AI-driven interviewer and real-time feedback — all set inside the procedurally created workspace.</p>
+          <p class="font-label-mono text-xs leading-relaxed">
+            The interview practice module generates personalized sessions within
+            the same persistent AI environment. Scenarios are adapted to the
+            user's target role and experience level, with an AI-driven
+            interviewer and real-time feedback — all set inside the procedurally
+            created workspace.
+          </p>
         </div>
       </div>
-
     </div>
 
-    <hr class="border-t border-on-background/20 mb-10">
+    <hr class="border-t border-on-background/20 mb-10" />
 
     <!-- ── AI-Generated Assets ── -->
-    <h2 class="inline-block bg-primary text-white font-label-mono text-xs uppercase tracking-widest px-4 py-2 mb-6">Generated Assets</h2>
+    <h2
+      class="inline-block bg-primary text-white font-label-mono text-xs uppercase tracking-widest px-4 py-2 mb-6"
+    >
+      Generated Assets
+    </h2>
 
     <p class="font-body-md text-body-md text-on-surface leading-relaxed mb-8">
-      Every visual element in the CareerFootprint environment was generated individually using AI before being composed together in the demo. Characters, backgrounds, and UI elements are each produced separately and then layered into the interactive workspace. These images show the building blocks of the coffee shop environment featured in the demos.
+      Every visual element in the CareerFootprint environment was generated
+      individually using AI before being composed together in the demo.
+      Characters, backgrounds, and UI elements are each produced separately and
+      then layered into the interactive workspace. These images show the
+      building blocks of the coffee shop environment featured in the demos.
     </p>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:3.5rem;">
-
+    <div
+      style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:3.5rem;"
+    >
       <div class="asset-cell overflow-hidden rounded-lg">
-        <img class="asset-img"
-             src="/assets/projects/CareerFootprint/cf-assets/Counter%20View%20at%20Night.jpeg"
-             alt="Coffee shop counter — nighttime background" loading="lazy">
+        <img
+          class="asset-img"
+          src="/assets/projects/CareerFootprint/cf-assets/Counter%20View%20at%20Night.jpeg"
+          alt="Coffee shop counter — nighttime background"
+          loading="lazy"
+        />
       </div>
       <div class="asset-cell overflow-hidden rounded-lg">
-        <img class="asset-img"
-             src="/assets/projects/CareerFootprint/cf-assets/Base%20Background.jpeg"
-             alt="Base coffee shop background" loading="lazy">
+        <img
+          class="asset-img"
+          src="/assets/projects/CareerFootprint/cf-assets/Base%20Background.jpeg"
+          alt="Base coffee shop background"
+          loading="lazy"
+        />
       </div>
       <div class="asset-cell overflow-hidden rounded-lg">
-        <img class="asset-img"
-             src="/assets/projects/CareerFootprint/cf-assets/ChatGPT%20Image%20Apr%2023%2C%202025%2C%2007_36_33%20AM.png"
-             alt="AI-generated character asset" loading="lazy">
+        <img
+          class="asset-img"
+          src="/assets/projects/CareerFootprint/cf-assets/ChatGPT%20Image%20Apr%2023%2C%202025%2C%2007_36_33%20AM.png"
+          alt="AI-generated character asset"
+          loading="lazy"
+        />
       </div>
       <div class="asset-cell overflow-hidden rounded-lg">
-        <img class="asset-img"
-             src="/assets/projects/CareerFootprint/cf-assets/ChatGPT%20Image%20Apr%2023%2C%202025%2C%2007_36_37%20AM.png"
-             alt="AI-generated character asset" loading="lazy">
+        <img
+          class="asset-img"
+          src="/assets/projects/CareerFootprint/cf-assets/ChatGPT%20Image%20Apr%2023%2C%202025%2C%2007_36_37%20AM.png"
+          alt="AI-generated character asset"
+          loading="lazy"
+        />
       </div>
       <div class="asset-cell overflow-hidden rounded-lg">
-        <img class="asset-img"
-             src="/assets/projects/CareerFootprint/cf-assets/ChatGPT%20Image%20Apr%2023%2C%202025%2C%2007_36_41%20AM.png"
-             alt="AI-generated character asset" loading="lazy">
+        <img
+          class="asset-img"
+          src="/assets/projects/CareerFootprint/cf-assets/ChatGPT%20Image%20Apr%2023%2C%202025%2C%2007_36_41%20AM.png"
+          alt="AI-generated character asset"
+          loading="lazy"
+        />
       </div>
       <div class="asset-cell overflow-hidden rounded-lg">
-        <img class="asset-img"
-             src="/assets/projects/CareerFootprint/cf-assets/Clipboard%201.jpeg"
-             alt="AI-generated clipboard UI element" loading="lazy">
+        <img
+          class="asset-img"
+          src="/assets/projects/CareerFootprint/cf-assets/Clipboard%201.jpeg"
+          alt="AI-generated clipboard UI element"
+          loading="lazy"
+        />
       </div>
-
     </div>
 
-    <hr class="border-t border-on-background/20 mb-10">
+    <hr class="border-t border-on-background/20 mb-10" />
 
     <!-- ── Research Documents ── -->
-    <h2 class="inline-block bg-primary text-white font-label-mono text-xs uppercase tracking-widest px-4 py-2 mb-6">Research &amp; Development</h2>
+    <h2
+      class="inline-block bg-primary text-white font-label-mono text-xs uppercase tracking-widest px-4 py-2 mb-6"
+    >
+      Research &amp; Development
+    </h2>
 
     <p class="font-body-md text-body-md text-on-surface leading-relaxed mb-8">
-      These documents were produced in the early stages of the project to guide development. The market analysis established the opportunity and competitive landscape; the gamification research informed how the platform could drive sustained user engagement.
+      These documents were produced in the early stages of the project to guide
+      development. The market analysis established the opportunity and
+      competitive landscape; the gamification research informed how the platform
+      could drive sustained user engagement.
     </p>
 
     <ul class="flex flex-col divide-y divide-outline-variant">
       <li>
-        <a href="/assets/projects/CareerFootprint/documents/Market%20Analysis%20LAM.pdf"
-           download
-           class="flex items-center justify-between py-4 font-label-mono text-xs uppercase tracking-widest text-on-background hover:text-primary transition-colors group">
+        <a
+          href="/assets/projects/CareerFootprint/documents/Market%20Analysis%20LAM.pdf"
+          download
+          class="flex items-center justify-between py-4 font-label-mono text-xs uppercase tracking-widest text-on-background hover:text-primary transition-colors group"
+        >
           <span class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-primary" style="font-size:18px;">description</span>
+            <span
+              class="material-symbols-outlined text-primary"
+              style="font-size:18px;">description</span
+            >
             Market Analysis
           </span>
-          <span class="flex items-center gap-1.5 opacity-50 group-hover:opacity-100 transition-opacity">
-            <span class="material-symbols-outlined" style="font-size:14px;">download</span>
+          <span
+            class="flex items-center gap-1.5 opacity-50 group-hover:opacity-100 transition-opacity"
+          >
+            <span class="material-symbols-outlined" style="font-size:14px;"
+              >download</span
+            >
             <span>.pdf</span>
           </span>
         </a>
       </li>
       <li>
-        <a href="/assets/projects/CareerFootprint/documents/Gamification%20Strategies%20LAM.pdf"
-           download
-           class="flex items-center justify-between py-4 font-label-mono text-xs uppercase tracking-widest text-on-background hover:text-primary transition-colors group">
+        <a
+          href="/assets/projects/CareerFootprint/documents/Gamification%20Strategies%20LAM.pdf"
+          download
+          class="flex items-center justify-between py-4 font-label-mono text-xs uppercase tracking-widest text-on-background hover:text-primary transition-colors group"
+        >
           <span class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-primary" style="font-size:18px;">description</span>
+            <span
+              class="material-symbols-outlined text-primary"
+              style="font-size:18px;">description</span
+            >
             Gamification Strategies
           </span>
-          <span class="flex items-center gap-1.5 opacity-50 group-hover:opacity-100 transition-opacity">
-            <span class="material-symbols-outlined" style="font-size:14px;">download</span>
+          <span
+            class="flex items-center gap-1.5 opacity-50 group-hover:opacity-100 transition-opacity"
+          >
+            <span class="material-symbols-outlined" style="font-size:14px;"
+              >download</span
+            >
             <span>.pdf</span>
           </span>
         </a>
       </li>
     </ul>
-
   </main>
 
   <!-- Lightbox -->
   <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
     <span id="lightbox-close" role="button" aria-label="Close">close</span>
-    <img id="lightbox-img" src="" alt="">
+    <img id="lightbox-img" src="" alt="" />
   </div>
 
-  <footer class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest" style="position:relative;z-index:10000;">
+  <footer
+    class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
+    style="position:relative;z-index:10000;"
+  >
     <div class="flex items-center gap-4 mb-4 md:mb-0">
-      <div class="font-headline-md text-base text-surface-container-lowest italic">STUDIO JUS10</div>
-      <div class="font-cjk text-primary border-l border-surface-variant pl-4">工作室</div>
+      <div
+        class="font-headline-md text-base text-surface-container-lowest italic"
+      >
+        STUDIO JUS10
+      </div>
+      <div class="font-cjk text-primary border-l border-surface-variant pl-4">
+        工作室
+      </div>
     </div>
-    <div class="flex flex-col sm:flex-row flex-wrap gap-x-5 gap-y-2 mb-4 md:mb-0 text-[10px]">
-      <a href="mailto:studiojus10@gmail.com" class="hover:text-primary transition-colors flex items-center gap-1.5">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
-        <span>Email</span><span class="font-cjk text-primary opacity-70">邮件</span>
+    <div
+      class="flex flex-col sm:flex-row flex-wrap gap-x-5 gap-y-2 mb-4 md:mb-0 text-[10px]"
+    >
+      <a
+        href="mailto:studiojus10@gmail.com"
+        class="hover:text-primary transition-colors flex items-center gap-1.5"
+      >
+        <svg
+          width="11"
+          height="11"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+          ><rect x="2" y="4" width="20" height="16" rx="2"></rect><polyline
+            points="2,4 12,13 22,4"></polyline></svg
+        >
+        <span>Email</span><span class="font-cjk text-primary opacity-70"
+          >邮件</span
+        >
       </a>
-      <a href="https://www.linkedin.com/in/justin-hughes-studiojus10" target="_blank" rel="noopener" class="hover:text-primary transition-colors flex items-center gap-1.5">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452H16.89v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a1.98 1.98 0 1 1 0-3.96 1.98 1.98 0 0 1 0 3.96zm1.957 13.019H3.379V9h3.915v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        <span>LinkedIn</span><span class="font-cjk text-primary opacity-70">领英</span>
+      <a
+        href="https://www.linkedin.com/in/justin-hughes-studiojus10"
+        target="_blank"
+        rel="noopener"
+        class="hover:text-primary transition-colors flex items-center gap-1.5"
+      >
+        <svg
+          width="11"
+          height="11"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+          ><path
+            d="M20.447 20.452H16.89v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a1.98 1.98 0 1 1 0-3.96 1.98 1.98 0 0 1 0 3.96zm1.957 13.019H3.379V9h3.915v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+          ></path></svg
+        >
+        <span>LinkedIn</span><span class="font-cjk text-primary opacity-70"
+          >领英</span
+        >
       </a>
-      <a href="https://www.youtube.com/@studiojus10" target="_blank" rel="noopener" class="hover:text-primary transition-colors flex items-center gap-1.5">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        <span>YouTube</span><span class="font-cjk text-primary opacity-70">视频</span>
+      <a
+        href="https://www.youtube.com/@studiojus10"
+        target="_blank"
+        rel="noopener"
+        class="hover:text-primary transition-colors flex items-center gap-1.5"
+      >
+        <svg
+          width="11"
+          height="11"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+          ><path
+            d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+          ></path></svg
+        >
+        <span>YouTube</span><span class="font-cjk text-primary opacity-70"
+          >视频</span
+        >
       </a>
-      <a href="https://www.instagram.com/studio.jus10?utm_source=qr" target="_blank" rel="noopener" class="hover:text-primary transition-colors flex items-center gap-1.5">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
-        <span>Instagram</span><span class="font-cjk text-primary opacity-70">照片</span>
+      <a
+        href="https://www.instagram.com/studio.jus10?utm_source=qr"
+        target="_blank"
+        rel="noopener"
+        class="hover:text-primary transition-colors flex items-center gap-1.5"
+      >
+        <svg
+          width="11"
+          height="11"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+          ><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle
+            cx="12"
+            cy="12"
+            r="4"></circle><circle
+            cx="17.5"
+            cy="6.5"
+            r="0.5"
+            fill="currentColor"
+            stroke="none"></circle></svg
+        >
+        <span>Instagram</span><span class="font-cjk text-primary opacity-70"
+          >照片</span
+        >
       </a>
     </div>
     <div><span>© 2026 STUDIO JUS10</span></div>
   </footer>
 
-  <script>import '@scripts/projects-career-footprint.js';</script>
+  <script>
+    import "@scripts/projects-career-footprint.js";
+  </script>
 </Base>
