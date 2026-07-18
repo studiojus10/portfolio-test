@@ -38,6 +38,25 @@ playwright-report/
 
 # Logs
 *.log
+npm-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Environment / secrets (never commit these)
+.env
+.env.*
+!.env.example
+
+# Playwright / test artifacts
+playwright/.cache/
+blob-report/
+coverage/
+
+# Vercel CLI output (project no longer uses Vercel, but ignore if ever run)
+.vercel
+
+# Subagent-driven-development scratch workspace
+.superpowers/
 
 # Media served from a mounted volume — not tracked in git, not baked into the image
 /public/assets/
