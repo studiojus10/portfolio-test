@@ -1,11 +1,28 @@
+# Forgejo Actions CI for studiojus10 (self-hosted runner).
+# The `docker` job builds the image and pushes it to the Forgejo container registry
+# (published as a package), mirroring the ws-sim setup. It needs:
+#   - REGISTRY_USER + REGISTRY_TOKEN (a write:package PAT) as repo/org Actions secrets
+#   - a runner that mounts the host docker socket (the build talks to that daemon)
+# First run may need tuning (runner label, docker socket, action resolution) — see ws-sim's notes.
+
 name: CI
+
 on:
   push:
     branches: [main]
+    tags: ["v*"]
+    paths-ignore: ["docs/**", "**/*.md", "LICENSE"]
   pull_request:
+    paths-ignore: ["docs/**", "**/*.md", "LICENSE"]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   verify:
-    runs-on: docker            # NOTE: match this to the Forgejo runner's registered label (docker/native/ubuntu-latest)
+    runs-on: docker # NOTE: match this to the Forgejo runner's registered label (docker/native/ubuntu-latest)
     steps:
       - uses: actions/checkout@v4
         with:
@@ -15,7 +32,77 @@ jobs:
           node-version: 26
           cache: npm
       - run: npm ci
-      - run: npm run check          # astro check + biome
-      - run: npm run build          # astro build
+      - run: npm run check # astro check + biome
+      - run: npm run build # astro build
       - run: npx playwright install --with-deps chromium
       - run: npm run test
+
+  # Build + push the image to the Forgejo registry (published as a container package) — only after
+  # `verify` passes, never on a PR, never on a cancelled run.
+  docker:
+    needs: [verify]
+    if: >-
+      !cancelled()
+      && github.event_name != 'pull_request'
+      && needs.verify.result == 'success'
+    runs-on: docker # runner default image (node + git) + the host docker socket the runner mounts in
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      # The job image has git + node (for checkout) but no docker CLI. Drop in the static docker
+      # client + the buildx plugin (for BuildKit); both talk to the daemon socket the runner mounts.
+      # Bump the pins as needed.
+      - name: Install the docker CLI + buildx plugin
+        run: |
+          curl -fsSL https://download.docker.com/linux/static/stable/x86_64/docker-27.5.1.tgz | tar xz -C /usr/local/bin --strip-components=1 docker/docker
+          mkdir -p "$HOME/.docker/cli-plugins"
+          curl -fsSL https://github.com/docker/buildx/releases/download/v0.19.3/buildx-v0.19.3.linux-amd64 -o "$HOME/.docker/cli-plugins/docker-buildx"
+          chmod +x "$HOME/.docker/cli-plugins/docker-buildx"
+      - name: Log in to the Forgejo registry
+        run: echo "${{ secrets.REGISTRY_TOKEN }}" | docker login forge.daveynet.xyz -u "${{ secrets.REGISTRY_USER }}" --password-stdin
+      # Build in an isolated `docker-container` builder, NOT the daemon's default `docker` driver.
+      # The default driver LOADS every built tag (`:latest` + `:sha-<commit>`) into the host image
+      # store this runner shares with the running site container — which would drag `:latest` onto the
+      # fresh image and break What's-Up-Docker auto-updates. The docker-container driver pushes straight
+      # to the registry without touching the host store.
+      #
+      # Reattach, don't rebuild: the buildkit container + its `_state` cache volume persist on the host.
+      # `buildx create` isn't idempotent, so drop any stale container by name — `docker rm`, NOT
+      # `docker buildx rm` (which would also delete the cache volume) — then recreate; it re-mounts the
+      # same `_state` volume so the BuildKit cache stays warm across runs.
+      - name: Set up an isolated buildx builder (keeps CI out of the host image store)
+        run: |
+          docker rm -f buildx_buildkit_studiojus10-wud0 >/dev/null 2>&1 || true
+          docker buildx create --name studiojus10-wud --driver docker-container --use
+      - name: Compute tags
+        id: t
+        env: # values via env, not inline ${{ }}, so a crafted ref name can't inject shell
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+          REF: ${{ github.ref }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          IMG="forge.daveynet.xyz/$(echo "$REPO" | tr '[:upper:]' '[:lower:]')"
+          TAGS="$IMG:sha-$(echo "$SHA" | cut -c1-7)"
+          [ "$REF" = 'refs/heads/main' ] && TAGS="$TAGS,$IMG:latest"
+          case "$REF" in
+            refs/tags/v*) V="$REF_NAME"; TAGS="$TAGS,$IMG:${V#v}" ;;
+          esac
+          echo "tags=$TAGS" >> "$GITHUB_OUTPUT"
+      # No registry cache: Forgejo is behind Cloudflare, whose 100 MB request-body cap rejects the large
+      # mode=max cache blobs with a 413. The persistent builder above keeps a warm local BuildKit cache
+      # instead. --provenance/--sbom OFF so Forgejo registers a plain container manifest (not an OCI
+      # index with attestation manifests it won't display as a package). `--push` ships every tag at once.
+      - name: Build & push
+        env: # values via env, not inline ${{ }}
+          TAGS: ${{ steps.t.outputs.tags }}
+          SHA: ${{ github.sha }}
+        run: |
+          set -eu
+          ARGS=""
+          for t in $(echo "$TAGS" | tr ',' ' '); do ARGS="$ARGS -t $t"; done
+          docker buildx build --builder studiojus10-wud $ARGS \
+            --build-arg COMMIT_HASH="$SHA" \
+            --provenance=false --sbom=false \
+            --push .
