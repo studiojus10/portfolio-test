@@ -1,87 +1,165 @@
 import { expect, test } from '@playwright/test';
 
-test('home carousel initializes at /', async ({ page }) => {
-  await page.goto('/');
-  await page.waitForLoadState('load');
-  await expect(page.locator('#carousel-track > *').first()).toBeVisible();
-});
-
-test('clicking a hero carousel card navigates to its target page', async ({
-  page,
-}) => {
-  await page.goto('/');
-  await page.waitForLoadState('load');
-
-  // Freeze the rAF-driven carousel so the card holds still; let the last
-  // already-scheduled frame flush before we take over positioning.
-  await page.evaluate(() => {
-    window.requestAnimationFrame = () => 0;
-  });
-  await page.waitForTimeout(60);
-
-  // Park a known back-wall card fully inside the visible back wall so it is a
-  // clean, stable click target regardless of where the intro animation stopped.
-  const href = await page.evaluate(() => {
-    const track = document.getElementById('carousel-track') as HTMLElement;
-    const card = track.children[4] as HTMLElement; // Home -> /photography/film/home
-    const bw = (
-      document.getElementById('room-wall-back') as HTMLElement
-    ).getBoundingClientRect();
-    const cr = card.getBoundingClientRect();
-    const m = new DOMMatrixReadOnly(getComputedStyle(track).transform);
-    const shift = bw.left + 12 - cr.left; // slide card's left edge just inside the wall
-    track.style.transform = `translateX(${m.m41 + shift}px)`;
-    return card.getAttribute('href');
-  });
-  expect(href).toBe('/photography/film/home');
-
-  await page.locator('#carousel-track > a:nth-child(5)').click();
-  await expect(page).toHaveURL(/\/photography\/film\/home$/);
-});
-
-test('dragging the hero carousel scrolls it without navigating', async ({
-  page,
-}) => {
-  await page.goto('/');
-  await page.waitForLoadState('load');
-
-  // Freeze the cruise loop; a drag still updates the transform directly.
-  await page.evaluate(() => {
-    window.requestAnimationFrame = () => 0;
-  });
-  await page.waitForTimeout(60);
-
-  const { y, x1, x2, before, url } = await page.evaluate(() => {
-    const track = document.getElementById('carousel-track') as HTMLElement;
-    const bw = (
-      document.getElementById('room-wall-back') as HTMLElement
-    ).getBoundingClientRect();
-    return {
-      y: Math.round(bw.top + bw.height / 2),
-      x1: Math.round(bw.left + bw.width * 0.75),
-      x2: Math.round(bw.left + bw.width * 0.15),
-      before: new DOMMatrixReadOnly(getComputedStyle(track).transform).m41,
-      url: location.href,
+declare global {
+  interface Window {
+    __cyl: {
+      advance: (rotation: number, dt: number, factor: number) => number;
+      state: () => { rotation: number; hovering: boolean };
     };
-  });
+    __vert: { state: () => { offset: number } };
+  }
+}
 
-  // Real trusted pointer drag across the back wall (starts on a card link).
+test('home hero renders 10 cylinder work cards as links', async ({ page }) => {
+  await page.goto('/');
+  await page.waitForLoadState('load');
+  const ring = page.locator('#cyl-ring');
+  await expect(ring).toBeAttached(); // 0x0 positioning anchor; cards are absolute
+  // 10 original works (JS-added clones are aria-hidden)
+  const originals = ring.locator('> a.cyl-card:not([aria-hidden="true"])');
+  await expect(originals).toHaveCount(10);
+  await expect(originals.first()).toBeVisible();
+  await expect(originals.first()).toHaveAttribute(
+    'href',
+    '/photography/colorado/twelve-views',
+  );
+  await expect(page.locator('#cyl-floor-ring')).toHaveCount(1);
+  // the old room walls are gone
+  await expect(page.locator('#room-wall-left')).toHaveCount(0);
+  await expect(page.locator('#floor-reflection')).toHaveCount(0);
+});
+
+test('cylinder rotation is time-based (double dt -> double advance)', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.waitForLoadState('load');
+  const [a, b] = await page.evaluate(() => [
+    window.__cyl.advance(0, 1, 1),
+    window.__cyl.advance(0, 2, 1),
+  ]);
+  expect(a).toBeCloseTo(8, 5); // 8 deg/sec * 1s
+  expect(b).toBeCloseTo(16, 5); // proportional to dt -> frame-rate independent
+});
+
+test('clicking a cylinder card navigates to its page', async ({ page }) => {
+  await page.goto('/');
+  await page.waitForLoadState('load');
+  await page.evaluate(() => {
+    window.requestAnimationFrame = () => 0;
+  }); // freeze
+  await page.waitForTimeout(60);
+  const href = await page.evaluate(() => {
+    const cards = [...document.querySelectorAll('#cyl-ring > a.cyl-card')];
+    const vw = innerWidth;
+    for (const a of cards) {
+      const r = a.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      if (
+        getComputedStyle(a).pointerEvents === 'auto' &&
+        cx > vw * 0.4 &&
+        cx < vw * 0.6
+      ) {
+        (a as HTMLElement).dataset.testTarget = '1';
+        return a.getAttribute('href');
+      }
+    }
+    return null;
+  });
+  expect(href).toBeTruthy();
+  await page.locator('#cyl-ring > a.cyl-card[data-test-target="1"]').click();
+  await expect(page).toHaveURL(new RegExp(`${href?.replace(/\//g, '\\/')}$`));
+});
+
+test('dragging the cylinder scrubs it without navigating', async ({ page }) => {
+  await page.goto('/');
+  await page.waitForLoadState('load');
+  await page.evaluate(() => {
+    window.requestAnimationFrame = () => 0;
+  });
+  await page.waitForTimeout(60);
+  const before = await page.evaluate(() => window.__cyl.state().rotation);
+  const url = page.url();
+  const box = await page.locator('#home-hero-section').boundingBox();
+  if (!box) throw new Error('no hero box');
+  const y = Math.round(box.y + box.height * 0.42);
+  const x1 = Math.round(box.x + box.width * 0.7);
+  const x2 = Math.round(box.x + box.width * 0.2);
   await page.mouse.move(x1, y);
   await page.mouse.down();
   for (let x = x1; x >= x2; x -= 20) await page.mouse.move(x, y);
-  await page.mouse.move(x2, y);
   await page.mouse.up();
+  const after = await page.evaluate(() => window.__cyl.state().rotation);
+  expect(page.url()).toBe(url); // no navigation
+  expect(Math.abs(after - before)).toBeGreaterThan(3); // rotated
+});
 
-  const after = await page.evaluate(() => ({
-    m41: new DOMMatrixReadOnly(
-      getComputedStyle(document.getElementById('carousel-track') as HTMLElement)
-        .transform,
-    ).m41,
-    url: location.href,
-  }));
+test('hover slows only over a card, not the empty hero', async ({ page }) => {
+  await page.goto('/');
+  await page.waitForLoadState('load');
+  const box = await page.locator('#home-hero-section').boundingBox();
+  if (!box) throw new Error('no hero box');
+  // empty room near the very top of the hero (above the wall band)
+  await page.mouse.move(
+    Math.round(box.x + box.width / 2),
+    Math.round(box.y + 12),
+  );
+  expect(await page.evaluate(() => window.__cyl.state().hovering)).toBe(false);
+  // over a frontal card
+  const pt = await page.evaluate(() => {
+    const vw = innerWidth;
+    for (const a of document.querySelectorAll('#cyl-ring > a.cyl-card')) {
+      const r = a.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      if (
+        getComputedStyle(a).pointerEvents === 'auto' &&
+        cx > vw * 0.42 &&
+        cx < vw * 0.58
+      )
+        return { x: Math.round(cx), y: Math.round(r.top + r.height * 0.4) };
+    }
+    return null;
+  });
+  if (!pt) throw new Error('no frontal card found');
+  await page.mouse.move(pt.x, pt.y);
+  expect(await page.evaluate(() => window.__cyl.state().hovering)).toBe(true);
+});
 
-  expect(after.url).toBe(url); // dragging must NOT navigate
-  expect(Math.abs(after.m41 - before)).toBeGreaterThan(20); // but it must scroll
+test('next button rotates the cylinder by one step', async ({ page }) => {
+  await page.goto('/');
+  await page.waitForLoadState('load');
+  await page.evaluate(() => {
+    window.requestAnimationFrame = () => 0;
+  });
+  await page.waitForTimeout(60);
+  const before = await page.evaluate(() => window.__cyl.state().rotation);
+  await page.locator('#carousel-next').click();
+  const after = await page.evaluate(() => window.__cyl.state().rotation);
+  expect(after).not.toBe(before);
+});
+
+test('scrolling past the hero reveals the About section', async ({ page }) => {
+  await page.goto('/');
+  await page.waitForLoadState('load');
+  await page.evaluate(() =>
+    window.scrollTo({ top: window.innerHeight * 1.1, behavior: 'instant' }),
+  );
+  await page.waitForTimeout(120);
+  // Cylinder scrolls off naturally (stays a cylinder, no fade); About comes up.
+  await expect(page.locator('#about')).toBeInViewport();
+});
+
+test('vertical carousel advances by wall-clock time', async ({ page }) => {
+  await page.goto('/');
+  await page.waitForLoadState('load');
+  await page.evaluate(() =>
+    window.scrollTo({ top: window.innerHeight * 1.4, behavior: 'instant' }),
+  );
+  await page.waitForTimeout(150); // let it reveal + start
+  const t0 = await page.evaluate(() => window.__vert.state().offset);
+  await page.waitForTimeout(500);
+  const t1 = await page.evaluate(() => window.__vert.state().offset);
+  expect(Math.abs(t1 - t0)).toBeGreaterThan(10); // moved on a time basis
 });
 
 test('contact renders at clean URL /contact with static nav', async ({

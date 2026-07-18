@@ -7,42 +7,109 @@ import Base from "@layouts/Base.astro";
   bodyClass="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white"
 >
   <style is:global>
-    #room-wall-left span,
-    #room-wall-right span,
-    #right-floor-reflection span,
-    #left-floor-reflection span {
-      font-size: 18px;
-    }
-    #room-wall-back,
-    #room-wall-left,
-    #room-wall-right {
-      box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.4);
-    }
-    #room-wall-back {
-      clip-path: inset(-50px 0px -50px 0px);
-    }
-    #room-wall-left {
-      clip-path: inset(-50px 0px -50px -50px);
-    }
-    #room-wall-right {
-      clip-path: inset(-50px -50px -50px 0px);
-    }
-    #floor-reflection,
-    #right-floor-reflection,
-    #left-floor-reflection {
-      -webkit-mask-image: linear-gradient(
-        to bottom,
-        transparent 0%,
-        black 5%,
-        black 30%,
-        transparent 100%
+    /* ── Interior cylinder ─────────────────────────────────────────── */
+    #home-hero-section {
+      perspective: 900px;
+      perspective-origin: 50% 42%;
+      background: linear-gradient(
+        180deg,
+        #f4f1f0 0%,
+        #ece8e6 60%,
+        #e6e0dd 100%
       );
-      mask-image: linear-gradient(
+    }
+    #cyl-ring,
+    #cyl-floor-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      transform-style: preserve-3d;
+      z-index: 2;
+    }
+    #cyl-floor-ring {
+      z-index: 1;
+    }
+    .cyl-card {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 230px;
+      height: 340px;
+      transform-origin: 50% 50%;
+      backface-visibility: hidden;
+      will-change: transform, filter;
+      text-decoration: none;
+    }
+    .cyl-thumb {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .cyl-thumb img,
+    .cyl-thumb video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.1); /* zoom to fill, cropping any white scan borders */
+    }
+    .cyl-frame {
+      position: absolute;
+      inset: 0;
+      border: 4px solid #fff; /* small white frame around each card */
+      pointer-events: none;
+      z-index: 2;
+    }
+    .cyl-label {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 3;
+      padding: 22px 12px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: linear-gradient(
+        to top,
+        rgba(246, 243, 242, 0.97),
+        rgba(246, 243, 242, 0.72) 46%,
+        transparent
+      );
+    }
+    .cyl-t {
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #1c1b1b;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .cyl-c {
+      font-size: 12px;
+      color: #b32a1b;
+      font-weight: 600;
+    }
+    /* red glass-floor reflection tint + downward fade over the mirrored ring */
+    #cyl-floor-tint {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 34%;
+      z-index: 3;
+      pointer-events: none;
+      background: linear-gradient(
         to bottom,
-        transparent 0%,
-        black 5%,
-        black 30%,
-        transparent 100%
+        transparent,
+        rgba(200, 44, 32, 0.16) 45%,
+        rgba(150, 22, 16, 0.4) 100%
       );
     }
     /* Zoom photography thumbnails in the vertical carousel to crop white film borders */
@@ -103,658 +170,136 @@ import Base from "@layouts/Base.astro";
     id="home-hero-section"
     style="position: relative; height: 100vh; overflow: hidden; perspective: 1000px; perspective-origin: 50% 40%;"
   >
-    <!-- Back wall: height computed in JS to match far-edge height of side panels -->
-    <div
-      id="room-wall-back"
-      style="position:absolute;left:0;width:100%;z-index:2;"
-    >
-      <div
-        style="position:absolute;inset:0;background:rgba(0,0,0,0.10);pointer-events:none;z-index:1;"
-      >
-      </div>
-      <div
-        id="carousel-container"
-        class="w-full h-full px-[10.5px] py-2"
-        style="opacity:0;overflow:hidden;"
-      >
-        <div id="carousel-track" class="flex gap-8 h-full">
-          <!-- 1: Twelve Views of Pikes Peak — Photography -->
-          <a
-            href="/photography/colorado/twelve-views"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-          >
-            <div class="flex flex-col w-full h-full">
-              <div class="h-[70%] w-full overflow-hidden relative">
-                <img
-                  src="/assets/carousel/TYPOLOGY-01.jpg"
-                  alt="Twelve Views of Pikes Peak"
-                  class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"
-                />
-              </div>
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Twelve Views of Pikes Peak</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >派克峰十二景</span
-                >
-              </div>
-            </div>
-          </a>
-
-          <!-- 2: Memory — Photography -->
-          <a
-            href="/photography/film/memory"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-          >
-            <div class="flex flex-col w-full h-full">
-              <div class="h-[70%] w-full overflow-hidden relative">
-                <img
-                  src="/assets/carousel/MEMORY-01.jpg"
-                  alt="Memory"
-                  class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"
-                />
-              </div>
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Memory</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >记忆</span
-                >
-              </div>
-            </div>
-          </a>
-
-          <!-- 3: Portrait of a Musician — Video (still frame) -->
-          <a
-            href="/video/portrait"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-          >
-            <div class="flex flex-col w-full h-full">
-              <video
-                class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500"
-                src="/assets/videos/thumbnail-videos/portrait-thumbnail.mp4"
-                poster="/assets/posters/portrait-thumbnail.jpg"
-                muted
-                playsinline
-                preload="none"
-                style="display:block;"></video>
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Portrait of a Musician</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >音乐家肖像</span
-                >
-              </div>
-            </div>
-          </a>
-
-          <!-- 4: Sketches — Art -->
-          <a
-            href="/art/sketches"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-          >
-            <div class="flex flex-col w-full h-full">
-              <img
-                src="/assets/carousel/SKETCH-3.jpg"
-                alt="Sketches"
-                class="h-[70%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500"
-              />
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Sketches</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >素描</span
-                >
-              </div>
-            </div>
-          </a>
-
-          <!-- 5: Home — Photography -->
-          <a
-            href="/photography/film/home"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-          >
-            <div class="flex flex-col w-full h-full">
-              <div class="h-[70%] w-full overflow-hidden relative">
-                <img
-                  src="/assets/carousel/FILM_MISC-01.jpg"
-                  alt="Home"
-                  class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"
-                />
-              </div>
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Home</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >家</span
-                >
-              </div>
-            </div>
-          </a>
-
-          <!-- 6: Winter Scene — Video (still frame) -->
-          <a
-            href="/video/winter"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-          >
-            <div class="flex flex-col w-full h-full">
-              <video
-                class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500"
-                src="/assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4"
-                poster="/assets/posters/winter-scene-thumbnail.jpg"
-                muted
-                playsinline
-                preload="none"
-                style="display:block;"></video>
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Winter Scene</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >冬景</span
-                >
-              </div>
-            </div>
-          </a>
-
-          <!-- 7: Butterfly Sanctuary — Photography -->
-          <a
-            href="/photography/nature/sanctuary"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-          >
-            <div class="flex flex-col w-full h-full">
-              <div class="h-[70%] w-full overflow-hidden relative">
-                <img
-                  src="/assets/carousel/BUTTERFLIES-01.jpg"
-                  alt="Butterfly Sanctuary"
-                  class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"
-                />
-              </div>
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Butterfly Sanctuary</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >蝴蝶圣地</span
-                >
-              </div>
-            </div>
-          </a>
-
-          <!-- 8: Murder, He Wrote — Video (still frame) -->
-          <a
-            href="/video/murder"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-          >
-            <div class="flex flex-col w-full h-full">
-              <video
-                class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500"
-                src="/assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4"
-                poster="/assets/posters/murder-he-wrote-thumbnail.jpg"
-                muted
-                playsinline
-                preload="none"
-                style="display:block;"></video>
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Murder, He Wrote</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >他所写的谋杀</span
-                >
-              </div>
-            </div>
-          </a>
-
-          <!-- 9: Film — Photography -->
-          <a
-            href="/photography/film"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-          >
-            <div class="flex flex-col w-full h-full">
-              <div class="h-[70%] w-full overflow-hidden relative">
-                <img
-                  src="/assets/carousel/FILM_MISC-03.jpg"
-                  alt="Film"
-                  class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"
-                />
-              </div>
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Film</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >胶片</span
-                >
-              </div>
-            </div>
-          </a>
-
-          <!-- 10: Composers — Art -->
-          <a
-            href="/art/composers"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-          >
-            <div class="flex flex-col w-full h-full">
-              <img
-                src="/assets/carousel/COMPOSER-3.jpg"
-                alt="Composers"
-                class="h-[70%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500"
-              />
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Composers</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >作曲家</span
-                >
-              </div>
-            </div>
-          </a>
-
-          <!-- Duplicates for seamless infinite loop -->
-          <a
-            href="/photography/colorado/twelve-views"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-            aria-hidden="true"
-            tabindex="-1"
-          >
-            <div class="flex flex-col w-full h-full">
-              <div class="h-[70%] w-full overflow-hidden relative">
-                <img
-                  loading="lazy"
-                  src="/assets/carousel/TYPOLOGY-01.jpg"
-                  alt=""
-                  class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"
-                />
-              </div>
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Twelve Views of Pikes Peak</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >派克峰十二景</span
-                >
-              </div>
-            </div>
-          </a>
-          <a
-            href="/photography/film/memory"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-            aria-hidden="true"
-            tabindex="-1"
-          >
-            <div class="flex flex-col w-full h-full">
-              <div class="h-[70%] w-full overflow-hidden relative">
-                <img
-                  loading="lazy"
-                  src="/assets/carousel/MEMORY-01.jpg"
-                  alt=""
-                  class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"
-                />
-              </div>
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Memory</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >记忆</span
-                >
-              </div>
-            </div>
-          </a>
-          <a
-            href="/video/portrait"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-            aria-hidden="true"
-            tabindex="-1"
-          >
-            <div class="flex flex-col w-full h-full">
-              <video
-                class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500"
-                src="/assets/videos/thumbnail-videos/portrait-thumbnail.mp4"
-                poster="/assets/posters/portrait-thumbnail.jpg"
-                muted
-                playsinline
-                preload="none"
-                style="display:block;"></video>
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Portrait of a Musician</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >音乐家肖像</span
-                >
-              </div>
-            </div>
-          </a>
-          <a
-            href="/art/sketches"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-            aria-hidden="true"
-            tabindex="-1"
-          >
-            <div class="flex flex-col w-full h-full">
-              <img
-                loading="lazy"
-                src="/assets/carousel/SKETCH-3.jpg"
-                alt=""
-                class="h-[70%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500"
-              />
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Sketches</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >素描</span
-                >
-              </div>
-            </div>
-          </a>
-          <a
-            href="/photography/film/home"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-            aria-hidden="true"
-            tabindex="-1"
-          >
-            <div class="flex flex-col w-full h-full">
-              <div class="h-[70%] w-full overflow-hidden relative">
-                <img
-                  loading="lazy"
-                  src="/assets/carousel/FILM_MISC-01.jpg"
-                  alt=""
-                  class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"
-                />
-              </div>
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Home</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >家</span
-                >
-              </div>
-            </div>
-          </a>
-          <a
-            href="/video/winter"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-            aria-hidden="true"
-            tabindex="-1"
-          >
-            <div class="flex flex-col w-full h-full">
-              <video
-                class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500"
-                src="/assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4"
-                poster="/assets/posters/winter-scene-thumbnail.jpg"
-                muted
-                playsinline
-                preload="none"
-                style="display:block;"></video>
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Winter Scene</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >冬景</span
-                >
-              </div>
-            </div>
-          </a>
-          <a
-            href="/photography/nature/sanctuary"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-            aria-hidden="true"
-            tabindex="-1"
-          >
-            <div class="flex flex-col w-full h-full">
-              <div class="h-[70%] w-full overflow-hidden relative">
-                <img
-                  loading="lazy"
-                  src="/assets/carousel/BUTTERFLIES-01.jpg"
-                  alt=""
-                  class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"
-                />
-              </div>
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Butterfly Sanctuary</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >蝴蝶圣地</span
-                >
-              </div>
-            </div>
-          </a>
-          <a
-            href="/video/murder"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-            aria-hidden="true"
-            tabindex="-1"
-          >
-            <div class="flex flex-col w-full h-full">
-              <video
-                class="carousel-still h-[60%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500"
-                src="/assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4"
-                poster="/assets/posters/murder-he-wrote-thumbnail.jpg"
-                muted
-                playsinline
-                preload="none"
-                style="display:block;"></video>
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Murder, He Wrote</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >他所写的谋杀</span
-                >
-              </div>
-            </div>
-          </a>
-          <a
-            href="/photography/film"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-            aria-hidden="true"
-            tabindex="-1"
-          >
-            <div class="flex flex-col w-full h-full">
-              <div class="h-[70%] w-full overflow-hidden relative">
-                <img
-                  loading="lazy"
-                  src="/assets/carousel/FILM_MISC-03.jpg"
-                  alt=""
-                  class="absolute inset-0 w-full h-full object-cover scale-110 grayscale group-hover/card:grayscale-0 transition-all duration-500"
-                />
-              </div>
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Film</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >胶片</span
-                >
-              </div>
-            </div>
-          </a>
-          <a
-            href="/art/composers"
-            class="shrink-0 group/card flex border border-on-background bg-surface p-2 w-[280px] md:w-[320px] flex-col h-full"
-            aria-hidden="true"
-            tabindex="-1"
-          >
-            <div class="flex flex-col w-full h-full">
-              <img
-                loading="lazy"
-                src="/assets/carousel/COMPOSER-3.jpg"
-                alt=""
-                class="h-[70%] w-full object-cover grayscale group-hover/card:grayscale-0 transition-all duration-500"
-              />
-              <div
-                class="h-[30%] flex flex-col border-t border-on-background/10 pt-2 overflow-hidden"
-              >
-                <span
-                  class="font-label-caps text-[13px] uppercase tracking-wider text-on-surface"
-                  >Composers</span
-                >
-                <span class="font-cjk text-[13px] text-primary font-medium"
-                  >作曲家</span
-                >
-              </div>
-            </div>
-          </a>
+    <!-- Interior cylinder: ring of works, positioned in JS -->
+    <div id="cyl-ring">
+      <a href="/photography/colorado/twelve-views" class="cyl-card">
+        <div class="cyl-thumb">
+          <img
+            src="/assets/carousel/TYPOLOGY-01.jpg"
+            alt="Twelve Views of Pikes Peak"
+          />
+          <span class="cyl-frame"></span>
         </div>
-      </div>
-    </div><!-- end back wall -->
-
-    <!-- Left wall: hinges from left edge, slower speed -->
-    <div
-      id="room-wall-left"
-      style="position:absolute;top:12.5%;left:-2.2%;width:48%;height:50%;z-index:1;transform-origin:left center;transform:rotateY(72deg);"
-    >
-      <div
-        id="room-left-container"
-        class="w-full h-full px-4 py-3"
-        style="opacity:0;overflow:hidden;"
-      >
-        <div id="carousel-track-left" class="flex gap-8 h-full"></div>
-      </div>
-      <div
-        style="position:absolute;inset:0;background:rgba(0,0,0,0.055);pointer-events:none;"
-      >
-      </div>
+        <div class="cyl-label">
+          <span class="cyl-t">Twelve Views of Pikes Peak</span>
+          <span class="cyl-c">派克峰十二景</span>
+        </div>
+      </a>
+      <a href="/photography/film/memory" class="cyl-card">
+        <div class="cyl-thumb">
+          <img src="/assets/carousel/MEMORY-01.jpg" alt="Memory" />
+          <span class="cyl-frame"></span>
+        </div>
+        <div class="cyl-label">
+          <span class="cyl-t">Memory</span>
+          <span class="cyl-c">记忆</span>
+        </div>
+      </a>
+      <a href="/video/portrait" class="cyl-card">
+        <div class="cyl-thumb">
+          <video
+            class="carousel-still"
+            src="/assets/videos/thumbnail-videos/portrait-thumbnail.mp4"
+            poster="/assets/posters/portrait-thumbnail.jpg"
+            muted
+            playsinline
+            preload="none"></video>
+          <span class="cyl-frame"></span>
+        </div>
+        <div class="cyl-label">
+          <span class="cyl-t">Portrait of a Musician</span>
+          <span class="cyl-c">音乐家肖像</span>
+        </div>
+      </a>
+      <a href="/art/sketches" class="cyl-card">
+        <div class="cyl-thumb">
+          <img src="/assets/carousel/SKETCH-3.jpg" alt="Sketches" />
+          <span class="cyl-frame"></span>
+        </div>
+        <div class="cyl-label">
+          <span class="cyl-t">Sketches</span>
+          <span class="cyl-c">素描</span>
+        </div>
+      </a>
+      <a href="/photography/film/home" class="cyl-card">
+        <div class="cyl-thumb">
+          <img src="/assets/carousel/FILM_MISC-01.jpg" alt="Home" />
+          <span class="cyl-frame"></span>
+        </div>
+        <div class="cyl-label">
+          <span class="cyl-t">Home</span>
+          <span class="cyl-c">家</span>
+        </div>
+      </a>
+      <a href="/video/winter" class="cyl-card">
+        <div class="cyl-thumb">
+          <video
+            class="carousel-still"
+            src="/assets/videos/thumbnail-videos/winter-scene-thumbnail.mp4"
+            poster="/assets/posters/winter-scene-thumbnail.jpg"
+            muted
+            playsinline
+            preload="none"></video>
+          <span class="cyl-frame"></span>
+        </div>
+        <div class="cyl-label">
+          <span class="cyl-t">Winter Scene</span>
+          <span class="cyl-c">冬景</span>
+        </div>
+      </a>
+      <a href="/photography/nature/sanctuary" class="cyl-card">
+        <div class="cyl-thumb">
+          <img
+            src="/assets/carousel/BUTTERFLIES-01.jpg"
+            alt="Butterfly Sanctuary"
+          />
+          <span class="cyl-frame"></span>
+        </div>
+        <div class="cyl-label">
+          <span class="cyl-t">Butterfly Sanctuary</span>
+          <span class="cyl-c">蝴蝶圣地</span>
+        </div>
+      </a>
+      <a href="/video/murder" class="cyl-card">
+        <div class="cyl-thumb">
+          <video
+            class="carousel-still"
+            src="/assets/videos/thumbnail-videos/murder-he-wrote-thumbnail.mp4"
+            poster="/assets/posters/murder-he-wrote-thumbnail.jpg"
+            muted
+            playsinline
+            preload="none"></video>
+          <span class="cyl-frame"></span>
+        </div>
+        <div class="cyl-label">
+          <span class="cyl-t">Murder, He Wrote</span>
+          <span class="cyl-c">他所写的谋杀</span>
+        </div>
+      </a>
+      <a href="/photography/film" class="cyl-card">
+        <div class="cyl-thumb">
+          <img src="/assets/carousel/FILM_MISC-03.jpg" alt="Film" />
+          <span class="cyl-frame"></span>
+        </div>
+        <div class="cyl-label">
+          <span class="cyl-t">Film</span>
+          <span class="cyl-c">胶片</span>
+        </div>
+      </a>
+      <a href="/art/composers" class="cyl-card">
+        <div class="cyl-thumb">
+          <img src="/assets/carousel/COMPOSER-3.jpg" alt="Composers" />
+          <span class="cyl-frame"></span>
+        </div>
+        <div class="cyl-label">
+          <span class="cyl-t">Composers</span>
+          <span class="cyl-c">作曲家</span>
+        </div>
+      </a>
     </div>
-
-    <!-- Right wall: hinges from right edge, faster speed -->
-    <div
-      id="room-wall-right"
-      style="position:absolute;top:12.5%;right:-2.2%;width:48%;height:50%;z-index:1;transform-origin:right center;transform:rotateY(-72deg);"
-    >
-      <div
-        id="room-right-container"
-        class="w-full h-full px-4 py-3"
-        style="opacity:0;overflow:hidden;"
-      >
-        <div id="carousel-track-right" class="flex gap-8 h-full"></div>
-      </div>
-      <div
-        style="position:absolute;inset:0;background:rgba(0,0,0,0.055);pointer-events:none;"
-      >
-      </div>
-    </div>
-
-    <!-- Right wall floor reflection: same rotateY(-72deg) angle, hinged at right top so it
-       connects seamlessly to the bottom edge of room-wall-right -->
-    <div
-      id="right-floor-reflection"
-      aria-hidden="true"
-      style="position:absolute;top:62.5%;right:-2.2%;width:48%;z-index:1;overflow:hidden;opacity:0;pointer-events:none;transform-origin:right top;transform:rotateY(-72deg);"
-    >
-      <div
-        id="right-floor-inner"
-        class="px-4 py-3"
-        style="position:absolute;top:0;left:0;width:100%;transform:scaleY(-1);overflow:hidden;"
-      >
-        <div id="right-floor-track" class="flex gap-8 h-full"></div>
-      </div>
-      <!-- Red glass tint + fade-out toward bottom -->
-      <div
-        style="position:absolute;inset:0;pointer-events:none;z-index:2;
-                background:linear-gradient(to bottom,
-                  rgba(200,14,0,0.42) 0%,
-                  rgba(150,7,0,0.60) 40%,
-                  rgba(50,0,0,0.80) 75%,
-                  rgba(8,0,0,0.96) 100%);"
-      >
-      </div>
-    </div>
-
-    <!-- Left wall floor reflection: same rotateY(72deg) angle, hinged at left top so it
-       connects seamlessly to the bottom edge of room-wall-left -->
-    <div
-      id="left-floor-reflection"
-      aria-hidden="true"
-      style="position:absolute;top:62.5%;left:-2.2%;width:48%;z-index:1;overflow:hidden;opacity:0;pointer-events:none;transform-origin:left top;transform:rotateY(72deg);"
-    >
-      <div
-        id="left-floor-inner"
-        class="px-4 py-3"
-        style="position:absolute;top:0;left:0;width:100%;transform:scaleY(-1);overflow:hidden;"
-      >
-        <div id="left-floor-track" class="flex gap-8 h-full"></div>
-      </div>
-      <!-- Red glass tint + fade-out toward bottom -->
-      <div
-        style="position:absolute;inset:0;pointer-events:none;z-index:2;
-                background:linear-gradient(to bottom,
-                  rgba(200,14,0,0.42) 0%,
-                  rgba(150,7,0,0.60) 40%,
-                  rgba(50,0,0,0.80) 75%,
-                  rgba(8,0,0,0.96) 100%);"
-      >
-      </div>
-    </div>
+    <!-- Floor reflection ring (JS mirrors #cyl-ring into it) -->
+    <div id="cyl-floor-ring" aria-hidden="true"></div>
+    <div id="cyl-floor-tint" aria-hidden="true"></div>
 
     <!-- Navigation buttons (above all walls) -->
     <button
@@ -794,31 +339,6 @@ import Base from "@layouts/Base.astro";
       </div>
     </div>
   </div><!-- end home-hero-section -->
-
-  <!-- Floor reflection: fixed so it can slide down over the header below the hero -->
-  <div
-    id="floor-reflection"
-    aria-hidden="true"
-    style="position:fixed;z-index:50;overflow:hidden;opacity:0;pointer-events:none;"
-  >
-    <div
-      id="floor-inner"
-      class="px-[10.5px] py-2"
-      style="position:absolute;top:0;left:0;width:100%;transform:scaleY(-1);overflow:hidden;"
-    >
-      <div id="floor-carousel-track" class="flex gap-8 h-full"></div>
-    </div>
-    <!-- Red glass tint + fade-out toward bottom -->
-    <div
-      style="position:absolute;inset:0;pointer-events:none;z-index:2;
-                background:linear-gradient(to bottom,
-                  rgba(200,14,0,0.42) 0%,
-                  rgba(150,7,0,0.60) 40%,
-                  rgba(50,0,0,0.80) 75%,
-                  rgba(8,0,0,0.96) 100%);"
-    >
-    </div>
-  </div>
 
   <!-- Person silhouette: fixed so it can slide over the header below -->
   <img
@@ -968,7 +488,8 @@ import Base from "@layouts/Base.astro";
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);">
           <span
             class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface"
-            >Twelve Views of Pikes Peak</span>
+            >Twelve Views of Pikes Peak</span
+          >
         </div>
       </a>
 
@@ -988,7 +509,8 @@ import Base from "@layouts/Base.astro";
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);">
           <span
             class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface"
-            >Memory</span>
+            >Memory</span
+          >
         </div>
       </a>
 
@@ -1011,7 +533,8 @@ import Base from "@layouts/Base.astro";
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);">
           <span
             class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface"
-            >Portrait of a Musician</span>
+            >Portrait of a Musician</span
+          >
         </div>
       </a>
 
@@ -1031,7 +554,8 @@ import Base from "@layouts/Base.astro";
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);">
           <span
             class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface"
-            >Sketches</span>
+            >Sketches</span
+          >
         </div>
       </a>
 
@@ -1051,7 +575,8 @@ import Base from "@layouts/Base.astro";
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);">
           <span
             class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface"
-            >Home</span>
+            >Home</span
+          >
         </div>
       </a>
 
@@ -1074,7 +599,8 @@ import Base from "@layouts/Base.astro";
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);">
           <span
             class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface"
-            >Winter Scene</span>
+            >Winter Scene</span
+          >
         </div>
       </a>
 
@@ -1094,7 +620,8 @@ import Base from "@layouts/Base.astro";
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);">
           <span
             class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface"
-            >Butterfly Sanctuary</span>
+            >Butterfly Sanctuary</span
+          >
         </div>
       </a>
 
@@ -1117,7 +644,8 @@ import Base from "@layouts/Base.astro";
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);">
           <span
             class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface"
-            >Murder, He Wrote</span>
+            >Murder, He Wrote</span
+          >
         </div>
       </a>
 
@@ -1137,7 +665,8 @@ import Base from "@layouts/Base.astro";
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);">
           <span
             class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface"
-            >Film</span>
+            >Film</span
+          >
         </div>
       </a>
 
@@ -1157,7 +686,8 @@ import Base from "@layouts/Base.astro";
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);">
           <span
             class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface"
-            >Composers</span>
+            >Composers</span
+          >
         </div>
       </a>
 
@@ -1177,7 +707,8 @@ import Base from "@layouts/Base.astro";
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);">
           <span
             class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface"
-            >Arizona</span>
+            >Arizona</span
+          >
         </div>
       </a>
 
@@ -1197,7 +728,8 @@ import Base from "@layouts/Base.astro";
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);">
           <span
             class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface"
-            >Seattle</span>
+            >Seattle</span
+          >
         </div>
       </a>
 
@@ -1220,7 +752,8 @@ import Base from "@layouts/Base.astro";
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);">
           <span
             class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface"
-            >Collage</span>
+            >Collage</span
+          >
         </div>
       </a>
 
@@ -1243,7 +776,8 @@ import Base from "@layouts/Base.astro";
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);">
           <span
             class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface"
-            >Decadance</span>
+            >Decadance</span
+          >
         </div>
       </a>
 
@@ -1263,7 +797,8 @@ import Base from "@layouts/Base.astro";
         <div style="padding:3px 8px;border-top:1px solid rgba(28,27,27,0.15);">
           <span
             class="font-label-caps text-[9px] uppercase tracking-wider text-on-surface"
-            >Colorado Golf</span>
+            >Colorado Golf</span
+          >
         </div>
       </a>
     </div>
@@ -1403,7 +938,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Twelve Views of Pikes Peak</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >派克峰十二景</span>
+          >派克峰十二景</span
+        >
       </div>
     </a>
 
@@ -1429,7 +965,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Memory</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >记忆</span>
+          >记忆</span
+        >
       </div>
     </a>
 
@@ -1457,7 +994,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Portrait of a Musician</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >音乐家肖像</span>
+          >音乐家肖像</span
+        >
       </div>
     </a>
 
@@ -1483,7 +1021,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Sketches</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >素描</span>
+          >素描</span
+        >
       </div>
     </a>
 
@@ -1536,7 +1075,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Winter Scene</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >冬景</span>
+          >冬景</span
+        >
       </div>
     </a>
 
@@ -1562,7 +1102,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Butterfly Sanctuary</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >蝴蝶圣地</span>
+          >蝴蝶圣地</span
+        >
       </div>
     </a>
 
@@ -1590,7 +1131,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Murder, He Wrote</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >谋杀案</span>
+          >谋杀案</span
+        >
       </div>
     </a>
 
@@ -1616,7 +1158,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Film / Europe</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >欧洲胶片</span>
+          >欧洲胶片</span
+        >
       </div>
     </a>
 
@@ -1642,7 +1185,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Composers</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >作曲家</span>
+          >作曲家</span
+        >
       </div>
     </a>
 
@@ -1668,7 +1212,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Arizona</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >亚利桑那</span>
+          >亚利桑那</span
+        >
       </div>
     </a>
 
@@ -1694,7 +1239,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Seattle</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >西雅图</span>
+          >西雅图</span
+        >
       </div>
     </a>
 
@@ -1722,7 +1268,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Collage</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >拼贴</span>
+          >拼贴</span
+        >
       </div>
     </a>
 
@@ -1750,7 +1297,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Décadance</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >颓废</span>
+          >颓废</span
+        >
       </div>
     </a>
 
@@ -1776,7 +1324,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Golf</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >高尔夫</span>
+          >高尔夫</span
+        >
       </div>
     </a>
 
@@ -1803,7 +1352,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Twelve Views of Pikes Peak</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >派克峰十二景</span>
+          >派克峰十二景</span
+        >
       </div>
     </a>
     <a
@@ -1828,7 +1378,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Memory</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >记忆</span>
+          >记忆</span
+        >
       </div>
     </a>
     <a
@@ -1855,7 +1406,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Portrait of a Musician</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >音乐家肖像</span>
+          >音乐家肖像</span
+        >
       </div>
     </a>
     <a
@@ -1880,7 +1432,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Sketches</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >素描</span>
+          >素描</span
+        >
       </div>
     </a>
     <a
@@ -1931,7 +1484,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Winter Scene</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >冬景</span>
+          >冬景</span
+        >
       </div>
     </a>
     <a
@@ -1956,7 +1510,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Butterfly Sanctuary</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >蝴蝶圣地</span>
+          >蝴蝶圣地</span
+        >
       </div>
     </a>
     <a
@@ -1983,7 +1538,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Murder, He Wrote</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >谋杀案</span>
+          >谋杀案</span
+        >
       </div>
     </a>
     <a
@@ -2008,7 +1564,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Film / Europe</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >欧洲胶片</span>
+          >欧洲胶片</span
+        >
       </div>
     </a>
     <a
@@ -2033,7 +1590,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Composers</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >作曲家</span>
+          >作曲家</span
+        >
       </div>
     </a>
     <a
@@ -2058,7 +1616,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Arizona</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >亚利桑那</span>
+          >亚利桑那</span
+        >
       </div>
     </a>
     <a
@@ -2083,7 +1642,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Seattle</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >西雅图</span>
+          >西雅图</span
+        >
       </div>
     </a>
     <a
@@ -2110,7 +1670,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Collage</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >拼贴</span>
+          >拼贴</span
+        >
       </div>
     </a>
     <a
@@ -2137,7 +1698,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Décadance</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >颓废</span>
+          >颓废</span
+        >
       </div>
     </a>
     <a
@@ -2162,7 +1724,8 @@ import Base from "@layouts/Base.astro";
           class="font-label-caps text-[10px] tracking-widest text-on-surface truncate"
           >Golf</span
         ><span class="font-cjk text-[10px] text-primary ml-1 shrink-0"
-          >高尔夫</span>
+          >高尔夫</span
+        >
       </div>
     </a>
   </div>
