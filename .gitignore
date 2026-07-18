@@ -38,3 +38,6 @@ playwright-report/
 
 # Logs
 *.log
+
+# Media served from a mounted volume — not tracked in git, not baked into the image
+/public/assets/

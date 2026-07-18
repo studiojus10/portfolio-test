@@ -1,0 +1,18 @@
+# Build the static Astro site and serve it via nginx, with the media mounted
+# in at runtime (media is intentionally NOT baked into the image or tracked in git).
+#
+# Put your images/videos/PDFs under ./public/assets, mirroring the /assets/ URL
+# tree (e.g. ./public/assets/carousel/foo.jpg -> served at /assets/carousel/foo.jpg),
+# then:  docker compose up -d --build
+#
+# To keep the media elsewhere on the host, change the left side of the volume
+# below to an absolute path, e.g.  /srv/studiojus10/assets:/usr/share/nginx/html/assets:ro
+services:
+  web:
+    build: .
+    image: studiojus10
+    ports:
+      - "8080:80"
+    volumes:
+      - ./public/assets:/usr/share/nginx/html/assets:ro
+    restart: unless-stopped

@@ -96,13 +96,18 @@ test('nav renders on /projects/peak-pet', async ({ page }) => {
   await expect(page.locator('nav a[href="/projects"]').first()).toBeVisible();
 });
 
-test('about renders at /about with no 404s', async ({ page }) => {
+test('about renders at /about (no broken non-media resources)', async ({
+  page,
+}) => {
+  // Media lives in a mounted volume (not in git / the CI checkout), so /assets
+  // 404s are expected in CI; this still catches broken CSS/JS/HTML paths.
   const failures: string[] = [];
   page.on('response', (r) => {
-    if (r.status() === 404) failures.push(r.url());
+    if (r.status() === 404 && !r.url().includes('/assets/'))
+      failures.push(r.url());
   });
   await page.goto('/about');
   await expect(page.locator('nav').getByText('STUDIO JUS10')).toBeVisible();
   await page.waitForLoadState('networkidle');
-  expect(failures, `404s: ${failures.join(', ')}`).toHaveLength(0);
+  expect(failures, `non-media 404s: ${failures.join(', ')}`).toHaveLength(0);
 });

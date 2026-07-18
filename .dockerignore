@@ -5,3 +5,6 @@ dist
 vite-src-old
 test-results
 playwright-report
+
+# Media is NOT baked into the image — it's mounted at runtime (see docker-compose.yml)
+public/assets
