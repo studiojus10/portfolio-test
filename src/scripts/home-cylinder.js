@@ -3,6 +3,7 @@ import { seekStills } from '@scripts/carousel-stills.js';
 const SPEED_DEG_PER_SEC = 8; // slow, readable
 const HOVER_FACTOR = 0.28;
 const DUP = 2; // duplicate the 10 works to fill the ring
+const WIDTH_FACTOR = 1.14; // widen cards past the bare chord for a fuller gallery wall
 
 // Pure rotation step — time-based, so identical at any frame rate.
 export function advance(rotation, dt, factor) {
@@ -41,6 +42,20 @@ export function initCylinder() {
     base: i * STEP,
   }));
 
+  // Floor reflection: mirror every ring card into #cyl-floor-ring.
+  const floorRing = document.getElementById('cyl-floor-ring');
+  const floorCards = [];
+  if (floorRing) {
+    for (const { el, base } of mainCards) {
+      const clone = el.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.setAttribute('tabindex', '-1');
+      clone.style.pointerEvents = 'none';
+      floorRing.appendChild(clone);
+      floorCards.push({ el: clone, base });
+    }
+  }
+
   let R = 735;
   let rotation = 0;
   let hovering = false;
@@ -50,9 +65,10 @@ export function initCylinder() {
     // edge-on cards sit at screen-x ≈ ±R, so R ≈ half the viewport width.
     const vw = window.innerWidth;
     R = vw * 0.54;
-    const cardW = 2 * R * Math.sin(Math.PI / N); // chord => exact tiling
+    const cardW = 2 * R * Math.sin(Math.PI / N) * WIDTH_FACTOR; // chord (widened)
     stage.style.perspective = `${Math.round(vw * 0.62)}px`;
     for (const { el } of mainCards) el.style.width = `${cardW}px`;
+    for (const { el } of floorCards) el.style.width = `${cardW}px`;
   }
 
   function place(list) {
@@ -63,12 +79,25 @@ export function initCylinder() {
       // No fade / no cutoff: cards run off the edges (stage clips), backface
       // hides the back half.
       el.style.pointerEvents = Math.abs(th) < 68 ? 'auto' : 'none';
-      el.style.filter = `grayscale(1) brightness(${(0.82 + 0.18 * Math.max(0, c)).toFixed(3)})`;
+      // grayscale lives on the media (CSS) so hover can colourise it; the card
+      // only carries the depth-brightness.
+      el.style.filter = `brightness(${(0.82 + 0.18 * Math.max(0, c)).toFixed(3)})`;
       el.style.transform = `translate(-50%,-50%) rotateY(${th.toFixed(2)}deg) translateZ(${-R}px)`;
+    }
+  }
+  // Mirror the ring directly beneath itself for the glass-floor reflection.
+  function placeFloor(list) {
+    for (let i = 0; i < list.length; i++) {
+      const { el, base } = list[i];
+      const th = norm(rotation + base);
+      const c = Math.cos((th * Math.PI) / 180);
+      el.style.filter = `brightness(${(0.5 + 0.12 * Math.max(0, c)).toFixed(3)})`;
+      el.style.transform = `translate(-50%,-50%) rotateY(${th.toFixed(2)}deg) translateZ(${-R}px) translateY(100%) scaleY(-1)`;
     }
   }
   function layout() {
     place(mainCards);
+    if (floorCards.length) placeFloor(floorCards);
   }
 
   // Drag-to-scrub with LAZY pointer capture (so a plain click still hits the <a>).
@@ -154,6 +183,7 @@ export function initCylinder() {
   window.addEventListener('load', () => {
     measure();
     seekStills(ring);
+    if (floorRing) seekStills(floorRing);
   });
   measure();
   requestAnimationFrame(frame);

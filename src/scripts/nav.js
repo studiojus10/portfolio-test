@@ -43,10 +43,15 @@ export function initNav() {
   var navEl = document.querySelector('nav');
   if (navEl) {
     var isMobileInit = window.innerWidth < 768;
+    // The nav only starts hidden on the home page (desktop), where the hero
+    // intro reveals it (window._navReveal) once the typewriter animation ends.
+    // On every other page it must be visible on load.
+    var isHome    = !!document.getElementById('home-hero-section');
+    var startHidden = isHome && !isMobileInit;
     navEl.style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1), background-color 0.35s ease';
-    navEl.style.transform  = isMobileInit ? 'translateY(0)' : 'translateY(-100%)';
+    navEl.style.transform  = startHidden ? 'translateY(-100%)' : 'translateY(0)';
     var lastScrollY  = window.scrollY || window.pageYOffset;
-    var navHidden    = !isMobileInit;
+    var navHidden    = startHidden;
     var scrollTick   = false;
     var hoverArmed   = false;
 

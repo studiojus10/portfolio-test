@@ -4,179 +4,186 @@ import Base from "@layouts/Base.astro";
 
 <Base
   title="STUDIO JUS10 - Contact"
-  bodyClass="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white"
+  bodyClass="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white min-h-screen flex flex-col"
 >
-  <main class="w-full px-4 md:px-8 py-8">
-    <section class="grid gap-8 md:grid-cols-12 items-start">
+  <main class="w-full px-4 md:px-8 py-6 flex flex-col flex-1">
+    <!-- Header -->
+    <section class="page-fade" style="--fd:0s;">
       <div
-        class="md:col-span-12 flex flex-col gap-6 page-fade"
-        style="--fd:0s;"
+        class="border-b-2 border-on-background pb-3 flex flex-wrap items-end gap-x-4 gap-y-1"
       >
-        <div class="border-b-2 border-on-background pb-4">
-          <span
-            class="font-display-lg text-on-background text-headline-lg-mobile md:text-display-lg mb-2 font-medium"
-            >Contact</span
-          >
-          <h1 class="font-cjk text-3xl md:text-5xl text-primary leading-none">
-            联系与合作
-          </h1>
-        </div>
-        <p
-          class="font-label-mono text-xs uppercase tracking-widest text-on-surface-variant"
+        <span
+          class="font-display-lg text-on-background text-headline-lg-mobile md:text-headline-lg font-medium leading-none"
+          >Contact</span
         >
-          Fast access to email, social connections, and collaboration inquiries.
-        </p>
+        <h1 class="font-cjk text-2xl md:text-4xl text-primary leading-none">
+          联系与合作
+        </h1>
       </div>
+      <p
+        class="font-label-mono text-xs uppercase tracking-widest text-on-surface-variant mt-3"
+      >
+        Fast access to email, social connections, and collaboration inquiries.
+      </p>
     </section>
 
-    <section class="mt-8 grid gap-6">
+    <!-- Email + Social, side by side on desktop so the page fits one screen -->
+    <section class="mt-5 grid gap-5 md:grid-cols-2 items-stretch flex-1">
+      <!-- Email + inquiry form -->
       <div
-        class="border border-on-background bg-surface p-6 page-fade"
-        style="--fd:0.15s;"
+        class="border border-on-background bg-surface p-5 page-fade flex flex-col"
+        style="--fd:0.12s;"
       >
-        <h2 class="font-headline-md text-2xl mb-6">Email</h2>
-        <div class="flex flex-col md:flex-row gap-8">
-          <!-- Direct email -->
-          <div class="flex flex-col gap-4 md:w-[30%] shrink-0">
-            <a
-              href="mailto:studiojus10@gmail.com"
-              class="inline-flex items-center gap-3 bg-primary border border-primary text-white px-4 py-3 hover:bg-white hover:text-primary transition-colors duration-300"
-            >
-              <span class="material-symbols-outlined">mail</span>
-              studiojus10@gmail.com
-            </a>
-            <p class="font-label-mono text-[13px] text-on-surface-variant">
-              Preferred method for project inquiries and proposals.
-            </p>
+        <h2 class="font-headline-md text-2xl mb-4">Email</h2>
+        <a
+          href="mailto:studiojus10@gmail.com"
+          class="inline-flex items-center gap-3 bg-primary border border-primary text-white px-4 py-3 hover:bg-white hover:text-primary transition-colors duration-300 mb-4"
+        >
+          <span class="material-symbols-outlined">mail</span>
+          studiojus10@gmail.com
+        </a>
+        <!-- Formspree-ready. Until a real form id replaces YOUR_FORM_ID, submit
+             falls back to the visitor's mail client (see script below). -->
+        <form
+          id="inquiry-form"
+          action="https://formspree.io/f/YOUR_FORM_ID"
+          method="POST"
+          class="flex flex-col gap-3"
+        >
+          <input
+            type="hidden"
+            name="_subject"
+            value="Portfolio Inquiry from studiojus10.com"
+          />
+          <div class="flex flex-col sm:flex-row gap-3">
+            <input
+              type="text"
+              name="name"
+              placeholder="Your name"
+              required
+              class="border border-on-background bg-surface-container-lowest px-3 py-2 font-label-mono text-[13px] w-full focus:outline-none focus:border-primary"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your email"
+              required
+              class="border border-on-background bg-surface-container-lowest px-3 py-2 font-label-mono text-[13px] w-full focus:outline-none focus:border-primary"
+            />
           </div>
-          <!-- Inquiry form -->
-          <div class="flex-1 md:border-l md:border-on-background md:pl-8">
-            <!-- To activate: sign up at formspree.io and replace YOUR_FORM_ID below -->
-            <form
-              id="inquiry-form"
-              action="https://formspree.io/f/YOUR_FORM_ID"
-              method="POST"
+          <textarea
+            name="message"
+            placeholder="Your message"
+            required
+            rows="3"
+            class="border border-on-background bg-surface-container-lowest px-3 py-2 font-label-mono text-[13px] w-full focus:outline-none focus:border-primary resize-none"
+          ></textarea>
+          <button
+            type="submit"
+            class="flex items-center justify-between bg-primary border border-primary text-white px-4 py-3 font-label-caps text-xs hover:bg-white hover:text-primary transition-colors duration-300"
+          >
+            <span>Send Message</span>
+            <span class="material-symbols-outlined" style="font-size:16px;"
+              >send</span
             >
-              <input
-                type="hidden"
-                name="_subject"
-                value="Portfolio Inquiry from studiojus10.com"
-              />
-              <div class="flex flex-col gap-3">
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your name"
-                  required
-                  class="border border-on-background bg-surface-container-lowest px-3 py-2 font-label-mono text-[13px] w-full focus:outline-none focus:border-primary"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Your email"
-                  required
-                  class="border border-on-background bg-surface-container-lowest px-3 py-2 font-label-mono text-[13px] w-full focus:outline-none focus:border-primary"
-                />
-                <textarea
-                  name="message"
-                  placeholder="Your message"
-                  required
-                  rows="4"
-                  class="border border-on-background bg-surface-container-lowest px-3 py-2 font-label-mono text-[13px] w-full focus:outline-none focus:border-primary resize-none"
-                ></textarea>
-                <button
-                  type="submit"
-                  class="flex items-center justify-between bg-primary border border-primary text-white px-4 py-3 font-label-caps text-xs hover:bg-white hover:text-primary transition-colors duration-300"
-                >
-                  <span>Send Message</span>
-                  <span
-                    class="material-symbols-outlined"
-                    style="font-size:16px;">send</span
-                  >
-                </button>
-              </div>
-              <p
-                id="inquiry-success"
-                class="hidden font-label-mono text-[13px] text-primary mt-3"
-              >
-                Message sent — I'll be in touch soon.
-              </p>
-              <p
-                id="inquiry-error"
-                class="hidden font-label-mono text-[13px] mt-3"
-                style="color:#c0392b;"
-              >
-                Something went wrong. Please email directly.
-              </p>
-            </form>
-          </div>
-        </div>
+          </button>
+          <p
+            id="inquiry-success"
+            class="hidden font-label-mono text-[13px] text-primary"
+          >
+            Message sent — I'll be in touch soon.
+          </p>
+          <p
+            id="inquiry-error"
+            class="hidden font-label-mono text-[13px]"
+            style="color:#c0392b;"
+          >
+            Something went wrong. Please email directly.
+          </p>
+        </form>
       </div>
+
+      <!-- Social -->
       <div
-        class="border border-on-background bg-surface p-6 page-fade"
-        style="--fd:0.3s;"
+        class="border border-on-background bg-surface p-5 page-fade flex flex-col"
+        style="--fd:0.24s;"
       >
         <h2 class="font-headline-md text-2xl mb-4">Social</h2>
-        <div class="flex flex-row gap-4">
+        <div class="flex flex-col gap-3 flex-1 justify-center">
           <a
             href="https://www.linkedin.com/in/justin-hughes-studiojus10"
             target="_blank"
             rel="noopener"
-            class="flex-1 flex flex-col border border-on-background bg-surface hover:border-primary transition-colors duration-300 overflow-hidden"
+            class="group flex items-center gap-4 border border-on-background bg-surface-container-lowest hover:border-primary transition-colors duration-300 p-3"
           >
             <img
               src="/assets/me-photos/LinkedIn-profile.jpeg"
               alt="LinkedIn"
-              class="w-full aspect-square object-cover"
+              class="w-14 h-14 md:w-16 md:h-16 object-cover shrink-0"
             />
-            <div class="p-3 flex flex-col gap-0.5">
+            <div class="flex flex-col gap-0.5 min-w-0">
               <span class="font-headline-md text-base text-on-background"
                 >LinkedIn</span
               >
-              <span class="font-label-mono text-xs text-on-surface-variant"
+              <span
+                class="font-label-mono text-xs text-on-surface-variant truncate"
                 >Justin Hughes</span
               >
             </div>
+            <span
+              class="material-symbols-outlined ml-auto text-on-surface-variant group-hover:text-primary transition-colors"
+              style="font-size:18px;">arrow_outward</span
+            >
           </a>
           <a
             href="https://www.youtube.com/@studiojus10"
             target="_blank"
             rel="noopener"
-            class="flex-1 flex flex-col border border-on-background bg-surface hover:border-primary transition-colors duration-300 overflow-hidden"
+            class="group flex items-center gap-4 border border-on-background bg-surface-container-lowest hover:border-primary transition-colors duration-300 p-3"
           >
             <img
               src="/assets/me-photos/YouTube-profile.png"
               alt="YouTube"
-              class="w-full aspect-square object-cover"
+              class="w-14 h-14 md:w-16 md:h-16 object-cover shrink-0"
             />
-            <div class="p-3 flex flex-col gap-0.5">
+            <div class="flex flex-col gap-0.5 min-w-0">
               <span class="font-headline-md text-base text-on-background"
                 >YouTube</span
               >
-              <span class="font-label-mono text-xs text-on-surface-variant"
+              <span
+                class="font-label-mono text-xs text-on-surface-variant truncate"
                 >@studiojus10</span
               >
             </div>
+            <span
+              class="material-symbols-outlined ml-auto text-on-surface-variant group-hover:text-primary transition-colors"
+              style="font-size:18px;">arrow_outward</span
+            >
           </a>
           <a
             href="https://www.instagram.com/studio.jus10?utm_source=qr"
             target="_blank"
             rel="noopener"
-            class="flex-1 flex flex-col border border-on-background bg-surface hover:border-primary transition-colors duration-300 overflow-hidden"
+            class="group flex items-center gap-4 border border-on-background bg-surface-container-lowest hover:border-primary transition-colors duration-300 p-3"
           >
             <img
               src="/assets/me-photos/Instagram-profile.jpg"
               alt="Instagram"
-              class="w-full aspect-square object-cover"
+              class="w-14 h-14 md:w-16 md:h-16 object-cover shrink-0"
             />
-            <div class="p-3 flex flex-col gap-0.5">
+            <div class="flex flex-col gap-0.5 min-w-0">
               <span class="font-headline-md text-base text-on-background"
                 >Instagram</span
               >
-              <span class="font-label-mono text-xs text-on-surface-variant"
+              <span
+                class="font-label-mono text-xs text-on-surface-variant truncate"
                 >@studio.jus10</span
               >
             </div>
+            <span
+              class="material-symbols-outlined ml-auto text-on-surface-variant group-hover:text-primary transition-colors"
+              style="font-size:18px;">arrow_outward</span
+            >
           </a>
         </div>
       </div>
@@ -309,6 +316,30 @@ import Base from "@layouts/Base.astro";
           e.preventDefault();
           var successMsg = document.getElementById("inquiry-success");
           var errorMsg = document.getElementById("inquiry-error");
+          var data = new FormData(form);
+
+          // Not yet wired to Formspree — hand the message to the visitor's mail
+          // client so the button still does something useful.
+          if (form.action.indexOf("YOUR_FORM_ID") !== -1) {
+            var subject = encodeURIComponent(
+              "Portfolio inquiry from " + (data.get("name") || "website"),
+            );
+            var body = encodeURIComponent(
+              (data.get("message") || "") +
+                "\n\n— " +
+                (data.get("name") || "") +
+                " (" +
+                (data.get("email") || "") +
+                ")",
+            );
+            window.location.href =
+              "mailto:studiojus10@gmail.com?subject=" +
+              subject +
+              "&body=" +
+              body;
+            return;
+          }
+
           fetch(form.action, {
             method: "POST",
             body: new FormData(form),

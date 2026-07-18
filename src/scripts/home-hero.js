@@ -259,15 +259,24 @@ export function initHome() {
     var heroH = window.innerHeight;
 
     function checkReveal() {
-      var y = window.scrollY || window.pageYOffset;
-      if (!revealed && y >= heroH) {
+      // Reveal once the About section scrolls up into the viewport. The old
+      // `scrollY >= heroH` threshold was unreachable whenever the post-hero
+      // content was shorter than one screen (typical on tall viewports), so the
+      // carousel could never appear. Anchoring to About's position makes it
+      // reliably reachable at any viewport height.
+      var aboutEl = document.getElementById('about');
+      var vh = window.innerHeight;
+      var top = aboutEl
+        ? aboutEl.getBoundingClientRect().top
+        : (window.scrollY || window.pageYOffset) - heroH * 0.5;
+      if (!revealed && top < vh * 0.6) {
         revealed = true;
         wrap.style.transform = 'translateX(0)';
         wrap.style.opacity = '1';
         wrap.style.pointerEvents = 'auto';
         wrap.removeAttribute('aria-hidden');
         started = true;
-      } else if (revealed && y < heroH * 0.85) {
+      } else if (revealed && top > vh * 0.85) {
         revealed = false;
         wrap.style.transform = 'translateX(110%)';
         wrap.style.opacity = '0';
