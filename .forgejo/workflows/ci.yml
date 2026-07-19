@@ -84,12 +84,19 @@ jobs:
           REF_NAME: ${{ github.ref_name }}
         run: |
           IMG="forge.daveynet.xyz/$(echo "$REPO" | tr '[:upper:]' '[:lower:]')"
-          TAGS="$IMG:sha-$(echo "$SHA" | cut -c1-7)"
-          [ "$REF" = 'refs/heads/main' ] && TAGS="$TAGS,$IMG:latest"
+          MAILER_IMG="${IMG}-mailer"
+          SHORT="sha-$(echo "$SHA" | cut -c1-7)"
+          TAGS="$IMG:$SHORT"
+          MAILER_TAGS="$MAILER_IMG:$SHORT"
+          if [ "$REF" = 'refs/heads/main' ]; then
+            TAGS="$TAGS,$IMG:latest"
+            MAILER_TAGS="$MAILER_TAGS,$MAILER_IMG:latest"
+          fi
           case "$REF" in
-            refs/tags/v*) V="$REF_NAME"; TAGS="$TAGS,$IMG:${V#v}" ;;
+            refs/tags/v*) V="${REF_NAME#v}"; TAGS="$TAGS,$IMG:$V"; MAILER_TAGS="$MAILER_TAGS,$MAILER_IMG:$V" ;;
           esac
           echo "tags=$TAGS" >> "$GITHUB_OUTPUT"
+          echo "mailer_tags=$MAILER_TAGS" >> "$GITHUB_OUTPUT"
       # No registry cache: Forgejo is behind Cloudflare, whose 100 MB request-body cap rejects the large
       # mode=max cache blobs with a 413. The persistent builder above keeps a warm local BuildKit cache
       # instead. --provenance/--sbom OFF so Forgejo registers a plain container manifest (not an OCI
@@ -106,3 +113,18 @@ jobs:
             --build-arg COMMIT_HASH="$SHA" \
             --provenance=false --sbom=false \
             --push .
+
+      # Same builder, same rules — build & push the contact-form mailer sidecar
+      # as a second package so the host's What's-Up-Docker can auto-update it too.
+      - name: Build & push mailer
+        env:
+          TAGS: ${{ steps.t.outputs.mailer_tags }}
+          SHA: ${{ github.sha }}
+        run: |
+          set -eu
+          ARGS=""
+          for t in $(echo "$TAGS" | tr ',' ' '); do ARGS="$ARGS -t $t"; done
+          docker buildx build --builder studiojus10-wud $ARGS \
+            --build-arg COMMIT_HASH="$SHA" \
+            --provenance=false --sbom=false \
+            --push ./mailer

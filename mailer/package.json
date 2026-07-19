@@ -1,0 +1,16 @@
+{
+  "name": "studiojus10-mailer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Contact-form mailer sidecar for studiojus10 — POST /api/contact -> SMTP",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "nodemailer": "^9.0.3"
+  }
+}

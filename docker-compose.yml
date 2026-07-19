@@ -7,6 +7,16 @@
 #
 # To keep the media elsewhere on the host, change the left side of the volume
 # below to an absolute path, e.g.  /srv/studiojus10/assets:/usr/share/nginx/html/assets:ro
+#
+# The `mailer` sidecar handles the contact form; nginx proxies /api/ to it.
+# Copy .env.example -> .env and fill in the SMTP (Gmail app password) values.
+# Without them the mailer runs in log-only mode (accepts, does not deliver).
+#
+# In production these run from the registry images auto-updated by What's-Up-Docker:
+#     web:    image: forge.daveynet.xyz/davey/studiojus10:latest
+#     mailer: image: forge.daveynet.xyz/davey/studiojus10-mailer:latest
+# (the CI job builds & pushes both). The build:/image: below are for local
+# `docker compose up -d --build`.
 services:
   web:
     build: .
@@ -15,4 +25,16 @@ services:
       - "8080:80"
     volumes:
       - ./public/assets:/usr/share/nginx/html/assets:ro
+    depends_on:
+      - mailer
+    restart: unless-stopped
+
+  mailer:
+    build: ./mailer
+    image: studiojus10-mailer
+    env_file:
+      - path: .env
+        required: false
+    expose:
+      - "3000"
     restart: unless-stopped

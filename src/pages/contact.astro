@@ -42,18 +42,22 @@ import Base from "@layouts/Base.astro";
           <span class="material-symbols-outlined">mail</span>
           studiojus10@gmail.com
         </a>
-        <!-- Formspree-ready. Until a real form id replaces YOUR_FORM_ID, submit
-             falls back to the visitor's mail client (see script below). -->
+        <!-- Posts to the self-hosted mailer sidecar (nginx proxies /api/ to it). -->
         <form
           id="inquiry-form"
-          action="https://formspree.io/f/YOUR_FORM_ID"
+          action="/api/contact"
           method="POST"
           class="flex flex-col gap-3"
         >
+          <!-- Honeypot: hidden from people, tempting to bots. Kept off-screen
+               and out of the tab order; a filled value is silently dropped. -->
           <input
-            type="hidden"
-            name="_subject"
-            value="Portfolio Inquiry from studiojus10.com"
+            type="text"
+            name="_gotcha"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+            class="hidden"
           />
           <div class="flex flex-col sm:flex-row gap-3">
             <input
@@ -311,56 +315,49 @@ import Base from "@layouts/Base.astro";
 
     (function () {
       var form = document.getElementById("inquiry-form") as HTMLFormElement;
-      if (form) {
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-          var successMsg = document.getElementById("inquiry-success");
-          var errorMsg = document.getElementById("inquiry-error");
-          var data = new FormData(form);
+      if (!form) return;
+      var successMsg = document.getElementById("inquiry-success");
+      var errorMsg = document.getElementById("inquiry-error");
+      var submitBtn = form.querySelector(
+        'button[type="submit"]',
+      ) as HTMLButtonElement | null;
 
-          // Not yet wired to Formspree — hand the message to the visitor's mail
-          // client so the button still does something useful.
-          if (form.action.indexOf("YOUR_FORM_ID") !== -1) {
-            var subject = encodeURIComponent(
-              "Portfolio inquiry from " + (data.get("name") || "website"),
-            );
-            var body = encodeURIComponent(
-              (data.get("message") || "") +
-                "\n\n— " +
-                (data.get("name") || "") +
-                " (" +
-                (data.get("email") || "") +
-                ")",
-            );
-            window.location.href =
-              "mailto:studiojus10@gmail.com?subject=" +
-              subject +
-              "&body=" +
-              body;
-            return;
-          }
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var data = new FormData(form);
+        var payload = {
+          name: data.get("name") || "",
+          email: data.get("email") || "",
+          message: data.get("message") || "",
+          _gotcha: data.get("_gotcha") || "",
+        };
+        successMsg.classList.add("hidden");
+        errorMsg.classList.add("hidden");
+        if (submitBtn) submitBtn.disabled = true;
 
-          fetch(form.action, {
-            method: "POST",
-            body: new FormData(form),
-            headers: { Accept: "application/json" },
-          })
-            .then(function (res) {
-              if (res.ok) {
-                form.reset();
-                successMsg.classList.remove("hidden");
-                errorMsg.classList.add("hidden");
-              } else {
-                errorMsg.classList.remove("hidden");
-                successMsg.classList.add("hidden");
-              }
-            })
-            .catch(function () {
+        fetch(form.action, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(payload),
+        })
+          .then(function (res) {
+            if (res.ok) {
+              form.reset();
+              successMsg.classList.remove("hidden");
+            } else {
               errorMsg.classList.remove("hidden");
-              successMsg.classList.add("hidden");
-            });
-        });
-      }
+            }
+          })
+          .catch(function () {
+            errorMsg.classList.remove("hidden");
+          })
+          .finally(function () {
+            if (submitBtn) submitBtn.disabled = false;
+          });
+      });
     })();
   </script>
 </Base>
