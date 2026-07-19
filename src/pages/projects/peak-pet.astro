@@ -56,6 +56,33 @@ import Base from "@layouts/Base.astro";
       transform: scale(1.02);
       filter: brightness(1.06);
     }
+
+    /* Two social ads side by side on wider screens; stacked on phones so the
+       square and vertical formats each get full width instead of thin strips. */
+    .ad-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+    @media (max-width: 640px) {
+      .ad-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Inline PDF preview: tall on desktop, shorter on phones where a full
+       letter page is unreadable anyway (the open/download fallback remains). */
+    .pdf-embed {
+      width: 100%;
+      height: 680px;
+      display: block;
+    }
+    @media (max-width: 640px) {
+      .pdf-embed {
+        height: 60vh;
+      }
+    }
   </style>
 
   <!-- Fixed hero background -->
@@ -160,7 +187,7 @@ import Base from "@layouts/Base.astro";
       <object
         data="/assets/projects/PeakPet/peakPet-docs/peakPet-brand-guidelines.pdf"
         type="application/pdf"
-        style="width:100%;height:680px;display:block;"
+        class="pdf-embed"
       >
         <div class="p-8 text-center">
           <p class="font-label-mono text-xs text-on-surface-variant mb-4">
@@ -212,7 +239,7 @@ import Base from "@layouts/Base.astro";
       <object
         data="/assets/projects/PeakPet/peakPet-docs/peakPet-intake-form.pdf"
         type="application/pdf"
-        style="width:100%;height:680px;display:block;"
+        class="pdf-embed"
       >
         <div class="p-8 text-center">
           <p class="font-label-mono text-xs text-on-surface-variant mb-4">
@@ -264,7 +291,7 @@ import Base from "@layouts/Base.astro";
       <object
         data="/assets/projects/PeakPet/peakPet-website.pdf"
         type="application/pdf"
-        style="width:100%;height:680px;display:block;"
+        class="pdf-embed"
       >
         <div class="p-8 text-center">
           <p class="font-label-mono text-xs text-on-surface-variant mb-4">
@@ -311,9 +338,7 @@ import Base from "@layouts/Base.astro";
       and the brand's warm, trustworthy tone.
     </p>
 
-    <div
-      style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;"
-    >
+    <div class="ad-grid">
       <div>
         <div
           class="ad-cell overflow-hidden rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.14)]"
