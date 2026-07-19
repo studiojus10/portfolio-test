@@ -2,8 +2,16 @@ import { seekStills } from '@scripts/carousel-stills.js';
 
 const SPEED_DEG_PER_SEC = 8; // slow, readable
 const HOVER_FACTOR = 0.28;
-const DUP = 2; // duplicate the 10 works to fill the ring
-const WIDTH_FACTOR = 1.14; // widen cards past the bare chord for a fuller gallery wall
+// Phones get half the cards so each one is roughly twice as wide (fewer, bigger
+// works on screen at once); desktop keeps the fuller 20-card wall.
+const DUP = () => (window.innerWidth < 768 ? 1 : 2);
+// Cards span exactly the chord so neighbours meet edge-to-edge without
+// overlapping — both white frames stay visible (a clean seam between works) and
+// no card paints over its neighbour's label.
+const WIDTH_FACTOR = 1.0;
+// Card width : height. Phones are a little less tall; desktop is distinctly
+// portrait so the works read as framed gallery panels.
+const ASPECT = { mobile: 0.66, desktop: 0.5 };
 
 // Pure rotation step — time-based, so identical at any frame rate.
 export function advance(rotation, dt, factor) {
@@ -26,7 +34,8 @@ export function initCylinder() {
 
   // Clone the 10 originals to N positions around the ring.
   const originals = Array.from(ring.children);
-  for (let d = 1; d < DUP; d++) {
+  const dup = DUP();
+  for (let d = 1; d < dup; d++) {
     originals.forEach((c) => {
       const clone = c.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
@@ -59,16 +68,105 @@ export function initCylinder() {
   let R = 735;
   let rotation = 0;
   let hovering = false;
+  const floorTint = document.getElementById('cyl-floor-tint');
+  let glowDirty = true; // recompute the floor-glow arc after a (re)measure
 
   function measure() {
     // Scale the cylinder to the viewport so the wall always fills the width:
     // edge-on cards sit at screen-x ≈ ±R, so R ≈ half the viewport width.
     const vw = window.innerWidth;
-    R = vw * 0.54;
-    const cardW = 2 * R * Math.sin(Math.PI / N) * WIDTH_FACTOR; // chord (widened)
-    stage.style.perspective = `${Math.round(vw * 0.62)}px`;
-    for (const { el } of mainCards) el.style.width = `${cardW}px`;
-    for (const { el } of floorCards) el.style.width = `${cardW}px`;
+    const vh = window.innerHeight;
+    const mobile = vw < 768;
+    // Radius follows viewport WIDTH so the wall always reaches both screen
+    // edges (edge-on cards sit at screen-x ≈ ±R ≈ half the viewport width).
+    R = vw * (mobile ? 0.66 : 0.54);
+    const cardW = 2 * R * Math.sin(Math.PI / N) * WIDTH_FACTOR; // chord
+    const persp = vw * (mobile ? 0.95 : 0.62);
+    const scale = persp / (persp + R); // perspective shrink of a front card
+    // Height normally follows the width by a fixed aspect, BUT is capped on
+    // short viewports so the ring's top stays clear of the title text. This
+    // keeps the carousel edge-to-edge and just makes the cylinder shallow
+    // (short cards) when the window is short and wide, instead of shrinking the
+    // whole ring inward.
+    const titleClear = mobile ? 150 : 240; // px the card tops must stay below
+    const maxProjHalf = Math.max(24, vh * 0.5 - titleClear);
+    const maxCardH = (2 * maxProjHalf) / scale;
+    const cardH = Math.min(
+      Math.round(cardW / (mobile ? ASPECT.mobile : ASPECT.desktop)),
+      Math.round(maxCardH),
+    );
+    // Progressive caption degradation as the card gets short (wide/short views).
+    // CSS keys off this: '' normal → 'tight' (thinner mat) → 'cn' (drop the
+    // English line) → 'none' (drop all caption text), so it never overflows.
+    stage.dataset.squish =
+      cardH >= 210 ? '' : cardH >= 165 ? 'tight' : cardH >= 125 ? 'cn' : 'none';
+    stage.style.perspective = `${Math.round(persp)}px`;
+    for (const { el } of mainCards) {
+      el.style.width = `${cardW}px`;
+      el.style.height = `${cardH}px`;
+    }
+    for (const { el } of floorCards) {
+      el.style.width = `${cardW}px`;
+      el.style.height = `${cardH}px`;
+    }
+    glowDirty = true;
+  }
+
+  // The coral floor glow is a single radial gradient shaped to the floor line
+  // (the arc of the cards' bottom edges). We MEASURE that arc from the live card
+  // rects — the projection maths is fiddly, but the rendered bottoms are exact —
+  // fit an ellipse to it, and paint one smooth gradient. No per-card seams, and
+  // re-measuring on resize keeps it reactive. The arc is independent of the
+  // ring's rotation, so a single sample after layout is enough.
+  function updateFloorGlow() {
+    if (!floorTint) return;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const cx = vw / 2;
+    const pts = mainCards
+      .map(({ el }) => {
+        const r = el.getBoundingClientRect();
+        return { x: r.left + r.width / 2, y: r.bottom, w: r.width };
+      })
+      .filter(
+        (p) =>
+          p.w > 50 &&
+          p.w < vw * 1.3 &&
+          p.x > -vw * 0.15 &&
+          p.x < vw * 1.15 &&
+          p.y > vh * 0.3 &&
+          p.y < vh * 1.2,
+      );
+    if (pts.length < 3) return; // hero not on screen — try again next measure
+    // frontY: the lowest (highest-on-screen) point, near the centre.
+    let frontY = Number.POSITIVE_INFINITY;
+    for (const p of pts)
+      if (Math.abs(p.x - cx) < vw * 0.16 && p.y < frontY) frontY = p.y;
+    if (!Number.isFinite(frontY)) frontY = Math.min(...pts.map((p) => p.y));
+    // curvature from the point farthest from centre: dy = k·dx².
+    let far = null;
+    let farDx = 0;
+    for (const p of pts) {
+      const dx = Math.abs(p.x - cx);
+      if (dx > farDx) {
+        farDx = dx;
+        far = p;
+      }
+    }
+    let k = 0.0003;
+    if (far && farDx > 60 && far.y > frontY) k = (far.y - frontY) / (farDx * farDx);
+    // Ellipse whose top arc has that curvature: k = RY / (2·RX²).
+    const RX = vw;
+    const RY = Math.max(180, k * 2 * RX * RX);
+    const CY = frontY + RY; // ellipse top sits on the floor line
+    // Radius 100% = the floor line. Below it (smaller radius) is the reflection;
+    // above it (>100%) are the cards. Coral sits just inside the top, the image
+    // ghost shows through the semi-transparent band, and it fades to the white
+    // floor lower down.
+    floorTint.style.background =
+      `radial-gradient(ellipse ${Math.round(RX)}px ${Math.round(RY)}px at ${Math.round(cx)}px ${Math.round(CY)}px,` +
+      '#f4f1f0 0%,#f4f1f0 86%,rgba(244,241,240,0.5) 92%,' +
+      'rgba(206,116,109,0.52) 97%,rgba(246,243,242,0.65) 100%,transparent 103%)';
   }
 
   function place(list) {
@@ -90,8 +188,12 @@ export function initCylinder() {
     for (let i = 0; i < list.length; i++) {
       const { el, base } = list[i];
       const th = norm(rotation + base);
-      const c = Math.cos((th * Math.PI) / 180);
-      el.style.filter = `brightness(${(0.5 + 0.12 * Math.max(0, c)).toFixed(3)})`;
+      // No brightness filter: the reflection paints only via the CSS ::after
+      // gradient (coral + white gap + fade), which must stay identical on every
+      // clone so the panels tile seamlessly. A per-card filter would tint the
+      // fill slightly differently and bring the seams back. The panels sit
+      // edge-to-edge (no scaleX overlap) — overlapping stacked two coral
+      // gradients and darkened the red at the seams.
       el.style.transform = `translate(-50%,-50%) rotateY(${th.toFixed(2)}deg) translateZ(${-R}px) translateY(100%) scaleY(-1)`;
     }
   }
@@ -166,13 +268,33 @@ export function initCylinder() {
       rotation = (rotation + STEP) % 360;
     });
 
+  // While the mobile menu is open, a full-screen translucent overlay + the
+  // nav's backdrop-blur sit over the hero; letting the ring keep re-transforming
+  // underneath forces a per-frame re-raster that flickers through them. Freeze
+  // the ring (skip both the advance and the layout write) until it closes.
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuOpen = () =>
+    !!mobileMenu && mobileMenu.classList.contains('translate-x-0');
+
   let last = 0;
   function frame(t) {
     const dt = last ? Math.min(0.05, (t - last) / 1000) : 0;
     last = t;
+    // Also freeze while the hero is faded out (side carousel revealed) — no
+    // point animating a ring nobody can see.
+    if (menuOpen() || stage.style.opacity === '0') {
+      requestAnimationFrame(frame);
+      return;
+    }
     if (!reduce && !down)
       rotation = advance(rotation, dt, hovering ? HOVER_FACTOR : 1) % 360;
     layout();
+    // Recompute the floor glow once after each (re)measure, now that the cards
+    // are laid out this frame so their rects are valid.
+    if (glowDirty) {
+      updateFloorGlow();
+      glowDirty = false;
+    }
     requestAnimationFrame(frame);
   }
 

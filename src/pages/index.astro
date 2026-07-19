@@ -11,12 +11,22 @@ import Base from "@layouts/Base.astro";
     #home-hero-section {
       perspective: 900px;
       perspective-origin: 50% 42%;
+      /* Near-white floor that matches the reflection fill (#f4f1f0) exactly from
+         the cylinder's base downward. The reflection cards paint an opaque
+         #f4f1f0 below their coral band; if the floor were a different shade there,
+         each mirrored card would read as a lighter/darker rectangle over the
+         floor (a visible card outline). Keeping the floor === the fill from ~40%
+         down makes the reflection dissolve into the floor with no rectangle
+         edges, matching the reference's near-white glass floor. */
       background: linear-gradient(
         180deg,
-        #f4f1f0 0%,
-        #ece8e6 60%,
-        #e6e0dd 100%
+        #f6f3f2 0%,
+        #f4f1f0 40%,
+        #f4f1f0 100%
       );
+      /* Fades out when the vertical side carousel reveals, so the two carousels
+         are never on screen together (see home-hero.js checkReveal). */
+      transition: opacity 0.4s ease;
     }
     #cyl-ring,
     #cyl-floor-ring {
@@ -35,17 +45,37 @@ import Base from "@layouts/Base.astro";
       position: absolute;
       left: 0;
       top: 0;
-      width: 260px;
-      height: 400px;
+      width: 260px; /* set by JS */
+      height: 400px; /* set by JS */
       transform-origin: 50% 50%;
       backface-visibility: hidden;
       will-change: transform, filter;
       text-decoration: none;
+      /* Framed gallery print: white mat with a thin black line inset a few px
+         from the edge (white · black · white · content), image on top and a
+         caption band below it. The soft drop shadow adds depth AND feathers the
+         rotated card edge, so it aliases far less than a hard opaque rectangle. */
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      padding: 11px; /* outer white (5) + black line (1) + inner white (5) */
+    }
+    /* The inset black frame line, sitting in the white mat. */
+    .cyl-card::before {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border: 1px solid #1c1b1b;
+      pointer-events: none;
+      z-index: 2;
     }
     .cyl-thumb {
       position: relative;
-      width: 100%;
-      height: 100%;
+      /* Image takes the top ~74% of the card; the rest is white caption mat
+         below it, so the cards read light (matching the original). */
+      flex: 0 0 74%;
+      min-height: 0;
       overflow: hidden;
     }
     .cyl-thumb img,
@@ -68,28 +98,20 @@ import Base from "@layouts/Base.astro";
       filter: grayscale(0);
     }
     .cyl-frame {
-      position: absolute;
-      inset: 0;
-      border: 4px solid #fff; /* small white frame around each card */
-      pointer-events: none;
-      z-index: 2;
+      display: none; /* superseded by the mat + black frame on .cyl-card/.cyl-thumb */
     }
+    /* Caption band: the white area below the photo (title at its top, white
+       space beneath), never over the image. */
     .cyl-label {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 3;
-      padding: 22px 12px 10px;
+      position: static;
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: hidden; /* keep the title inside the card on short viewports */
+      padding: 8px 3px 0;
       display: flex;
       flex-direction: column;
       gap: 1px;
-      background: linear-gradient(
-        to top,
-        rgba(246, 243, 242, 0.97),
-        rgba(246, 243, 242, 0.72) 46%,
-        transparent
-      );
+      background: transparent;
     }
     .cyl-t {
       font-size: 12px;
@@ -105,21 +127,67 @@ import Base from "@layouts/Base.astro";
       color: #b32a1b;
       font-weight: 600;
     }
-    /* red glass-floor reflection tint + downward fade over the mirrored ring */
+    /* Larger caption text on desktop, but only when the viewport is tall enough
+       that the cards aren't shrunk short (otherwise it overflows the card). */
+    @media (min-width: 768px) and (min-height: 640px) {
+      .cyl-t,
+      .cyl-c {
+        font-size: 15px;
+      }
+    }
+    /* Progressive caption/mat degradation on short "squished" cards. The squish
+       tier is set by measure() in home-cylinder.js as data-squish on the hero.
+       Scoped to #cyl-ring so the reflection (#cyl-floor-ring) is untouched. */
+    #home-hero-section[data-squish="tight"] #cyl-ring .cyl-card,
+    #home-hero-section[data-squish="cn"] #cyl-ring .cyl-card,
+    #home-hero-section[data-squish="none"] #cyl-ring .cyl-card {
+      padding: 6px;
+    }
+    #home-hero-section[data-squish="cn"] #cyl-ring .cyl-t,
+    #home-hero-section[data-squish="none"] #cyl-ring .cyl-t {
+      display: none;
+    }
+    #home-hero-section[data-squish="none"] #cyl-ring .cyl-c {
+      display: none;
+    }
+    /* Glass-floor reflection colour + fade rides on the reflection cards
+       themselves, so it follows the cylinder's curved base EXACTLY at any
+       resolution (a fixed screen-space gradient can't track the geometry).
+       Each floor card is mirrored (scaleY(-1)), so in the card's own space
+       `to top` runs from the reflection's top edge (the meeting line) down
+       toward its bottom: coral at the top, dissolving to the floor colour as it
+       descends. */
+    /* Reflection cards drop their frame, white mat and shadow so the mirror
+       shows NO hard card outline — just a faint ghost of the image, under the
+       coral. */
+    #cyl-floor-ring .cyl-card {
+      background: transparent;
+      box-shadow: none;
+      /* No mat padding on the reflection so the image ghost reaches the card
+         edges and neighbours tile with no gap (and no overlap needed). */
+      padding: 0;
+    }
+    /* The reflection drops the frame, mat and caption (mirroring those made each
+       reflection read as a distinct panel with hard seams). The image stays but
+       is faint, so a soft ghost reflects — enough to read as a reflection — and
+       the ::after (coral glow + white gap + fade) sits on top and dissolves it
+       into the white floor. */
+    #cyl-floor-ring .cyl-card::before,
+    #cyl-floor-ring .cyl-label {
+      display: none;
+    }
+    #cyl-floor-ring .cyl-thumb {
+      opacity: 0.22;
+    }
+    /* Coral glow + white gap + fade to the white floor is ONE element shaped to
+       the measured floor-line arc (an ellipse), so the red is perfectly smooth
+       with no per-card seams. home-cylinder.js measures the arc from the card
+       bottoms and sets/keeps this background in sync, so it stays reactive. */
     #cyl-floor-tint {
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 34%;
+      inset: 0;
       z-index: 3;
       pointer-events: none;
-      background: linear-gradient(
-        to bottom,
-        transparent,
-        rgba(200, 44, 32, 0.16) 45%,
-        rgba(150, 22, 16, 0.4) 100%
-      );
     }
     /* Zoom photography thumbnails in the vertical carousel to crop white film borders */
     #vert-track img[src^="/assets/images/"] {
@@ -145,6 +213,36 @@ import Base from "@layouts/Base.astro";
     .vert-card:hover img,
     .vert-card:hover video {
       filter: grayscale(0);
+    }
+
+    /* ── Mobile / touch refinements ──────────────────────────────────── */
+    /* Touch devices have no hover, so the cylinder's prev/next controls would
+       never appear. Keep them visible where hover isn't available. */
+    @media (hover: none) {
+      #carousel-prev,
+      #carousel-next {
+        opacity: 1;
+      }
+    }
+    /* Justified text creates ugly rivers at phone widths — left-align it. */
+    @media (max-width: 640px) {
+      #about p {
+        text-align: left;
+      }
+    }
+
+    /* Silhouette: anchor the head to a fixed distance below the title text
+       instead of scaling with viewport height. `bottom:-15vh` + this height puts
+       the image top at a fixed px from the top (top = the subtracted px), so the
+       head clears the text on short viewports and doesn't drift low on tall ones.
+       The feet stay 15vh below the fold as before. */
+    #hero-person {
+      height: calc(115vh - 260px);
+    }
+    @media (max-width: 767px) {
+      #hero-person {
+        height: calc(115vh - 205px);
+      }
     }
   </style>
 
@@ -354,7 +452,7 @@ import Base from "@layouts/Base.astro";
     id="hero-person"
     src="/assets/home-hero/standing-person-away.png"
     alt=""
-    style="position:fixed;bottom:-15vh;left:50%;transform:translateX(-50%);height:90vh;pointer-events:none;z-index:9999;will-change:transform,opacity;transition:opacity 0.5s ease-out;"
+    style="position:fixed;bottom:-15vh;left:50%;transform:translateX(-50%);pointer-events:none;z-index:9999;will-change:transform,opacity;transition:opacity 0.5s ease-out;"
   />
 
   <!-- Header: hidden on load, slides up + fades in on scroll -->

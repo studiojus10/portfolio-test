@@ -205,30 +205,37 @@ export function initHome() {
       }
       var mobile = window.innerWidth < 768;
       if (mobile) {
-        wrap.style.display = 'block';
-        wrap.style.right = '0px';
-        var origW = window.innerWidth - 84 - 28; // original about width
-        var newAboutW = Math.round(origW * 0.85); // 15% narrower
-        var mobileCarW = window.innerWidth - newAboutW - 28;
-        wrap.style.width = mobileCarW + 'px';
-        aboutEl.style.maxWidth = newAboutW + 'px';
-        aboutEl.style.width = newAboutW + 'px';
+        // On a phone the fixed side strip would eat ~40% of the screen and
+        // squeeze About into an unreadable column, so hide it entirely and let
+        // About use the full content width.
+        wrap.style.display = 'none';
+        aboutEl.style.maxWidth = '';
+        aboutEl.style.width = '';
         return;
       }
       aboutEl.style.width = ''; // clear mobile width override
-      var margin = 32; // px-8 — left margin of page content
+      // The About section lives inside `main`, which is capped at max-width:1400
+      // and centred. The carousel must anchor to that content column's right
+      // edge — not the viewport edge — or on wide screens it drifts out past the
+      // column and overlaps the floated portrait.
+      var MAXW = 1400; // keep in sync with `main { max-width }` in site.css
+      var margin = 32; // px-8 — inner padding of the content column
       var vw = window.innerWidth;
-      var contentW = vw - margin - margin; // space between both page edges
+      var colW = Math.min(vw, MAXW); // actual content column width
+      var sideMargin = (vw - colW) / 2; // viewport edge → content column
+      var contentW = colW - margin - margin; // usable width inside the column
       /* Carousel: 80% of the right 40% of content minus the gap */
       var gap = Math.max(20, margin); // never less than 20 px between about and carousel
       var carW = Math.max(150, Math.floor((contentW * 0.4 - gap) * 0.8));
-      if (carW < 150) {
+      // Hide the strip if it (or the About column it leaves) would get too tight.
+      if (carW < 150 || contentW - carW - gap < 300) {
         wrap.style.display = 'none';
+        aboutEl.style.maxWidth = '';
         return;
       }
       wrap.style.display = 'block';
       wrap.style.width = carW + 'px';
-      wrap.style.right = margin + 'px';
+      wrap.style.right = sideMargin + margin + 'px'; // align to the column's right edge
       /* About box: fills everything between left margin and carousel */
       aboutEl.style.maxWidth = contentW - carW - gap + 'px';
     }
@@ -259,12 +266,15 @@ export function initHome() {
     var heroH = window.innerHeight;
 
     function checkReveal() {
+      // The side strip is hidden on phones (see positionWrap) — never reveal it.
+      if (window.innerWidth < 768) return;
       // Reveal once the About section scrolls up into the viewport. The old
       // `scrollY >= heroH` threshold was unreachable whenever the post-hero
       // content was shorter than one screen (typical on tall viewports), so the
       // carousel could never appear. Anchoring to About's position makes it
       // reliably reachable at any viewport height.
       var aboutEl = document.getElementById('about');
+      var heroEl = document.getElementById('home-hero-section');
       var vh = window.innerHeight;
       var top = aboutEl
         ? aboutEl.getBoundingClientRect().top
@@ -276,12 +286,16 @@ export function initHome() {
         wrap.style.pointerEvents = 'auto';
         wrap.removeAttribute('aria-hidden');
         started = true;
+        // Fade the cylinder hero out so it and the side carousel are never both
+        // on screen (their reveal windows would otherwise overlap by a sliver).
+        if (heroEl) heroEl.style.opacity = '0';
       } else if (revealed && top > vh * 0.85) {
         revealed = false;
         wrap.style.transform = 'translateX(110%)';
         wrap.style.opacity = '0';
         wrap.style.pointerEvents = 'none';
         wrap.setAttribute('aria-hidden', 'true');
+        if (heroEl) heroEl.style.opacity = '1';
       }
     }
 
