@@ -1,0 +1,173 @@
+/* Colour tokens. Tailwind's palette resolves against these (see
+   tailwind.config.js), so theming is a variable swap rather than a
+   per-utility override sheet. Channels are space-separated and unwrapped so
+   Tailwind's <alpha-value> placeholder keeps working. */
+:root {
+  --c-background: 252 249 248;
+  --c-error: 186 26 26;
+  --c-error-container: 255 218 214;
+  --c-inverse-on-surface: 243 240 239;
+  --c-inverse-primary: 255 180 170;
+  --c-inverse-surface: 49 48 48;
+  --c-on-background: 28 27 27;
+  --c-on-error: 255 255 255;
+  --c-on-error-container: 147 0 10;
+  --c-on-primary: 255 255 255;
+  --c-on-primary-container: 255 251 255;
+  --c-on-primary-fixed: 65 0 1;
+  --c-on-primary-fixed-variant: 147 0 6;
+  --c-on-secondary: 255 255 255;
+  --c-on-secondary-container: 100 100 100;
+  --c-on-secondary-fixed-variant: 71 71 71;
+  --c-on-surface: 28 27 27;
+  --c-on-surface-variant: 91 64 60;
+  --c-on-tertiary: 255 255 255;
+  --c-on-tertiary-container: 253 255 221;
+  --c-on-tertiary-fixed: 28 28 24;
+  --c-on-tertiary-fixed-variant: 71 71 66;
+  --c-outline: 143 112 107;
+  --c-outline-variant: 228 190 185;
+  --c-primary: 224 60 49;
+  --c-primary-container: 217 55 45;
+  --c-primary-fixed: 255 218 213;
+  --c-primary-fixed-dim: 255 180 170;
+  --c-secondary: 94 94 94;
+  --c-secondary-container: 226 226 226;
+  --c-secondary-fixed: 226 226 226;
+  --c-secondary-fixed-dim: 198 198 198;
+  --c-surface: 252 249 248;
+  --c-surface-bright: 252 249 248;
+  --c-surface-container: 240 237 237;
+  --c-surface-container-high: 234 231 231;
+  --c-surface-container-highest: 229 226 225;
+  --c-surface-container-low: 246 243 242;
+  --c-surface-container-lowest: 255 255 255;
+  --c-surface-dim: 220 217 217;
+  --c-surface-tint: 185 30 25;
+  --c-surface-variant: 229 226 225;
+  --c-tertiary: 93 92 87;
+  --c-tertiary-container: 118 117 111;
+  --c-tertiary-fixed: 229 226 219;
+  --c-tertiary-fixed-dim: 201 198 192;
+
+  /* Borders carry the same light value as on-background but must stay subtle
+     in dark, so they are their own tokens (see Task 2). */
+  --c-rule: 28 27 27;
+  --c-rule-strong: 28 27 27;
+
+  /* Theme-invariant: the footer is an always-dark bar in both themes. */
+  --c-fixed-dark: 28 27 27;
+  /* Theme-invariant: bright text sitting on the always-dark footer bar. */
+  --c-on-fixed-dark: 255 255 255;
+
+  /* Gallery-room scene (home hero). --room-reflection MUST equal
+     --room-floor-far or a seam appears where the mirror meets the floor. */
+  --room-floor-near: #f6f3f2;
+  --room-floor-far: #f4f1f0;
+  --room-card-mat: #ffffff;
+  --room-frame-line: #1c1b1b;
+  --room-reflection: #f4f1f0;
+  --room-scroll-veil: rgb(246 243 242);
+  /* Interior-cylinder card CJK caption. Its own shade (not --c-primary/
+     brand red) because it predates the token layer and swapping it to
+     --c-primary would change the light-mode pixel. Dark value reuses the
+     site's existing red->gold dark-mode accent (site.css --accent, also
+     --c-on-primary-fixed-variant) rather than staying red: the literal red
+     measures ~2.7:1 against the dark --room-card-mat (near-black), failing
+     legibility; the gold measures ~7.8:1. */
+  --room-caption: #b32a1b;
+
+  /* Legacy pre-token-layer variables, relocated here from site.css rather
+     than deleted or consolidated onto the --c-* tokens above: they still
+     have real consumers outside this file (Nav.astro's inline styles, the
+     photography region/leaf pages' inline `<style>` blocks, and the
+     Projects pages' `var(--x, fallback)` backgrounds) that were never
+     migrated to Tailwind's token-backed palette. --bg and --fg duplicate
+     --c-surface-container-low and --c-on-background exactly but keep their
+     own names rather than being deleted, since repointing every consumer
+     is outside this change. --card, --card-shadow, and --thumb-dim are
+     black-based (not on-background/on-surface derived) with genuinely
+     different light/dark values, and their rgba values don't line up with
+     any existing --c-* token + alpha combination, so they stay their own
+     vars rather than being approximated onto one. This block moved here
+     (Guard-hardening task) purely so tokens.css stays the single place
+     colour lives; no value changed. */
+  --bg: #f6f3f2;
+  --fg: #1c1b1b;
+  --muted: rgba(28, 27, 27, 0.55);
+  --faint: rgba(28, 27, 27, 0.1);
+  --accent: #e03c31;
+  --card: rgba(255, 255, 255, 0.72);
+  --card-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+  --thumb-dim: rgba(0, 0, 0, 0.15);
+  --surface-container-low: #f4f1f0;
+
+  /* Nav dropdown panel shadow (Follow-up 1). Light value reproduces
+     Tailwind's default shadow-lg exactly, so swapping shadow-lg ->
+     shadow-panel in Nav.astro is a no-op in light mode. */
+  --shadow-panel:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* Hover fill for the photography series cards (Follow-up 2). Must stay
+     numerically identical to --c-surface-container-low's light value: this
+     is a distinct token only so dark mode can diverge from it (see below),
+     without touching light mode at all. */
+  --c-surface-container-low-hover: 246 243 242;
+}
+
+html[data-theme="dark"] {
+  --c-background: 12 11 10;
+  --c-surface: 17 16 16;
+  --c-surface-bright: 17 16 16;
+  --c-surface-container: 17 16 16;
+  --c-surface-container-low: 12 11 10;
+  --c-surface-container-lowest: 22 20 19;
+  --c-surface-container-high: 26 24 23;
+  --c-surface-container-highest: 30 28 26;
+  --c-on-background: 243 237 225;
+  --c-on-surface: 243 237 225;
+  /* rgba(243,237,225,0.55) flattened over the dark background, so the
+     <alpha-value> pipeline stays usable. */
+  --c-on-surface-variant: 139 135 128;
+  --c-on-primary-fixed-variant: 217 164 65;
+  /* rgba(243,237,225,0.12) and 0.30 flattened the same way. */
+  --c-rule: 40 38 36;
+  --c-rule-strong: 81 79 74;
+  /* --c-surface-variant, --c-fixed-dark, and --c-on-fixed-dark are
+     deliberately NOT reassigned: they describe the always-dark footer bar
+     and must not invert. */
+
+  /* Dark room, lit prints: the floor and walls recede to near-black so the
+     framed works read as the lit subject. */
+  --room-floor-near: #0e0d0c;
+  --room-floor-far: #131211;
+  --room-card-mat: #1b1917;
+  --room-frame-line: #3a3632;
+  --room-reflection: #131211;
+  --room-scroll-veil: rgb(12 11 10);
+  --room-caption: #d9a441;
+
+  /* Dark half of the legacy block above — see that comment for why these
+     live here instead of being folded onto --c-* tokens. */
+  --bg: #0c0b0a;
+  --fg: #f3ede1;
+  --muted: rgba(243, 237, 225, 0.55);
+  --faint: rgba(243, 237, 225, 0.14);
+  --accent: #d9a441;
+  --card: rgba(20, 18, 16, 0.42);
+  --card-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+  --thumb-dim: rgba(0, 0, 0, 0.4);
+  --surface-container-low: #0c0b0a;
+
+  /* Restores the depth cue the old !important override sheet gave the nav
+     dropdown; shadow-lg's rgba(0,0,0,0.1) all but disappears against a
+     near-black page. */
+  --shadow-panel: 0 8px 32px rgba(0, 0, 0, 0.7);
+
+  /* --c-background and --c-surface-container-low are both 12 11 10 in dark
+     (see above), so a hover that swaps between them paints nothing. Reuses
+     --c-surface-container-high's dark value verbatim rather than inventing
+     a new number, so the hover lands on an existing rung of the elevation
+     scale instead of a bespoke one. */
+  --c-surface-container-low-hover: 26 24 23;
+}

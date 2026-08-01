@@ -5,7 +5,7 @@ import Base from "@layouts/Base.astro";
 <Base
   title="STUDIO JUS10 - Art"
   bodyClass="text-on-surface font-body-md antialiased selection:bg-primary selection:text-white"
-  bodyStyle="background: #0a0a0a; overflow-x: hidden;"
+  bodyStyle="background: #0a0a0a; /* fixed: permanently-dark cinema hero, theme-invariant */ overflow-x: hidden;"
 >
   <style is:global>
     .float-el {
@@ -50,7 +50,7 @@ import Base from "@layouts/Base.astro";
   ════════════════════════════════════════════════ -->
   <div
     id="art-bg"
-    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: #0a0a0a; overflow: hidden; transform: translateZ(0);"
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: #0a0a0a; /* fixed: permanently-dark cinema hero */ overflow: hidden; transform: translateZ(0);"
   >
     <!-- Slowest — feel far away -->
     <div class="float-el" data-vx="0.15" data-vy="0.25">
@@ -162,7 +162,7 @@ import Base from "@layouts/Base.astro";
   <!-- Dark overlay that deepens as user scrolls past the hero -->
   <div
     id="art-dark-overlay"
-    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background: #0a0a0a; opacity: 0; pointer-events: none;"
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background: #0a0a0a; /* fixed: deepens the dark hero on scroll */ opacity: 0; pointer-events: none;"
   >
   </div>
 
@@ -184,12 +184,9 @@ import Base from "@layouts/Base.astro";
         line-height: 1.1;
         letter-spacing: -0.02em;
         font-weight: 700;
-        color: #ffffff;
+        color: #ffffff; /* fixed: text over the dark hero */
         display: block;
-        text-shadow:
-          0 0 24px rgba(0,0,0,0.98),
-          0 0 48px rgba(0,0,0,0.90),
-          0 2px  6px rgba(0,0,0,0.99);
+        text-shadow: 0 0 24px rgba(0,0,0,0.98) /* fixed: outer glow keeps the title legible */, 0 0 48px rgba(0,0,0,0.90) /* fixed: wider glow for softness */, 0 2px 6px rgba(0,0,0,0.99) /* fixed: tight drop shadow for edge contrast */;
       "
         >Art</span
       >
@@ -200,12 +197,9 @@ import Base from "@layouts/Base.astro";
         line-height: 1;
         letter-spacing: normal;
         font-weight: 400;
-        color: #e03c31;
+        color: #e03c31; /* fixed: brand red */
         display: block;
-        text-shadow:
-          0 0 24px rgba(0,0,0,0.98),
-          0 0 48px rgba(0,0,0,0.90),
-          0 2px  6px rgba(0,0,0,0.99);
+        text-shadow: 0 0 24px rgba(0,0,0,0.98) /* fixed: outer glow keeps the title legible */, 0 0 48px rgba(0,0,0,0.90) /* fixed: wider glow for softness */, 0 2px 6px rgba(0,0,0,0.99) /* fixed: tight drop shadow for edge contrast */;
       "
         >艺术</span
       >
@@ -220,26 +214,27 @@ import Base from "@layouts/Base.astro";
   <main class="relative w-full pb-16 pt-8" style="z-index: 10;">
     <!-- Component 1: page header (matches the video page's hero content card) -->
     <section
-      class="page-hero-card reveal-item mb-8 border border-on-background/20 shadow-[0_8px_32px_rgba(0,0,0,0.28)]"
-      style="background-color:rgba(246,243,242,0.70);"
+      class="page-hero-card reveal-item mb-8 border border-rule/20 shadow-[0_8px_32px_rgba(0,0,0,0.28)]"
+      style="background-color: rgb(var(--c-surface-container-low) / 0.70);"
     >
       <div class="grid gap-8 md:grid-cols-12 items-start px-4 md:px-8 py-8">
         <div class="md:col-span-7 flex flex-col gap-6">
-          <div class="border-b-2 border-on-background pb-4">
+          <div class="border-b-2 border-rule pb-4">
             <span
               class="font-display-lg text-on-background text-headline-lg-mobile md:text-display-lg mb-2 font-medium"
-              style="text-shadow:0 1px 4px rgba(0,0,0,0.18);">Art</span
+              style="text-shadow:0 1px 4px rgba(0,0,0,0.18); /* fixed: decorative card-title shadow */"
+              >Art</span
             >
             <h1
               class="font-cjk text-3xl md:text-5xl text-primary leading-none"
-              style="text-shadow:0 1px 4px rgba(0,0,0,0.18);"
+              style="text-shadow:0 1px 4px rgba(0,0,0,0.18); /* fixed: decorative card-title shadow */"
             >
               视觉与概念
             </h1>
           </div>
           <p
             class="font-label-mono text-xs uppercase tracking-widest text-on-surface-variant"
-            style="text-shadow:0 1px 3px rgba(0,0,0,0.15);"
+            style="text-shadow:0 1px 3px rgba(0,0,0,0.15); /* fixed: decorative card-title shadow */"
           >
             A compact collection of concept work that balances form, narrative,
             and editorial restraint.
@@ -247,7 +242,7 @@ import Base from "@layouts/Base.astro";
         </div>
         <div class="md:col-span-5 flex flex-col justify-center">
           <div
-            class="bg-surface-container-lowest border border-on-background p-6 shadow-sm"
+            class="bg-surface-container-lowest border border-rule p-6 shadow-sm"
           >
             <p class="font-headline-md text-on-background text-2xl mb-4">
               Art direction anchored in storytelling and intentional contrast.
@@ -267,13 +262,13 @@ import Base from "@layouts/Base.astro";
     <section class="flex flex-col gap-12 px-[5%]">
       <a
         href="/art/sketches"
-        class="reveal-item group flex flex-col md:flex-row border border-on-background/30 bg-surface hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.28)]"
+        class="reveal-item group flex flex-col md:flex-row border border-rule/30 bg-background hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.28)]"
       >
         <div class="series-img-wrap w-full md:w-[60%]">
           <img src="/assets/art/sketches/SKETCH-14.jpg" alt="Sketches" />
         </div>
         <div
-          class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-on-background"
+          class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-rule"
         >
           <div>
             <div
@@ -308,13 +303,13 @@ import Base from "@layouts/Base.astro";
 
       <a
         href="/art/composers"
-        class="reveal-item group flex flex-col md:flex-row-reverse border border-on-background/30 bg-surface hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.28)]"
+        class="reveal-item group flex flex-col md:flex-row-reverse border border-rule/30 bg-background hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.28)]"
       >
         <div class="series-img-wrap w-full md:w-[60%]">
           <img src="/assets/art/composers/COMPOSER-2.jpg" alt="Composers" />
         </div>
         <div
-          class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-r border-on-background"
+          class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-r border-rule"
         >
           <div>
             <div
@@ -350,13 +345,11 @@ import Base from "@layouts/Base.astro";
   </main>
 
   <footer
-    class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
+    class="bg-fixed-dark flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
     style="position:relative;z-index:10000;"
   >
     <div class="flex items-center gap-4 mb-4 md:mb-0">
-      <div
-        class="font-headline-md text-base text-surface-container-lowest italic"
-      >
+      <div class="font-headline-md text-base text-on-fixed-dark italic">
         STUDIO JUS10
       </div>
       <div class="font-cjk text-primary border-l border-surface-variant pl-4">

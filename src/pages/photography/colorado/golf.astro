@@ -4,24 +4,15 @@ import Base from "@layouts/Base.astro";
 
 <Base title="STUDIO JUS10 - Golf" bodyClass="antialiased">
   <style is:global>
+    /* --bg/--fg/--muted/--faint/--accent live globally in site.css.
+       --card lives globally too (site.css legacy-var block; consumed by
+       .collection-head on the region-index pages). --red had no consumer
+       here beyond .gallery-cjk below, which now reads the primary token
+       directly, so it is not redefined at all. --serif/--sans are fonts,
+       used only within this photography-page family, so they stay local. */
     :root {
-      --bg: #f6f3f2;
-      --fg: #1c1b1b;
-      --muted: rgba(28, 27, 27, 0.55);
-      --faint: rgba(28, 27, 27, 0.1);
-      --accent: #e03c31;
-      --red: #e03c31;
-      --card: rgba(255, 255, 255, 0.72);
       --serif: "Fraunces", Georgia, "Times New Roman", serif;
       --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
-    }
-    html[data-theme="dark"] {
-      --bg: #0c0b0a;
-      --fg: #f3ede1;
-      --muted: rgba(243, 237, 225, 0.55);
-      --faint: rgba(243, 237, 225, 0.14);
-      --accent: #d9a441;
-      --card: rgba(20, 18, 16, 0.42);
     }
     * {
       margin: 0;
@@ -43,63 +34,16 @@ import Base from "@layouts/Base.astro";
     }
     ::selection {
       background: var(--accent);
-      color: #fff;
+      color: #fff; /* fixed: selection text stays white against either accent colour */
     }
     img {
       display: block;
       max-width: 100%;
     }
 
-    nav {
-      transition: background-color 0.35s ease;
-    }
-    html[data-theme="dark"] nav {
-      background-color: rgba(12, 11, 10, 0.92) !important;
-      border-color: transparent !important;
-      backdrop-filter: blur(16px) saturate(1.1) !important;
-      -webkit-backdrop-filter: blur(16px) saturate(1.1) !important;
-    }
-    html[data-theme="dark"] nav .bg-surface-container-lowest {
-      background-color: rgba(16, 14, 12, 0.97) !important;
-    }
-    html[data-theme="dark"] nav .bg-surface-container-low,
-    html[data-theme="dark"] nav .hover\:bg-surface-container-low:hover {
-      background-color: rgba(24, 20, 17, 0.97) !important;
-    }
-    html[data-theme="dark"] nav .border-on-background {
-      border-color: rgba(243, 237, 225, 0.1) !important;
-    }
-    html[data-theme="dark"] nav .text-on-background {
-      color: var(--fg) !important;
-    }
-    html[data-theme="dark"] nav .text-on-surface,
-    html[data-theme="dark"] nav .text-on-surface-variant {
-      color: var(--muted) !important;
-    }
-    html[data-theme="dark"] nav .text-primary {
-      color: var(--red) !important;
-    }
-    html[data-theme="dark"] nav .border-on-surface {
-      border-color: rgba(243, 237, 225, 0.3) !important;
-    }
-    html[data-theme="dark"] nav .shadow-lg {
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7) !important;
-    }
-    html[data-theme="dark"] #mobile-menu {
-      background-color: rgba(12, 11, 10, 0.98) !important;
-      border-color: rgba(243, 237, 225, 0.1) !important;
-    }
-    html[data-theme="dark"] #mobile-menu .text-on-background,
-    html[data-theme="dark"] #mobile-menu .text-on-surface,
-    html[data-theme="dark"] #mobile-menu .text-on-surface-variant {
-      color: var(--muted) !important;
-    }
-    html[data-theme="dark"] #mobile-menu .text-primary {
-      color: var(--red) !important;
-    }
-    html[data-theme="dark"] #mobile-menu .border-on-surface {
-      border-color: rgba(243, 237, 225, 0.3) !important;
-    }
+    /* Nav dark-mode theming (blur panel, text/border colours) now comes
+       entirely from the global token layer (site.css + tokens.css) and
+       Nav.astro's Tailwind classes — no page-local override needed. */
 
     .gallery-header {
       padding: 52px 5vw 40px;
@@ -149,7 +93,7 @@ import Base from "@layouts/Base.astro";
       font-family: "Noto Serif SC", serif;
       font-size: 0.4em;
       font-weight: 300;
-      color: var(--red);
+      color: rgb(var(--c-primary));
       margin-top: 8px;
       letter-spacing: 0.12em;
     }
@@ -185,13 +129,13 @@ import Base from "@layouts/Base.astro";
     .gallery-item-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0);
+      background: rgba(0, 0, 0, 0); /* fixed: hover dim over photo */
       transition: background 0.3s ease;
       border-radius: 4px;
       pointer-events: none;
     }
     .gallery-item:hover .gallery-item-overlay {
-      background: rgba(0, 0, 0, 0.12);
+      background: rgba(0, 0, 0, 0.12); /* fixed: hover dim over photo */
     }
     @media (max-width: 900px) {
       .gallery-grid {
@@ -204,64 +148,12 @@ import Base from "@layouts/Base.astro";
       }
     }
 
-    .page-footer {
-      min-height: 20vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      padding: 50px 24px;
-      text-align: center;
-      background: var(--card);
-      backdrop-filter: blur(18px) saturate(1.1);
-      -webkit-backdrop-filter: blur(18px) saturate(1.1);
-      border-top: 1px solid var(--faint);
-    }
-    html[data-theme="dark"] .page-footer {
-      background: rgba(12, 11, 10, 0.94);
-      backdrop-filter: none;
-      border-top: 1px solid var(--faint);
-    }
-    .footer-studio {
-      font-family: var(--serif);
-      font-size: clamp(1.5rem, 4vw, 2.8rem);
-      font-weight: 300;
-      letter-spacing: 0.25em;
-      color: var(--fg);
-    }
-    .footer-cjk {
-      font-family: "Noto Serif SC", serif;
-      font-size: 1rem;
-      font-weight: 200;
-      color: var(--red);
-      letter-spacing: 0.12em;
-    }
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 24px;
-      margin-top: 4px;
-    }
-    .footer-links a {
-      font-size: 11px;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.25s;
-    }
-    .footer-links a:hover {
-      color: var(--fg);
-    }
-    .footer-copy {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      opacity: 0.5;
-    }
+    /* NOTE: .page-footer/.footer-studio/.footer-cjk/.footer-links/.footer-copy
+       (the old local footer design) were dead CSS — the real <footer> below
+       has used the shared Tailwind-class footer since the footer was
+       standardized sitewide, and no element in this page ever carried these
+       classes. Removed rather than migrated; verified zero consumers across
+       all 20 photography pages before deleting. */
 
     @keyframes lightboxBloom {
       from {
@@ -366,13 +258,11 @@ import Base from "@layouts/Base.astro";
   <div class="gallery-grid" id="galleryGrid"></div>
 
   <footer
-    class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
+    class="bg-fixed-dark flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
     style="position:relative;z-index:10000;"
   >
     <div class="flex items-center gap-4 mb-4 md:mb-0">
-      <div
-        class="font-headline-md text-base text-surface-container-lowest italic"
-      >
+      <div class="font-headline-md text-base text-on-fixed-dark italic">
         STUDIO JUS10
       </div>
       <div class="font-cjk text-primary border-l border-surface-variant pl-4">
@@ -478,12 +368,12 @@ import Base from "@layouts/Base.astro";
   <div
     id="lightbox"
     class="hidden fixed inset-0 z-[100000] flex items-center justify-center p-4 md:p-10"
-    style="background-color:rgba(6,5,4,0.93);backdrop-filter:blur(10px);"
+    style="background-color:rgba(6,5,4,0.93);backdrop-filter:blur(10px); /* fixed: photo lightbox backdrop */"
   >
     <button
       id="lb-back"
       aria-label="Back"
-      style="position:absolute;top:20px;left:20px;color:#fff;background:none;border:none;cursor:pointer;padding:8px;opacity:0.8;transition:opacity 0.2s;"
+      style="position:absolute;top:20px;left:20px;color:#fff;background:none;border:none;cursor:pointer;padding:8px;opacity:0.8;transition:opacity 0.2s; /* fixed: icon over the lightbox backdrop */"
       onmouseover="this.style.opacity=1"
       onmouseout="this.style.opacity=0.8"
     >
@@ -507,7 +397,7 @@ import Base from "@layouts/Base.astro";
       <button
         id="lightbox-close"
         aria-label="Close"
-        style="position:absolute;top:-50px;right:0;color:var(--fg);background:none;border:none;cursor:pointer;padding:8px;opacity:0.8;transition:opacity 0.2s;"
+        style="position:absolute;top:-50px;right:0;color:#fff; /* fixed: close control over the always-dark lightbox backdrop */ background:none;border:none;cursor:pointer;padding:8px;opacity:0.8;transition:opacity 0.2s;"
         onmouseover="this.style.opacity=1"
         onmouseout="this.style.opacity=0.8"
       >
@@ -528,9 +418,9 @@ import Base from "@layouts/Base.astro";
         <button
           id="lightbox-prev"
           aria-label="Previous"
-          style="position:absolute;left:0;z-index:10;color:#fff;background:rgba(0,0,0,0.45);border:none;cursor:pointer;padding:12px;transition:background 0.2s;"
-          onmouseover="this.style.background='rgba(0,0,0,0.75)'"
-          onmouseout="this.style.background='rgba(0,0,0,0.45)'"
+          style="position:absolute;left:0;z-index:10;color:#fff; /* fixed: lightbox control icon, always white */ background:rgba(0,0,0,0.45); /* fixed: translucent backdrop behind the control, same in both themes */ border:none;cursor:pointer;padding:12px;transition:background 0.2s;"
+          onmouseover="this.style.background='rgba(0,0,0,0.75)' /* fixed: hover state over the lightbox backdrop */"
+          onmouseout="this.style.background='rgba(0,0,0,0.45)' /* fixed: matches the default control colour over the lightbox backdrop */"
         >
           <svg
             width="22"
@@ -549,14 +439,14 @@ import Base from "@layouts/Base.astro";
           id="lightbox-img"
           src=""
           alt=""
-          style="max-height:78vh;max-width:100%;width:auto;border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,0.7);"
+          style="max-height:78vh;max-width:100%;width:auto;border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,0.7); /* fixed: decorative shadow under the enlarged photo */"
         />
         <button
           id="lightbox-next"
           aria-label="Next"
-          style="position:absolute;right:0;z-index:10;color:#fff;background:rgba(0,0,0,0.45);border:none;cursor:pointer;padding:12px;transition:background 0.2s;"
-          onmouseover="this.style.background='rgba(0,0,0,0.75)'"
-          onmouseout="this.style.background='rgba(0,0,0,0.45)'"
+          style="position:absolute;right:0;z-index:10;color:#fff; /* fixed: lightbox control icon, always white */ background:rgba(0,0,0,0.45); /* fixed: translucent backdrop behind the control, same in both themes */ border:none;cursor:pointer;padding:12px;transition:background 0.2s;"
+          onmouseover="this.style.background='rgba(0,0,0,0.75)' /* fixed: hover state over the lightbox backdrop */"
+          onmouseout="this.style.background='rgba(0,0,0,0.45)' /* fixed: matches the default control colour over the lightbox backdrop */"
         >
           <svg
             width="22"
@@ -574,7 +464,7 @@ import Base from "@layouts/Base.astro";
       </div>
       <p
         id="lightbox-caption"
-        style="margin-top:14px;font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);"
+        style="margin-top:14px;font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.7); /* fixed: caption over the always-dark lightbox backdrop */"
       >
       </p>
       <div class="lb-strip" id="lb-strip"></div>

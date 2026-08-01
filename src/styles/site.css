@@ -1,11 +1,3 @@
-.editorial-border {
-  border: 1px solid #1c1b1b;
-}
-.red-block {
-  background-color: #e03c31;
-  color: #ffffff;
-}
-
 .grid-12 {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -27,27 +19,12 @@
   font-variant-numeric: lining-nums;
 }
 
-/* ── Dark mode: CSS custom properties ── */
-:root {
-  --bg: #f6f3f2;
-  --fg: #1c1b1b;
-  --muted: rgba(28, 27, 27, 0.55);
-  --faint: rgba(28, 27, 27, 0.1);
-  --accent: #e03c31;
-  --red: #e03c31;
-  --card: rgba(255, 255, 255, 0.72);
-  --surface-container-low: #f4f1f0;
-}
-html[data-theme="dark"] {
-  --bg: #0c0b0a;
-  --fg: #f3ede1;
-  --muted: rgba(243, 237, 225, 0.55);
-  --faint: rgba(243, 237, 225, 0.14);
-  --accent: #d9a441;
-  --red: #e03c31;
-  --card: rgba(20, 18, 16, 0.42);
-  --surface-container-low: #0c0b0a;
-}
+/* The --bg/--fg/--muted/--faint/--accent/--card/--card-shadow/--thumb-dim/
+   --surface-container-low custom properties used to be defined here. They
+   moved to src/styles/tokens.css (Guard-hardening task) so tokens.css stays
+   the single place colour lives — see the comment there for why they keep
+   their own names instead of being folded onto the --c-* tokens. Nothing
+   about their values or the selectors that set them changed. */
 
 /* ── Body: smooth theme transition ── */
 body {
@@ -61,113 +38,12 @@ nav {
   transition: background-color 0.35s ease;
 }
 html[data-theme="dark"] nav {
-  background-color: rgba(12, 11, 10, 0.92) !important;
+  /* Same channels as --c-background's dark value — tokenized instead of
+     left as a literal so it tracks the token if that value ever moves. */
+  background-color: rgb(var(--c-background) / 0.92) !important;
   border-color: transparent !important;
   backdrop-filter: blur(16px) saturate(1.1) !important;
   -webkit-backdrop-filter: blur(16px) saturate(1.1) !important;
-}
-html[data-theme="dark"] nav .bg-surface-container-lowest {
-  background-color: rgba(16, 14, 12, 0.97) !important;
-}
-html[data-theme="dark"] nav .bg-surface-container-low,
-html[data-theme="dark"] nav .hover\:bg-surface-container-low:hover {
-  background-color: rgba(24, 20, 17, 0.97) !important;
-}
-html[data-theme="dark"] nav .border-on-background {
-  border-color: rgba(243, 237, 225, 0.1) !important;
-}
-html[data-theme="dark"] nav .text-on-background {
-  color: var(--fg) !important;
-}
-html[data-theme="dark"] nav .text-on-surface,
-html[data-theme="dark"] nav .text-on-surface-variant {
-  color: var(--muted) !important;
-}
-html[data-theme="dark"] nav .text-primary {
-  color: var(--red) !important;
-}
-html[data-theme="dark"] nav .border-on-surface {
-  border-color: rgba(243, 237, 225, 0.3) !important;
-}
-html[data-theme="dark"] nav .shadow-lg {
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7) !important;
-}
-
-/* ── Mobile menu: dark mode overrides ── */
-html[data-theme="dark"] #mobile-menu {
-  background-color: rgba(12, 11, 10, 0.97) !important;
-  border-color: rgba(243, 237, 225, 0.1) !important;
-}
-html[data-theme="dark"] #mobile-menu .border-on-background {
-  border-color: rgba(243, 237, 225, 0.1) !important;
-}
-html[data-theme="dark"] #mobile-menu .text-on-background,
-html[data-theme="dark"] #mobile-menu .text-on-surface,
-html[data-theme="dark"] #mobile-menu .text-on-surface-variant {
-  color: var(--muted) !important;
-}
-html[data-theme="dark"] #mobile-menu .text-primary {
-  color: var(--red) !important;
-}
-html[data-theme="dark"] #mobile-menu .border-on-surface {
-  border-color: rgba(243, 237, 225, 0.3) !important;
-}
-
-/* ── Page content: dark mode overrides ── */
-/* Surface backgrounds */
-html[data-theme="dark"] .bg-surface-container-low {
-  background-color: #0c0b0a !important;
-}
-html[data-theme="dark"] .bg-surface-container-lowest {
-  background-color: #161413 !important;
-}
-html[data-theme="dark"] .bg-surface-container {
-  background-color: #111010 !important;
-}
-html[data-theme="dark"] .bg-surface-container-high {
-  background-color: #1a1817 !important;
-}
-html[data-theme="dark"] .bg-surface-container-highest {
-  background-color: #1e1c1a !important;
-}
-html[data-theme="dark"] .bg-surface {
-  background-color: #111010 !important;
-}
-html[data-theme="dark"] .bg-white {
-  background-color: #161413 !important;
-}
-
-/* Text */
-html[data-theme="dark"] .text-on-background {
-  color: var(--fg) !important;
-}
-html[data-theme="dark"] .text-on-surface {
-  color: var(--fg) !important;
-}
-html[data-theme="dark"] .text-on-surface-variant {
-  color: var(--muted) !important;
-}
-html[data-theme="dark"] .text-on-primary-fixed-variant {
-  color: #d9a441 !important;
-}
-
-/* Borders */
-html[data-theme="dark"] .border-on-background {
-  border-color: rgba(243, 237, 225, 0.12) !important;
-}
-html[data-theme="dark"] .border-on-surface-variant {
-  border-color: rgba(243, 237, 225, 0.08) !important;
-}
-html[data-theme="dark"] .border-surface-variant {
-  border-color: rgba(243, 237, 225, 0.08) !important;
-}
-
-/* Custom component classes */
-html[data-theme="dark"] .editorial-border {
-  border-color: rgba(243, 237, 225, 0.12) !important;
-}
-html[data-theme="dark"] .page-hero-card {
-  background-color: rgba(20, 18, 16, 0.88) !important;
 }
 
 /* ── Parallax hero fade ── */

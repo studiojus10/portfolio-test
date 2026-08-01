@@ -1,53 +1,78 @@
 ---
 import Base from "@layouts/Base.astro";
+
+const SOCIALS = [
+  {
+    href: "https://www.linkedin.com/in/justin-hughes-studiojus10",
+    img: "/assets/me-photos/LinkedIn-profile.jpeg",
+    name: "LinkedIn",
+    handle: "Justin Hughes",
+  },
+  {
+    href: "https://www.youtube.com/@studiojus10",
+    img: "/assets/me-photos/YouTube-profile.png",
+    name: "YouTube",
+    handle: "@studiojus10",
+  },
+  {
+    href: "https://www.instagram.com/studio.jus10?utm_source=qr",
+    img: "/assets/me-photos/Instagram-profile.jpg",
+    name: "Instagram",
+    handle: "@studio.jus10",
+  },
+];
 ---
 
 <Base
   title="STUDIO JUS10 - Contact"
-  bodyClass="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white min-h-screen flex flex-col"
+  bodyClass="bg-surface-container-low text-on-surface font-body-md antialiased selection:bg-primary selection:text-white flex flex-col"
+  bodyStyle="min-height:100svh;"
 >
-  <main class="w-full px-4 md:px-8 py-6 flex flex-col flex-1">
-    <!-- Header -->
-    <section class="page-fade" style="--fd:0s;">
-      <div
-        class="border-b-2 border-on-background pb-3 flex flex-wrap items-end gap-x-4 gap-y-1"
-      >
-        <span
-          class="font-display-lg text-on-background text-headline-lg-mobile md:text-headline-lg font-medium leading-none"
-          >Contact</span
+  <main
+    class="contact-main w-full px-4 md:px-8 flex flex-col flex-1 min-h-0 gap-4 lg:gap-5"
+  >
+    <!-- Hero. Type is fluid on both axes (see .contact-title), so a short
+         laptop compresses the band instead of pushing the form off-screen. -->
+    <section class="contact-hero page-fade shrink-0" style="--fd:0s;">
+      <div class="border-b-2 border-rule pb-3 lg:pb-4">
+        <div
+          class="contact-title font-display-lg text-on-background font-medium"
         >
-        <h1 class="font-cjk text-2xl md:text-4xl text-primary leading-none">
+          Contact
+        </div>
+        <h1 class="contact-cjk font-cjk text-primary leading-none mt-1">
           联系与合作
         </h1>
       </div>
       <p
-        class="font-label-mono text-xs uppercase tracking-widest text-on-surface-variant mt-3"
+        class="font-label-mono text-[11px] md:text-xs uppercase tracking-widest text-on-surface-variant mt-3"
       >
         Fast access to email, social connections, and collaboration inquiries.
       </p>
     </section>
 
-    <!-- Email + Social, side by side on desktop so the page fits one screen -->
-    <section class="mt-5 grid gap-5 md:grid-cols-2 items-stretch flex-1">
+    <!-- Two columns on desktop; stacks below lg, where Social becomes a
+         3-up tile grid rather than tall rows. -->
+    <section class="grid gap-4 lg:gap-5 lg:grid-cols-2 flex-1 min-h-0">
       <!-- Email + inquiry form -->
       <div
-        class="border border-on-background bg-surface p-5 page-fade flex flex-col"
+        class="border border-rule bg-surface p-4 lg:p-5 page-fade flex flex-col min-h-0"
         style="--fd:0.12s;"
       >
-        <h2 class="font-headline-md text-2xl mb-4">Email</h2>
+        <h2 class="font-headline-md text-xl lg:text-2xl mb-3 lg:mb-4">Email</h2>
         <a
           href="mailto:studiojus10@gmail.com"
-          class="inline-flex items-center gap-3 bg-primary border border-primary text-white px-4 py-3 hover:bg-white hover:text-primary transition-colors duration-300 mb-4"
+          class="inline-flex items-center gap-3 bg-primary border border-primary text-white px-4 py-3 text-[13px] sm:text-base hover:bg-surface-container-lowest hover:text-primary transition-colors duration-300 mb-3 lg:mb-4 shrink-0"
         >
-          <span class="material-symbols-outlined">mail</span>
-          studiojus10@gmail.com
+          <span class="material-symbols-outlined shrink-0">mail</span>
+          <span class="truncate">studiojus10@gmail.com</span>
         </a>
         <!-- Posts to the self-hosted mailer sidecar (nginx proxies /api/ to it). -->
         <form
           id="inquiry-form"
           action="/api/contact"
           method="POST"
-          class="flex flex-col gap-3"
+          class="flex flex-col gap-3 flex-1 min-h-0"
         >
           <!-- Honeypot: hidden from people, tempting to bots. Kept off-screen
                and out of the tab order; a filled value is silently dropped. -->
@@ -59,32 +84,32 @@ import Base from "@layouts/Base.astro";
             aria-hidden="true"
             class="hidden"
           />
-          <div class="flex flex-col sm:flex-row gap-3">
+          <div class="flex flex-col sm:flex-row gap-3 shrink-0">
             <input
               type="text"
               name="name"
               placeholder="Your name"
               required
-              class="border border-on-background bg-surface-container-lowest px-3 py-2 font-label-mono text-[13px] w-full focus:outline-none focus:border-primary"
+              class="border border-rule bg-surface-container-lowest px-3 py-2 font-label-mono text-[13px] w-full focus:outline-none focus:border-primary"
             />
             <input
               type="email"
               name="email"
               placeholder="Your email"
               required
-              class="border border-on-background bg-surface-container-lowest px-3 py-2 font-label-mono text-[13px] w-full focus:outline-none focus:border-primary"
+              class="border border-rule bg-surface-container-lowest px-3 py-2 font-label-mono text-[13px] w-full focus:outline-none focus:border-primary"
             />
           </div>
+          <!-- Grows into whatever vertical space the column has left. -->
           <textarea
             name="message"
             placeholder="Your message"
             required
-            rows="3"
-            class="border border-on-background bg-surface-container-lowest px-3 py-2 font-label-mono text-[13px] w-full focus:outline-none focus:border-primary resize-none"
+            class="contact-textarea border border-rule bg-surface-container-lowest px-3 py-2 font-label-mono text-[13px] w-full focus:outline-none focus:border-primary resize-none flex-1 min-h-0"
           ></textarea>
           <button
             type="submit"
-            class="flex items-center justify-between bg-primary border border-primary text-white px-4 py-3 font-label-caps text-xs hover:bg-white hover:text-primary transition-colors duration-300"
+            class="flex items-center justify-between bg-primary border border-primary text-white px-4 py-3 font-label-caps text-xs hover:bg-surface-container-lowest hover:text-primary transition-colors duration-300 shrink-0"
           >
             <span>Send Message</span>
             <span class="material-symbols-outlined" style="font-size:16px;"
@@ -93,14 +118,14 @@ import Base from "@layouts/Base.astro";
           </button>
           <p
             id="inquiry-success"
-            class="hidden font-label-mono text-[13px] text-primary"
+            class="hidden font-label-mono text-[13px] text-primary shrink-0"
           >
             Message sent — I'll be in touch soon.
           </p>
           <p
             id="inquiry-error"
-            class="hidden font-label-mono text-[13px]"
-            style="color:#c0392b;"
+            class="hidden font-label-mono text-[13px] shrink-0"
+            style="color:#c0392b; /* fixed: brand alert red, matches the home page's More button, invariant across themes */"
           >
             Something went wrong. Please email directly.
           </p>
@@ -109,99 +134,58 @@ import Base from "@layouts/Base.astro";
 
       <!-- Social -->
       <div
-        class="border border-on-background bg-surface p-5 page-fade flex flex-col"
+        class="border border-rule bg-surface p-4 lg:p-5 page-fade flex flex-col min-h-0"
         style="--fd:0.24s;"
       >
-        <h2 class="font-headline-md text-2xl mb-4">Social</h2>
-        <div class="flex flex-col gap-3 flex-1 justify-center">
-          <a
-            href="https://www.linkedin.com/in/justin-hughes-studiojus10"
-            target="_blank"
-            rel="noopener"
-            class="group flex items-center gap-4 border border-on-background bg-surface-container-lowest hover:border-primary transition-colors duration-300 p-3"
-          >
-            <img
-              src="/assets/me-photos/LinkedIn-profile.jpeg"
-              alt="LinkedIn"
-              class="w-14 h-14 md:w-16 md:h-16 object-cover shrink-0"
-            />
-            <div class="flex flex-col gap-0.5 min-w-0">
-              <span class="font-headline-md text-base text-on-background"
-                >LinkedIn</span
+        <h2 class="font-headline-md text-xl lg:text-2xl mb-3 lg:mb-4">
+          Social
+        </h2>
+        <!-- lg+: three stretched rows whose photos absorb the leftover height.
+             Below lg: a 3-up grid of square tiles. -->
+        <div
+          class="social-list flex flex-col gap-3 flex-1 min-h-0 max-lg:grid max-lg:grid-cols-3"
+        >
+          {
+            SOCIALS.map((s) => (
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noopener"
+                class="social-item group flex items-center gap-4 border border-rule bg-surface-container-lowest hover:border-primary transition-colors duration-300 p-3 overflow-hidden lg:flex-1 lg:min-h-0 max-lg:flex-col max-lg:items-stretch max-lg:gap-0 max-lg:p-0"
               >
-              <span
-                class="font-label-mono text-xs text-on-surface-variant truncate"
-                >Justin Hughes</span
-              >
-            </div>
-            <span
-              class="material-symbols-outlined ml-auto text-on-surface-variant group-hover:text-primary transition-colors"
-              style="font-size:18px;">arrow_outward</span
-            >
-          </a>
-          <a
-            href="https://www.youtube.com/@studiojus10"
-            target="_blank"
-            rel="noopener"
-            class="group flex items-center gap-4 border border-on-background bg-surface-container-lowest hover:border-primary transition-colors duration-300 p-3"
-          >
-            <img
-              src="/assets/me-photos/YouTube-profile.png"
-              alt="YouTube"
-              class="w-14 h-14 md:w-16 md:h-16 object-cover shrink-0"
-            />
-            <div class="flex flex-col gap-0.5 min-w-0">
-              <span class="font-headline-md text-base text-on-background"
-                >YouTube</span
-              >
-              <span
-                class="font-label-mono text-xs text-on-surface-variant truncate"
-                >@studiojus10</span
-              >
-            </div>
-            <span
-              class="material-symbols-outlined ml-auto text-on-surface-variant group-hover:text-primary transition-colors"
-              style="font-size:18px;">arrow_outward</span
-            >
-          </a>
-          <a
-            href="https://www.instagram.com/studio.jus10?utm_source=qr"
-            target="_blank"
-            rel="noopener"
-            class="group flex items-center gap-4 border border-on-background bg-surface-container-lowest hover:border-primary transition-colors duration-300 p-3"
-          >
-            <img
-              src="/assets/me-photos/Instagram-profile.jpg"
-              alt="Instagram"
-              class="w-14 h-14 md:w-16 md:h-16 object-cover shrink-0"
-            />
-            <div class="flex flex-col gap-0.5 min-w-0">
-              <span class="font-headline-md text-base text-on-background"
-                >Instagram</span
-              >
-              <span
-                class="font-label-mono text-xs text-on-surface-variant truncate"
-                >@studio.jus10</span
-              >
-            </div>
-            <span
-              class="material-symbols-outlined ml-auto text-on-surface-variant group-hover:text-primary transition-colors"
-              style="font-size:18px;">arrow_outward</span
-            >
-          </a>
+                <img
+                  src={s.img}
+                  alt={s.name}
+                  class="social-photo object-cover shrink-0"
+                />
+                <div class="flex flex-col gap-0.5 min-w-0 max-lg:p-3">
+                  <span class="font-headline-md text-base text-on-background">
+                    {s.name}
+                  </span>
+                  <span class="font-label-mono text-xs text-on-surface-variant truncate max-lg:whitespace-normal max-lg:text-clip max-lg:break-words">
+                    {s.handle}
+                  </span>
+                </div>
+                <span
+                  class="material-symbols-outlined ml-auto text-on-surface-variant group-hover:text-primary transition-colors max-lg:hidden"
+                  style="font-size:18px;"
+                >
+                  arrow_outward
+                </span>
+              </a>
+            ))
+          }
         </div>
       </div>
     </section>
   </main>
 
   <footer
-    class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
+    class="bg-fixed-dark flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest shrink-0"
     style="position:relative;z-index:10000;"
   >
     <div class="flex items-center gap-4 mb-4 md:mb-0">
-      <div
-        class="font-headline-md text-base text-surface-container-lowest italic"
-      >
+      <div class="font-headline-md text-base text-on-fixed-dark italic">
         STUDIO JUS10
       </div>
       <div class="font-cjk text-primary border-l border-surface-variant pl-4">
@@ -331,8 +315,8 @@ import Base from "@layouts/Base.astro";
           message: data.get("message") || "",
           _gotcha: data.get("_gotcha") || "",
         };
-        successMsg.classList.add("hidden");
-        errorMsg.classList.add("hidden");
+        successMsg?.classList.add("hidden");
+        errorMsg?.classList.add("hidden");
         if (submitBtn) submitBtn.disabled = true;
 
         fetch(form.action, {
@@ -346,13 +330,13 @@ import Base from "@layouts/Base.astro";
           .then(function (res) {
             if (res.ok) {
               form.reset();
-              successMsg.classList.remove("hidden");
+              successMsg?.classList.remove("hidden");
             } else {
-              errorMsg.classList.remove("hidden");
+              errorMsg?.classList.remove("hidden");
             }
           })
           .catch(function () {
-            errorMsg.classList.remove("hidden");
+            errorMsg?.classList.remove("hidden");
           })
           .finally(function () {
             if (submitBtn) submitBtn.disabled = false;
@@ -374,5 +358,68 @@ import Base from "@layouts/Base.astro";
   .page-fade.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* Vertical rhythm scales with viewport height so the whole page keeps
+     trying to fit one screen as the window shortens. */
+  .contact-main {
+    padding-block: clamp(0.75rem, 2.2vh, 1.75rem);
+  }
+  .contact-hero {
+    padding-block-start: clamp(0rem, 1.6vh, 1.25rem);
+  }
+
+  /* Fluid on both axes: vw keeps it proportional, vh keeps it from
+     crowding the form on short laptops. */
+  .contact-title {
+    font-size: clamp(2.5rem, 4.5vw + 1.2vh, 6rem);
+    line-height: 0.92;
+  }
+  .contact-cjk {
+    font-size: clamp(1.35rem, 1.8vw + 0.7vh, 2.75rem);
+  }
+
+  /* Only binds on cramped viewports — otherwise flex-1 grows it. Kept low so
+     the one-screen fit survives short laptops. */
+  .contact-textarea {
+    min-height: 3.5rem;
+  }
+
+  /* Below lg the social block is a 3-up tile grid: full-width square photo
+     with the label beneath. */
+  .social-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+
+  /* 720p-class laptops: reclaim the hero's breathing room so the two columns
+     still clear the fold. */
+  @media (min-width: 1024px) and (max-height: 800px) {
+    .contact-main {
+      padding-block: clamp(0.5rem, 1.6vh, 1rem);
+    }
+    .contact-hero {
+      padding-block-start: 0;
+    }
+    /* On a wide-but-short window the vw term alone would grow the title past
+       what the height can afford, so cap it harder here. */
+    .contact-title {
+      font-size: clamp(2.25rem, 3.2vw + 1vh, 3.75rem);
+    }
+    .contact-cjk {
+      font-size: clamp(1.25rem, 1.4vw + 0.6vh, 1.875rem);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    /* lg+: the photo is sized directly off viewport height rather than
+       height:100%. A percentage height against an auto-height row resolves to
+       the image's intrinsic size, which blew the card past the fold; a vh
+       clamp keeps the column's height predictable while still growing the
+       photos on a taller window. */
+    .social-photo {
+      width: auto;
+      height: clamp(3rem, 8.5vh, 7.5rem);
+    }
   }
 </style>

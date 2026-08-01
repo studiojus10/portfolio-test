@@ -5,7 +5,7 @@ import Base from "@layouts/Base.astro";
 <Base
   title="STUDIO JUS10 - Photography"
   bodyClass="text-on-surface font-body-md antialiased selection:bg-primary selection:text-white"
-  bodyStyle="background: #0d0c0b;"
+  bodyStyle="background: #0d0c0b; /* fixed: permanently-dark hero, theme-invariant */"
 >
   <style is:global>
     /* Modern hero */
@@ -41,13 +41,13 @@ import Base from "@layouts/Base.astro";
       style="position: sticky; top: 0; height: 100vh; margin-top: -100vh; z-index: 25; display: flex; flex-direction: column; justify-content: center; align-items: center; pointer-events: none; opacity: 0; transition: opacity 0.9s ease 0.3s;"
     >
       <p
-        style="font-family: 'Old Standard TT', 'Noto Serif SC', serif; font-size: clamp(24px, 10vw, 84px); font-weight: 700; color: white; line-height: 1; letter-spacing: -0.02em; text-transform: uppercase; mix-blend-mode: difference; text-align: center; text-shadow: 0 2px 16px rgba(0,0,0,0.55);"
+        style="font-family: 'Old Standard TT', 'Noto Serif SC', serif; font-size: clamp(24px, 10vw, 84px); font-weight: 700; color: white; /* fixed: mix-blend-mode:difference needs exact white to invert correctly against any photo, regardless of theme */ line-height: 1; letter-spacing: -0.02em; text-transform: uppercase; mix-blend-mode: difference; text-align: center; text-shadow: 0 2px 16px rgba(0,0,0,0.55); /* fixed: soft shadow keeps the title readable during the blend transition */"
       >
         Photography
       </p>
       <span
         class="font-cjk"
-        style="color: #e03c31; font-size: clamp(2rem, 6vw, 4.5rem); font-weight: 400; line-height: 1; mix-blend-mode: difference; text-align: center; text-shadow: 0 2px 12px rgba(0,0,0,0.5);"
+        style="color: #e03c31; /* fixed: mix-blend-mode:difference needs the exact brand red to invert correctly against any photo, regardless of theme */ font-size: clamp(2rem, 6vw, 4.5rem); font-weight: 400; line-height: 1; mix-blend-mode: difference; text-align: center; text-shadow: 0 2px 12px rgba(0,0,0,0.5); /* fixed: soft shadow keeps the title readable during the blend transition */"
         >摄影的诗意表达</span
       >
     </div>
@@ -96,7 +96,7 @@ import Base from "@layouts/Base.astro";
 
     <!-- Bottom gradient -->
     <div
-      style="position: absolute; bottom: 0; left: 0; right: 0; height: 20rem; background: linear-gradient(to bottom, transparent, #0d0c0b); z-index: 5; pointer-events: none;"
+      style="position: absolute; bottom: 0; left: 0; right: 0; height: 20rem; background: linear-gradient(to bottom, transparent, #0d0c0b); /* fixed: fades into the permanently-dark hero */ z-index: 5; pointer-events: none;"
     >
     </div>
   </div>
@@ -106,24 +106,25 @@ import Base from "@layouts/Base.astro";
     <main class="w-full py-8">
       <section
         class="page-hero-card grid gap-8 md:grid-cols-12 items-start p-6 mb-8 shadow-[0_8px_32px_rgba(0,0,0,0.28)]"
-        style="background-color:rgba(255,255,255,0.70);"
+        style="background-color: rgb(var(--c-surface-container-lowest) / 0.70);"
       >
         <div class="md:col-span-7 flex flex-col gap-6">
-          <div class="border-b-2 border-on-background pb-4">
+          <div class="border-b-2 border-rule pb-4">
             <span
               class="font-display-lg text-on-background text-headline-lg-mobile md:text-display-lg mb-2 font-medium"
-              style="text-shadow:0 1px 4px rgba(0,0,0,0.18);">Photography</span
+              style="text-shadow:0 1px 4px rgba(0,0,0,0.18); /* fixed: decorative card-title shadow */"
+              >Photography</span
             >
             <h1
               class="font-cjk text-3xl md:text-5xl text-primary leading-none"
-              style="text-shadow:0 1px 4px rgba(0,0,0,0.18);"
+              style="text-shadow:0 1px 4px rgba(0,0,0,0.18); /* fixed: decorative card-title shadow */"
             >
               摄影的诗意表达
             </h1>
           </div>
           <p
             class="font-label-mono text-xs uppercase tracking-widest text-on-surface-variant"
-            style="text-shadow:0 1px 3px rgba(0,0,0,0.15);"
+            style="text-shadow:0 1px 3px rgba(0,0,0,0.15); /* fixed: decorative card-title shadow */"
           >
             A compact portfolio of still moments defined by light, gesture, and
             context.
@@ -132,7 +133,7 @@ import Base from "@layouts/Base.astro";
 
         <div class="md:col-span-5 flex flex-col gap-6">
           <div
-            class="bg-surface-container-lowest border border-on-background p-6 shadow-sm"
+            class="bg-surface-container-lowest border border-rule p-6 shadow-sm"
           >
             <p class="font-headline-md text-2xl text-on-background mb-4">
               Selected narratives in motionless frames.
@@ -147,17 +148,17 @@ import Base from "@layouts/Base.astro";
       </section>
 
       <section
-        class="mt-8 border-t-2 border-on-background flex flex-col gap-12 px-[5%] pt-8"
+        class="mt-8 border-t-2 border-rule flex flex-col gap-12 px-[5%] pt-8"
       >
         <a
           href="/photography/colorado"
-          class="series-card group flex flex-col md:flex-row border border-on-background bg-surface hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]"
+          class="series-card group flex flex-col md:flex-row border border-rule bg-background hover:bg-surface-container-low-hover transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]"
         >
           <div class="series-img-wrap w-full md:w-[60%]">
             <img id="thumb-colorado" src="" alt="Colorado" />
           </div>
           <div
-            class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-on-background"
+            class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-rule"
           >
             <div>
               <div
@@ -192,13 +193,13 @@ import Base from "@layouts/Base.astro";
 
         <a
           href="/photography/arizona"
-          class="series-card group flex flex-col md:flex-row-reverse border border-on-background bg-surface hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]"
+          class="series-card group flex flex-col md:flex-row-reverse border border-rule bg-background hover:bg-surface-container-low-hover transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]"
         >
           <div class="series-img-wrap w-full md:w-[60%]">
             <img id="thumb-arizona" src="" alt="Arizona" />
           </div>
           <div
-            class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-r border-on-background"
+            class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-r border-rule"
           >
             <div>
               <div
@@ -232,13 +233,13 @@ import Base from "@layouts/Base.astro";
 
         <a
           href="/photography/washington"
-          class="series-card group flex flex-col md:flex-row border border-on-background bg-surface hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]"
+          class="series-card group flex flex-col md:flex-row border border-rule bg-background hover:bg-surface-container-low-hover transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]"
         >
           <div class="series-img-wrap w-full md:w-[60%]">
             <img id="thumb-washington" src="" alt="Washington" />
           </div>
           <div
-            class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-on-background"
+            class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-rule"
           >
             <div>
               <div
@@ -273,13 +274,13 @@ import Base from "@layouts/Base.astro";
 
         <a
           href="/photography/nature"
-          class="series-card group flex flex-col md:flex-row-reverse border border-on-background bg-surface hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]"
+          class="series-card group flex flex-col md:flex-row-reverse border border-rule bg-background hover:bg-surface-container-low-hover transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]"
         >
           <div class="series-img-wrap w-full md:w-[60%]">
             <img id="thumb-nature" src="" alt="Nature" />
           </div>
           <div
-            class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-r border-on-background"
+            class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-r border-rule"
           >
             <div>
               <div
@@ -314,13 +315,13 @@ import Base from "@layouts/Base.astro";
 
         <a
           href="/photography/film"
-          class="series-card group flex flex-col md:flex-row border border-on-background bg-surface hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]"
+          class="series-card group flex flex-col md:flex-row border border-rule bg-background hover:bg-surface-container-low-hover transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]"
         >
           <div class="series-img-wrap w-full md:w-[60%]">
             <img id="thumb-film" src="" alt="Film" />
           </div>
           <div
-            class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-on-background"
+            class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-rule"
           >
             <div>
               <div
@@ -355,13 +356,13 @@ import Base from "@layouts/Base.astro";
 
         <a
           href="/photography/europe"
-          class="series-card group flex flex-col md:flex-row-reverse border border-on-background bg-surface hover:bg-surface-container-low transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]"
+          class="series-card group flex flex-col md:flex-row-reverse border border-rule bg-background hover:bg-surface-container-low-hover transition-colors duration-300 rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.10)]"
         >
           <div class="series-img-wrap w-full md:w-[60%]">
             <img id="thumb-europe" src="" alt="Europe" />
           </div>
           <div
-            class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-r border-on-background"
+            class="flex-1 px-6 md:px-10 py-8 flex flex-col justify-between border-t md:border-t-0 md:border-r border-rule"
           >
             <div>
               <div
@@ -397,13 +398,11 @@ import Base from "@layouts/Base.astro";
     </main>
 
     <footer
-      class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
+      class="bg-fixed-dark flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
       style="position:relative;z-index:10000;"
     >
       <div class="flex items-center gap-4 mb-4 md:mb-0">
-        <div
-          class="font-headline-md text-base text-surface-container-lowest italic"
-        >
+        <div class="font-headline-md text-base text-on-fixed-dark italic">
           STUDIO JUS10
         </div>
         <div class="font-cjk text-primary border-l border-surface-variant pl-4">

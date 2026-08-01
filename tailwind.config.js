@@ -1,62 +1,105 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{astro,html,js,ts}'],
-  darkMode: 'class',
+  darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {
       colors: {
-        'on-primary-fixed-variant': '#930006',
-        'on-secondary': '#ffffff',
-        surface: '#fcf9f8',
-        outline: '#8f706b',
-        'on-background': '#1c1b1b',
-        'on-tertiary-fixed-variant': '#474742',
-        'error-container': '#ffdad6',
-        'primary-container': '#d9372d',
-        'on-secondary-fixed-variant': '#474747',
-        'on-surface': '#1c1b1b',
-        background: '#fcf9f8',
-        'inverse-on-surface': '#f3f0ef',
-        'surface-container': '#f0eded',
-        'on-tertiary-container': '#fdffdd',
-        'on-tertiary': '#ffffff',
-        'surface-variant': '#e5e2e1',
-        tertiary: '#5d5c57',
-        'surface-container-lowest': '#ffffff',
-        'tertiary-fixed': '#e5e2db',
-        'surface-container-high': '#eae7e7',
-        'secondary-container': '#e2e2e2',
-        'outline-variant': '#e4beb9',
-        'primary-fixed-dim': '#ffb4aa',
-        'on-tertiary-fixed': '#1c1c18',
-        'secondary-fixed': '#e2e2e2',
-        'on-error-container': '#93000a',
-        error: '#ba1a1a',
-        'surface-dim': '#dcd9d9',
-        'tertiary-container': '#76756f',
-        'on-secondary-container': '#646464',
-        'secondary-fixed-dim': '#c6c6c6',
-        'on-primary-fixed': '#410001',
-        'on-error': '#ffffff',
-        'surface-container-highest': '#e5e2e1',
-        'on-primary': '#ffffff',
-        'surface-tint': '#b91e19',
-        'on-surface-variant': '#5b403c',
-        'surface-bright': '#fcf9f8',
-        'inverse-surface': '#313030',
-        'inverse-primary': '#ffb4aa',
-        secondary: '#5e5e5e',
-        'on-primary-container': '#fffbff',
-        'primary-fixed': '#ffdad5',
-        primary: '#e03c31',
-        'tertiary-fixed-dim': '#c9c6c0',
-        'surface-container-low': '#f6f3f2',
+        // Tailwind's default palette (slate…rose, plus white/black) stays
+        // live under `extend` — it isn't replaced, only added to — so every
+        // default-palette utility still compiles and bypasses the token
+        // layer. `white`/`black` are declared here explicitly, at the same
+        // values Tailwind already ships, purely so the 51 existing uses
+        // (50 text-white + 1 bg-black, all sitting on bg-primary or a photo
+        // scrim, audited as legitimately theme-invariant) are a documented,
+        // deliberate choice rather than an accidental one. Nothing else in
+        // the default palette is declared: scripts/check-raw-colors.mjs
+        // flags any other default-palette utility (text-red-500,
+        // bg-neutral-900, …) as an offender, since those bypass the token
+        // layer without the same audit.
+        white: '#ffffff',
+        black: '#000000',
+        background: 'rgb(var(--c-background) / <alpha-value>)',
+        error: 'rgb(var(--c-error) / <alpha-value>)',
+        'error-container': 'rgb(var(--c-error-container) / <alpha-value>)',
+        'inverse-on-surface':
+          'rgb(var(--c-inverse-on-surface) / <alpha-value>)',
+        'inverse-primary': 'rgb(var(--c-inverse-primary) / <alpha-value>)',
+        'inverse-surface': 'rgb(var(--c-inverse-surface) / <alpha-value>)',
+        'on-background': 'rgb(var(--c-on-background) / <alpha-value>)',
+        'on-error': 'rgb(var(--c-on-error) / <alpha-value>)',
+        'on-error-container':
+          'rgb(var(--c-on-error-container) / <alpha-value>)',
+        'on-primary': 'rgb(var(--c-on-primary) / <alpha-value>)',
+        'on-primary-container':
+          'rgb(var(--c-on-primary-container) / <alpha-value>)',
+        'on-primary-fixed': 'rgb(var(--c-on-primary-fixed) / <alpha-value>)',
+        'on-primary-fixed-variant':
+          'rgb(var(--c-on-primary-fixed-variant) / <alpha-value>)',
+        'on-secondary': 'rgb(var(--c-on-secondary) / <alpha-value>)',
+        'on-secondary-container':
+          'rgb(var(--c-on-secondary-container) / <alpha-value>)',
+        'on-secondary-fixed-variant':
+          'rgb(var(--c-on-secondary-fixed-variant) / <alpha-value>)',
+        'on-surface': 'rgb(var(--c-on-surface) / <alpha-value>)',
+        'on-surface-variant':
+          'rgb(var(--c-on-surface-variant) / <alpha-value>)',
+        'on-tertiary': 'rgb(var(--c-on-tertiary) / <alpha-value>)',
+        'on-tertiary-container':
+          'rgb(var(--c-on-tertiary-container) / <alpha-value>)',
+        'on-tertiary-fixed': 'rgb(var(--c-on-tertiary-fixed) / <alpha-value>)',
+        'on-tertiary-fixed-variant':
+          'rgb(var(--c-on-tertiary-fixed-variant) / <alpha-value>)',
+        outline: 'rgb(var(--c-outline) / <alpha-value>)',
+        'outline-variant': 'rgb(var(--c-outline-variant) / <alpha-value>)',
+        primary: 'rgb(var(--c-primary) / <alpha-value>)',
+        'primary-container': 'rgb(var(--c-primary-container) / <alpha-value>)',
+        'primary-fixed': 'rgb(var(--c-primary-fixed) / <alpha-value>)',
+        'primary-fixed-dim': 'rgb(var(--c-primary-fixed-dim) / <alpha-value>)',
+        secondary: 'rgb(var(--c-secondary) / <alpha-value>)',
+        'secondary-container':
+          'rgb(var(--c-secondary-container) / <alpha-value>)',
+        'secondary-fixed': 'rgb(var(--c-secondary-fixed) / <alpha-value>)',
+        'secondary-fixed-dim':
+          'rgb(var(--c-secondary-fixed-dim) / <alpha-value>)',
+        surface: 'rgb(var(--c-surface) / <alpha-value>)',
+        'surface-bright': 'rgb(var(--c-surface-bright) / <alpha-value>)',
+        'surface-container': 'rgb(var(--c-surface-container) / <alpha-value>)',
+        'surface-container-high':
+          'rgb(var(--c-surface-container-high) / <alpha-value>)',
+        'surface-container-highest':
+          'rgb(var(--c-surface-container-highest) / <alpha-value>)',
+        'surface-container-low':
+          'rgb(var(--c-surface-container-low) / <alpha-value>)',
+        'surface-container-low-hover':
+          'rgb(var(--c-surface-container-low-hover) / <alpha-value>)',
+        'surface-container-lowest':
+          'rgb(var(--c-surface-container-lowest) / <alpha-value>)',
+        'surface-dim': 'rgb(var(--c-surface-dim) / <alpha-value>)',
+        'surface-tint': 'rgb(var(--c-surface-tint) / <alpha-value>)',
+        'surface-variant': 'rgb(var(--c-surface-variant) / <alpha-value>)',
+        tertiary: 'rgb(var(--c-tertiary) / <alpha-value>)',
+        'tertiary-container':
+          'rgb(var(--c-tertiary-container) / <alpha-value>)',
+        'tertiary-fixed': 'rgb(var(--c-tertiary-fixed) / <alpha-value>)',
+        'tertiary-fixed-dim':
+          'rgb(var(--c-tertiary-fixed-dim) / <alpha-value>)',
+        rule: 'rgb(var(--c-rule) / <alpha-value>)',
+        'rule-strong': 'rgb(var(--c-rule-strong) / <alpha-value>)',
+        'fixed-dark': 'rgb(var(--c-fixed-dark) / <alpha-value>)',
+        'on-fixed-dark': 'rgb(var(--c-on-fixed-dark) / <alpha-value>)',
       },
       borderRadius: {
         DEFAULT: '0.25rem',
         lg: '0.5rem',
         xl: '0.75rem',
         full: '9999px',
+      },
+      boxShadow: {
+        // Token-backed nav dropdown shadow (Follow-up 1): light reproduces
+        // shadow-lg exactly, dark restores the depth cue the deleted
+        // !important override sheet used to provide. See tokens.css.
+        panel: 'var(--shadow-panel)',
       },
       spacing: {
         'element-gap': '32px',

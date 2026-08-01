@@ -12,7 +12,7 @@ import Base from "@layouts/Base.astro";
       position: fixed;
       inset: 0;
       z-index: 999999;
-      background: rgba(0, 0, 0, 0.92);
+      background: rgba(0, 0, 0, 0.92); /* fixed: photo lightbox backdrop */
       display: none;
       align-items: center;
       justify-content: center;
@@ -25,13 +25,13 @@ import Base from "@layouts/Base.astro";
       max-width: 90vw;
       max-height: 88vh;
       object-fit: contain;
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7); /* fixed: decorative shadow under the enlarged photo */
     }
     #lightbox-close {
       position: absolute;
       top: 20px;
       right: 24px;
-      color: #fff;
+      color: #fff; /* fixed: icon on the fixed-dark lightbox backdrop */
       font-size: 32px;
       cursor: pointer;
       line-height: 1;
@@ -94,10 +94,12 @@ import Base from "@layouts/Base.astro";
       style="position:absolute;inset:0;background-image:url('/assets/projects/PeakPet/peakPet-hero.jpeg');background-size:cover;background-position:center center;"
     >
     </div>
-    <div style="position:absolute;inset:0;background:rgba(10,10,10,0.55);">
+    <div
+      style="position:absolute;inset:0;background:rgba(10,10,10,0.55); /* fixed: scrim over the hero photo */"
+    >
     </div>
     <div
-      style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.55) 60%,rgba(10,10,10,0.65) 82%,var(--surface-container-low,#f4f1f0) 100%);"
+      style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0% /* fixed: near top of the hero, mostly transparent so the photo reads clearly */,rgba(10,10,10,0.55) 60% /* fixed: begins darkening toward the page background */,rgba(10,10,10,0.65) 82% /* fixed: darkens further just before the blend to background */,var(--surface-container-low) 100%);"
     >
     </div>
   </div>
@@ -112,9 +114,9 @@ import Base from "@layouts/Base.astro";
     >
       <a
         href="/projects"
-        style="display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);text-decoration:none;margin-bottom:2rem;padding-top:7rem;transition:color 0.2s;"
+        style="display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);text-decoration:none;margin-bottom:2rem;padding-top:7rem;transition:color 0.2s; /* fixed: link over the hero photo */"
         onmouseover="this.style.color='var(--primary)'"
-        onmouseout="this.style.color='rgba(255,255,255,0.6)'"
+        onmouseout="this.style.color='rgba(255,255,255,0.6)' /* fixed: matches the default link colour over the hero photo */"
       >
         <svg
           width="16"
@@ -133,13 +135,13 @@ import Base from "@layouts/Base.astro";
       </a>
       <h1
         class="font-display-lg text-headline-lg-mobile md:text-display-lg font-medium"
-        style="color:#fff;margin-bottom:0;line-height:1;text-shadow:0 1px 4px rgba(0,0,0,0.18);"
+        style="color:#fff; /* fixed: title over the hero photo, always white */ margin-bottom:0;line-height:1;text-shadow:0 1px 4px rgba(0,0,0,0.18); /* fixed: subtle edge shadow keeps the title legible over the photo */"
       >
         Peak Pet and Home Care
       </h1>
       <p
         class="font-cjk text-3xl md:text-5xl text-primary"
-        style="line-height:1;margin-top:0.125rem;text-shadow:0 1px 4px rgba(0,0,0,0.18);"
+        style="line-height:1;margin-top:0.125rem;text-shadow:0 1px 4px rgba(0,0,0,0.18); /* fixed: subtitle over the hero photo */"
       >
         顶峰宠物护理
       </p>
@@ -148,7 +150,7 @@ import Base from "@layouts/Base.astro";
 
   <main
     class="max-w-4xl mx-auto px-4 md:px-8 pb-24"
-    style="padding-top:3.75rem;position:relative;z-index:1;background:var(--surface-container-low,#f4f1f0);"
+    style="padding-top:3.75rem;position:relative;z-index:1;background:var(--surface-container-low);"
   >
     <!-- Project description -->
     <p class="font-label-mono text-[15px] leading-relaxed text-justify mb-14">
@@ -166,7 +168,7 @@ import Base from "@layouts/Base.astro";
     </p>
 
     <!-- ── Brand Guidelines ── -->
-    <hr class="border-t border-on-background/20 mb-10" />
+    <hr class="border-t border-rule/20 mb-10" />
     <h2
       id="brand-guidelines"
       class="inline-block bg-primary text-white font-label-mono text-xs uppercase tracking-widest px-4 py-2 mb-6"
@@ -182,7 +184,7 @@ import Base from "@layouts/Base.astro";
     </p>
 
     <div
-      class="bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.18)] mb-4"
+      class="bg-surface rounded-xl overflow-hidden border border-rule/30 shadow-[0_8px_32px_rgba(0,0,0,0.18)] mb-4"
     >
       <object
         data="/assets/projects/PeakPet/peakPet-docs/peakPet-brand-guidelines.pdf"
@@ -220,7 +222,7 @@ import Base from "@layouts/Base.astro";
     </div>
 
     <!-- ── Pet Intake Form ── -->
-    <hr class="border-t border-on-background/20 mb-10" />
+    <hr class="border-t border-rule/20 mb-10" />
     <h2
       class="inline-block bg-primary text-white font-label-mono text-xs uppercase tracking-widest px-4 py-2 mb-6"
     >
@@ -234,7 +236,7 @@ import Base from "@layouts/Base.astro";
     </p>
 
     <div
-      class="bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.18)] mb-4"
+      class="bg-surface rounded-xl overflow-hidden border border-rule/30 shadow-[0_8px_32px_rgba(0,0,0,0.18)] mb-4"
     >
       <object
         data="/assets/projects/PeakPet/peakPet-docs/peakPet-intake-form.pdf"
@@ -272,7 +274,7 @@ import Base from "@layouts/Base.astro";
     </div>
 
     <!-- ── Website Preview ── -->
-    <hr class="border-t border-on-background/20 mb-10" />
+    <hr class="border-t border-rule/20 mb-10" />
     <h2
       class="inline-block bg-primary text-white font-label-mono text-xs uppercase tracking-widest px-4 py-2 mb-6"
     >
@@ -286,7 +288,7 @@ import Base from "@layouts/Base.astro";
     </p>
 
     <div
-      class="bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.18)] mb-4"
+      class="bg-surface rounded-xl overflow-hidden border border-rule/30 shadow-[0_8px_32px_rgba(0,0,0,0.18)] mb-4"
     >
       <object
         data="/assets/projects/PeakPet/peakPet-website.pdf"
@@ -324,7 +326,7 @@ import Base from "@layouts/Base.astro";
     </div>
 
     <!-- ── Social Media Ads ── -->
-    <hr class="border-t border-on-background/20 mb-10" />
+    <hr class="border-t border-rule/20 mb-10" />
     <h2
       class="inline-block bg-primary text-white font-label-mono text-xs uppercase tracking-widest px-4 py-2 mb-6"
     >
@@ -385,13 +387,11 @@ import Base from "@layouts/Base.astro";
   </div>
 
   <footer
-    class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
+    class="bg-fixed-dark flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
     style="position:relative;z-index:10000;"
   >
     <div class="flex items-center gap-4 mb-4 md:mb-0">
-      <div
-        class="font-headline-md text-base text-surface-container-lowest italic"
-      >
+      <div class="font-headline-md text-base text-on-fixed-dark italic">
         STUDIO JUS10
       </div>
       <div class="font-cjk text-primary border-l border-surface-variant pl-4">

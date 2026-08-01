@@ -5,7 +5,7 @@ import Base from "@layouts/Base.astro";
 <Base
   title="STUDIO JUS10 - Video"
   bodyClass="text-on-surface font-body-md antialiased selection:bg-primary selection:text-white"
-  bodyStyle="background: #0a0a0a;"
+  bodyStyle="background: #0a0a0a; /* fixed: permanently-dark cinema hero, theme-invariant */"
 >
   <style is:global>
     @media (max-width: 767px) {
@@ -25,7 +25,7 @@ import Base from "@layouts/Base.astro";
   <!-- Fixed video background (50vh cover on mobile via CSS) -->
   <div
     id="hero-video-bg"
-    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: #0a0a0a; display: flex; align-items: center; justify-content: center; overflow: hidden;"
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: #0a0a0a; /* fixed: permanently-dark cinema hero */ display: flex; align-items: center; justify-content: center; overflow: hidden;"
   >
     <video
       id="hero-video"
@@ -45,7 +45,7 @@ import Base from "@layouts/Base.astro";
   <!-- Scroll-driven dark overlay -->
   <div
     id="hero-overlay"
-    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background: rgba(10,10,10,0); pointer-events: none;"
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background: rgba(10,10,10,0); /* fixed: scroll-driven scrim over the hero video */ pointer-events: none;"
   >
   </div>
 
@@ -53,22 +53,22 @@ import Base from "@layouts/Base.astro";
   <div
     id="mobile-hero"
     class="md:hidden"
-    style="position:relative; z-index:5; display:flex; flex-direction:column; justify-content:flex-end; padding:2rem 1.25rem 2.5rem; min-height:calc(100vh - 56px); background:linear-gradient(to top, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.25) 55%, rgba(10,10,10,0) 100%);"
+    style="position:relative; z-index:5; display:flex; flex-direction:column; justify-content:flex-end; padding:2rem 1.25rem 2.5rem; min-height:calc(100vh - 56px); background:linear-gradient(to top, rgba(10,10,10,0.82) 0% /* fixed: scrim base, holds the title legible */, rgba(10,10,10,0.25) 55% /* fixed: scrim midpoint fade */, rgba(10,10,10,0) 100% /* fixed: scrim clears near the top of the frame */);"
   >
     <div
-      style="border-bottom:2px solid rgba(255,255,255,0.18); padding-bottom:1rem; margin-bottom:1.25rem;"
+      style="border-bottom:2px solid rgba(255,255,255,0.18); padding-bottom:1rem; margin-bottom:1.25rem; /* fixed: divider over the hero video */"
     >
       <span
-        style="font-family:'Old Standard TT','Noto Serif SC',serif; font-size:clamp(48px,14vw,72px); font-weight:700; line-height:1; letter-spacing:-0.02em; color:#ffffff; text-shadow:0 0 24px rgba(0,0,0,0.85), 0 2px 6px rgba(0,0,0,0.95); display:block;"
+        style="font-family:'Old Standard TT','Noto Serif SC',serif; font-size:clamp(48px,14vw,72px); font-weight:700; line-height:1; letter-spacing:-0.02em; color:#ffffff; /* fixed: title over the hero video */ text-shadow:0 0 24px rgba(0,0,0,0.85) /* fixed: outer glow keeps the title legible */, 0 2px 6px rgba(0,0,0,0.95) /* fixed: tight drop shadow for edge contrast */; display:block;"
         >Video</span
       >
       <span
-        style="font-family:'Noto Serif SC',serif; font-size:clamp(1.8rem,8vw,3rem); font-weight:400; line-height:1; color:#e03c31; display:block; margin-top:-0.1em;"
+        style="font-family:'Noto Serif SC',serif; font-size:clamp(1.8rem,8vw,3rem); font-weight:400; line-height:1; color:#e03c31; display:block; margin-top:-0.1em; /* fixed: brand red over the hero video */"
         >电影感叙事</span
       >
     </div>
     <p
-      style="font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.55);"
+      style="font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.55); /* fixed: text over the hero video */"
     >
       A concise showcase of motion, rhythm, and cinematic tone.
     </p>
@@ -94,11 +94,8 @@ import Base from "@layouts/Base.astro";
           font-weight: 700;
           line-height: 1;
           letter-spacing: -0.02em;
-          color: #ffffff;
-          text-shadow:
-            0 0 24px rgba(0,0,0,0.85),
-            0 0 48px rgba(0,0,0,0.70),
-            0 2px  6px rgba(0,0,0,0.95);
+          color: #ffffff; /* fixed: title over the hero video */
+          text-shadow: 0 0 24px rgba(0,0,0,0.85) /* fixed: outer glow keeps the title legible */, 0 0 48px rgba(0,0,0,0.70) /* fixed: wider glow for softness */, 0 2px 6px rgba(0,0,0,0.95) /* fixed: tight drop shadow for edge contrast */;
           display: block;
         "
           >Video</span
@@ -110,10 +107,10 @@ import Base from "@layouts/Base.astro";
           font-weight: 400;
           line-height: 1;
           margin-top: -0.3em;
-          color: #e03c31;
+          color: #e03c31; /* fixed: brand red over the hero video */
           display: block;
           text-align: center;
-          text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+          text-shadow: 0 2px 12px rgba(0,0,0,0.7); /* fixed: legibility scrim over the hero video */
         "
           >电影感叙事</span
         >
@@ -126,31 +123,32 @@ import Base from "@layouts/Base.astro";
     >
       <div
         class="page-hero-card grid gap-8 md:grid-cols-12 items-start px-4 md:px-8 py-8"
-        style="background-color:rgba(246,243,242,0.70);"
+        style="background-color: rgb(var(--c-surface-container-low) / 0.70);"
       >
         <div class="md:col-span-7 flex flex-col gap-6">
-          <div class="border-b-2 border-on-background pb-4">
+          <div class="border-b-2 border-rule pb-4">
             <span
               class="font-display-lg text-on-background text-headline-lg-mobile md:text-display-lg mb-2 font-medium"
-              style="text-shadow:0 1px 4px rgba(0,0,0,0.18);">Video</span
+              style="text-shadow:0 1px 4px rgba(0,0,0,0.18); /* fixed: decorative card-title shadow */"
+              >Video</span
             >
             <h1
               class="font-cjk text-3xl md:text-5xl text-primary leading-none"
-              style="text-shadow:0 1px 4px rgba(0,0,0,0.18);"
+              style="text-shadow:0 1px 4px rgba(0,0,0,0.18); /* fixed: decorative card-title shadow */"
             >
               电影感叙事
             </h1>
           </div>
           <p
             class="font-label-mono text-xs uppercase tracking-widest text-on-surface-variant"
-            style="text-shadow:0 1px 3px rgba(0,0,0,0.15);"
+            style="text-shadow:0 1px 3px rgba(0,0,0,0.15); /* fixed: decorative card-title shadow */"
           >
             A concise showcase of motion, rhythm, and cinematic tone.
           </p>
         </div>
         <div class="md:col-span-5 flex flex-col gap-6">
           <div
-            class="bg-surface-container-lowest border border-on-background p-6 shadow-sm"
+            class="bg-surface-container-lowest border border-rule p-6 shadow-sm"
           >
             <p class="font-headline-md text-2xl text-on-background mb-4">
               Crafting moving images with editorial precision.
@@ -173,7 +171,7 @@ import Base from "@layouts/Base.astro";
       <!-- 1 — image left -->
       <a
         href="/video/dublin"
-        class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer"
+        class="video-card bg-background rounded-xl overflow-hidden border border-rule/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer"
       >
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
           <video
@@ -201,7 +199,7 @@ import Base from "@layouts/Base.astro";
       <!-- 2 — image right -->
       <a
         href="/video/winter"
-        class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer"
+        class="video-card bg-background rounded-xl overflow-hidden border border-rule/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer"
       >
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
           <video
@@ -228,7 +226,7 @@ import Base from "@layouts/Base.astro";
       <!-- 3 — image left -->
       <a
         href="/video/collage"
-        class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer"
+        class="video-card bg-background rounded-xl overflow-hidden border border-rule/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer"
       >
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
           <video
@@ -258,7 +256,7 @@ import Base from "@layouts/Base.astro";
       <!-- 4 — image right -->
       <a
         href="/video/portrait"
-        class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer"
+        class="video-card bg-background rounded-xl overflow-hidden border border-rule/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer"
       >
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
           <video
@@ -289,7 +287,7 @@ import Base from "@layouts/Base.astro";
       <!-- 5 — image left -->
       <a
         href="/video/single-shot"
-        class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer"
+        class="video-card bg-background rounded-xl overflow-hidden border border-rule/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer"
       >
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
           <video
@@ -317,7 +315,7 @@ import Base from "@layouts/Base.astro";
       <!-- 6 — image right -->
       <a
         href="/video/resurrection"
-        class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer"
+        class="video-card bg-background rounded-xl overflow-hidden border border-rule/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer"
       >
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
           <video
@@ -344,7 +342,7 @@ import Base from "@layouts/Base.astro";
       <!-- 7 — image left -->
       <a
         href="/video/murder"
-        class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer"
+        class="video-card bg-background rounded-xl overflow-hidden border border-rule/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer"
       >
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
           <video
@@ -371,7 +369,7 @@ import Base from "@layouts/Base.astro";
       <!-- 8 — image right -->
       <a
         href="/video/decadance"
-        class="video-card bg-surface rounded-xl overflow-hidden border border-on-background/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer"
+        class="video-card bg-background rounded-xl overflow-hidden border border-rule/30 shadow-[0_8px_32px_rgba(0,0,0,0.28)] flex flex-col md:flex-row-reverse hover:shadow-[0_12px_48px_rgba(0,0,0,0.38)] transition-shadow duration-300 cursor-pointer"
       >
         <div class="w-full md:w-[60%] overflow-hidden flex-shrink-0">
           <video
@@ -398,13 +396,11 @@ import Base from "@layouts/Base.astro";
   </main>
 
   <footer
-    class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
+    class="bg-fixed-dark flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
     style="position:relative;z-index:10000;"
   >
     <div class="flex items-center gap-4 mb-4 md:mb-0">
-      <div
-        class="font-headline-md text-base text-surface-container-lowest italic"
-      >
+      <div class="font-headline-md text-base text-on-fixed-dark italic">
         STUDIO JUS10
       </div>
       <div class="font-cjk text-primary border-l border-surface-variant pl-4">

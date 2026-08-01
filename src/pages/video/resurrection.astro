@@ -13,7 +13,7 @@ import Base from "@layouts/Base.astro";
       padding-bottom: 56.25%;
       height: 0;
       overflow: hidden;
-      background: #000;
+      background: #000; /* fixed: video player letterbox, always black regardless of theme */
     }
     .video-embed-wrapper iframe {
       position: absolute;
@@ -46,7 +46,7 @@ import Base from "@layouts/Base.astro";
       Video
     </a>
 
-    <div class="border-b-2 border-on-background pb-6 mb-8">
+    <div class="border-b-2 border-rule pb-6 mb-8">
       <h1
         class="font-display-lg text-headline-lg-mobile md:text-headline-lg font-medium italic mb-2"
       >
@@ -196,13 +196,11 @@ import Base from "@layouts/Base.astro";
   </main>
 
   <footer
-    class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
+    class="bg-fixed-dark flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
     style="position:relative;z-index:10000;"
   >
     <div class="flex items-center gap-4 mb-4 md:mb-0">
-      <div
-        class="font-headline-md text-base text-surface-container-lowest italic"
-      >
+      <div class="font-headline-md text-base text-on-fixed-dark italic">
         STUDIO JUS10
       </div>
       <div class="font-cjk text-primary border-l border-surface-variant pl-4">

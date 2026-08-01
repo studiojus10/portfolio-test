@@ -40,7 +40,7 @@ import Base from "@layouts/Base.astro";
     >
       <span
         class="font-display-lg text-white text-headline-lg-mobile md:text-display-lg font-medium leading-none"
-        style="display: block; text-shadow: 0 2px 24px rgba(0,0,0,0.5);"
+        style="display: block; text-shadow: 0 2px 24px rgba(0,0,0,0.5); /* fixed: title over the hero photo */"
         >About</span
       >
       <h1
@@ -82,14 +82,14 @@ import Base from "@layouts/Base.astro";
       <div class="md:col-span-7 flex flex-col gap-6">
         <p
           class="scroll-reveal font-label-mono text-xs uppercase tracking-widest text-on-background"
-          style="text-shadow: 0 1px 3px rgba(0,0,0,0.35); transition-delay: 0s;"
+          style="text-shadow: 0 1px 3px rgba(0,0,0,0.35); /* fixed: decorative label shadow */ transition-delay: 0s;"
         >
           A compact profile of Justin's creative approach, cultural perspective,
           and craft.
         </p>
 
         <div
-          class="scroll-reveal bg-surface-container-lowest border border-on-background py-6 px-[2.5%] shadow-sm rounded-xl"
+          class="scroll-reveal bg-surface-container-lowest border border-rule py-6 px-[2.5%] shadow-sm rounded-xl"
           style="transition-delay: 0.15s;"
         >
           <p class="font-headline-md text-2xl text-on-background mb-4 italic">
@@ -134,11 +134,11 @@ import Base from "@layouts/Base.astro";
 
       <div class="md:col-span-5 flex flex-col gap-6">
         <div
-          class="scroll-reveal border border-on-background overflow-hidden shadow-sm relative"
+          class="scroll-reveal border border-rule overflow-hidden shadow-sm relative"
           style="transition-delay: 0.1s;"
         >
           <div
-            style="position:absolute;inset:0;background:rgba(0,0,0,0.28);pointer-events:none;z-index:0;"
+            style="position:absolute;inset:0;background:rgba(0,0,0,0.28);pointer-events:none;z-index:0; /* fixed: placeholder tint under the portrait photo */"
           >
           </div>
           <img
@@ -155,7 +155,7 @@ import Base from "@layouts/Base.astro";
           <a
             href="/assets/documents/Justin_Hughes_Resume.pdf"
             download
-            class="flex-1 flex items-center justify-between bg-primary border border-primary px-4 py-3 text-white font-label-caps text-xs hover:bg-white hover:text-primary transition-colors duration-300 shadow-sm"
+            class="flex-1 flex items-center justify-between bg-primary border border-primary px-4 py-3 text-white font-label-caps text-xs hover:bg-surface-container-lowest hover:text-primary transition-colors duration-300 shadow-sm"
           >
             <span>Download Resumé</span>
             <span class="material-symbols-outlined" style="font-size:16px;"
@@ -165,7 +165,7 @@ import Base from "@layouts/Base.astro";
           <a
             href="/assets/documents/Justin_Hughes_CV.pdf"
             download
-            class="flex-1 flex items-center justify-between bg-primary border border-primary px-4 py-3 text-white font-label-caps text-xs hover:bg-white hover:text-primary transition-colors duration-300 shadow-sm"
+            class="flex-1 flex items-center justify-between bg-primary border border-primary px-4 py-3 text-white font-label-caps text-xs hover:bg-surface-container-lowest hover:text-primary transition-colors duration-300 shadow-sm"
           >
             <span>Download CV</span>
             <span class="material-symbols-outlined" style="font-size:16px;"
@@ -181,7 +181,7 @@ import Base from "@layouts/Base.astro";
       <div class="md:col-span-6 flex flex-col gap-4">
         <p
           class="scroll-reveal font-label-caps text-xs uppercase tracking-widest text-on-background"
-          style="transition-delay: 0s; text-shadow: 0 1px 3px rgba(0,0,0,0.35);"
+          style="transition-delay: 0s; text-shadow: 0 1px 3px rgba(0,0,0,0.35); /* fixed: decorative label shadow */"
         >
           About the Bachelor of Innovation
         </p>
@@ -189,7 +189,7 @@ import Base from "@layouts/Base.astro";
           href="https://innovate.uccs.edu/"
           target="_blank"
           rel="noopener"
-          class="scroll-reveal border border-on-background overflow-hidden shadow-sm block"
+          class="scroll-reveal border border-rule overflow-hidden shadow-sm block"
           style="transition-delay: 0.15s;"
         >
           <img
@@ -202,7 +202,7 @@ import Base from "@layouts/Base.astro";
           href="https://innovate.uccs.edu/"
           target="_blank"
           rel="noopener"
-          class="scroll-reveal flex items-center justify-between bg-primary border border-primary px-4 py-3 text-white font-label-caps text-xs hover:bg-white hover:text-primary transition-colors duration-300"
+          class="scroll-reveal flex items-center justify-between bg-primary border border-primary px-4 py-3 text-white font-label-caps text-xs hover:bg-surface-container-lowest hover:text-primary transition-colors duration-300"
           style="transition-delay: 0.3s;"
         >
           <span>Learn More</span>
@@ -214,7 +214,7 @@ import Base from "@layouts/Base.astro";
 
       <div class="md:col-span-6">
         <div
-          class="scroll-reveal bg-surface-container-lowest border border-on-background py-6 px-[2.5%] shadow-sm rounded-xl"
+          class="scroll-reveal bg-surface-container-lowest border border-rule py-6 px-[2.5%] shadow-sm rounded-xl"
           style="transition-delay: 0.2s;"
         >
           <p class="font-headline-md text-2xl text-on-background mb-4 italic">
@@ -254,13 +254,11 @@ import Base from "@layouts/Base.astro";
   </main>
 
   <footer
-    class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
+    class="bg-fixed-dark flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
     style="position:relative;z-index:10000;"
   >
     <div class="flex items-center gap-4 mb-4 md:mb-0">
-      <div
-        class="font-headline-md text-base text-surface-container-lowest italic"
-      >
+      <div class="font-headline-md text-base text-on-fixed-dark italic">
         STUDIO JUS10
       </div>
       <div class="font-cjk text-primary border-l border-surface-variant pl-4">

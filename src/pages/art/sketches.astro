@@ -5,7 +5,7 @@ import Base from "@layouts/Base.astro";
 <Base
   title="STUDIO JUS10 - Sketches"
   bodyClass="text-on-surface font-body-md antialiased selection:bg-primary selection:text-white"
-  bodyStyle="background: #0f0e0d; overflow-x: clip;"
+  bodyStyle="background: #0f0e0d; /* fixed: permanently-dark gallery, theme-invariant */ overflow-x: clip;"
 >
   <style is:global>
     .tilt-tile {
@@ -18,8 +18,8 @@ import Base from "@layouts/Base.astro";
       border-radius: 0.375rem;
       overflow: hidden;
       transform-origin: center center;
-      border: 1px solid #1c1b1b;
-      box-shadow: 0 0 18px 4px rgba(0, 0, 0, 0.28);
+      border: 1px solid #1c1b1b; /* fixed: frame line on the permanently-dark gallery */
+      box-shadow: 0 0 18px 4px rgba(0, 0, 0, 0.28); /* fixed: decorative tile shadow */
     }
     .tile-wrapper img {
       width: 100%;
@@ -76,7 +76,7 @@ import Base from "@layouts/Base.astro";
 
   <!-- Fixed background sketch image -->
   <div
-    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: #0f0e0d; display: flex; align-items: center; justify-content: center; overflow: hidden;"
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: #0f0e0d; /* fixed: permanently-dark gallery */ display: flex; align-items: center; justify-content: center; overflow: hidden;"
   >
     <img
       id="hero-bg-sketch"
@@ -87,25 +87,25 @@ import Base from "@layouts/Base.astro";
   </div>
   <div
     id="sketch-overlay"
-    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background: rgba(10,10,10,0.1); pointer-events: none;"
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background: rgba(10,10,10,0.1); /* fixed: scrim over the hero photo */ pointer-events: none;"
   >
   </div>
 
   <!-- Hero: 150vh with sticky header sliding in on scroll -->
   <section
-    style="position: relative; z-index: 10; height: 150vh; pointer-events: none; background: linear-gradient(to top, rgba(8,8,8,0.92) 0%, transparent 62%);"
+    style="position: relative; z-index: 10; height: 150vh; pointer-events: none; background: linear-gradient(to top, rgba(8,8,8,0.92) 0%, transparent 62%); /* fixed: scrim over the hero photo */"
   >
     <div
       id="sketch-hero-content"
       style="position: sticky; top: calc(100vh - 26rem); left: 0; right: 0; opacity: 0; transform: translateY(40px); pointer-events: auto; padding: 0 2rem 2rem;"
     >
       <div
-        style="border-top: 2px solid rgba(255,255,255,0.5); padding-top: 1rem;"
+        style="border-top: 2px solid rgba(255,255,255,0.5); padding-top: 1rem; /* fixed: divider over the hero photo */"
       >
         <a
           href="/art"
           class="font-label-caps text-[13px] uppercase tracking-widest hover:text-primary transition-colors inline-flex items-center gap-1 mb-3"
-          style="color: rgba(255,255,255,0.6);"
+          style="color: rgba(255,255,255,0.6); /* fixed: link over the hero photo */"
         >
           <span class="material-symbols-outlined" style="font-size:14px;"
             >arrow_back</span
@@ -115,7 +115,8 @@ import Base from "@layouts/Base.astro";
         <div class="flex items-end gap-4 mb-3">
           <span
             class="font-display-lg text-headline-lg-mobile md:text-display-lg font-medium leading-none"
-            style="color: #fff;">Sketches</span
+            style="color: #fff; /* fixed: title over the hero photo */"
+            >Sketches</span
           >
           <h1
             class="font-cjk text-3xl md:text-5xl text-primary leading-none"
@@ -126,7 +127,7 @@ import Base from "@layouts/Base.astro";
         </div>
         <p
           class="font-label-mono text-xs uppercase tracking-widest"
-          style="color: rgba(255,255,255,0.5);"
+          style="color: rgba(255,255,255,0.5); /* fixed: subtitle over the hero photo */"
         >
           A scroll through hand-drawn work — studies in form, line, and
           observation.
@@ -138,7 +139,7 @@ import Base from "@layouts/Base.astro";
   <!-- Scroll-tilted gallery on dark background -->
   <section
     class="w-full"
-    style="position: relative; z-index: 10; background: #0f0e0d; padding-top: 20vh; padding-bottom: 20vh;"
+    style="position: relative; z-index: 10; background: #0f0e0d; /* fixed: permanently-dark gallery */ padding-top: 20vh; padding-bottom: 20vh;"
   >
     <div class="mx-auto px-6" style="max-width: 820px;">
       <div id="sketch-gallery"></div>
@@ -149,7 +150,7 @@ import Base from "@layouts/Base.astro";
   <div
     id="lightbox"
     class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10"
-    style="background-color:rgba(6,5,4,0.93);backdrop-filter:blur(10px);"
+    style="background-color:rgba(6,5,4,0.93);backdrop-filter:blur(10px); /* fixed: photo lightbox backdrop */"
   >
     <div
       id="lightbox-inner"
@@ -158,7 +159,7 @@ import Base from "@layouts/Base.astro";
       <button
         id="lightbox-close"
         aria-label="Close"
-        style="position:absolute;top:-50px;right:0;color:var(--fg);background:none;border:none;cursor:pointer;padding:8px;opacity:0.8;transition:opacity 0.2s;"
+        style="position:absolute;top:-50px;right:0;color:#fff; /* fixed: close control over the always-dark lightbox backdrop */ background:none;border:none;cursor:pointer;padding:8px;opacity:0.8;transition:opacity 0.2s;"
         onmouseover="this.style.opacity=1"
         onmouseout="this.style.opacity=0.8"
       >
@@ -179,9 +180,9 @@ import Base from "@layouts/Base.astro";
         <button
           id="lightbox-prev"
           aria-label="Previous"
-          style="position:absolute;left:0;z-index:10;color:var(--fg);background:rgba(0,0,0,0.45);border:none;cursor:pointer;padding:12px;transition:background 0.2s;"
-          onmouseover="this.style.background='rgba(0,0,0,0.75)'"
-          onmouseout="this.style.background='rgba(0,0,0,0.45)'"
+          style="position:absolute;left:0;z-index:10;color:#fff; /* fixed: lightbox control icon, always white */ background:rgba(0,0,0,0.45); /* fixed: translucent backdrop behind the control, same in both themes */ border:none;cursor:pointer;padding:12px;transition:background 0.2s;"
+          onmouseover="this.style.background='rgba(0,0,0,0.75)' /* fixed: hover state over the lightbox backdrop */"
+          onmouseout="this.style.background='rgba(0,0,0,0.45)' /* fixed: matches the default control colour over the lightbox backdrop */"
         >
           <svg
             width="22"
@@ -200,14 +201,14 @@ import Base from "@layouts/Base.astro";
           id="lightbox-img"
           src=""
           alt=""
-          style="max-height:78vh;max-width:100%;width:auto;border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,0.7);"
+          style="max-height:78vh;max-width:100%;width:auto;border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,0.7); /* fixed: decorative shadow under the enlarged photo */"
         />
         <button
           id="lightbox-next"
           aria-label="Next"
-          style="position:absolute;right:0;z-index:10;color:var(--fg);background:rgba(0,0,0,0.45);border:none;cursor:pointer;padding:12px;transition:background 0.2s;"
-          onmouseover="this.style.background='rgba(0,0,0,0.75)'"
-          onmouseout="this.style.background='rgba(0,0,0,0.45)'"
+          style="position:absolute;right:0;z-index:10;color:#fff; /* fixed: lightbox control icon, always white */ background:rgba(0,0,0,0.45); /* fixed: translucent backdrop behind the control, same in both themes */ border:none;cursor:pointer;padding:12px;transition:background 0.2s;"
+          onmouseover="this.style.background='rgba(0,0,0,0.75)' /* fixed: hover state over the lightbox backdrop */"
+          onmouseout="this.style.background='rgba(0,0,0,0.45)' /* fixed: matches the default control colour over the lightbox backdrop */"
         >
           <svg
             width="22"
@@ -225,7 +226,7 @@ import Base from "@layouts/Base.astro";
       </div>
       <p
         id="lightbox-caption"
-        style="margin-top:14px;font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);"
+        style="margin-top:14px;font-family:'Space Grotesk',sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.7); /* fixed: caption over the always-dark lightbox backdrop */"
       >
       </p>
       <div class="lb-strip" id="lb-strip"></div>
@@ -233,13 +234,11 @@ import Base from "@layouts/Base.astro";
   </div>
 
   <footer
-    class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
+    class="bg-fixed-dark flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
     style="position:relative;z-index:10000;"
   >
     <div class="flex items-center gap-4 mb-4 md:mb-0">
-      <div
-        class="font-headline-md text-base text-surface-container-lowest italic"
-      >
+      <div class="font-headline-md text-base text-on-fixed-dark italic">
         STUDIO JUS10
       </div>
       <div class="font-cjk text-primary border-l border-surface-variant pl-4">

@@ -4,27 +4,20 @@ import Base from "@layouts/Base.astro";
 
 <Base title="STUDIO JUS10 - Photography · Film" bodyClass="antialiased">
   <style is:global>
-    /* ── Light mode (default) ── */
+    /* --bg/--fg/--muted/--faint/--accent live globally in site.css.
+       --card lives globally too (site.css legacy-var block) -- this
+       page's .collection-head frosted panel is a live consumer that
+       keeps it there, alongside --card-shadow (.collection-head's
+       elevation shadow) and --thumb-dim (the accordion "see more"
+       tile's resting dim), hoisted for the same reason: genuinely
+       different per theme, black-based, no existing --c-* token to
+       fold onto. --red had no consumer here beyond .collection-cjk
+       below, which now reads the primary token directly, so it is
+       not redefined at all. --serif/--sans are fonts, used only
+       within this photography-page family, so they stay local. */
     :root {
-      --bg: #f6f3f2;
-      --fg: #1c1b1b;
-      --muted: rgba(28, 27, 27, 0.55);
-      --faint: rgba(28, 27, 27, 0.1);
-      --accent: #e03c31;
-      --red: #e03c31;
-      --card: rgba(255, 255, 255, 0.72);
       --serif: "Fraunces", Georgia, "Times New Roman", serif;
       --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
-    }
-
-    /* ── Dark mode variable overrides ── */
-    html[data-theme="dark"] {
-      --bg: #0c0b0a;
-      --fg: #f3ede1;
-      --muted: rgba(243, 237, 225, 0.55);
-      --faint: rgba(243, 237, 225, 0.14);
-      --accent: #d9a441;
-      --card: rgba(20, 18, 16, 0.42);
     }
 
     * {
@@ -50,69 +43,16 @@ import Base from "@layouts/Base.astro";
 
     ::selection {
       background: var(--accent);
-      color: #fff;
+      color: #fff; /* fixed: selection text stays white against either accent colour */
     }
     img {
       display: block;
       max-width: 100%;
     }
 
-    /* ── Nav: dark overrides scoped to dark mode only ── */
-    nav {
-      transition: background-color 0.35s ease;
-    }
-
-    html[data-theme="dark"] nav {
-      background-color: rgba(12, 11, 10, 0.92) !important;
-      border-color: transparent !important;
-      backdrop-filter: blur(16px) saturate(1.1) !important;
-      -webkit-backdrop-filter: blur(16px) saturate(1.1) !important;
-    }
-    html[data-theme="dark"] nav .bg-surface-container-lowest {
-      background-color: rgba(16, 14, 12, 0.97) !important;
-    }
-    html[data-theme="dark"] nav .bg-surface-container-low,
-    html[data-theme="dark"] nav .hover\:bg-surface-container-low:hover {
-      background-color: rgba(24, 20, 17, 0.97) !important;
-    }
-    html[data-theme="dark"] nav .border-on-background {
-      border-color: rgba(243, 237, 225, 0.1) !important;
-    }
-    html[data-theme="dark"] nav .text-on-background {
-      color: var(--fg) !important;
-    }
-    html[data-theme="dark"] nav .text-on-surface,
-    html[data-theme="dark"] nav .text-on-surface-variant {
-      color: var(--muted) !important;
-    }
-    html[data-theme="dark"] nav .text-primary {
-      color: var(--red) !important;
-    }
-    html[data-theme="dark"] nav .border-on-surface {
-      border-color: rgba(243, 237, 225, 0.3) !important;
-    }
-    html[data-theme="dark"] nav .shadow-lg {
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7) !important;
-    }
-
-    html[data-theme="dark"] #mobile-menu {
-      background-color: rgba(12, 11, 10, 0.98) !important;
-      border-color: rgba(243, 237, 225, 0.1) !important;
-    }
-    html[data-theme="dark"] #mobile-menu .border-on-background {
-      border-color: rgba(243, 237, 225, 0.1) !important;
-    }
-    html[data-theme="dark"] #mobile-menu .text-on-background,
-    html[data-theme="dark"] #mobile-menu .text-on-surface,
-    html[data-theme="dark"] #mobile-menu .text-on-surface-variant {
-      color: var(--muted) !important;
-    }
-    html[data-theme="dark"] #mobile-menu .text-primary {
-      color: var(--red) !important;
-    }
-    html[data-theme="dark"] #mobile-menu .border-on-surface {
-      border-color: rgba(243, 237, 225, 0.3) !important;
-    }
+    /* Nav dark-mode theming (blur panel, text/border colours) now comes
+       entirely from the global token layer (site.css + tokens.css) and
+       Nav.astro's Tailwind classes -- no page-local override needed. */
 
     /* ── Fixed video background (always visible, tint adapts to theme) ── */
     .video-stage {
@@ -120,7 +60,7 @@ import Base from "@layouts/Base.astro";
       inset: 0;
       z-index: 0;
       overflow: hidden;
-      background: #000;
+      background: #000; /* fixed: video-stage placeholder, always black behind the footage */
     }
 
     #scrubVideo {
@@ -193,17 +133,18 @@ import Base from "@layouts/Base.astro";
     .hero-vignette {
       position: absolute;
       inset: 0;
+      /* fixed: dark scrim over the hero photo, same in both themes */
       background:
         radial-gradient(
           70% 60% at 50% 45%,
           transparent 30%,
-          rgba(8, 7, 6, 0.6) 100%
+          rgba(8, 7, 6, 0.6) 100% /* fixed: hero scrim */
         ),
         linear-gradient(
           180deg,
-          rgba(8, 7, 6, 0.45),
-          rgba(8, 7, 6, 0.2) 40%,
-          rgba(8, 7, 6, 0.85)
+          rgba(8, 7, 6, 0.45) /* fixed: top of scrim, over the title */,
+          rgba(8, 7, 6, 0.2) 40% /* fixed: midpoint, lets photo through */,
+          rgba(8, 7, 6, 0.85) /* fixed: bottom of scrim, over the caption */
         );
     }
     .hero-inner {
@@ -219,13 +160,13 @@ import Base from "@layouts/Base.astro";
       font-size: 12px;
       letter-spacing: 0.32em;
       text-transform: uppercase;
-      color: #d9a441;
+      color: #d9a441; /* fixed: hero chrome stays light over the photo in both themes */
       margin-bottom: 26px;
       padding: 8px 18px;
-      border: 1px solid rgba(243, 237, 225, 0.14);
+      border: 1px solid rgba(243, 237, 225, 0.14); /* fixed: hero chrome over photo */
       border-radius: 999px;
       backdrop-filter: blur(4px);
-      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55); /* fixed: hero chrome over photo */
     }
     .hero-title {
       font-family: var(--serif);
@@ -233,8 +174,8 @@ import Base from "@layouts/Base.astro";
       font-size: clamp(3.2rem, 11vw, 9rem);
       line-height: 1;
       letter-spacing: -0.01em;
-      color: #f3ede1;
-      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
+      color: #f3ede1; /* fixed: hero title stays light over the photo in both themes */
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55); /* fixed: hero chrome over photo */
     }
     .hero-title em {
       font-style: italic;
@@ -244,17 +185,17 @@ import Base from "@layouts/Base.astro";
       font-family: "Noto Serif SC", serif;
       font-size: clamp(1rem, 2.5vw, 1.8rem);
       font-weight: 200;
-      color: #e03c31;
+      color: #e03c31; /* fixed: hero CJK caption stays brand red over the photo in both themes */
       margin-top: 14px;
       letter-spacing: 0.18em;
-      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55); /* fixed: hero chrome over photo */
     }
     .hero-sub {
       margin-top: 28px;
       font-size: clamp(0.85rem, 1.3vw, 1rem);
-      color: rgba(243, 237, 225, 0.55);
+      color: rgba(243, 237, 225, 0.55); /* fixed: hero chrome over photo */
       letter-spacing: 0.04em;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6); /* fixed: hero chrome over photo */
     }
     .scroll-cue {
       position: absolute;
@@ -269,12 +210,12 @@ import Base from "@layouts/Base.astro";
       font-size: 10px;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: rgba(243, 237, 225, 0.55);
+      color: rgba(243, 237, 225, 0.55); /* fixed: hero chrome over photo */
     }
     .cue-line {
       width: 1px;
       height: 40px;
-      background: linear-gradient(#d9a441, transparent);
+      background: linear-gradient(#d9a441, transparent); /* fixed: photo */
       animation: cueSlide 2s ease-in-out infinite;
     }
     @keyframes cueSlide {
@@ -316,7 +257,7 @@ import Base from "@layouts/Base.astro";
       background: var(--card);
       backdrop-filter: blur(16px) saturate(1.1);
       -webkit-backdrop-filter: blur(16px) saturate(1.1);
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--card-shadow);
       opacity: 0;
       transform: translateY(32px);
       transition:
@@ -329,10 +270,6 @@ import Base from "@layouts/Base.astro";
       opacity: 1;
       transform: translateY(0);
     }
-    html[data-theme="dark"] .collection-head {
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
-    }
-
     .collection-index {
       display: block;
       font-family: var(--serif);
@@ -366,7 +303,7 @@ import Base from "@layouts/Base.astro";
       font-family: "Noto Serif SC", serif;
       font-size: 0.42em;
       font-weight: 300;
-      color: var(--red);
+      color: rgb(var(--c-primary));
       margin-top: 10px;
       letter-spacing: 0.1em;
     }
@@ -429,18 +366,15 @@ import Base from "@layouts/Base.astro";
     .acc-see-more-overlay {
       position: absolute;
       inset: 0;
-      background-color: rgba(0, 0, 0, 0.15);
+      background-color: var(--thumb-dim);
       transition: background-color 0.3s ease;
       pointer-events: none;
     }
-    html[data-theme="dark"] .acc-see-more-overlay {
-      background-color: rgba(0, 0, 0, 0.4);
-    }
     .acc-see-more:hover .acc-see-more-overlay {
-      background-color: rgba(224, 60, 49, 0.2);
+      background-color: rgb(var(--c-primary) / 0.2);
     }
     html[data-theme="dark"] .acc-see-more:hover .acc-see-more-overlay {
-      background-color: rgba(217, 164, 65, 0.32);
+      background-color: rgb(var(--c-on-primary-fixed-variant) / 0.32);
     }
     .acc-see-more-text {
       font-family: "Space Grotesk", sans-serif;
@@ -460,87 +394,12 @@ import Base from "@layouts/Base.astro";
       transform: rotate(90deg);
     }
 
-    /* ── Footer ── */
-    .page-footer {
-      position: relative;
-      z-index: 10;
-      min-height: 30vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      padding: 60px 24px;
-      text-align: center;
-      /* Light mode: frosted-glass panel over the footage */
-      background: rgba(246, 243, 242, 0.88);
-      backdrop-filter: blur(18px) saturate(1.1);
-      -webkit-backdrop-filter: blur(18px) saturate(1.1);
-      border-top: 1px solid rgba(28, 27, 27, 0.08);
-    }
-    html[data-theme="dark"] .page-footer {
-      background: linear-gradient(
-        180deg,
-        transparent,
-        rgba(8, 7, 6, 0.9) 40%,
-        #080706
-      );
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      border-top: none;
-      min-height: 44vh;
-    }
-    .footer-studio {
-      font-family: var(--serif);
-      font-size: clamp(1.8rem, 5vw, 3.5rem);
-      font-weight: 300;
-      letter-spacing: 0.25em;
-      color: var(--fg);
-    }
-    .footer-cjk {
-      font-family: "Noto Serif SC", serif;
-      font-size: 1.1rem;
-      font-weight: 200;
-      color: var(--red);
-      letter-spacing: 0.12em;
-    }
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 24px;
-      margin-top: 6px;
-    }
-    .footer-links a {
-      font-size: 11px;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.25s;
-    }
-    .footer-links a:hover {
-      color: var(--fg);
-    }
-    .footer-copy {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      opacity: 0.5;
-    }
-
-    /* ── Lightbox ── */
-    @keyframes lightboxBloom {
-      from {
-        transform: scale(0.88);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
+    /* NOTE: .page-footer/.footer-studio/.footer-cjk/.footer-links/.footer-copy
+       (the old local footer design) were dead CSS -- the real <footer> below
+       has used the shared Tailwind-class footer since the footer was
+       standardized sitewide, and no element on this page ever carried these
+       classes. Removed rather than migrated; verified zero consumers across
+       all 6 region-index pages before deleting. */
 
     /* ── Responsive ── */
     @media (max-width: 640px) {
@@ -590,7 +449,7 @@ import Base from "@layouts/Base.astro";
         width: 6px;
         height: 6px;
         border-radius: 50%;
-        background: #fff;
+        background: #fff; /* fixed: pagination dot stays white regardless of theme */
         opacity: 0.4;
         border: none;
         padding: 0;
@@ -609,9 +468,9 @@ import Base from "@layouts/Base.astro";
         letter-spacing: 0.12em;
         text-transform: uppercase;
         font-weight: 700;
-        color: #fff;
-        background: #e03c31;
-        border: 1.5px solid #e03c31;
+        color: rgb(var(--c-on-primary));
+        background: rgb(var(--c-primary));
+        border: 1.5px solid rgb(var(--c-primary));
         padding: 8px 22px;
         border-radius: 9999px;
         cursor: pointer;
@@ -828,13 +687,11 @@ import Base from "@layouts/Base.astro";
 
   <!-- Footer -->
   <footer
-    class="bg-on-background flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
+    class="bg-fixed-dark flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-6 w-full border-t-4 border-primary font-label-mono text-[13px] text-surface-variant uppercase tracking-widest"
     style="position:relative;z-index:10000;"
   >
     <div class="flex items-center gap-4 mb-4 md:mb-0">
-      <div
-        class="font-headline-md text-base text-surface-container-lowest italic"
-      >
+      <div class="font-headline-md text-base text-on-fixed-dark italic">
         STUDIO JUS10
       </div>
       <div class="font-cjk text-primary border-l border-surface-variant pl-4">

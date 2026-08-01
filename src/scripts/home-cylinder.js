@@ -161,12 +161,31 @@ export function initCylinder() {
     const CY = frontY + RY; // ellipse top sits on the floor line
     // Radius 100% = the floor line. Below it (smaller radius) is the reflection;
     // above it (>100%) are the cards. Coral sits just inside the top, the image
-    // ghost shows through the semi-transparent band, and it fades to the white
-    // floor lower down.
+    // ghost shows through the semi-transparent band, and it fades to the floor
+    // colour lower down. The fill reads from --room-reflection (see tokens.css)
+    // rather than a literal so the glow goes dark with the rest of the room.
+    // --room-reflection is pinned to equal --room-floor-far exactly — this is
+    // the mirror's own fill, painted here in JS, while --room-floor-far paints
+    // the physical floor in index.astro's CSS; any divergence between the two
+    // would show as a seam where the mirror meets the floor. color-mix()
+    // reproduces the original literals' alpha fades against that token without
+    // needing unwrapped RGB channels.
+    //
+    // The 97% coral stop below is the one part of this fill still a literal.
+    // It was left unconverted when the rest of this gradient was themed
+    // (see the "Theme the home gallery room" commit) — this is exactly the
+    // spot a raw literal in a runtime-painted gradient could hide from every
+    // prior automated check. Verified by rendering both themes (guard-
+    // hardening task): it reads as a deliberate warm spotlight ring under
+    // the figure in both, not a leftover near-white disc, so it's left as a
+    // literal and annotated rather than guessed into a token value with no
+    // designer sign-off.
     floorTint.style.background =
       `radial-gradient(ellipse ${Math.round(RX)}px ${Math.round(RY)}px at ${Math.round(cx)}px ${Math.round(CY)}px,` +
-      '#f4f1f0 0%,#f4f1f0 86%,rgba(244,241,240,0.5) 92%,' +
-      'rgba(206,116,109,0.52) 97%,rgba(246,243,242,0.65) 100%,transparent 103%)';
+      'var(--room-reflection) 0%,var(--room-reflection) 86%,' +
+      'color-mix(in srgb, var(--room-reflection) 50%, transparent) 92%,' +
+      'rgba(206,116,109,0.52) 97%,' + // fixed: deliberate coral highlight, constant across themes (see comment above)
+      'color-mix(in srgb, var(--room-floor-near) 65%, transparent) 100%,transparent 103%)';
   }
 
   function place(list) {
