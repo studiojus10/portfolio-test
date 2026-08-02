@@ -248,24 +248,27 @@ describe("drainOnce", () => {
     const box = path.join(dir, "drain-cleanup-fail");
     await ensureDirs(box);
     await enqueue(box, SAMPLE_MAIL, 1754006400000, "a1");
-    const { queueDir } = queuePaths(box);
+    const { queueDir, failedDir } = queuePaths(box);
+    const filePath = path.join(queueDir, "1754006400000-a1.json");
 
     const sentCalls = [];
     const errors = [];
     const log = { error: (msg) => errors.push(msg) };
 
-    // Deny write on queueDir so both fs.unlink (the normal cleanup) and the
-    // fs.rename fallback into failed/ fail with EACCES, simulating a spool
-    // gone read-only after the mail already went out.
-    await fs.chmod(queueDir, 0o555);
-    let result;
-    try {
-      result = await drainOnce(box, async (mail) => {
-        sentCalls.push(mail);
-      }, { now: 1754006400000, log });
-    } finally {
-      await fs.chmod(queueDir, 0o755);
-    }
+    // The send stub deletes the spool file out from under the drain, between
+    // readEnvelope and the post-send fs.unlink. The subsequent unlink then
+    // fails with ENOENT, and the failed/ rename fallback fails the same way
+    // for the same reason (the source is already gone). ENOENT is the kernel
+    // reporting "this path does not exist" — a check that runs before, and
+    // independently of, permission bits, so it fires identically at uid 0
+    // and uid 1000. A chmod-based denial does not: root bypasses DAC checks
+    // entirely, which is exactly why the previous version of this test (which
+    // used fs.chmod(queueDir, 0o555) to force EACCES) passed vacuously under
+    // the root-run CI container — the unlink it expected to fail, didn't.
+    const result = await drainOnce(box, async (mail) => {
+      sentCalls.push(mail);
+      await fs.unlink(filePath);
+    }, { now: 1754006400000, log });
 
     assert.equal(sentCalls.length, 1);
     assert.equal(result.sent, 1);
@@ -274,52 +277,77 @@ describe("drainOnce", () => {
 
     assert.ok(
       errors.some(
-        (m) => m.includes("1754006400000-a1") && m.includes("DELIVERED"),
+        (m) =>
+          m.includes("1754006400000-a1") &&
+          m.includes("DELIVERED") &&
+          m.includes("ENOENT"),
       ),
-      `expected a delivered-but-not-dequeued log, got: ${JSON.stringify(errors)}`,
+      `expected a delivered-but-not-dequeued log mentioning ENOENT, got: ${JSON.stringify(errors)}`,
     );
 
-    // The envelope is untouched: attempts/lastError were never written,
-    // proving the failure took the delivered branch, not the retry branch,
-    // which would have bumped attempts and made this item eligible to be
-    // sent again on a later pass.
-    const envelope = await readEnvelope(box, "1754006400000-a1.json");
-    assert.ok(envelope, "envelope should still be readable from queueDir");
-    assert.equal(envelope.attempts, 0);
-    assert.equal(envelope.lastError, null);
+    // Nothing was ever (re)persisted for this item: not in queueDir, and not
+    // in failedDir. The retry branch is the only code path that would write
+    // envelope.attempts/lastError back to disk — reaching it would recreate
+    // this file via writeAtomic(). Its continued absence from both
+    // directories is exactly the proof that the failure took the delivered
+    // branch, never the retry branch.
+    assert.equal(await readEnvelope(box, "1754006400000-a1.json"), null);
+    assert.deepEqual(await listQueued(box), []);
+    assert.deepEqual(await fs.readdir(failedDir), []);
   });
 
   it("isolates a per-item state-persistence failure so the pass continues instead of aborting", async () => {
     const box = path.join(dir, "drain-write-failure-isolation");
     await ensureDirs(box);
+    // Both items share the same `now` so both have nextAttemptAt <= now and
+    // are actually attempted this pass — b2 one tick later would be skipped
+    // by the "not due yet" check before ever reaching send, which would
+    // prove nothing about isolation.
     await enqueue(box, SAMPLE_MAIL, 1754006400000, "a1");
-    await enqueue(box, SAMPLE_MAIL, 1754006400001, "b2");
+    await enqueue(box, SAMPLE_MAIL, 1754006400000, "b2");
     const { queueDir } = queuePaths(box);
 
-    // Read-only queueDir: the retry path's writeAtomic() has to create a new
-    // `<id>.json.partial` file, which needs write+execute on the directory
-    // itself, not just on the file. This is the same mechanism ENOSPC or a
-    // yanked volume would trigger — the reproduced failure this test guards
-    // against. Send also fails, so both items take the retry branch and both
-    // hit the failing writeAtomic.
-    await fs.chmod(queueDir, 0o555);
-    let result;
-    try {
-      result = await drainOnce(box, async () => {
-        throw new Error("smtp down");
-      }, { now: 1754006400000, log: SILENT });
-    } finally {
-      await fs.chmod(queueDir, 0o755);
-    }
+    // writeAtomic() stages its write at `<id>.json.partial` by opening that
+    // path with fs.open(path, "w"). Pre-creating that exact path as a
+    // directory, for item a1 only, makes the open fail with EISDIR — the
+    // kernel refusing to open a directory for writing, a check that has
+    // nothing to do with permission bits. It fires identically at uid 0 and
+    // uid 1000, unlike the previous fs.chmod(queueDir, 0o555) fault, which
+    // root bypasses outright (root ignores DAC permission checks), so the
+    // old version of this test asserted on a write failure that never
+    // happened when CI ran as root.
+    await fs.mkdir(path.join(queueDir, "1754006400000-a1.json.partial"));
 
-    // Without per-item isolation this throws out of drainOnce after item A's
-    // writeAtomic fails, and item B (behind it in FIFO order) is never even
-    // read. With isolation, both are attempted, both fail to persist, and
-    // the pass returns normally.
-    assert.equal(result.skipped, 2);
+    const result = await drainOnce(box, async () => {
+      throw new Error("smtp down");
+    }, { now: 1754006400000, log: SILENT });
+
+    // Item a1: send fails (no fault there), so it takes the retry branch,
+    // whose writeAtomic() hits EISDIR on the pre-created directory. Without
+    // per-item isolation that throw would escape drainOnce entirely and item
+    // b2 — behind a1 in FIFO order — would never even be read. With
+    // isolation, the outer catch turns it into a skip and the pass moves on.
+    assert.equal(result.skipped, 1);
+    // Item b2: untouched by the fault, so send fails and writeAtomic
+    // succeeds — an ordinary retry, proving the pass actually reached and
+    // processed the item behind the failing one rather than stopping short.
+    assert.equal(result.retried, 1);
     assert.equal(result.sent, 0);
-    assert.equal(result.retried, 0);
     assert.equal(result.failed, 0);
+
+    const b2 = await readEnvelope(box, "1754006400000-b2.json");
+    assert.equal(b2.attempts, 1);
+    assert.equal(b2.lastError, "smtp down");
+
+    // a1's in-memory attempts bump was never persisted (the write that would
+    // have done so is what failed), so it stays at attempts: 0 and eligible
+    // for the very next pass rather than being lost.
+    const a1 = await readEnvelope(box, "1754006400000-a1.json");
+    assert.equal(a1.attempts, 0);
+    assert.deepEqual(await listQueued(box), [
+      "1754006400000-a1.json",
+      "1754006400000-b2.json",
+    ]);
   });
 
   it("keys retry state off the on-disk filename, not the envelope's own id field, when they disagree", async () => {
@@ -585,5 +613,45 @@ describe("Dockerfile regression guard", () => {
           "(directly or transitively) from server.js",
       );
     }
+  });
+});
+
+describe("uid-independence guard", () => {
+  it("has no chmod-based fault injection left in this file", async () => {
+    // Forgejo CI runs this test suite as root. Root bypasses POSIX (DAC)
+    // permission checks outright, so fs.chmod(dir, 0o555) followed by an
+    // operation that "should" now fail with EACCES denies nothing: the
+    // operation quietly succeeds, the code path under test never runs, and
+    // the assertion built on top of it passes for a reason unrelated to what
+    // it claims to prove. Two tests in this file relied on exactly that
+    // (chmod'ing queueDir to force unlink/writeAtomic failures) and passed
+    // vacuously in CI while failing the same assertions under
+    // `unshare -r node --test`, which simulates uid 0 without needing real
+    // root. They were rewritten to use faults the kernel enforces regardless
+    // of uid (ENOENT, EISDIR). This guard exists so a future permission-based
+    // fault, added and verified only as a non-root developer, fails loudly
+    // here instead of shipping green and silently no-op'ing in CI.
+    //
+    // Comments (including this one) are stripped before scanning, so prose
+    // that names "chmod" while explaining this history — on this line and
+    // the two above — can't trip the guard on itself. What's checked is
+    // actual code: a call shaped like `chmod(` or `.chmod(` outside a
+    // comment. That's uid-independent too — it's a static text check, not a
+    // filesystem operation, so it behaves identically for every reader of
+    // this file no matter which uid runs it.
+    const sourceText = await fs.readFile(import.meta.filename, "utf8");
+    const withoutComments = sourceText
+      .replace(/\/\*[\s\S]*?\*\//g, "")
+      .replace(/\/\/.*$/gm, "");
+
+    assert.ok(
+      !/\bchmod\s*\(/.test(withoutComments),
+      "found a permission-changing call outside a comment in " +
+        "queue.test.js — permission-based fault injection is vacuous " +
+        "under root, which is how Forgejo CI runs this suite; use a " +
+        "uid-independent fault instead (e.g. ENOENT from deleting the " +
+        "target file, or EISDIR from pre-creating the target path as a " +
+        "directory)",
+    );
   });
 });
