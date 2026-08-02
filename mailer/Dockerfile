@@ -10,10 +10,14 @@ LABEL org.opencontainers.image.title="studiojus10-mailer" \
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
 
-COPY server.js ./
+COPY server.js queue.js ./
 
 ENV NODE_ENV=production \
     PORT=3000
 EXPOSE 3000
+
+# A fresh named volume mounted at /data inherits this ownership, so the local
+# compose setup needs no host-side preparation.
+RUN mkdir -p /data/queue /data/failed && chown -R node:node /data
 USER node
 CMD ["node", "server.js"]

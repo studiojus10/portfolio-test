@@ -61,3 +61,6 @@ coverage/
 
 # Media served from a mounted volume — not tracked in git, not baked into the image
 /public/assets/
+
+# Local (non-Docker) mailer spool — see "Just the mailer (no Docker)" in mailer/README.md
+/mailer/data/

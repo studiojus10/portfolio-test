@@ -9,7 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check && biome check src/scripts tests *.js && node scripts/check-raw-colors.mjs",
+    "check": "astro check && biome check src/scripts tests *.js && node scripts/check-raw-colors.mjs && npm --prefix mailer test",
     "format": "biome format --write src/scripts tests *.js && prettier --write \"src/**/*.astro\"",
     "test": "playwright test"
   },

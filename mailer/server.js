@@ -12,12 +12,21 @@
 //   MAIL_FROM   From header  (default: "Studio Jus10 <SMTP_USER>")
 //   PORT        listen port                        (default: 3000)
 //   RATE_LIMIT_MAX / RATE_LIMIT_WINDOW_MS          (default: 5 per 10 min per IP)
+//   QUEUE_DIR       spool root                     (default: /data)
+//   QUEUE_POLL_MS   worker tick                    (default: 15000)
+//   MAX_ATTEMPTS    tries before giving up         (default: 20)
+//   QUEUE_STALE_SEC age at which health goes false (default: 3600)
+//
+// Submissions are spooled to disk before the response is sent and delivered by
+// a background worker (see queue.js), so an SMTP outage or a container
+// redeploy cannot lose mail. A 200 means accepted, not yet delivered.
 //
 // With no SMTP_USER/SMTP_PASS it runs in LOG-ONLY mode: submissions are accepted
 // and logged but not delivered — handy for local `docker compose up` without creds.
 
 import http from "node:http";
 import nodemailer from "nodemailer";
+import { drainOnce, enqueue, ensureDirs, stats } from "./queue.js";
 
 const env = process.env;
 const PORT = Number(env.PORT || 3000);
@@ -30,6 +39,10 @@ const MAIL_FROM =
   env.MAIL_FROM || (SMTP_USER ? `Studio Jus10 <${SMTP_USER}>` : "Studio Jus10");
 const RATE_LIMIT_MAX = Number(env.RATE_LIMIT_MAX || 5);
 const RATE_LIMIT_WINDOW_MS = Number(env.RATE_LIMIT_WINDOW_MS || 10 * 60 * 1000);
+const QUEUE_DIR = env.QUEUE_DIR || "/data";
+const QUEUE_POLL_MS = Number(env.QUEUE_POLL_MS || 15_000);
+const MAX_ATTEMPTS = Number(env.MAX_ATTEMPTS || 20);
+const QUEUE_STALE_SEC = Number(env.QUEUE_STALE_SEC || 3600);
 const MAX_BODY_BYTES = 10_000;
 
 const hasCreds = Boolean(SMTP_USER && SMTP_PASS);
@@ -82,7 +95,18 @@ function sendJson(res, status, obj) {
 // --- server ----------------------------------------------------------------
 const server = http.createServer((req, res) => {
   if (req.method === "GET" && req.url === "/api/health") {
-    return sendJson(res, 200, { ok: true, mode: hasCreds ? "smtp" : "log-only" });
+    return stats(QUEUE_DIR, Date.now()).then(
+      (queue) =>
+        sendJson(res, 200, {
+          ok: queue.failed === 0 && queue.oldestAgeSec <= QUEUE_STALE_SEC,
+          mode: hasCreds ? "smtp" : "log-only",
+          ...queue,
+        }),
+      (err) => {
+        console.error("[mailer] health check failed:", (err && err.message) || err);
+        return sendJson(res, 500, { ok: false, error: "Queue unreadable" });
+      },
+    );
   }
   if (req.url !== "/api/contact") {
     return sendJson(res, 404, { success: false, error: "Not found" });
@@ -142,32 +166,73 @@ const server = http.createServer((req, res) => {
     }
 
     try {
-      const info = await transport.sendMail({
-        from: MAIL_FROM,
-        to: MAIL_TO,
-        replyTo: `${name} <${email}>`,
-        subject: `Portfolio inquiry from ${name}`,
-        text: `${message}\n\n— ${name} (${email})`,
-      });
-      if (!hasCreds) {
-        console.log(
-          "[mailer] LOG-ONLY message:",
-          info.message ? info.message.toString() : info,
-        );
-      }
+      await enqueue(
+        QUEUE_DIR,
+        {
+          from: MAIL_FROM,
+          to: MAIL_TO,
+          replyTo: `${name} <${email}>`,
+          subject: `Portfolio inquiry from ${name}`,
+          text: `${message}\n\n— ${name} (${email})`,
+        },
+        Date.now(),
+      );
       return sendJson(res, 200, { success: true });
     } catch (err) {
-      console.error("[mailer] send failed:", (err && err.message) || err);
-      return sendJson(res, 502, {
+      // The spool is unwritable (volume missing, disk full, bad permissions).
+      // This is the only path where the message was genuinely not retained.
+      console.error("[mailer] enqueue failed:", (err && err.message) || err);
+      return sendJson(res, 503, {
         success: false,
-        error: "Could not send message. Please email directly.",
+        error: "Could not accept message. Please email directly.",
       });
     }
   });
 });
 
+// --- delivery worker -------------------------------------------------------
+async function deliver(mail) {
+  const info = await transport.sendMail(mail);
+  if (!hasCreds) {
+    console.log(
+      "[mailer] LOG-ONLY message:",
+      info.message ? info.message.toString() : info,
+    );
+  }
+}
+
+let draining = false;
+async function drainTick() {
+  if (draining) return; // a slow pass must not overlap the next tick
+  draining = true;
+  try {
+    // Re-run on every tick, not just at startup: if the spool root vanishes
+    // (unmounted volume, host maintenance) the process doesn't exit — it
+    // just serves 503s — so a returning volume needs this to recover without
+    // a restart.
+    await ensureDirs(QUEUE_DIR);
+    const result = await drainOnce(QUEUE_DIR, deliver, {
+      now: Date.now(),
+      maxAttempts: MAX_ATTEMPTS,
+    });
+    if (result.sent || result.failed) {
+      console.log(
+        `[mailer] drained: ${result.sent} sent, ${result.retried} retrying, ${result.failed} failed`,
+      );
+    }
+  } catch (err) {
+    console.error("[mailer] drain pass failed:", (err && err.message) || err);
+  } finally {
+    draining = false;
+  }
+}
+
+await ensureDirs(QUEUE_DIR);
+setInterval(drainTick, QUEUE_POLL_MS).unref();
+drainTick();
+
 server.listen(PORT, () => {
   console.log(
-    `[mailer] listening on :${PORT} (mode: ${hasCreds ? "smtp" : "log-only"}, to: ${MAIL_TO || "unset"})`,
+    `[mailer] listening on :${PORT} (mode: ${hasCreds ? "smtp" : "log-only"}, to: ${MAIL_TO || "unset"}, queue: ${QUEUE_DIR})`,
   );
 });

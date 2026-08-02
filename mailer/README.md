@@ -9,7 +9,9 @@ browser ──POST /api/contact──▶ nginx (web) ──proxy──▶ mailer
 ```
 
 - **Only dependency:** `nodemailer`.
-- **No database, no state** beyond an in-memory rate-limit counter.
+- **No database.** Durable state is a directory of JSON files on disk (see
+  "Durability" below) plus an in-memory rate-limit counter that still resets
+  on every redeploy.
 - Lives on the internal compose network as `mailer`; `expose: 3000` (never
   published to the host).
 
@@ -20,7 +22,7 @@ browser ──POST /api/contact──▶ nginx (web) ──proxy──▶ mailer
 | Method | Path           | Purpose                                             |
 | ------ | -------------- | --------------------------------------------------- |
 | `POST` | `/api/contact` | Submit an inquiry. JSON body (see below).           |
-| `GET`  | `/api/health`  | Health check → `{"ok":true,"mode":"smtp\|log-only"}` |
+| `GET`  | `/api/health`  | Health check → `{"ok":true,"mode":"smtp\|log-only","queued":0,"failed":0,"oldestAgeSec":0}` |
 
 **Request body** (`application/json`):
 
@@ -28,8 +30,10 @@ browser ──POST /api/contact──▶ nginx (web) ──proxy──▶ mailer
 { "name": "Ada", "email": "ada@example.com", "message": "Hello", "_gotcha": "" }
 ```
 
-**Responses:** `200 {"success":true}` on send · `400` invalid input ·
-`429` rate-limited · `413` body too large · `502` SMTP send failed.
+**Responses:** `200 {"success":true}` accepted (queued, not yet delivered) ·
+`400` invalid input · `429` rate-limited · `413` body too large · `503` the
+spool itself was unwritable (the only response where the message was not
+retained).
 
 ---
 
@@ -49,6 +53,10 @@ from `.env`):
 | `PORT`                 | `3000`                       | listen port                                  |
 | `RATE_LIMIT_MAX`       | `5`                          | requests per window per IP                   |
 | `RATE_LIMIT_WINDOW_MS` | `600000`                     | rate-limit window (10 min)                   |
+| `QUEUE_DIR`            | `/data`                     | spool root — needs a persistent volume in production |
+| `QUEUE_POLL_MS`        | `15000`                     | worker tick interval                         |
+| `MAX_ATTEMPTS`         | `20`                        | delivery attempts before moving an item to `failed/` |
+| `QUEUE_STALE_SEC`      | `3600`                      | oldest queued age at which `/api/health` reports `ok: false` |
 
 > **Log-only mode:** with `SMTP_USER`/`SMTP_PASS` unset, the service accepts and
 > logs submissions but does **not** deliver them. Handy for local development —
@@ -93,11 +101,16 @@ Without a `.env`, the mailer starts in log-only mode (submissions are logged in
 
 ### Just the mailer (no Docker)
 
+`QUEUE_DIR` defaults to `/data`, which this process has no permission to
+create outside a container — set it to a local path instead:
+
 ```sh
 cd mailer
 npm install
-SMTP_USER=you@gmail.com SMTP_PASS='app password' npm start   # listens on :3000
+QUEUE_DIR=./data SMTP_USER=you@gmail.com SMTP_PASS='app password' npm start   # listens on :3000
 ```
+
+`./data` (under `mailer/`) is gitignored — safe to leave in place between runs.
 
 ---
 
@@ -133,12 +146,50 @@ services:
       - .env
     expose:
       - "3000"
+    volumes:
+      - /srv/studiojus10/mailer-queue:/data
     restart: unless-stopped
 ```
+
+That bind mount (or a named volume — anything that outlives the container) is
+not optional; see "Durability" below for why.
 
 The nginx image already contains the `/api/` → `mailer:3000` proxy (see
 `nginx.conf`), so no extra web config is needed — just make sure both services
 share a compose network (the default network does).
+
+---
+
+## Durability
+
+Submissions are written to `$QUEUE_DIR/queue` (default `/data/queue`) before the
+HTTP response is sent, then delivered by a worker that retries with capped
+exponential backoff — 30s, 1m, 2m, 5m, 15m, 30m, then hourly, up to
+`MAX_ATTEMPTS` (default 20, roughly 14 hours). A `200` therefore means
+*accepted*, not *delivered*; the only failure the visitor sees is `503`, which
+means the spool itself was unwritable.
+
+Items that exhaust their attempts move to `$QUEUE_DIR/failed` and stay there.
+Nothing is deleted automatically — clearing that directory is a manual action.
+
+`GET /api/health` reports `queued`, `failed`, and `oldestAgeSec`, and returns
+`ok: false` once anything has failed or the oldest queued item passes
+`QUEUE_STALE_SEC` (default 3600). Point uptime monitoring at it.
+
+**The queue needs a persistent volume.** Without one the spool lives in the
+container's writable layer and is lost on every redeploy — which is exactly
+what this design exists to prevent.
+
+**Run exactly one mailer against a given spool.** There is no claim or lock
+on queue files — two drainers pointed at the same directory will each deliver
+every queued item (verified), i.e. duplicate mail to the recipient.
+
+**`/api/health` returns HTTP `200` even when the body says `"ok":false`.** A
+monitor that only checks the status code will stay green through an SMTP
+outage or a full `failed/` directory; it has to assert on the JSON body.
+Also note `ok:false` is sticky once anything lands in `failed/` — nothing
+auto-deletes those files, so the endpoint stays unhealthy until an operator
+clears the directory, a deliberate manual action.
 
 ---
 
@@ -159,7 +210,8 @@ share a compose network (the default network does).
 | Symptom                                   | Likely cause / fix                                                                 |
 | ----------------------------------------- | ---------------------------------------------------------------------------------- |
 | `/api/health` shows `"mode":"log-only"`   | `SMTP_USER`/`SMTP_PASS` not reaching the container — check `.env` and `env_file`.   |
-| Form returns `502`                        | SMTP rejected the send — usually a wrong/expired app password or 2FA not enabled.   |
+| Form returns `503`                        | The spool write itself failed — volume unmounted, disk full, or bad permissions on `QUEUE_DIR`. This is the only response where the message was not retained. |
 | Form returns `429`                        | Rate limit hit; wait, or raise `RATE_LIMIT_MAX`.                                    |
 | `502`/`504` from nginx on `/api/contact`  | mailer container not running or not on the same network as web.                     |
+| `/api/health` body has `"ok":false` (HTTP status is still `200`) | Either `failed` > 0 — read `lastError` in the files under `$QUEUE_DIR/failed`, fix the underlying cause (bad app password, wrong `MAIL_TO`), then clear the directory manually — or `oldestAgeSec` exceeds `QUEUE_STALE_SEC`, meaning the worker is stalled or SMTP has been down a while; check `docker compose logs mailer`. |
 | Nothing arrives but health is `smtp`      | Check spam; confirm `MAIL_TO`; read `docker compose logs mailer` for send errors.   |

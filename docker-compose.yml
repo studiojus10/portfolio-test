@@ -37,4 +37,9 @@ services:
         required: false
     expose:
       - "3000"
+    volumes:
+      - mailer-queue:/data
     restart: unless-stopped
+
+volumes:
+  mailer-queue:
