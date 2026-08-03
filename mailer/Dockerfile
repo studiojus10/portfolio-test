@@ -46,6 +46,11 @@ USER 99:100
 # anything sits in failed/, nothing clears it automatically, and no restart
 # would fix it; a single undeliverable message would pin the container unhealthy
 # forever. Queue health is a monitoring concern on /api/health.
+#
+# 127.0.0.1, not localhost: busybox wget tries the IPv6 loopback first. Node
+# binds :: by default so localhost happens to work here, but the web image's
+# nginx binds IPv4 only and its identical-looking probe failed -- don't leave
+# this one depending on a default that differs between the two images.
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD wget -qO /dev/null http://localhost:3000/api/health || exit 1
+  CMD wget -qO /dev/null http://127.0.0.1:3000/api/health || exit 1
 CMD ["node", "server.js"]

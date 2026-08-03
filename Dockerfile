@@ -28,5 +28,9 @@ COPY --from=build /app/dist /usr/share/nginx/html
 # contact form. Fail the build instead of shipping that image.
 RUN nginx -t
 EXPOSE 80
+# 127.0.0.1, not localhost: busybox wget resolves localhost to the IPv6
+# loopback first, and nginx's `listen 80` binds 0.0.0.0 only -- so the probe
+# got "connection refused" on ::1 and the container sat unhealthy while
+# serving traffic perfectly well.
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD wget -qO /dev/null http://localhost/ || exit 1
+  CMD wget -qO /dev/null http://127.0.0.1/ || exit 1
