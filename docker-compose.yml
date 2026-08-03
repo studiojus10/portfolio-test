@@ -25,6 +25,7 @@ services:
       - "8080:80"
     volumes:
       - ./public/assets:/usr/share/nginx/html/assets:ro
+      - mailer-queue:/data
     depends_on:
       - mailer
     restart: unless-stopped
@@ -32,6 +33,15 @@ services:
   mailer:
     build: ./mailer
     image: studiojus10-mailer
+    # Matches production's Unraid compose (and mailer/Dockerfile's own image
+    # default -- this makes that explicit rather than relying on it silently).
+    # Without it, the mailer would run as uid 1000, which is neither the
+    # owner of nor in the group of the 0o775 inbox/ nginx (uid 101, group
+    # 100) needs to share -- so a local `docker compose up` would look like
+    # it exercises the mailer-down fallback (the volume below is mounted into
+    # both services) while actually EACCES'ing on every write, silently
+    # doing nothing.
+    user: "99:100"
     env_file:
       - path: .env
         required: false

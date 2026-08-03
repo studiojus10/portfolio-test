@@ -16,6 +16,7 @@
 //   QUEUE_POLL_MS   worker tick                    (default: 15000)
 //   MAX_ATTEMPTS    tries before giving up         (default: 20)
 //   QUEUE_STALE_SEC age at which health goes false (default: 3600)
+//   PROMOTE_MAX_BYTES  cap on a promoted inbox file (default: 20000)
 //
 // Submissions are spooled to disk before the response is sent and delivered by
 // a background worker (see queue.js), so an SMTP outage or a container
@@ -26,7 +27,15 @@
 
 import http from "node:http";
 import nodemailer from "nodemailer";
-import { drainOnce, enqueue, ensureDirs, stats } from "./queue.js";
+import {
+  drainOnce,
+  enqueue,
+  ensureDirs,
+  promoteInbox,
+  queuePaths,
+  stats,
+} from "./queue.js";
+import { isHoneypot, renderMail, validateSubmission } from "./validate.js";
 
 const env = process.env;
 const PORT = Number(env.PORT || 3000);
@@ -43,6 +52,7 @@ const QUEUE_DIR = env.QUEUE_DIR || "/data";
 const QUEUE_POLL_MS = Number(env.QUEUE_POLL_MS || 15_000);
 const MAX_ATTEMPTS = Number(env.MAX_ATTEMPTS || 20);
 const QUEUE_STALE_SEC = Number(env.QUEUE_STALE_SEC || 3600);
+const PROMOTE_MAX_BYTES = Number(env.PROMOTE_MAX_BYTES || 20_000);
 const MAX_BODY_BYTES = 10_000;
 
 const hasCreds = Boolean(SMTP_USER && SMTP_PASS);
@@ -80,7 +90,6 @@ setInterval(() => {
 }, 60_000).unref();
 
 // --- helpers ---------------------------------------------------------------
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const oneLine = (v) => String(v ?? "").replace(/[\r\n]+/g, " ").trim();
 
 function sendJson(res, status, obj) {
@@ -143,7 +152,7 @@ const server = http.createServer((req, res) => {
     }
 
     // Honeypot: bots fill hidden fields. Pretend success, deliver nothing.
-    if (oneLine(data._gotcha)) {
+    if (isHoneypot(data)) {
       return sendJson(res, 200, { success: true });
     }
 
@@ -154,27 +163,15 @@ const server = http.createServer((req, res) => {
       });
     }
 
-    const name = oneLine(data.name).slice(0, 100);
-    const email = oneLine(data.email).slice(0, 200);
-    const message = String(data.message ?? "").trim().slice(0, 5000);
-
-    if (!name || !EMAIL_RE.test(email) || !message) {
-      return sendJson(res, 400, {
-        success: false,
-        error: "Please provide a name, a valid email, and a message.",
-      });
+    const submission = validateSubmission(data);
+    if (!submission.ok) {
+      return sendJson(res, 400, { success: false, error: submission.error });
     }
 
     try {
       await enqueue(
         QUEUE_DIR,
-        {
-          from: MAIL_FROM,
-          to: MAIL_TO,
-          replyTo: `${name} <${email}>`,
-          subject: `Portfolio inquiry from ${name}`,
-          text: `${message}\n\n— ${name} (${email})`,
-        },
+        renderMail(submission, { from: MAIL_FROM, to: MAIL_TO }),
         Date.now(),
       );
       return sendJson(res, 200, { success: true });
@@ -211,6 +208,28 @@ async function drainTick() {
     // just serves 503s — so a returning volume needs this to recover without
     // a restart.
     await ensureDirs(QUEUE_DIR);
+    // Before draining, not after: a submission nginx accepted seconds ago can
+    // then be delivered without waiting for the next interval.
+    const promoted = await promoteInbox(
+      QUEUE_DIR,
+      { from: MAIL_FROM, to: MAIL_TO },
+      { now: Date.now(), maxBytes: PROMOTE_MAX_BYTES },
+    );
+    // Widened to include `skipped`: a torn/unreadable inbox file or a
+    // per-item promotion error leaves promoted/dropped/failed all at 0, so
+    // the old condition (promoted || failed) silently swallowed the only
+    // sign anything was wrong -- 40 files could sit stuck in inbox/,
+    // reattempted forever, with nothing in the log to say so.
+    if (
+      promoted.promoted ||
+      promoted.dropped ||
+      promoted.failed ||
+      promoted.skipped
+    ) {
+      console.log(
+        `[mailer] promoted: ${promoted.promoted} queued, ${promoted.dropped} dropped, ${promoted.failed} failed, ${promoted.skipped} skipped`,
+      );
+    }
     const result = await drainOnce(QUEUE_DIR, deliver, {
       now: Date.now(),
       maxAttempts: MAX_ATTEMPTS,
@@ -233,6 +252,6 @@ drainTick();
 
 server.listen(PORT, () => {
   console.log(
-    `[mailer] listening on :${PORT} (mode: ${hasCreds ? "smtp" : "log-only"}, to: ${MAIL_TO || "unset"}, queue: ${QUEUE_DIR})`,
+    `[mailer] listening on :${PORT} (mode: ${hasCreds ? "smtp" : "log-only"}, to: ${MAIL_TO || "unset"}, queue: ${QUEUE_DIR}, inbox: ${queuePaths(QUEUE_DIR).inboxDir})`,
   );
 });

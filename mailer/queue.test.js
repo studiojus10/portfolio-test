@@ -6,11 +6,13 @@ import { after, before, describe, it } from "node:test";
 
 import {
   backoffMs,
+  chmodBestEffort,
   drainOnce,
   enqueue,
   ensureDirs,
   listQueued,
   makeId,
+  promoteInbox,
   queuePaths,
   readEnvelope,
   stats,
@@ -72,6 +74,41 @@ describe("enqueue", () => {
       "1754006400001-aa",
       "1754006400002-ff",
     ]);
+  });
+});
+
+describe("chmodBestEffort", () => {
+  // ENOENT (no such file) fires identically at uid 0 and any other uid --
+  // it's the kernel rejecting a path that doesn't exist, before permission
+  // bits ever enter into it -- so this is a uid-independent stand-in for the
+  // EPERM a non-owning mailer process would hit against a directory Docker
+  // created as root. Using a genuinely-missing path also means this test
+  // contains no `chmod(` fault-injection call of its own: it exercises the
+  // real failure branch of the real function against a path nothing ever
+  // created.
+  it("swallows a chmod failure and logs a warning naming the path and the error, instead of throwing", async () => {
+    const warnings = [];
+    const log = { warn: (msg) => warnings.push(msg), error() {} };
+    const missing = path.join(dir, "chmod-best-effort", "never-created");
+
+    await assert.doesNotReject(() => chmodBestEffort(missing, 0o775, log));
+
+    assert.equal(warnings.length, 1);
+    assert.ok(warnings[0].includes(missing), warnings[0]);
+    assert.ok(/ENOENT/.test(warnings[0]), warnings[0]);
+  });
+
+  it("does not log anything when the chmod succeeds", async () => {
+    const box = path.join(dir, "chmod-best-effort-ok");
+    await fs.mkdir(box, { recursive: true });
+    const warnings = [];
+    const log = { warn: (msg) => warnings.push(msg), error() {} };
+
+    await chmodBestEffort(box, 0o775, log);
+
+    assert.deepEqual(warnings, []);
+    const mode = (await fs.stat(box)).mode & 0o777;
+    assert.equal(mode, 0o775);
   });
 });
 
@@ -405,6 +442,7 @@ describe("stats", () => {
     assert.deepEqual(await stats(box, 1754006400000), {
       queued: 0,
       failed: 0,
+      inbox: 0,
       oldestAgeSec: 0,
     });
   });
@@ -423,7 +461,29 @@ describe("stats", () => {
 
     // 412s after the oldest queued item arrived.
     const result = await stats(box, 1754006400000 + 412_000);
-    assert.deepEqual(result, { queued: 2, failed: 1, oldestAgeSec: 412 });
+    assert.deepEqual(result, { queued: 2, failed: 1, inbox: 0, oldestAgeSec: 412 });
+  });
+
+  // Regression coverage for the concrete failure this closes: 40 inbox
+  // submissions spooled during an outage where every promotion attempt then
+  // throws (result.skipped > 0, promoted/failed both stay 0) leave
+  // queued:0, failed:0 -- indistinguishable from "nothing to do" -- unless
+  // stats() also reports what's still sitting in inbox/.
+  it("counts inbox items separately from queued and failed, and ignores .partial files", async () => {
+    const box = path.join(dir, "stats-inbox");
+    await ensureDirs(box);
+    const { inboxDir } = queuePaths(box);
+    await fs.writeFile(path.join(inboxDir, "1754006400000-a.json"), "{}");
+    await fs.writeFile(path.join(inboxDir, "1754006400001-b.json"), "{}");
+    await fs.writeFile(
+      path.join(inboxDir, "1754006400002-c.json.partial"),
+      "{ half-written",
+    );
+
+    const result = await stats(box, 1754006400000);
+    assert.equal(result.inbox, 2);
+    assert.equal(result.queued, 0);
+    assert.equal(result.failed, 0);
   });
 });
 
@@ -652,6 +712,251 @@ describe("uid-independence guard", () => {
         "uid-independent fault instead (e.g. ENOENT from deleting the " +
         "target file, or EISDIR from pre-creating the target path as a " +
         "directory)",
+    );
+  });
+});
+
+const MAIL_CONFIG = {
+  from: "Studio Jus10 <studiojus10@gmail.com>",
+  to: "studiojus10@gmail.com",
+};
+
+function inboxFile(body, receivedAt = "2025-08-01T00:00:00.000Z") {
+  return JSON.stringify({ receivedAt, ip: "203.0.113.7", body });
+}
+
+const GOOD_BODY = {
+  name: "Jane Doe",
+  email: "jane@example.com",
+  message: "Hello",
+};
+
+describe("promoteInbox", () => {
+  it("turns a valid inbox file into a queued envelope and removes it", async () => {
+    const box = path.join(dir, "promote-ok");
+    await ensureDirs(box);
+    const { inboxDir } = queuePaths(box);
+    await fs.writeFile(path.join(inboxDir, "1754006400000-aaa.json"), inboxFile(GOOD_BODY));
+
+    const result = await promoteInbox(box, MAIL_CONFIG, {
+      now: 1754006400000,
+      log: SILENT,
+    });
+
+    assert.equal(result.promoted, 1);
+    assert.deepEqual(await fs.readdir(inboxDir), []);
+
+    const queued = await listQueued(box);
+    assert.equal(queued.length, 1);
+    const envelope = await readEnvelope(box, queued[0]);
+    assert.equal(envelope.mail.subject, "Portfolio inquiry from Jane Doe");
+    assert.equal(envelope.mail.replyTo, "Jane Doe <jane@example.com>");
+    assert.equal(envelope.mail.to, MAIL_CONFIG.to);
+    assert.equal(envelope.attempts, 0);
+  });
+
+  it("drops a honeypot submission without queueing it", async () => {
+    const box = path.join(dir, "promote-honeypot");
+    await ensureDirs(box);
+    const { inboxDir } = queuePaths(box);
+    await fs.writeFile(
+      path.join(inboxDir, "1754006400000-bbb.json"),
+      inboxFile({ ...GOOD_BODY, _gotcha: "bot" }),
+    );
+
+    const result = await promoteInbox(box, MAIL_CONFIG, {
+      now: 1754006400000,
+      log: SILENT,
+    });
+
+    assert.equal(result.dropped, 1);
+    assert.equal(result.promoted, 0);
+    assert.deepEqual(await fs.readdir(inboxDir), []);
+    assert.deepEqual(await listQueued(box), []);
+  });
+
+  it("moves an invalid submission to failed/", async () => {
+    const box = path.join(dir, "promote-invalid");
+    await ensureDirs(box);
+    const { inboxDir, failedDir } = queuePaths(box);
+    await fs.writeFile(
+      path.join(inboxDir, "1754006400000-ccc.json"),
+      inboxFile({ ...GOOD_BODY, email: "not-an-email" }),
+    );
+
+    const result = await promoteInbox(box, MAIL_CONFIG, {
+      now: 1754006400000,
+      log: SILENT,
+    });
+
+    assert.equal(result.failed, 1);
+    assert.deepEqual(await fs.readdir(inboxDir), []);
+    assert.deepEqual(await fs.readdir(failedDir), ["1754006400000-ccc.json"]);
+    assert.deepEqual(await listQueued(box), []);
+  });
+
+  it("skips an unparseable file, leaves it in place, and continues the pass", async () => {
+    const box = path.join(dir, "promote-corrupt");
+    await ensureDirs(box);
+    const { inboxDir } = queuePaths(box);
+    await fs.writeFile(path.join(inboxDir, "1754006400000-ddd.json"), "{ torn");
+    await fs.writeFile(path.join(inboxDir, "1754006400001-eee.json"), inboxFile(GOOD_BODY));
+
+    const result = await promoteInbox(box, MAIL_CONFIG, {
+      now: 1754006400001,
+      log: SILENT,
+    });
+
+    assert.equal(result.promoted, 1);
+    assert.equal(result.skipped, 1);
+    assert.deepEqual(await fs.readdir(inboxDir), ["1754006400000-ddd.json"]);
+    assert.equal((await listQueued(box)).length, 1);
+  });
+
+  it("ignores .partial files", async () => {
+    const box = path.join(dir, "promote-partial");
+    await ensureDirs(box);
+    const { inboxDir } = queuePaths(box);
+    await fs.writeFile(
+      path.join(inboxDir, "1754006400000-fff.json.partial"),
+      inboxFile(GOOD_BODY),
+    );
+
+    const result = await promoteInbox(box, MAIL_CONFIG, {
+      now: 1754006400000,
+      log: SILENT,
+    });
+
+    assert.equal(result.promoted, 0);
+    assert.equal(result.skipped, 0);
+    assert.deepEqual(await fs.readdir(inboxDir), [
+      "1754006400000-fff.json.partial",
+    ]);
+  });
+
+  it("moves an oversized file to failed/ without parsing it", async () => {
+    const box = path.join(dir, "promote-oversize");
+    await ensureDirs(box);
+    const { inboxDir, failedDir } = queuePaths(box);
+    await fs.writeFile(
+      path.join(inboxDir, "1754006400000-ggg.json"),
+      inboxFile({ ...GOOD_BODY, message: "x".repeat(50_000) }),
+    );
+
+    const result = await promoteInbox(box, MAIL_CONFIG, {
+      now: 1754006400000,
+      maxBytes: 20_000,
+      log: SILENT,
+    });
+
+    assert.equal(result.failed, 1);
+    assert.deepEqual(await fs.readdir(inboxDir), []);
+    assert.deepEqual(await fs.readdir(failedDir), ["1754006400000-ggg.json"]);
+  });
+
+  it("creates the inbox directory with group-write so nginx can write it", async () => {
+    const box = path.join(dir, "promote-mode");
+    await ensureDirs(box);
+    const { inboxDir } = queuePaths(box);
+    const mode = (await fs.stat(inboxDir)).mode & 0o777;
+    assert.equal(mode, 0o775, `expected 0o775, got 0o${mode.toString(8)}`);
+  });
+
+  it("stamps the promoted envelope with the inbox record's original receivedAt, not the promotion time", async () => {
+    const box = path.join(dir, "promote-receivedAt-preserved");
+    await ensureDirs(box);
+    const { inboxDir } = queuePaths(box);
+    // A week-old submission spooled during an outage: the envelope must carry
+    // that receipt time, not the moment the mailer got around to promoting
+    // it, or oldestAgeSec (and the staleness alarm reading it) would be blind
+    // to however long the backlog actually waited.
+    const weekOld = "2025-07-25T00:00:00.000Z";
+    await fs.writeFile(
+      path.join(inboxDir, "1754006400000-old1.json"),
+      inboxFile(GOOD_BODY, weekOld),
+    );
+
+    const result = await promoteInbox(box, MAIL_CONFIG, {
+      now: 1754006400000,
+      log: SILENT,
+    });
+
+    assert.equal(result.promoted, 1);
+    const queued = await listQueued(box);
+    const envelope = await readEnvelope(box, queued[0]);
+    assert.equal(envelope.receivedAt, weekOld);
+  });
+
+  it("falls back to the pass's `now` when the inbox record's receivedAt is missing or unparseable", async () => {
+    const box = path.join(dir, "promote-receivedAt-fallback");
+    await ensureDirs(box);
+    const { inboxDir } = queuePaths(box);
+    await fs.writeFile(
+      path.join(inboxDir, "1754006400000-missing.json"),
+      JSON.stringify({ ip: "203.0.113.7", body: GOOD_BODY }), // no receivedAt at all
+    );
+    await fs.writeFile(
+      path.join(inboxDir, "1754006400001-garbage.json"),
+      inboxFile(GOOD_BODY, "not-a-real-date"),
+    );
+
+    const now = 1754006400000;
+    const result = await promoteInbox(box, MAIL_CONFIG, { now, log: SILENT });
+
+    assert.equal(result.promoted, 2);
+    const queued = await listQueued(box);
+    assert.equal(queued.length, 2);
+    for (const filename of queued) {
+      const envelope = await readEnvelope(box, filename);
+      assert.equal(envelope.receivedAt, new Date(now).toISOString());
+    }
+  });
+});
+
+// Regression test for the critical whole-branch-review finding: promoteInbox
+// used to pass the same pass-level `now` to enqueue() for every file, so every
+// envelope promoted in one tick shared the same millisecond id prefix and
+// differed only by makeId's (formerly 24-bit) random suffix. writeAtomic opens
+// with "w" and renames over the final path, so a collision silently destroys
+// the earlier envelope rather than erroring -- measured against the
+// unpatched code, 10,000 inbox files produced only 9,996 queue envelopes.
+// This test promotes a large batch in a single pass and asserts the promoted
+// count and the on-disk file count both equal the input count; a discrepancy
+// means a collision overwrote at least one envelope. Confirmed to fail
+// against the pre-fix code (see the mailer/queue.js history for makeId's
+// suffix width and promoteInbox's per-item timestamp) before this passed.
+describe("promoteInbox at volume", () => {
+  it("produces one distinct queue file per promoted item in a single large pass", async () => {
+    const box = path.join(dir, "promote-volume");
+    await ensureDirs(box);
+    const { inboxDir } = queuePaths(box);
+
+    const COUNT = 10_000;
+    await Promise.all(
+      Array.from({ length: COUNT }, (_, i) =>
+        fs.writeFile(
+          path.join(inboxDir, `1754006400000-${String(i).padStart(5, "0")}.json`),
+          inboxFile({ ...GOOD_BODY, message: `submission ${i}` }),
+        ),
+      ),
+    );
+
+    const result = await promoteInbox(box, MAIL_CONFIG, {
+      now: 1754006400000,
+      log: SILENT,
+    });
+
+    assert.equal(result.promoted, COUNT, "every valid inbox file should promote");
+    assert.equal(result.failed, 0);
+    assert.equal(result.skipped, 0);
+
+    const queued = await listQueued(box);
+    assert.equal(
+      queued.length,
+      COUNT,
+      `expected ${COUNT} distinct queue envelopes from ${COUNT} promoted ` +
+        `submissions, got ${queued.length} -- a shared id prefix collided and ` +
+        "one promotion's writeAtomic silently overwrote another's queue file",
     );
   });
 });

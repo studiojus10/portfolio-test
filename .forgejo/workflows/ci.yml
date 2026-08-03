@@ -114,6 +114,28 @@ jobs:
             --provenance=false --sbom=false \
             --push .
 
+      # Belt-and-braces, not the primary gate: `RUN nginx -t` in the Dockerfile
+      # now fails the build itself, before `--push` ever runs, in any context
+      # that builds this image (including a PR branch built locally) -- this
+      # job still only runs post-merge, so it re-checks the already-pushed
+      # image rather than catching the problem pre-merge.
+      - name: Verify njs compiles in the built image
+        env:
+          TAGS: ${{ steps.t.outputs.tags }}
+        run: |
+          set -eu
+          FIRST_TAG=$(echo "$TAGS" | cut -d, -f1)
+          # `--rm` only removes the container; the pulled image would otherwise
+          # linger in the host store this whole workflow works to keep clean.
+          # A trap, not a line after `docker run`, because under `set -eu` a
+          # failing `nginx -t` exits the script immediately -- the line after
+          # would never run, and the pulled image would be exactly the thing
+          # left behind by the failure this step is meant to catch. The trap
+          # still runs on that early exit, and doesn't touch the exit status
+          # `docker run` set, so `nginx -t` failing still fails the build.
+          trap 'docker rmi "$FIRST_TAG" >/dev/null 2>&1 || true' EXIT
+          docker run --rm "$FIRST_TAG" nginx -t
+
       # Same builder, same rules — build & push the contact-form mailer sidecar
       # as a second package so the host's What's-Up-Docker can auto-update it too.
       - name: Build & push mailer
