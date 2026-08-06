@@ -1,4 +1,20 @@
 # Contact-form mailer sidecar (see mailer/server.js).
+
+# ---- deps ----
+# A separate stage purely so the runtime image below carries neither the global
+# pnpm install nor pnpm's content-addressable store. pnpm comes from npm, not
+# corepack: Node 26 dropped corepack from the image. Keep the pin in step with
+# package.json's `packageManager`.
+FROM node:26-alpine AS deps
+WORKDIR /app
+RUN npm i -g pnpm@11.3.0
+# Install prod deps against the lockfile first for cacheable layers.
+# pnpm-workspace.yaml is what keeps this directory its own pnpm root rather than
+# a package of the site's workspace -- see the comments in that file.
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN pnpm install --prod --frozen-lockfile
+
+# ---- run ----
 FROM node:26-alpine
 WORKDIR /app
 ARG COMMIT_HASH
@@ -6,10 +22,11 @@ LABEL org.opencontainers.image.title="studiojus10-mailer" \
       org.opencontainers.image.source="https://git.daveynet.xyz/davey/studiojus10" \
       org.opencontainers.image.revision=$COMMIT_HASH
 
-# Install prod deps against the lockfile first for cacheable layers.
-COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
-
+# pnpm links each package as a symlink into node_modules/.pnpm rather than
+# writing a flat tree. Those links are relative and point inside node_modules,
+# so the directory stays self-contained and copies across intact.
+COPY --from=deps /app/node_modules ./node_modules
+COPY package.json ./
 COPY server.js queue.js validate.js ./
 
 ENV NODE_ENV=production \

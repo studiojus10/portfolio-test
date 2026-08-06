@@ -27,15 +27,56 @@ jobs:
       - uses: actions/checkout@v4
         with:
           lfs: false
+      # Node 26 no longer ships corepack, so `corepack enable pnpm` is not an
+      # option. Not `curl -fsSL https://get.pnpm.io/install.sh | sh` either:
+      # that executes whatever the URL serves at the moment CI runs. pnpm
+      # publishes standalone, Node-bundled release binaries on GitHub Releases,
+      # and each asset's SHA256 is recorded in the release metadata at upload
+      # time; the release is marked immutable, so neither the asset nor its
+      # digest can be swapped after publication. Fetch the pinned release and
+      # verify that digest BEFORE anything is executed.
+      #
+      # The tarball's top-level `pnpm` is a Node "single executable" that
+      # resolves `dist/` next to itself at runtime, so both are extracted
+      # together into one directory rather than dropped into a bin dir.
+      #
+      # Must run BEFORE setup-node: `cache: pnpm` below shells out to
+      # `pnpm store path`, which needs pnpm already on PATH.
+      #
+      # To bump: set PNPM_VERSION, then take the new digest from
+      #   https://api.github.com/repos/pnpm/pnpm/releases/tags/v$PNPM_VERSION
+      #   (the "digest" field on the pnpm-linux-x64.tar.gz asset).
+      # Keep it in step with `packageManager` in package.json and the pins in
+      # both Dockerfiles.
+      - name: Install pnpm (pinned, checksum-verified)
+        env:
+          PNPM_VERSION: "11.3.0"
+          PNPM_SHA256: "6eb506b53297eb1186ba0cbff1577bb26d17713835a01a5342dcafae550827ce"
+        run: |
+          set -euo pipefail
+          TARBALL=pnpm-linux-x64.tar.gz
+          curl -fsSL --retry 3 -o "$TARBALL" \
+            "https://github.com/pnpm/pnpm/releases/download/v${PNPM_VERSION}/${TARBALL}"
+          echo "${PNPM_SHA256}  ${TARBALL}" | sha256sum -c -
+          mkdir -p "$HOME/.local/pnpm"
+          tar xzf "$TARBALL" -C "$HOME/.local/pnpm"
+          rm -f "$TARBALL"
+          echo "$HOME/.local/pnpm" >> "$GITHUB_PATH"
+          "$HOME/.local/pnpm/pnpm" --version
       - uses: actions/setup-node@v4
         with:
           node-version: 26
-          cache: npm
-      - run: npm ci
-      - run: npm run check # astro check + biome
-      - run: npm run build # astro build
-      - run: npx playwright install --with-deps chromium
-      - run: npm run test
+          cache: pnpm
+      # The mailer is a separate pnpm root with its own lockfile and is
+      # deliberately NOT installed here: `check` runs its tests via
+      # `pnpm --dir mailer test`, and they import only ./validate.js and
+      # ./queue.js -- never server.js, the one file that needs nodemailer.
+      # Same as it was under npm.
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run check # astro check + biome
+      - run: pnpm run build # astro build
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm run test
 
   # Build + push the image to the Forgejo registry (published as a container package) — only after
   # `verify` passes, never on a PR, never on a cancelled run.

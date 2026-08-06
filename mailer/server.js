@@ -191,9 +191,14 @@ const server = http.createServer((req, res) => {
 async function deliver(mail) {
   const info = await transport.sendMail(mail);
   if (!hasCreds) {
+    // Only reachable on the jsonTransport above, which returns the serialised
+    // message on `info.message`. @types/nodemailer shapes SentMessageInfo for
+    // the SMTP transport, which has no such field, so narrow it here -- the
+    // types describe the other branch of the transport, not this one.
+    const { message } = /** @type {{ message?: string | Buffer }} */ (info);
     console.log(
       "[mailer] LOG-ONLY message:",
-      info.message ? info.message.toString() : info,
+      message ? message.toString() : info,
     );
   }
 }

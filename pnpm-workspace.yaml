@@ -1,0 +1,4 @@
+# pnpm blocks dependency build scripts by default. esbuild's postinstall places
+# the native binary that Astro's Vite build shells out to, so it has to run.
+allowBuilds:
+  esbuild: true

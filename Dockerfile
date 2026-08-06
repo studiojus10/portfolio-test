@@ -1,10 +1,17 @@
 # ---- build ----
 FROM node:26-alpine AS build
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci
+# Installed with npm rather than corepack: Node 26 no longer ships corepack, so
+# `corepack enable pnpm` is not available in this image. Pinned to the same
+# version as package.json's `packageManager`; keep the two in step.
+RUN npm i -g pnpm@11.3.0
+# pnpm-workspace.yaml is not optional here -- it carries the `allowBuilds`
+# approval for esbuild's postinstall, and without it the install aborts with
+# ERR_PNPM_IGNORED_BUILDS rather than quietly building something broken.
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN pnpm install --frozen-lockfile
 COPY . .
-RUN npm run build
+RUN pnpm run build
 
 # ---- serve ----
 FROM nginx:alpine

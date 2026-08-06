@@ -1,0 +1,13 @@
+# Marks the mailer as its own pnpm root, NOT a package of the site's workspace.
+#
+# pnpm walks up until it finds a pnpm-workspace.yaml, and the repo root has one
+# (it is the only home pnpm 11 accepts for the `allowBuilds` setting). Without
+# this file, `pnpm install` here silently resolves against the root project
+# instead -- no mailer/node_modules, no mailer/pnpm-lock.yaml, and `pnpm --dir
+# mailer test` then runs with nodemailer missing.
+#
+# Independence is deliberate, not incidental: mailer/Dockerfile builds with
+# ./mailer as its whole context (see docker-compose.yml and the CI mailer step),
+# so the lockfile it installs from has to live in this directory. Folding the
+# mailer into the root workspace would move the lockfile out of that context.
+packages: []

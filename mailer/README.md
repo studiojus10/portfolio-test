@@ -110,8 +110,8 @@ create outside a container — set it to a local path instead:
 
 ```sh
 cd mailer
-npm install
-QUEUE_DIR=./data SMTP_USER=you@gmail.com SMTP_PASS='app password' npm start   # listens on :3000
+pnpm install
+QUEUE_DIR=./data SMTP_USER=you@gmail.com SMTP_PASS='app password' pnpm start   # listens on :3000
 ```
 
 `./data` (under `mailer/`) is gitignored — safe to leave in place between runs.

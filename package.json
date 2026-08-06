@@ -2,6 +2,8 @@
   "name": "studio-jus10",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "pnpm@11.3.0",
+  "type": "module",
   "engines": {
     "node": ">=22.12.0"
   },
@@ -9,7 +11,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check && biome check src/scripts tests njs *.js && node scripts/check-raw-colors.mjs && npm --prefix mailer test && node --test \"njs/**/*.test.js\"",
+    "check": "astro check && biome check src/scripts tests njs *.js && node scripts/check-raw-colors.mjs && pnpm --dir mailer test && node --test \"njs/**/*.test.js\"",
     "format": "biome format --write src/scripts tests njs *.js && prettier --write \"src/**/*.astro\"",
     "test": "playwright test"
   },

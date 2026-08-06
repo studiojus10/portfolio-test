@@ -2,6 +2,7 @@
   "name": "studiojus10-mailer",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "pnpm@11.3.0",
   "type": "module",
   "description": "Contact-form mailer sidecar for studiojus10 — POST /api/contact -> SMTP",
   "engines": {
@@ -13,5 +14,8 @@
   },
   "dependencies": {
     "nodemailer": "^9.0.3"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^8.0.1"
   }
 }
