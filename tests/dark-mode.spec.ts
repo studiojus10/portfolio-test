@@ -187,17 +187,42 @@ test.describe('dark mode: no light-surface leaks (all routes)', () => {
   }
 });
 
-test.describe('OS colour-scheme preference', () => {
+test.describe('light is the default regardless of the OS', () => {
   test.use({ colorScheme: 'dark' });
 
-  test('first visit with no stored choice follows the OS', async ({ page }) => {
+  test('first visit with no stored choice stays light', async ({ page }) => {
+    await page.goto('/contact');
+    await expect(page.locator('html')).not.toHaveAttribute(
+      'data-theme',
+      'dark',
+    );
+  });
+
+  test('an explicit dark choice still wins', async ({ page }) => {
+    await setTheme(page, 'dark');
     await page.goto('/contact');
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   });
 
-  test('an explicit light choice overrides a dark OS', async ({ page }) => {
-    await setTheme(page, 'light');
+  test('a toggled choice survives a refresh', async ({ page }) => {
     await page.goto('/contact');
+    await expect(page.locator('html')).not.toHaveAttribute(
+      'data-theme',
+      'dark',
+    );
+
+    await page.locator('#theme-toggle').click();
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    expect(await page.evaluate(() => localStorage.getItem('co-theme'))).toBe(
+      'dark',
+    );
+
+    await page.reload();
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+
+    // and back again — light must persist just as explicitly
+    await page.locator('#theme-toggle').click();
+    await page.reload();
     await expect(page.locator('html')).not.toHaveAttribute(
       'data-theme',
       'dark',

@@ -69,7 +69,9 @@ Sections: `/photography` (six regions, each with leaf galleries), `/video`,
 ## Theming and the colour rule
 
 Dark mode is driven by `data-theme="dark"` on `<html>`, set before first paint
-from `localStorage['co-theme']` with a `prefers-color-scheme` fallback.
+from `localStorage['co-theme']`. Light is the default: the OS
+`prefers-color-scheme` is deliberately ignored, so dark mode is only ever on
+for a visitor who picked it with the nav toggle, and that choice persists.
 
 **Every colour lives in `src/styles/tokens.css`.** Tailwind's palette is mapped
 onto those tokens as `rgb(var(--c-…) / <alpha-value>)`, and

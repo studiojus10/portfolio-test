@@ -17,10 +17,11 @@ const {
   bodyStyle = "",
 } = Astro.props;
 
+// Light is the default; only an explicit stored choice turns dark on. The OS
+// preference is deliberately ignored (see src/scripts/theme.js for the toggle).
 const THEME_SNIPPET =
   "(function(){var t=localStorage.getItem('co-theme');" +
-  "var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;" +
-  "if(d)document.documentElement.setAttribute('data-theme','dark');})();";
+  "if(t==='dark')document.documentElement.setAttribute('data-theme','dark');})();";
 ---
 
 <!doctype html>
