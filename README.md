@@ -57,7 +57,7 @@ njs/              nginx njs source — the contact-form fallback
 mailer/           the SMTP sidecar (its own pnpm root — see mailer/README.md)
 scripts/          check-raw-colors.mjs
 tests/            Playwright specs
-docs/             design docs and implementation plans
+docs/             design docs, implementation plans, known-issues.md
 ```
 
 There are no content collections and no CMS. Page copy lives in the `.astro`

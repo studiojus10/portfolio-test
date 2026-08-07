@@ -65,12 +65,23 @@ import Base from "@layouts/Base.astro";
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); /* fixed: decorative card-elevation shadow, same in both themes (matches the lightbox-shadow pattern used across the photography pages) */
       padding: 11px; /* outer white (5) + black line (1) + inner white (5) */
     }
-    /* The inset black frame line, sitting in the white mat. */
+    /* The inset black frame line, sitting in the white mat.
+       Drawn as an inset box-shadow, NOT `border: 1px solid`. Firefox
+       mis-rasterizes a hairline border on a 3D-projected element: at some
+       rotation angles the top and bottom border edges blow out and expand
+       inward until they meet, filling the card with --room-frame-line (near
+       black in the light theme) and leaving only a thin gap in the middle — a
+       "shutter" closing over each card as it swings past. It is deterministic
+       per angle, so it holds still if the ring is stopped there. Chrome is
+       unaffected. An inset box-shadow paints the identical 1px line (the
+       pseudo-element's box is the `inset: 5px` rect either way, and an inset
+       shadow is drawn inside that same border box) but takes a rasterization
+       path that does not blow out. Do not "simplify" this back to a border. */
     .cyl-card::before {
       content: "";
       position: absolute;
       inset: 5px;
-      border: 1px solid var(--room-frame-line);
+      box-shadow: inset 0 0 0 1px var(--room-frame-line);
       pointer-events: none;
       z-index: 2;
     }
