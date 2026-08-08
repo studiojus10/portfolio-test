@@ -85,7 +85,6 @@
       }
     }, 250);
   });
-  var scrollCue = document.getElementById('scrollCue');
   var duration = 0,
     targetTime = 0,
     currentTime = 0,
@@ -119,7 +118,6 @@
     heroImg.style.filter = 'blur(' + (t * 14).toFixed(1) + 'px)';
     heroInner.style.opacity = (1 - t * 1.6).toFixed(3);
     heroInner.style.transform = 'translateY(' + (-t * 80).toFixed(1) + 'px)';
-    if (scrollCue) scrollCue.style.opacity = (1 - t * 3).toFixed(3);
     hero.style.pointerEvents = t > 0.98 ? 'none' : 'auto';
   }
 

@@ -49,7 +49,61 @@ const THEME_SNIPPET =
     <script is:inline set:html={THEME_SNIPPET} />
   </head>
   <body class={bodyClass} style={bodyStyle || undefined}>
+    <!-- Scroll progress. Decorative: scroll position is already conveyed by
+         the viewport, so it is aria-hidden rather than a progressbar role.
+         Fixed to the viewport top rather than living inside <nav>: nav.js
+         retracts the nav on scroll-down (translateY(-100%) past an 8px
+         delta), which would carry a nav-child rail off-screen during the
+         exact downward motion it exists to report on. z-[100000] paints it
+         above the nav's z-[99999]. Starts collapsed and transparent so a
+         no-JS page shows nothing instead of a full-width red bar. No
+         transition: this is a 1:1 readout of scroll position, and a
+         transition would visibly lag it. -->
+    <div
+      id="scroll-rail"
+      aria-hidden="true"
+      class="fixed left-0 right-0 top-0 z-[100000] h-[2px] bg-primary origin-left scale-x-0 opacity-0 pointer-events-none"
+    >
+    </div>
+    <script>
+      import { initScrollProgress } from "@scripts/scroll-progress.js";
+      import { initScrollCue } from "@scripts/scroll-cue.js";
+      initScrollProgress();
+      initScrollCue();
+    </script>
     <Nav />
     <slot />
+    <!-- Scroll cue: tells a reader a page scrolls at all, which the rail
+         above cannot — at scrollY 0 the rail is a zero-width bar. Twelve-plus
+         routes open with a 100vh hero and nothing crossing the fold, so the
+         first screen looks complete. Unlike the rail this is a real control,
+         not decoration: it is the obvious thing to click, so it carries a
+         real accessible name and scrolls one viewport down. Starts hidden so
+         a no-JS page shows nothing. z-[99996] keeps it under the mobile menu
+         overlay (z-[99997]), the mobile menu itself (z-[99998]), the nav
+         (z-[99999]), and the lightbox (z-[100000]), while clearing all
+         ordinary page content. Placed after <slot /> (rather than before
+         <Nav />) so it is not the first tab stop on the page: it is a
+         transient control and must not sit ahead of the primary nav in tab
+         order. It is position: fixed with an explicit z-index, so DOM order
+         here affects only tab order and paint order against equal-z
+         siblings, not layout. Styling (a label over an animated rule, no
+         backing of any kind) restores the design this site originally
+         shipped on the six photography region pages, deleted from them in
+         88c35a5 and promoted here so every scrolling route carries it —
+         see #scroll-cue in site.css and --cue-ink/--cue-rule in
+         tokens.css. Two backings (a flat plate, then a radial-gradient
+         scrim) were tried in between and both rejected; the owner chose to
+         go back to no backing, faint text on light-background routes
+         included. -->
+    <button
+      id="scroll-cue"
+      type="button"
+      aria-label="Scroll down"
+      class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[99996] opacity-0 invisible pointer-events-none"
+    >
+      <span>Scroll</span>
+      <span class="cue-line" aria-hidden="true"></span>
+    </button>
   </body>
 </html>

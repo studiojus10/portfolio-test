@@ -198,40 +198,6 @@ import Base from "@layouts/Base.astro";
       letter-spacing: 0.04em;
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6); /* fixed: hero chrome over photo */
     }
-    .scroll-cue {
-      position: absolute;
-      bottom: 34px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      font-size: 10px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: rgba(243, 237, 225, 0.55); /* fixed: hero chrome over photo */
-    }
-    .cue-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(#d9a441, transparent); /* fixed: photo */
-      animation: cueSlide 2s ease-in-out infinite;
-    }
-    @keyframes cueSlide {
-      0%,
-      100% {
-        transform: scaleY(0.4);
-        opacity: 0.4;
-        transform-origin: top;
-      }
-      50% {
-        transform: scaleY(1);
-        opacity: 1;
-        transform-origin: top;
-      }
-    }
 
     /* ── Intro ── */
 
@@ -481,8 +447,7 @@ import Base from "@layouts/Base.astro";
       }
     }
     @media (prefers-reduced-motion: reduce) {
-      .grain,
-      .cue-line {
+      .grain {
         animation: none;
       }
       .collection-head {
@@ -517,10 +482,6 @@ import Base from "@layouts/Base.astro";
       <h1 class="hero-title"><em>Colorado</em></h1>
       <span class="hero-cjk">科罗拉多</span>
       <p class="hero-sub">The peak, the ranch, the fairway, the field.</p>
-    </div>
-    <div class="scroll-cue" id="scrollCue">
-      <span>Scroll</span>
-      <span class="cue-line"></span>
     </div>
   </section>
 

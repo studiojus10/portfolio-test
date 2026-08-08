@@ -84,3 +84,76 @@ main,
   margin-left: auto;
   margin-right: auto;
 }
+
+/* ── Scroll cue ──
+   Restores the design this site originally shipped on the six photography
+   region pages (a label over an animated gold rule, no backing of any
+   kind), deleted from them in 88c35a5. A flat painted plate and then a
+   radial-gradient scrim were tried afterward to fix the label's contrast
+   against whatever hero photo sits behind it; the owner rejected both and
+   asked for the original back, promoted here from those six pages to
+   every scrolling route. --cue-ink and --cue-rule (tokens.css) are
+   deliberately not reassigned under html[data-theme="dark"] — see the
+   comment there. */
+#scroll-cue {
+  /* `visibility` is transitioned alongside opacity so the cue fades out
+     instead of vanishing, while still leaving the tab order when hidden —
+     an opacity-0 button stays keyboard-focusable. */
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cue-ink);
+  /* Lifts the label off whatever photo sits behind it (owner: "a bit
+     subtle" — wants a shadow, still subtle, more visible than bare text).
+     Same family as .hero-sub's shadow on the region-page hero immediately
+     above this cue's original home (0 1px 4px rgba(0, 0, 0, 0.6) — fixed:
+     quoting that page's own comment, not a new literal here); blur
+     trimmed from 4px to 3px because this label is a third the font-size, so
+     the same blur would soften the strokes into a glow rather than a lift.
+     --cue-shadow (tokens.css) is theme-invariant like --cue-ink/--cue-rule. */
+  text-shadow: 0 1px 3px var(--cue-shadow);
+}
+
+#scroll-cue .cue-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(var(--cue-rule), transparent);
+  animation: cueSlide 2s ease-in-out infinite;
+  /* The rule is a gradient box, not text, so text-shadow above doesn't
+     touch it; without this it reads visibly weaker than the newly-lifted
+     label. drop-shadow (not box-shadow) because it follows the gradient's
+     own alpha as it fades to transparent, instead of haloing the full 40px
+     bounding box the way a box-shadow would. */
+  filter: drop-shadow(0 1px 2px var(--cue-shadow));
+}
+
+@keyframes cueSlide {
+  0%,
+  100% {
+    transform: scaleY(0.4);
+    opacity: 0.4;
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+    transform-origin: top;
+  }
+}
+
+/* Unlike the progress rail — a 1:1 readout of scroll position with no
+   animation to reduce — the rule's slide is a real animation and has a
+   genuine reduced-motion case. The cue still appears; only the motion
+   stops. */
+@media (prefers-reduced-motion: reduce) {
+  #scroll-cue .cue-line {
+    animation: none;
+  }
+}

@@ -102,6 +102,32 @@
   --thumb-dim: rgba(0, 0, 0, 0.15);
   --surface-container-low: #f4f1f0;
 
+  /* Colour for the scroll cue's label and rule (see #scroll-cue in
+     site.css). Promoted here from the six photography region pages' own
+     <style> blocks, where this design lived until it was deleted from them
+     in 88c35a5. Two backings were tried in between to fix the cue's
+     contrast against whatever hero photo sits underneath it — a flat
+     painted plate, then a radial-gradient scrim (that history is why this
+     comment mentions contrast at all) — and the owner rejected both,
+     asking for the original no-backing design back, promoted from those
+     six pages to every scrolling route. These two tokens are
+     theme-invariant BY DESIGN, not an oversight: the cue was built to sit
+     over photography, so it is deliberately light-on-dark in both themes.
+     Do not add a `html[data-theme="dark"]` override for either — the owner
+     chose this treatment knowing it reads faint on light-background
+     routes. */
+  --cue-ink: rgba(243, 237, 225, 0.55);
+  --cue-rule: #d9a441;
+  /* Shadow behind the cue's label (and, via drop-shadow, its rule) so the
+     light text lifts off whatever photo sits under it. Same family as
+     .hero-sub's `text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6)` on the region
+     pages' hero (see git show 8fe73f1:src/pages/photography/colorado/
+     index.astro) — light chrome over a photograph, same fix. Theme-invariant
+     like --cue-ink/--cue-rule above: the cue is always light-on-photo, so
+     the shadow that grounds it never needs to differ by theme either. Do
+     not add a html[data-theme="dark"] override. */
+  --cue-shadow: rgba(0, 0, 0, 0.55);
+
   /* Nav dropdown panel shadow (Follow-up 1). Light value reproduces
      Tailwind's default shadow-lg exactly, so swapping shadow-lg ->
      shadow-panel in Nav.astro is a no-op in light mode. */
