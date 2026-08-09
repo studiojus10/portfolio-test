@@ -106,7 +106,7 @@ main,
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--cue-ink);
@@ -115,7 +115,7 @@ main,
      Same family as .hero-sub's shadow on the region-page hero immediately
      above this cue's original home (0 1px 4px rgba(0, 0, 0, 0.6) — fixed:
      quoting that page's own comment, not a new literal here); blur
-     trimmed from 4px to 3px because this label is a third the font-size, so
+     trimmed from 4px to 3px because this label is smaller than .hero-sub, so
      the same blur would soften the strokes into a glow rather than a lift.
      --cue-shadow (tokens.css) is theme-invariant like --cue-ink/--cue-rule. */
   text-shadow: 0 1px 3px var(--cue-shadow);
