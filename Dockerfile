@@ -14,7 +14,7 @@ COPY . .
 RUN pnpm run build
 
 # ---- serve ----
-FROM nginx:alpine
+FROM nginx:alpine AS serve
 ARG COMMIT_HASH
 LABEL org.opencontainers.image.title="studiojus10" \
       org.opencontainers.image.source="https://git.daveynet.xyz/davey/studiojus10" \
@@ -23,7 +23,11 @@ LABEL org.opencontainers.image.title="studiojus10" \
 # The base image has no modules-enabled include and no load_module line, so it
 # is prepended to the main context here. addgroup puts the nginx worker in gid
 # 100 (users), which is what lets it write the 0o775 spool inbox owned by 99:100.
-RUN apk add --no-cache nginx-module-njs \
+# `apk upgrade` first, so a rebuild ships Alpine's security fixes (OpenSSL,
+# musl, busybox) before nginx:alpine is republished with them. nginx and njs
+# come from nginx.org via the base image, not the Alpine repos, so apk upgrade
+# leaves them alone -- nginx itself updates when nginx:alpine is republished.
+RUN apk upgrade --no-cache && apk add --no-cache nginx-module-njs \
  && sed -i '1i load_module modules/ngx_http_js_module.so;' /etc/nginx/nginx.conf \
  && addgroup nginx users
 COPY nginx.conf /etc/nginx/conf.d/default.conf

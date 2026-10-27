@@ -156,10 +156,16 @@ submissions there directly.
 
 - **verify** — pnpm installed from a SHA256-pinned release tarball, then
   `pnpm run check`, `pnpm run build`, and the Playwright suite.
-- **docker** — on `main` and `v*` tags only: builds and pushes
-  `forge.daveynet.xyz/davey/studiojus10` and `…/studiojus10-mailer`, tagged
-  `sha-<7char>` plus `latest` or the version. Uses an isolated `docker-container`
-  buildx builder so `:latest` never lands in the host image store.
+- **docker** — on `main`, `v*` tags, the Sunday 09:00 UTC schedule and a manual
+  dispatch: builds and pushes `forge.daveynet.xyz/davey/studiojus10` and
+  `…/studiojus10-mailer`, tagged `sha-<7char>` plus `latest` or the version. Uses
+  an isolated `docker-container` buildx builder so `:latest` never lands in the
+  host image store. The schedule rebuilds both from `main`, the site with its
+  `serve` stage uncached so its `apk upgrade` runs fresh, and re-pushes `latest`
+  and main's `sha-<7char>`, so patched packages ship when nothing merges. A
+  dispatch on `main` does the same. A dispatch on a branch publishes a new
+  `sha-<7char>` for that unmerged commit; one on a `v*` tag re-pushes that tag's
+  `sha-<7char>` and version.
 
 Needs repo secrets `REGISTRY_USER` and `REGISTRY_TOKEN` (a `write:package` PAT).
 

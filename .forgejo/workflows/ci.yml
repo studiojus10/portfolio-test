@@ -15,6 +15,13 @@ on:
   pull_request:
     paths-ignore: ["docs/**", "**/*.md", "LICENSE"]
   workflow_dispatch:
+  # Weekly rebuild, Sundays 09:00 UTC (02:00 PDT / 01:00 PST), so the site picks up patched Alpine
+  # packages even when nothing merges; a dispatch refreshes the same way. A push that lands during a
+  # refresh cancels it (same `ci-${{ github.ref }}` group), and its own build reuses the cached
+  # upgrade layer, so that week's package refresh waits for the next Sunday. What a refresh changes
+  # is explained at "Build & push" below.
+  schedule:
+    - cron: "0 9 * * 0"
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -142,14 +149,30 @@ jobs:
       # mode=max cache blobs with a 413. The persistent builder above keeps a warm local BuildKit cache
       # instead. --provenance/--sbom OFF so Forgejo registers a plain container manifest (not an OCI
       # index with attestation manifests it won't display as a package). `--push` ships every tag at once.
+      #
+      # A refresh (the schedule or a dispatch) adds --no-cache-filter serve. That rebuilds the shipped
+      # `serve` stage, whose `apk upgrade && apk add` layer the warm cache would otherwise replay over an
+      # unchanged nginx:alpine digest, so the refresh ships Alpine's current fixes. The `build` stage
+      # stays cached while node:26-alpine is unchanged: the docker-container builder set up above
+      # resolves each FROM tag against the registry on every build. A refresh pushes the tags a push of
+      # its ref would: on main, the commit's sha-<7> and :latest are re-pushed with patched packages, so
+      # sha-<7> names that commit's code, not one frozen image. A dispatch on a branch publishes a new
+      # sha-<7> for that unmerged commit; one on a v* tag re-pushes that tag's sha-<7> and version tag.
+      # A later run of the same ref cancels the earlier, and a refresh that cancels a push run still
+      # pushes that commit's tags. Runs on different refs (a v* tag, a branch dispatch) can still
+      # overlap and kill each other's builder.
       - name: Build & push
         env: # values via env, not inline ${{ }}
           TAGS: ${{ steps.t.outputs.tags }}
           SHA: ${{ github.sha }}
+          EVENT: ${{ github.event_name }}
         run: |
           set -eu
           ARGS=""
           for t in $(echo "$TAGS" | tr ',' ' '); do ARGS="$ARGS -t $t"; done
+          case "$EVENT" in
+            schedule|workflow_dispatch) ARGS="$ARGS --no-cache-filter serve" ;;
+          esac
           docker buildx build --builder studiojus10-wud $ARGS \
             --build-arg COMMIT_HASH="$SHA" \
             --provenance=false --sbom=false \
@@ -175,10 +198,14 @@ jobs:
           # still runs on that early exit, and doesn't touch the exit status
           # `docker run` set, so `nginx -t` failing still fails the build.
           trap 'docker rmi "$FIRST_TAG" >/dev/null 2>&1 || true' EXIT
-          docker run --rm "$FIRST_TAG" nginx -t
+          # --pull always: a refresh re-pushes sha-<7>, so a copy a cancelled run left here may be stale.
+          docker run --rm --pull always "$FIRST_TAG" nginx -t
 
       # Same builder, same rules — build & push the contact-form mailer sidecar
       # as a second package so the host's What's-Up-Docker can auto-update it too.
+      # A refresh adds no flag here: the shipped stage installs no packages, and the builder
+      # resolves node:26-alpine against the registry on every build, so a plain rebuild picks
+      # up a republished base.
       - name: Build & push mailer
         env:
           TAGS: ${{ steps.t.outputs.mailer_tags }}

@@ -127,7 +127,11 @@ registry on every merge to `main`:
 - `forge.daveynet.xyz/davey/studiojus10-mailer` — this service
 
 (each tagged `:latest` and `:sha-<commit>`), so What's-Up-Docker can auto-update
-both.
+both. CI also rebuilds both from `main` every Sunday and re-pushes `:latest` and
+main's `:sha-<commit>`, so a republished base image ships when nothing merges; a
+dispatch on `main` does the same. A dispatch on a branch publishes a new
+`:sha-<commit>` for that unmerged commit; one on a `v*` tag re-pushes that tag's
+`:sha-<commit>` and version.
 
 The host's production compose must include the mailer service and an `.env` with
 the SMTP credentials. Minimal shape:
